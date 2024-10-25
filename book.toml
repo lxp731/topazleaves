@@ -1,0 +1,15 @@
+[book]
+authors = ["Burgess Leo"]
+language = "zh-cn"
+multilingual = false
+src = "src"
+title = "Topaz Leaves"
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "rust"
+git-repository-url = "https://github.com/rust-lang/mdBook"
+git-repository-icon = "fa-github"
+
+[output.html.fold]
+enable = false
