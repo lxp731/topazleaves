@@ -10,18 +10,18 @@
 
 - [破解 Pycharm](./pycharm_crack.md)
 
-- [环境变量设置](#)
+- [环境变量设置](./env_variable_setting.md)
     - [.bashrc](./bashrc_setting.md)
     - [.vimrc](./vimrc_setting.md)
     - [.user-dirs.dirs](./user-dirs.dirs_setting.md)
     
-- [代理配置](#)
+- [代理配置](./kinds_proxy_setting.md)
     - [配置系统代理](./system_proxy_setting.md)
     - [配置 Docker 代理](./docker_proxy_setting.md)
     - [配置容器代理](./container_proxy_setting.md)
     - [配置 K3S 代理](./k3s_proxy_setting.md)
 
-- [实用脚本](#)
+- [实用脚本](./useful_scripts.md)
     - [Node 版本控制](./node_version_control.md)
     - [Docker 代理启停](./docker_proxy_start_stop.md)
     
@@ -39,6 +39,6 @@
 
 - [Ollama 服务发现](./ollama_services_found.md)
 
-- [有趣的 Docker 项目](#)
+- [有趣的 Docker 项目](./funny_docker_projects.md)
     - [Openweb-UI](./openweb-ui.md)
     - [Yesplaymusic](./yesplaymusic.md)

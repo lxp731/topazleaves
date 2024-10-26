@@ -6,6 +6,8 @@
 
 [中文文档](https://gofrp.org/zh-cn/)
 
+### SSH 服务
+
 #### 服务器配置
 
 ```bash
@@ -24,7 +26,7 @@ vim frpc.toml
 ```
 
 ```bash
-serverAddr = "123.57.54.42"
+serverAddr = "123.00.00.01"
 serverPort = 5432   # frp 建立通讯的端口
 auth.token = "123456"
 
@@ -34,6 +36,48 @@ type = "tcp"
 localIP = "127.0.0.1"
 localPort = 22
 remotePort = 10086   # frp 映射的端口，VPS需要打开的端口
+```
+
+### FTP 服务
+
+#### 服务器配置
+
+```bash
+vim frps.toml
+```
+
+```bash
+bindPort = 5432
+auth.token = "123456"
+```
+
+#### 客户端配置
+
+```bash
+vim frpc.toml
+```
+
+```bash
+serverAddr = "123.00.00.01"
+serverPort = 5432
+auth.token = "123456"
+
+[[proxies]]
+name = "test_static_file"
+type = "tcp"
+localPort = 21
+remotePort = 10086
+
+[proxies.plugin]
+type = "static_file"
+
+# 本地文件目录，对外提供访问
+localPath = "/your/local/path"
+
+# URL 中的前缀，将被去除，保留的内容即为要访问的文件路径
+stripPrefix = "static"
+httpUser = "user"
+httpPassword = "password"
 ```
 
 #### systemctl 配置
