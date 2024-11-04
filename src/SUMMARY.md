@@ -2,6 +2,8 @@
 
 # Topaz Leaves
 
+- [下载谷歌拼音](./google_input_install.md)
+
 - [下载微信](./wechat_install.md)
 
 - [下载 Clash-Verge](./clash_verge_install.md)
