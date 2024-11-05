@@ -1,4 +1,4 @@
-# 下载谷歌拼音
+# 下载 Google-PinYin
 
 ### 在Ubuntu 下，谷歌拼音输入法是基于Fcitx输入法的。因此，首先安装Fcitx。
 

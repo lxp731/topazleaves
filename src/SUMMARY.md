@@ -26,6 +26,7 @@
 - [实用脚本](./useful_scripts.md)
     - [Node 版本控制](./node_version_control.md)
     - [Docker 代理启停](./docker_proxy_start_stop.md)
+    - [Docker 镜像上传私有仓库](./docker_push_registry.md)
     
 - [关闭盖子禁用休眠](./disable_sleep.md)
 
