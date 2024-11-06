@@ -178,11 +178,13 @@
                     <main>
                         <h1 id="asciiquarium-command-install"><a class="header" href="#asciiquarium-command-install">Asciiquarium Command Install</a></h1>
 <h4 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h4>
-<pre><code class="language-bash">sudo apt-get install -y perl libcurses-perl
+<pre><code class="language-bash">sudo apt-get install -y perl libcurses-perl wget
+wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
+wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
 tar -xf Term-Animation-2.4.tar.gz
 tar -xf asciiquarium.tar.gz
 cd Term-Animation-2.4/ &amp;&amp; perl Makefile.PL &amp;&amp; make &amp;&amp; sudo make install
-cd asciiquarium_1.1/
+cd ../asciiquarium_1.1/
 cp asciiquarium /usr/local/bin
 sudo chmod +x /usr/local/bin/asciiquarium
 asciiquarium
