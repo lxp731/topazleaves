@@ -3,11 +3,13 @@
 #### Ubuntu
 
 ```bash
-sudo apt-get install -y perl libcurses-perl
+sudo apt-get install -y perl libcurses-perl wget
+wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
+wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
 tar -xf Term-Animation-2.4.tar.gz
 tar -xf asciiquarium.tar.gz
 cd Term-Animation-2.4/ && perl Makefile.PL && make && sudo make install
-cd asciiquarium_1.1/
+cd ../asciiquarium_1.1/
 cp asciiquarium /usr/local/bin
 sudo chmod +x /usr/local/bin/asciiquarium
 asciiquarium
