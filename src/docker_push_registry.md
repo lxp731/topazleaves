@@ -77,7 +77,7 @@ done < "$input_file"
 
 ### Rename Docker Images
 
-The name change is mainly to prepare for the `docker tag`. The modified image names will be saved in the `new_images.tmp` file. And you can modify the `private_registry` to change the registry you want to push to.
+The modified image names will be saved in the `new_images.tmp` file. And you can modify the `private_registry` to change the registry you want to push to.
 
 **Usage：update_images.sh images.tmp**
 
@@ -87,8 +87,8 @@ The name change is mainly to prepare for the `docker tag`. The modified image na
 # * Author        : Burgess Leo
 # * Email         : liuxp731@qq.com
 # * Create time   : 2024-09-13 16:06
-# * Filename      : update_images.sh
-# * Description   : Updates image paths from a specified file and outputs to new_images.tmp
+# * Filename      : update_and_tag_images.sh
+# * Description   : Updates image paths and tags Docker images based on a specified file
 # **********************************************************
 
 # 检查是否传入文件名作为参数
@@ -105,51 +105,11 @@ private_registry="192.167.3.18/"
 # 创建或清空输出文件
 > "$output_file"
 
-# 处理文件内容
-while IFS= read -r line; do
-  # 检查行是否为空
-  if [[ -n "$line" ]]; then
-    # 在镜像名称前加上私有仓库地址
-    echo "${private_registry}${line}" >> "$output_file"
-  fi
-done < "$input_file"
-```
-
-### 重命名 Docker 镜像
-
-使用`Docker tag`命令重命名镜像，保存在机器中，并且将新的镜像名保存在 new_images.tmp 文件中。
-
-**Usage：tag_images.sh images.tmp**
-
-```bash
-#!/bin/bash
-# **********************************************************
-# * Author        : Burgess Leo
-# * Email         : liuxp731@qq.com
-# * Create time   : 2024-09-13 16:06
-# * Filename      : tag_images.sh
-# * Description   : Tags Docker images based on a specified file
-# **********************************************************
-
-# 检查参数数量
-if [ "$#" -ne 1 ]; then
-  echo "用法: $0 <images.tmp>"
-  exit 1
-fi
-
-# 从命令行参数获取文件名
-input_file="$1"
-output_file="new_images.tmp"
-private_registry="192.167.3.18/"
-
-# 创建或清空输出文件
-> "$output_file"
-
 # 处理文件内容并执行 docker tag 命令
-while read -r original_image; do
+while IFS= read -r original_image; do
   # 检查行是否为空
   if [[ -n "$original_image" ]]; then
-    # 组合新的镜像名称
+    # 在镜像名称前加上私有仓库地址
     new_image_name="${private_registry}${original_image}"
     
     # 输出正在标记的镜像信息
@@ -166,9 +126,11 @@ done < "$input_file"
 echo "所有镜像已成功标记并保存到 $output_file"
 ```
 
-### 推送镜像
+> After Tag docker images, you must check the `new_images_name.tmp`, ensure the image names are correct. And you must confirm about projects created in your private harbor.
 
-推送镜像到私有仓库，使用脚本时，请将`private_registry`变量修改为私有仓库地址。
+### Push Images
+
+Push images to a remote registry. This script reads a list of image names from a file named "new_images.tmp", and pushes them to a remote registry.
 
 **Usage：push_images.sh new_images.tmp**
 
@@ -210,9 +172,9 @@ done < "$images_file"
 echo "所有指定的镜像已被推送。"
 ```
 
-### 删除镜像
+### Delete Images from Local
 
-从本地删除已经上传的镜像。
+Delete images from local.
 
 **Usage：delete_images.sh new_images.tmp**
 
@@ -256,7 +218,7 @@ echo "All listed images have been processed."
 
 ### ALL IN ONE
 
-将所有的脚本整合成一个脚本，方便使用。
+Merge all the above scripts into one.
 
 ```bash
 #!/bin/bash
