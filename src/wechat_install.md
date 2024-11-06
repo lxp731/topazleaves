@@ -1,12 +1,12 @@
 # Wechat Install
 
-#### 安装 Deepin Repository
+#### Install Deepin Repository
 
 ```bash
 wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
 ```
 
-#### 安装微信
+#### Install Wechat
 
 ```bash
 sudo apt install com.qq.weixin.deepin
@@ -17,19 +17,19 @@ sudo apt install com.qq.weixin.deepin
 ```bash
 sudo vim /opt/deepinwine/tools/run_v4.sh
 
-# 找到下面这一行
+# find this line
 7z x "$APPDIR/$APPTAR" -o"$1"
-# 替换为
+# update it following line
 7z x "$APPDIR/$APPTAR" -o"$1" || true
 ```
 
-#### 卸载微信{ignore=ture}
+#### Remove Wechat
 
 ```bash
 sudo apt remove com.qq.weixin.deepin
 ```
 
-#### 删除 Deepin Repository{ignore=ture}
+#### Delete Deepin Repository
 
 ```bash
 sudo rm /etc/apt/sources.d.list/deepin-wine.i-m.dev.list

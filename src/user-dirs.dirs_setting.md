@@ -1,6 +1,6 @@
-# .user-dirs.dirs 文件修改
+# Modify .user-dirs.dirs
 
-#### 修改文件内容
+#### Update the Contents
 
 ```bash
 XDG_DESKTOP_DIR="$HOME/desktop"
@@ -13,7 +13,7 @@ XDG_TEMPLATES_DIR="$HOME/template"
 XDG_VIDEOS_DIR="$HOME/video"
 ```
 
-#### 更改家目录名称
+#### Update the Folder Names of Home Path
 
 ```bash
 mv 桌面/ desktop
@@ -26,7 +26,7 @@ mv 模板/ template
 mv 视频/ video
 ```
 
-#### 重启系统
+#### Reboot
 
 ```bash
 reboot

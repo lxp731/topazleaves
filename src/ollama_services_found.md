@@ -1,19 +1,19 @@
-# Ollama 服务发现
+# Ollama Service Discovery
 
-#### 编辑文件
+#### Editing the systemd service file
 
 ```bash
 sudo vim /etc/systemd/system/ollama.service
 ```
 
-#### 在[Service]下添加
+#### Add ENV under [Service] Item
 
 ```ini
 [Service]
 Environment="OLLAMA_HOST=0.0.0.0"
 ```
 
-#### 重载服务
+#### Reload and Restart
 
 ```bash
 sudo systemctl daemon-reload

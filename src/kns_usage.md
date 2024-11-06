@@ -1,13 +1,13 @@
-# kns 命名空间锁定
+# kns Locking Namespace
 
 
-#### 下载 fzf
+#### Install fzf
 
 ```bash
 sudo apt install fzf
 ```
 
-#### 编辑 kns 脚本
+#### Edit kns Script
 
 ```bash
 vim kns
@@ -42,7 +42,7 @@ if [ -n "$selected" ]; then
 fi
 ```
 
-#### 添加权限
+#### Add Exec Permission
 
 ```bash
 chmod +x kns

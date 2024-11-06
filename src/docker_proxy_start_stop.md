@@ -1,4 +1,4 @@
-# Docker 代理启停
+# Control Docker Proxy Up/Down
 
 ```bash
 sudo vim docker_proxy_start_stop.sh

@@ -1,24 +1,24 @@
-# 下载 Google-PinYin
+# Install Google-PinYin
 
-### 在Ubuntu 下，谷歌拼音输入法是基于Fcitx输入法的。因此，首先安装Fcitx。
+### On Ubuntu, Google-PinYin based on Fcitx. So install Fcitx firstly.
 
 ```bash
 sudo apt install fcitx
 ```
 
-### 配置Fcitx
+### Configure Fcitx
 
 ```bash
 im-config
 ```
 
-### 安装谷歌拼音输入法（Google Pinyin）
+### Install Google-PinYin
 
 ```bash
 sudo apt install fcitx-googlepinyin
 ```
 
-### 安装后运行如下命令配置谷歌拼音输入法
+### Running Fcitx
 
 ```bash
 fcitx-config-gtk3

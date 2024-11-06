@@ -1,10 +1,10 @@
-# 下载 Clash-Verge
+# Install Clash-Verge
 
-#### clash-verge项目地址
+#### clash-verge Project Github
 
 [https://github.com/clash-verge-rev/clash-verge-rev](https://github.com/clash-verge-rev/clash-verge-rev)
 
-#### 解决"clash-verge 依赖于 libwebkit2gtk-4.0-37."问题
+#### Sloved Error of "clash-verge 依赖于 libwebkit2gtk-4.0-37."
 
 ```bash
 sudo vim /etc/apt/sources.list.d/ubuntu.sources
@@ -19,7 +19,7 @@ Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 sudo apt update
 ```
 
-#### 解决 clash-verge 启动不显示窗口的问题
+#### Sloved Error of starting "clash-verge" but no display window
 
 ```
 vim /usr/share/applications/clash-verge.desktop 

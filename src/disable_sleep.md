@@ -1,17 +1,17 @@
-# 关闭盖子禁用休眠
+# Disable Hibernate When Close Laptop
 
-#### 编辑配置文件
+#### Edit Conf File
 ```bash
 sudo gedit /etc/systemd/logind.conf
 ```
 
-#### 修改这一行的值
+#### Modify Line
 
 ```bash
 HandleLidSwitch=ignore
 ```
 
-#### 重启服务
+#### Restart Service
 
 ```bash
 sudo systemctl restart systemd-logind

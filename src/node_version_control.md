@@ -1,4 +1,4 @@
-# Node 版本控制
+# Switch Node Version
 
 ```bash
 sudo vim hexo_start_stop.sh

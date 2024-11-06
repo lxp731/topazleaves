@@ -1,10 +1,10 @@
 # Yesplaymusic
 
-#### yesplaymusic 官网
+#### yesplaymusic Official Website
 
 [https://github.com/qier222/YesPlayMusic](https://github.com/qier222/YesPlayMusic)
 
-#### Docker 部署
+#### Docker Deployment
 
 ```yaml
 version: '3.9'

@@ -1,4 +1,4 @@
-# 配置 K3S 代理
+# Configure K3S Proxy
 
 * `/etc/systemd/system/k3s.service.env`
 

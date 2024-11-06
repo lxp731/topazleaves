@@ -1,6 +1,6 @@
-# VSCODE 远程连接主机
+# VS-Code Control Remote Hosts
 
-#### 设置免密登录
+#### Configure 
 
 ```bash
 ssh-keygen -t rsa
@@ -8,7 +8,7 @@ ssh-keygen -t rsa
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.1
 ```
 
-#### 添加config配置文件
+#### Add ssh config
 
 ```bash
 vim ~/.ssh/config
@@ -21,6 +21,6 @@ Host ali
   Port 22
 ```
 
-#### 下载VSCode插件{ignore=ture}
+#### Install VS-Code Plugin
 
 点击VSCode左下角图标，形似“><”，点击会自动安装。

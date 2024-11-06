@@ -1,10 +1,10 @@
-# Openweb-UI
+# OpenWeb-UI
 
-#### open-webui 官网
+#### open-webui Official Website
 
 [https://docs.openwebui.com/](https://docs.openwebui.com/)
 
-#### Docker 部署
+#### Docker Deployment
 
 ```bash
 version: '3'
@@ -25,4 +25,4 @@ volumes:
   open-webui:
 ```
 
-> docker部署open-webui需要配合[ollama 服务发现](./ollama_services_found.md)使用，否则会出现open-webui无法识别到本地模型的情况。
+> Docker deploy open-webui needs to configure [ollama Service Discovery](./ollama_services_found.md), or ollama can't discern local models.

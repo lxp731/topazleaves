@@ -1,12 +1,12 @@
-# Docker 镜像上传私有仓库
+# Push Docker Images to Private Registry
 
-> Tips：下载镜像时，需要开启 Docker 代理。上传到私有仓库时，需要关闭 Docker 代理。
+> Tips：When install images, you need open the proxy, but you must close it before push.
 
-### 提取镜像列表
+### Extract Images Name to File
 
-从 Helm 的 values 文件中获取所需的镜像，保存在 images.tmp 文件中。
+From the Helm's values.yaml, extract the images name and tag to images.tmp.
 
-**使用方法：get_images.sh values-nginx.yaml**
+**Usage：get_images.sh values-nginx.yaml**
 
 ```bash
 #!/bin/bash
@@ -41,11 +41,11 @@ while read -r line; do
 done < "$input_file"
 ```
 
-### 拉取镜像
+### Pull Docker Images
 
-获取 images.tmp 文件所有的镜像。如果你有别的文件，也可以使用别的文件，按照每行一个镜像名的格式进行书写即可。
+Install all dcoker images in images.tmp file, one by one. If you have else docker images_list file, you can use it instead, just confirm every lines only has one docker image name.
 
-**使用方法：pull_images.sh images.tmp**
+**Usage：pull_images.sh images.tmp**
 
 ```bash
 #!/bin/bash
@@ -75,11 +75,11 @@ while read -r image; do
 done < "$input_file"
 ```
 
-### 将镜像改名
+### Rename Docker Images
 
-改名主要是为 `docker tag` 做准备，将改名后的镜像名保存在 new_images.tmp 文件中，可以修改脚本的`private_registry`变量来修改私有仓库地址。
+The name change is mainly to prepare for the `docker tag`. The modified image names will be saved in the `new_images.tmp` file. And you can modify the `private_registry` to change the registry you want to push to.
 
-**使用方法：update_images.sh images.tmp**
+**Usage：update_images.sh images.tmp**
 
 ```bash
 #!/bin/bash
@@ -119,7 +119,7 @@ done < "$input_file"
 
 使用`Docker tag`命令重命名镜像，保存在机器中，并且将新的镜像名保存在 new_images.tmp 文件中。
 
-**使用方法：tag_images.sh images.tmp**
+**Usage：tag_images.sh images.tmp**
 
 ```bash
 #!/bin/bash
@@ -170,7 +170,7 @@ echo "所有镜像已成功标记并保存到 $output_file"
 
 推送镜像到私有仓库，使用脚本时，请将`private_registry`变量修改为私有仓库地址。
 
-**使用方法：push_images.sh new_images.tmp**
+**Usage：push_images.sh new_images.tmp**
 
 ```bash
 #!/bin/bash
@@ -214,7 +214,7 @@ echo "所有指定的镜像已被推送。"
 
 从本地删除已经上传的镜像。
 
-**使用方法：delete_images.sh new_images.tmp**
+**Usage：delete_images.sh new_images.tmp**
 
 ```bash
 #!/bin/bash

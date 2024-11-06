@@ -1,4 +1,4 @@
-# .bashrc 配置
+# .bashrc Configuration
 
 ```bash
 # 设置shell命令查找

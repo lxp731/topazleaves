@@ -1,14 +1,14 @@
 # 使用 frp
 
-#### 项目链接
+#### Project Official Website
 
 [https://github.com/fatedier/frp](https://github.com/fatedier/frp)
 
 [中文文档](https://gofrp.org/zh-cn/)
 
-### SSH 服务
+### SSH Service
 
-#### 服务器配置
+#### The server configuration
 
 ```bash
 vim frps.toml
@@ -19,7 +19,7 @@ bindPort = 5432  # frp 建立通讯的端口
 auth.token = "123456"
 ```
 
-#### 客户端配置
+#### The Client configuration
 
 ```bash
 vim frpc.toml
@@ -38,9 +38,9 @@ localPort = 22
 remotePort = 10086   # frp 映射的端口，VPS需要打开的端口
 ```
 
-### FTP 服务
+### FTP Service
 
-#### 服务器配置
+#### The Server configuration
 
 ```bash
 vim frps.toml
@@ -51,7 +51,7 @@ bindPort = 5432
 auth.token = "123456"
 ```
 
-#### 客户端配置
+#### The Client configuration
 
 ```bash
 vim frpc.toml
@@ -80,9 +80,9 @@ httpUser = "user"
 httpPassword = "password"
 ```
 
-#### systemctl 配置
+#### systemctl Configuration
 
-* frps | 服务器配置
+* frps | Server configuration
 
 ```bash
 sudo vim /etc/systemd/system/frps.service
@@ -102,14 +102,14 @@ ExecStart = /root/frp/frps -c /root/frp/config.toml
 WantedBy = multi-user.target
 ```
 
-重载服务
+reload daemon and start service
 
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable --now frps
 ```
 
-* frpc | 客户端配置
+* frpc | Client configuration
 
 ```bash
 sudo vim /etc/systemd/system/frpc.service
@@ -135,7 +135,7 @@ SyslogIdentifier=frpc
 WantedBy=multi-user.target
 ```
 
-重载服务
+reload daemon and start service
 
 ```bash
 sudo systemctl daemon-reload

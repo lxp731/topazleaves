@@ -1,12 +1,12 @@
-# 配置 Docker 代理
+# Configure Docker Proxy
 
-#### 编辑文件
+#### Edit Conf File
 
 ```bash
 sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
 ```
 
-#### 添加以下内容
+#### Add Lines
 
 ```ini
 [Service]
@@ -14,7 +14,7 @@ Environment="HTTP_PROXY=http://127.0.0.1:7890"
 Environment="HTTPS_PROXY=http://127.0.0.1:7890"
 ```
 
-#### 重载服务
+#### Reload Daemon & Restart Docker
 
 ```bash
 sudo systemctl daemon-reload

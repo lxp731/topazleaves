@@ -1,4 +1,4 @@
-# .vimrc 配置
+# Confgure .vimrc
 
 ```bash
 autocmd BufNewFile *.sh exec ":call AddTitleForShell()"

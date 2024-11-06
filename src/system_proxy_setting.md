@@ -1,6 +1,6 @@
-# 配置系统代理
+# Configure System Proxy
 
-#### 编辑文件
+#### Edit a Script
 
 ```bash
 sudo vim  /etc/profile.d/proxy.sh
@@ -19,18 +19,18 @@ export FTP_PROXY="http://10.10.1.10:8080/"
 export NO_PROXY="127.0.0.1,localhost"
 ```
 
-#### 添加权限
+#### Add Exec Permission
 
 ```bash
 sudo chmod +x  /etc/profile.d/proxy.sh
 ```
 
-#### 刷新环境变量
+#### Apply Setting
 
 ```bash
 source /etc/profile.d/proxy.sh
 ```
-#### 查看环境变量进行确认是否生效
+#### Confirm ENV
 
 ```bash
 env | grep -i proxy

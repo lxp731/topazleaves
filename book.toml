@@ -3,7 +3,7 @@ authors = ["Burgess Leo"]
 language = "zh-cn"
 multilingual = false
 src = "src"
-title = "Topaz Leaves"
+title = "TOPAZ LEAF"
 
 [output.html]
 default-theme = "rust"
@@ -12,7 +12,7 @@ git-repository-url = "https://github.com/lxp731/topazleaves.git"
 git-repository-icon = "fa-github"
 
 [output.html.fold]
-enable = false
+enable = true
 
 [preprocessor.plantuml]
 plantuml-cmd="/usr/bin/plantuml"

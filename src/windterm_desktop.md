@@ -1,4 +1,4 @@
-# WindTerm 桌面图标
+# Create WindTerm Desktop Entry
 
 ```ini
 [Desktop Entry]

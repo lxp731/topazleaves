@@ -1,6 +1,6 @@
-# asciiquarium 终端动画
+# Asciiquarium Command Install
 
-#### Ubuntu 配置
+#### Ubuntu
 
 ```bash
 sudo apt-get install -y perl libcurses-perl
@@ -13,7 +13,7 @@ sudo chmod +x /usr/local/bin/asciiquarium
 asciiquarium
 ```
 
-#### Centos 配置
+#### Centos
 
 ```bash
 cd /opt

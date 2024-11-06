@@ -1,4 +1,4 @@
-# 配置容器代理
+# Configure Container Proxy
 
 ```bash
 vim ~/.docker/config.json

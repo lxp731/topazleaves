@@ -1,47 +1,44 @@
 # SUMMARY
 
-# Topaz Leaves
+# TOPAZ LEAF
 
-- [下载谷歌拼音](./google_input_install.md)
+- [Ubuntu Software](./ubuntu_software.md)
+    - [Install Google-PinYin](./google_input_install.md)
+    - [Install Wechat](./wechat_install.md)
+    - [Install Clash-Verge](./clash_verge_install.md)
+    - [Install Docker](./docker_install.md)
+    - [Crack Pycharm](./pycharm_crack.md)
 
-- [下载微信](./wechat_install.md)
-
-- [下载 Clash-Verge](./clash_verge_install.md)
-
-- [下载 Docker](./docker_install.md)
-
-- [破解 Pycharm](./pycharm_crack.md)
-
-- [环境变量设置](./env_variable_setting.md)
+- [Setting ENV](./env_variable_setting.md)
     - [.bashrc](./bashrc_setting.md)
     - [.vimrc](./vimrc_setting.md)
     - [.user-dirs.dirs](./user-dirs.dirs_setting.md)
     
-- [代理配置](./kinds_proxy_setting.md)
-    - [配置系统代理](./system_proxy_setting.md)
-    - [配置 Docker 代理](./docker_proxy_setting.md)
-    - [配置容器代理](./container_proxy_setting.md)
-    - [配置 K3S 代理](./k3s_proxy_setting.md)
+- [Proxy Configuration](./kinds_proxy_setting.md)
+    - [System Proxy](./system_proxy_setting.md)
+    - [Docker Proxy](./docker_proxy_setting.md)
+    - [Container Proxy](./container_proxy_setting.md)
+    - [K3S Proxy](./k3s_proxy_setting.md)
 
-- [实用脚本](./useful_scripts.md)
-    - [Node 版本控制](./node_version_control.md)
-    - [Docker 代理启停](./docker_proxy_start_stop.md)
-    - [Docker 镜像上传私有仓库](./docker_push_registry.md)
+- [Useful Scripts](./useful_scripts.md)
+    - [Switch Node Version](./node_version_control.md)
+    - [Docker Proxy ON & OFF](./docker_proxy_start_stop.md)
+    - [Docker Push Private Registry](./docker_push_registry.md)
     
-- [关闭盖子禁用休眠](./disable_sleep.md)
+- [Disable Hibernation](./disable_sleep.md)
 
-- [WindTerm 桌面图标](./windterm_desktop.md)
+- [WindTerm Desktop](./windterm_desktop.md)
 
-- [frp 内网穿透](./frp_usage.md)
+- [FRP Usage](./frp_usage.md)
 
-- [asciiquarium 终端动画](./asciiquarium_usage.md)
+- [Asciiquarium](./asciiquarium_usage.md)
 
-- [kns 命名空间锁定](./kns_usage.md)
+- [kns Usage](./kns_usage.md)
 
-- [VS-Code 远程连接主机](./vscode_remote_usage.md)
+- [VS-Code Link Remote Host](./vscode_remote_usage.md)
 
-- [Ollama 服务发现](./ollama_services_found.md)
+- [Ollama Service Discovery](./ollama_services_found.md)
 
-- [有趣的 Docker 项目](./funny_docker_projects.md)
+- [Funny Docker Projects](./funny_docker_projects.md)
     - [Openweb-UI](./openweb-ui.md)
     - [Yesplaymusic](./yesplaymusic.md)

@@ -1,6 +1,6 @@
-# 下载 Docker
+# Install Docker
 
-#### 下载 Docker 的官方GPG密钥：
+#### Install Official Docker GPG Key
 
 ```bash
 sudo apt-get update
@@ -10,7 +10,7 @@ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyring
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 ```
 
-#### 添加 Docker 的官方仓库
+#### Add Official Docker Repo
 
 ```bash
 echo \
@@ -19,14 +19,20 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
-#### 更新软件包列表
+#### Update Package Lists
 
 ```bash
 sudo apt-get update
 ```
 
-#### 下载 Docker
+#### Install Docker
 
 ```bash
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
+
+---
+
+Well, you can access [https://download.docker.com/](https://download.docker.com/) and download the `.deb` file manually.
+
+Such Path: `https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/`
