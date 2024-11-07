@@ -8,6 +8,7 @@
     - [Install Clash-Verge](./clash_verge_install.md)
     - [Install Docker](./docker_install.md)
     - [Crack Pycharm](./pycharm_crack.md)
+    - [Entertainment](./entertainment.md)
 
 - [Setting ENV](./env_variable_setting.md)
     - [.bashrc](./bashrc_setting.md)
