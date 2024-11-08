@@ -24,4 +24,8 @@ set mouse=a
 
 "设置字典
 set dictionary+=/usr/share/dict/words 
+
+"每次在空闲 3 秒后自动保存文件 
+set updatetime=3000 
+autocmd CursorHold * if &modified | silent! update | endif
 ```

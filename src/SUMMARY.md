@@ -12,8 +12,11 @@
 
 - [Setting ENV](./env_variable_setting.md)
     - [.bashrc](./bashrc_setting.md)
-    - [.vimrc](./vimrc_setting.md)
     - [.user-dirs.dirs](./user-dirs.dirs_setting.md)
+    - [.vimrc](./vimrc_setting.md)
+
+- [Vim Plugin](./vim_plugin_manager.md)
+    - [NERDTree](./nerdtree.md)
     
 - [Proxy Configuration](./kinds_proxy_setting.md)
     - [System Proxy](./system_proxy_setting.md)
