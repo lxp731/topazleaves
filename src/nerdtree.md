@@ -42,3 +42,7 @@ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in
 ```
 
 More details at [VimAwesome](https://vimawesome.com/plugin/nerdtree-red) or [NERDTree](https://github.com/preservim/nerdtree).
+
+### Rendering
+
+![Rendering](https://github.com/preservim/nerdtree/raw/master/screenshot.png)
