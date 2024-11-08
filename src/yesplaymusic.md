@@ -1,6 +1,6 @@
 # Yesplaymusic
 
-#### yesplaymusic Official Website
+#### Official Website
 
 [https://github.com/qier222/YesPlayMusic](https://github.com/qier222/YesPlayMusic)
 

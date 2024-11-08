@@ -9,11 +9,12 @@
     - [Install Docker](./docker_install.md)
     - [Crack Pycharm](./pycharm_crack.md)
     - [Entertainment](./entertainment.md)
+    - [Vim Support System Clipboard](./vim_support_system_clipboard.md)
 
 - [Setting ENV](./env_variable_setting.md)
-    - [.bashrc](./bashrc_setting.md)
+    - [Basic .vimrc](./vimrc_basic_setting.md)
+    - [Basic .bashrc](./bashrc_setting.md)
     - [.user-dirs.dirs](./user-dirs.dirs_setting.md)
-    - [.vimrc](./vimrc_setting.md)
 
 - [Vim Plugin](./vim_plugin_manager.md)
     - [NERDTree](./nerdtree.md)
