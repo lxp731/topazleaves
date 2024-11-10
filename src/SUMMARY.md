@@ -18,6 +18,7 @@
 
 - [Vim Plugin](./vim_plugin_manager.md)
     - [NERDTree](./nerdtree.md)
+    - [FZF](./fzf.md)
     
 - [Proxy Configuration](./kinds_proxy_setting.md)
     - [System Proxy](./system_proxy_setting.md)

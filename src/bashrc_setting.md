@@ -14,4 +14,12 @@ source <(kubectl completion bash)
 # alias kubectl & setting completion
 alias k=kubectl
 complete -o default -F __start_kubectl k
+
+# highlight version cat
+alias dog='highlight -O ansi'
+
+# fzf change git branch
+alias gcb="git branch | fzf --preview 'git show --color=always {-1}' \
+                 --bind 'enter:become(git checkout {-1})' \
+                 --height 60% --layout reverse"
 ```

@@ -17,3 +17,7 @@ Collection of useful software for Ubuntu.
 - [Docker](./docker_install.md)
 
 - [Pycharm](./pycharm_install.md)
+
+```bash
+sudo apt install -y vim-gtk3 highlight bat tree net-tools namp
+```
