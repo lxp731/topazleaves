@@ -3,6 +3,18 @@
 
 #### Install fzf
 
+1. Source Code Install(Recommend)
+
+```bash
+# Clone the fzf repository
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
+# Run the install script
+~/.fzf/install
+```
+
+2. apt install
+
 ```bash
 sudo apt install fzf
 ```

@@ -199,7 +199,7 @@
 <p><a href="./pycharm_install.html">Pycharm</a></p>
 </li>
 </ul>
-<pre><code class="language-bash">sudo apt install -y vim-gtk3 highlight bat tree net-tools namp
+<pre><code class="language-bash">sudo apt install -y vim-gtk3 highlight bat tree net-tools nmap
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="install-google-pinyin"><a class="header" href="#install-google-pinyin">Install Google-PinYin</a></h1>
 <h3 id="on-ubuntu-google-pinyin-based-on-fcitx-so-install-fcitx-firstly"><a class="header" href="#on-ubuntu-google-pinyin-based-on-fcitx-so-install-fcitx-firstly">On Ubuntu, Google-PinYin based on Fcitx. So install Fcitx firstly.</a></h3>
@@ -1258,6 +1258,18 @@ asciiquarium
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="kns-locking-namespace"><a class="header" href="#kns-locking-namespace">kns Locking Namespace</a></h1>
 <h4 id="install-fzf"><a class="header" href="#install-fzf">Install fzf</a></h4>
+<ol>
+<li>Source Code Install(Recommend)</li>
+</ol>
+<pre><code class="language-bash"># Clone the fzf repository
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
+# Run the install script
+~/.fzf/install
+</code></pre>
+<ol start="2">
+<li>apt install</li>
+</ol>
 <pre><code class="language-bash">sudo apt install fzf
 </code></pre>
 <h4 id="edit-kns-script"><a class="header" href="#edit-kns-script">Edit kns Script</a></h4>
