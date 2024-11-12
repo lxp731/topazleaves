@@ -19,7 +19,7 @@
 - [Vim Plugin](./vim_plugin_manager.md)
     - [NERDTree](./nerdtree.md)
     - [FZF](./fzf.md)
-        - [FZF Completion](./fzf_completion.md)
+        - [FZF Replace Bash Completion](./fzf_completion.md)
     
 - [Proxy Configuration](./kinds_proxy_setting.md)
     - [System Proxy](./system_proxy_setting.md)

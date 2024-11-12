@@ -1,10 +1,27 @@
-# FZF Completion
+# FZF Replace Bash Completion
 
-https://github.com/lincheney/fzf-tab-completion
+### Github Repo
+
+[https://github.com/lincheney/fzf-tab-completion](https://github.com/lincheney/fzf-tab-completion)
+
+### Install Script 
 
 ```bash
-source /path/to/fzf-tab-completion/zsh/fzf-zsh-completion.sh
-bindkey '^I' fzf_completion
+mkdir -p ~/.fzf && \
+wget -O ~/.fzf/fzf-bash-completion.sh \
+    https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh
 ```
 
-https://github.com/lincheney/fzf-tab-completion/blob/master/bash/fzf-bash-completion.sh
+### Modify .bashrc
+
+```bash
+cat >> ~/.bashrc << EOF
+# use fzf replace system completion
+source ~/.fzf/fzf-bash-completion.sh
+bind -x '"\t": fzf_bash_completion'
+EOF
+```
+
+```bash
+source ~/.bashrc
+```
