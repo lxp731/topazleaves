@@ -13,8 +13,12 @@ function  AddTitleForShell()
    call append(7,"# **********************************************************")
 endfunction
 
+"默认使用系统剪切板，下载vim-gtk3
+set clipboard=unnamedplus
+
 "默认显示行号
-set nu
+set number
+"set relativenumber
 
 "默认显示当前光标所在行
 "set cursorline
@@ -24,6 +28,20 @@ set mouse=a
 
 "设置字典
 set dictionary+=/usr/share/dict/words 
+
+"键位映射
+"map s <nop>
+map S :w<CR>
+map R :source $MYVIMRC<CR>
+
+"保存光标位置
+augroup remember_last_cursor_position
+    autocmd!
+    " 当文件写入时保存光标位置
+    autocmd BufWritePost * mkview
+    " 当文件打开时恢复光标位置
+    autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal g`\"" | endif
+augroup END
 
 "Vim 退出插入模式自动保存
 autocmd InsertLeave * write
