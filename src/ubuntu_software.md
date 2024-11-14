@@ -19,5 +19,5 @@ Collection of useful software for Ubuntu.
 - [Pycharm](./pycharm_install.md)
 
 ```bash
-sudo apt install -y vim-gtk3 highlight bat tree net-tools nmap
+sudo apt install -y vim-gtk3 highlight bat ripgrep tree net-tools nmap
 ```

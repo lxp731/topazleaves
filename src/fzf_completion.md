@@ -7,8 +7,8 @@
 ### Install Script 
 
 ```bash
-mkdir -p ~/.fzf && \
-wget -O ~/.fzf/fzf-bash-completion.sh \
+mkdir -p ~/.fzf/shell && \
+wget -O ~/.fzf/shell/fzf-bash-completion.sh \
     https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh
 ```
 
@@ -17,7 +17,7 @@ wget -O ~/.fzf/fzf-bash-completion.sh \
 ```bash
 cat >> ~/.bashrc << EOF
 # use fzf replace system completion
-source ~/.fzf/fzf-bash-completion.sh
+source ~/.fzf/shell/fzf-bash-completion.sh
 bind -x '"\t": fzf_bash_completion'
 EOF
 ```

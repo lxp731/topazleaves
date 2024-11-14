@@ -20,6 +20,7 @@
     - [NERDTree](./nerdtree.md)
     - [FZF](./fzf.md)
         - [FZF Replace Bash Completion](./fzf_completion.md)
+        - [FZF Integrate Git](./fzf_integrate_git.md)
     
 - [Proxy Configuration](./kinds_proxy_setting.md)
     - [System Proxy](./system_proxy_setting.md)
