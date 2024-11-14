@@ -181,12 +181,12 @@
 <p><a href="https://github.com/junegunn/fzf-git.sh">https://github.com/junegunn/fzf-git.sh</a></p>
 <h3 id="install"><a class="header" href="#install">Install</a></h3>
 <pre><code class="language-bash">mkdir -p ~/.fzf/shell &amp;&amp; \
-wget -O ~/.fzf/shell/fzf-git.sh \ 
-    https://raw.githubusercontent.com/junegunn/fzf-git.sh/refs/heads/main/fzf-git.sh &amp;&amp; \
-chmod +x ~/.fzf/shell/fzf-git.sh
+cd ~/.fzf/shell &amp;&amp; \
+wget https://raw.githubusercontent.com/junegunn/fzf-git.sh/refs/heads/main/fzf-git.sh
 </code></pre>
 <h3 id="modify-bashrc"><a class="header" href="#modify-bashrc">Modify .bashrc</a></h3>
 <pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
+# fzf integrade git
 source ~/.fzf/shell/fzf-git.sh
 EOF
 </code></pre>

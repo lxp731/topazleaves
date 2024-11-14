@@ -8,15 +8,15 @@
 
 ```bash
 mkdir -p ~/.fzf/shell && \
-wget -O ~/.fzf/shell/fzf-git.sh \ 
-    https://raw.githubusercontent.com/junegunn/fzf-git.sh/refs/heads/main/fzf-git.sh && \
-chmod +x ~/.fzf/shell/fzf-git.sh
+cd ~/.fzf/shell && \
+wget https://raw.githubusercontent.com/junegunn/fzf-git.sh/refs/heads/main/fzf-git.sh
 ```
 
 ### Modify .bashrc
 
 ```bash
 cat >> ~/.bashrc << EOF
+# fzf integrade git
 source ~/.fzf/shell/fzf-git.sh
 EOF
 ```
