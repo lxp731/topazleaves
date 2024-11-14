@@ -9,7 +9,7 @@
 ```bash
 mkdir -p ~/.fzf/shell && \
 wget -O ~/.fzf/shell/fzf-git.sh \ 
-    https://raw.githubusercontent.com/junegunn/fzf-git.sh/refs/heads/main/fzf-git.sh && && \
+    https://raw.githubusercontent.com/junegunn/fzf-git.sh/refs/heads/main/fzf-git.sh && \
 chmod +x ~/.fzf/shell/fzf-git.sh
 ```
 
