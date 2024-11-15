@@ -19,6 +19,7 @@
 - [Vim Plugin](./vim_plugin_manager.md)
     - [NerdTree](./nerdtree.md)
     - [NerdTree-Git](./nerdtree-git.md)
+    - [YouCompleteMe](./ycm.md)
 - [FZF](./fzf.md)
     - [FZF Replace Bash Completion](./fzf_completion.md)
     - [FZF Integrate Git](./fzf_integrate_git.md)
