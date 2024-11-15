@@ -206,6 +206,9 @@ nnoremap &lt;C-f&gt; :NERDTreeFind&lt;CR&gt;
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 &amp;&amp; isdirectory(argv()[0]) &amp;&amp; !exists('s:std_in') |
     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
+"Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 &amp;&amp; exists('b:NERDTree') &amp;&amp; b:NERDTree.isTabTree() | quit | endif
 </code></pre>
 <p>More details at <a href="https://vimawesome.com/plugin/nerdtree-red">VimAwesome</a> or <a href="https://github.com/preservim/nerdtree">NERDTree</a>.</p>
 <h3 id="rendering"><a class="header" href="#rendering">Rendering</a></h3>
