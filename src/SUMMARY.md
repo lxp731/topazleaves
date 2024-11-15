@@ -17,10 +17,11 @@
     - [.user-dirs.dirs](./user-dirs.dirs_setting.md)
 
 - [Vim Plugin](./vim_plugin_manager.md)
-    - [NERDTree](./nerdtree.md)
-    - [FZF](./fzf.md)
-        - [FZF Replace Bash Completion](./fzf_completion.md)
-        - [FZF Integrate Git](./fzf_integrate_git.md)
+    - [NerdTree](./nerdtree.md)
+    - [NerdTree-Git](./nerdtree-git.md)
+- [FZF](./fzf.md)
+    - [FZF Replace Bash Completion](./fzf_completion.md)
+    - [FZF Integrate Git](./fzf_integrate_git.md)
     
 - [Proxy Configuration](./kinds_proxy_setting.md)
     - [System Proxy](./system_proxy_setting.md)

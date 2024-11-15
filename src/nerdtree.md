@@ -7,9 +7,7 @@
 Add `Plug 'preservim/nerdtree'` to your `.vimrc`, For example:
 
 ```bash
-call plug#begin()
 Plug 'preservim/nerdtree'
-call plug#end()
 ```
 
 Reopen a Vim window and type `:PlugInstall` to install NERDTree.

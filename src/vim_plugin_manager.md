@@ -16,7 +16,7 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
 Add the following content:
 
 ```bash
-call plug#begin()
+call plug#begin('~/.vim/plugged')
 
 " List your plugins here
 Plug 'tpope/vim-sensible'
