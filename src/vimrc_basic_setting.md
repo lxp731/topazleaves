@@ -265,4 +265,42 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Clean'     :'✔︎',
                 \ 'Unknown'   :'?',
                 \ }
+
+
+
+" ===
+" === Tagbar
+" ===
+" nmap <F8> :TagbarToggle<CR>
+
+
+
+"===
+"===ALE
+"===
+" let g:ale_fixers = {
+" \   '*': ['remove_trailing_lines', 'trim_whitespace'],
+" \   'javascript': ['eslint'],
+" \}
+" let g:ale_fix_on_save = 1
+" call deoplete#custom#option('sources', {
+" \ '_': ['ale', 'foobar'],
+" \})
+" let g:ale_completion_enabled = 1
+
+
+
+"===
+"===Markdown Preview
+"===
+noremap mp :MarkdownPreview<CR>
+let g:mkdp_port = '3000'
+let g:mkdp_theme = 'light' "dark OR light
+
+
+
+"===
+"===UndoTree
+"===
+nnoremap <F5> :UndotreeToggle<CR>
 ```
