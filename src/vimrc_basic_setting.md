@@ -4,7 +4,7 @@
 "===
 "===编写脚本自动插入
 "===
-function  AddTitleForShell()
+function! AddTitleForShell()
    call append(0,"#!/bin/bash")
    call append(1,"# **********************************************************")
    call append(2,"# * Author        : Burgess Leo")
@@ -14,6 +14,8 @@ function  AddTitleForShell()
    call append(6,"# * Description   : ")
    call append(7,"# **********************************************************")
 endfunction
+
+autocmd BufNewFile *.sh call AddTitleForShell()
 
 
 
