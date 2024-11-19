@@ -117,6 +117,15 @@ noremap - Nzz
 
 
 "===
+"===Words spell Checking
+"===
+map <LEADER>pl :set spell!<CR>
+noremap <C-x> ea<C-x>s
+inoremap <C-x> <Esc>ea<C-x>s
+
+
+
+"===
 "===分割窗口
 "===
 noremap sl :set splitright<CR>:vsplit<CR>
