@@ -23,7 +23,7 @@
 - [FZF](./fzf.md)
     - [FZF Replace Bash Completion](./fzf_completion.md)
     - [FZF Integrate Git](./fzf_integrate_git.md)
-    
+
 - [Proxy Configuration](./kinds_proxy_setting.md)
     - [System Proxy](./system_proxy_setting.md)
     - [Docker Proxy](./docker_proxy_setting.md)
@@ -34,7 +34,7 @@
     - [Switch Node Version](./node_version_control.md)
     - [Docker Proxy ON & OFF](./docker_proxy_start_stop.md)
     - [Docker Push Private Registry](./docker_push_registry.md)
-    
+
 - [Disable Hibernation](./disable_sleep.md)
 
 - [WindTerm Desktop](./windterm_desktop.md)
@@ -44,6 +44,8 @@
 - [Asciiquarium](./asciiquarium_usage.md)
 
 - [kns Usage](./kns_usage.md)
+
+- [Clash For Linux](./clash_for_linux.md)
 
 - [VS-Code Link Remote Host](./vscode_remote_usage.md)
 
