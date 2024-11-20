@@ -129,9 +129,9 @@ inoremap <C-x> <Esc>ea<C-x>s
 "===分割窗口
 "===
 noremap sl :set splitright<CR>:vsplit<CR>
-noremap sl :set nosplitright<CR>:vsplit<CR>
-noremap sd :set splitbelow<CR>:split<CR>
-noremap su :set nosplitbelow<CR>:split<CR>
+noremap snl :set nosplitright<CR>:vsplit<CR>
+noremap sk :set splitbelow<CR>:split<CR>
+noremap snk :set nosplitbelow<CR>:split<CR>
 noremap <LEADER>h <C-w>h
 noremap <LEADER>l <C-w>l
 noremap <LEADER>j <C-w>k
@@ -142,6 +142,22 @@ noremap <C-Left> :vertical resize-5<CR>
 noremap <C-Right> :vertical resize+5<CR>
 map sv <C-w>t<C-w>H
 map sh <C-w>t<C-w>K
+
+
+
+"===
+"===Tab Managet
+"===
+noremap tl :tabnext<CR>
+noremap th :tabprevious<CR>
+noremap to :tabclose<CR>
+noremap tq :tabfirst<CR>
+noremap tp :tablast<CR>
+" Insert mode mappings
+"inoremap tl <C-O>:tabnext<CR>
+"inoremap th <C-O>:tabprevious<CR>
+"inoremap tq <C-O>:tabfirst<CR>
+"inoremap tp <C-O>:tablast<CR>
 
 
 
@@ -314,4 +330,15 @@ let g:mkdp_theme = 'light' "dark OR light
 "===UndoTree
 "===
 nnoremap <F5> :UndotreeToggle<CR>
+
+
+
+"===
+"===vim-surround
+"===
+"objects: word(iw), line(s), tag(t)
+"opretion: add, remove, change
+"add: ys[objects] [Mark]
+"remove: ds [Mark]
+"change: cs [src_Mark], [dst_Mark]
 ```
