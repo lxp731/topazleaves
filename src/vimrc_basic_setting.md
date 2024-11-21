@@ -113,6 +113,13 @@ noremap j k
 noremap k j
 noremap = nzz
 noremap - Nzz
+noremap <A-Up> dd2kp
+noremap <A-Down> ddp
+inoremap <C-z> <C-O>u
+inoremap <C-S-k> <Esc>ddi
+inoremap <A-Up> <Esc>ddkPgi
+inoremap <A-Down> <Esc>ddjPgi
+
 
 
 
@@ -132,8 +139,8 @@ noremap sl :set splitright<CR>:vsplit<CR>
 noremap snl :set nosplitright<CR>:vsplit<CR>
 noremap sk :set splitbelow<CR>:split<CR>
 noremap snk :set nosplitbelow<CR>:split<CR>
-noremap <LEADER>h <C-w>h
 noremap <LEADER>l <C-w>l
+noremap <LEADER>h <C-w>h
 noremap <LEADER>j <C-w>k
 noremap <LEADER>k <C-w>j
 noremap <C-Up> :res +5<CR>
@@ -320,9 +327,59 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 "===
 "===Markdown Preview
 "===
-noremap mp :MarkdownPreview<CR>
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+let g:mkdp_browser = ''
+let g:mkdp_echo_preview_url = 0
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1
+    \ }
+let g:mkdp_markdown_css = ''
+let g:mkdp_highlight_css = ''
+let g:mkdp_page_title = '「${name}」'
 let g:mkdp_port = '3000'
 let g:mkdp_theme = 'light' "dark OR light
+" combine preview window
+" ensure to set let g:mkdp_auto_close = 0 if you have enable this option
+let g:mkdp_combine_preview = 0
+" auto refetch combine preview contents when change markdown buffer
+" only when g:mkdp_combine_preview is 1
+let g:mkdp_combine_preview_auto_refresh = 1
+noremap mp :MarkdownPreview<CR>
+noremap ms :MarkdownPreviewStop<CR>
+
+
+
+"===
+"===MarkdownEdit
+"===
+"autocmd Filetype markdown map <leader>w yiWi[<esc>Ea](<esc>pa)
+autocmd Filetype markdown inoremap ,f <Esc>/<++><CR>:nohlsearch<CR>c4l
+autocmd Filetype markdown inoremap ,n ---<Enter><Enter>
+autocmd Filetype markdown inoremap ,b **** <++><Esc>F*hi
+autocmd Filetype markdown inoremap ,s ~~~~ <++><Esc>F~hi
+autocmd Filetype markdown inoremap ,i ** <++><Esc>F*i
+autocmd Filetype markdown inoremap ,d `` <++><Esc>F`i
+autocmd Filetype markdown inoremap ,c ```<Enter><++><Enter>```<Enter><Enter><++><Esc>4kA
+autocmd Filetype markdown inoremap ,h ====<Space><++><Esc>F=hi
+autocmd Filetype markdown inoremap ,p ![](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,a [](<++>) <++><Esc>F[a
+autocmd Filetype markdown inoremap ,1 #<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,2 ##<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,3 ###<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,4 ####<Space><Enter><++><Esc>kA
+autocmd Filetype markdown inoremap ,l --------<Enter>
 
 
 

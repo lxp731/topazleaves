@@ -289,6 +289,13 @@ noremap j k
 noremap k j
 noremap = nzz
 noremap - Nzz
+noremap &lt;A-Up&gt; dd2kp
+noremap &lt;A-Down&gt; ddp
+inoremap &lt;C-z&gt; &lt;C-O&gt;u
+inoremap &lt;C-S-k&gt; &lt;Esc&gt;ddi
+inoremap &lt;A-Up&gt; &lt;Esc&gt;ddkPgi
+inoremap &lt;A-Down&gt; &lt;Esc&gt;ddjPgi
+
 
 
 
@@ -305,11 +312,11 @@ inoremap &lt;C-x&gt; &lt;Esc&gt;ea&lt;C-x&gt;s
 "===分割窗口
 "===
 noremap sl :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;
-noremap sl :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;
-noremap sd :set splitbelow&lt;CR&gt;:split&lt;CR&gt;
-noremap su :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;
-noremap &lt;LEADER&gt;h &lt;C-w&gt;h
+noremap snl :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;
+noremap sk :set splitbelow&lt;CR&gt;:split&lt;CR&gt;
+noremap snk :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;
 noremap &lt;LEADER&gt;l &lt;C-w&gt;l
+noremap &lt;LEADER&gt;h &lt;C-w&gt;h
 noremap &lt;LEADER&gt;j &lt;C-w&gt;k
 noremap &lt;LEADER&gt;k &lt;C-w&gt;j
 noremap &lt;C-Up&gt; :res +5&lt;CR&gt;
@@ -318,6 +325,22 @@ noremap &lt;C-Left&gt; :vertical resize-5&lt;CR&gt;
 noremap &lt;C-Right&gt; :vertical resize+5&lt;CR&gt;
 map sv &lt;C-w&gt;t&lt;C-w&gt;H
 map sh &lt;C-w&gt;t&lt;C-w&gt;K
+
+
+
+"===
+"===Tab Managet
+"===
+noremap tl :tabnext&lt;CR&gt;
+noremap th :tabprevious&lt;CR&gt;
+noremap to :tabclose&lt;CR&gt;
+noremap tq :tabfirst&lt;CR&gt;
+noremap tp :tablast&lt;CR&gt;
+" Insert mode mappings
+"inoremap tl &lt;C-O&gt;:tabnext&lt;CR&gt;
+"inoremap th &lt;C-O&gt;:tabprevious&lt;CR&gt;
+"inoremap tq &lt;C-O&gt;:tabfirst&lt;CR&gt;
+"inoremap tp &lt;C-O&gt;:tablast&lt;CR&gt;
 
 
 
@@ -480,9 +503,59 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 "===
 "===Markdown Preview
 "===
-noremap mp :MarkdownPreview&lt;CR&gt;
+let g:mkdp_auto_start = 0
+let g:mkdp_auto_close = 1
+let g:mkdp_refresh_slow = 0
+let g:mkdp_command_for_global = 0
+let g:mkdp_open_to_the_world = 0
+let g:mkdp_open_ip = ''
+let g:mkdp_browser = ''
+let g:mkdp_echo_preview_url = 0
+let g:mkdp_browserfunc = ''
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1
+    \ }
+let g:mkdp_markdown_css = ''
+let g:mkdp_highlight_css = ''
+let g:mkdp_page_title = '「${name}」'
 let g:mkdp_port = '3000'
 let g:mkdp_theme = 'light' "dark OR light
+" combine preview window
+" ensure to set let g:mkdp_auto_close = 0 if you have enable this option
+let g:mkdp_combine_preview = 0
+" auto refetch combine preview contents when change markdown buffer
+" only when g:mkdp_combine_preview is 1
+let g:mkdp_combine_preview_auto_refresh = 1
+noremap mp :MarkdownPreview&lt;CR&gt;
+noremap ms :MarkdownPreviewStop&lt;CR&gt;
+
+
+
+"===
+"===MarkdownEdit
+"===
+"autocmd Filetype markdown map &lt;leader&gt;w yiWi[&lt;esc&gt;Ea](&lt;esc&gt;pa)
+autocmd Filetype markdown inoremap ,f &lt;Esc&gt;/&lt;++&gt;&lt;CR&gt;:nohlsearch&lt;CR&gt;c4l
+autocmd Filetype markdown inoremap ,n ---&lt;Enter&gt;&lt;Enter&gt;
+autocmd Filetype markdown inoremap ,b **** &lt;++&gt;&lt;Esc&gt;F*hi
+autocmd Filetype markdown inoremap ,s ~~~~ &lt;++&gt;&lt;Esc&gt;F~hi
+autocmd Filetype markdown inoremap ,i ** &lt;++&gt;&lt;Esc&gt;F*i
+autocmd Filetype markdown inoremap ,d `` &lt;++&gt;&lt;Esc&gt;F`i
+autocmd Filetype markdown inoremap ,c ```&lt;Enter&gt;&lt;++&gt;&lt;Enter&gt;```&lt;Enter&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;4kA
+autocmd Filetype markdown inoremap ,h ====&lt;Space&gt;&lt;++&gt;&lt;Esc&gt;F=hi
+autocmd Filetype markdown inoremap ,p ![](&lt;++&gt;) &lt;++&gt;&lt;Esc&gt;F[a
+autocmd Filetype markdown inoremap ,a [](&lt;++&gt;) &lt;++&gt;&lt;Esc&gt;F[a
+autocmd Filetype markdown inoremap ,1 #&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+autocmd Filetype markdown inoremap ,2 ##&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+autocmd Filetype markdown inoremap ,3 ###&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+autocmd Filetype markdown inoremap ,4 ####&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+autocmd Filetype markdown inoremap ,l --------&lt;Enter&gt;
 
 
 
@@ -490,6 +563,17 @@ let g:mkdp_theme = 'light' "dark OR light
 "===UndoTree
 "===
 nnoremap &lt;F5&gt; :UndotreeToggle&lt;CR&gt;
+
+
+
+"===
+"===vim-surround
+"===
+"objects: word(iw), line(s), tag(t)
+"opretion: add, remove, change
+"add: ys[objects] [Mark]
+"remove: ds [Mark]
+"change: cs [src_Mark], [dst_Mark]
 </code></pre>
 
                     </main>
