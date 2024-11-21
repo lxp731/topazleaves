@@ -206,6 +206,14 @@
 <pre><code class="language-bash">set clipboard=unnamedplus
 </code></pre>
 <p>The last you can use <code>"*y</code> to copy the text to system clipboard.</p>
+<hr />
+<h3 id="use-xclip"><a class="header" href="#use-xclip">Use Xclip</a></h3>
+<pre><code class="language-bash">sudo apt install xclip
+</code></pre>
+<h3 id="modify-vimrc"><a class="header" href="#modify-vimrc">Modify .vimrc</a></h3>
+<pre><code class="language-bash">vnoremap Y :w !xclip -i -sel c&lt;CR&gt;
+</code></pre>
+<p>Then you can select some contents in visual mode, and press <code>Y</code>. Finally, you can use <code>&lt;Ctrl-v&gt;</code> to paste it anywhere.</p>
 
                     </main>
 

@@ -53,3 +53,19 @@ set clipboard=unnamedplus
 ```
 
 The last you can use `"*y` to copy the text to system clipboard.
+
+---
+
+### Use Xclip
+
+```bash
+sudo apt install xclip
+```
+
+### Modify .vimrc
+
+```bash
+vnoremap Y :w !xclip -i -sel c<CR>
+```
+
+Then you can select some contents in visual mode, and press `Y`. Finally, you can use `<Ctrl-v>` to paste it anywhere.

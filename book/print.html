@@ -334,6 +334,14 @@ sudo apt install kodi
 <pre><code class="language-bash">set clipboard=unnamedplus
 </code></pre>
 <p>The last you can use <code>"*y</code> to copy the text to system clipboard.</p>
+<hr />
+<h3 id="use-xclip"><a class="header" href="#use-xclip">Use Xclip</a></h3>
+<pre><code class="language-bash">sudo apt install xclip
+</code></pre>
+<h3 id="modify-vimrc"><a class="header" href="#modify-vimrc">Modify .vimrc</a></h3>
+<pre><code class="language-bash">vnoremap Y :w !xclip -i -sel c&lt;CR&gt;
+</code></pre>
+<p>Then you can select some contents in visual mode, and press <code>Y</code>. Finally, you can use <code>&lt;Ctrl-v&gt;</code> to paste it anywhere.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="env-variable-setting"><a class="header" href="#env-variable-setting">ENV Variable Setting</a></h1>
 <p>In Linux, environment variables are used to store information that can be used by programs when they are executed. They play a important role in Linux system.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="confgure-vimrc"><a class="header" href="#confgure-vimrc">Confgure .vimrc</a></h1>
@@ -356,84 +364,80 @@ autocmd BufNewFile *.sh call AddTitleForShell()
 
 
 "===
-"===基础设置
+"===System Setting
 "===
-" 设置leader
 let mapleader=" "
-" 超出窗口宽度自动换行
-set wrap
-" 显示命令
-set showcmd
-" 搜索
-set wildmenu
-" 高亮搜索
-set hlsearch
-" 完成搜索后清除视觉干扰
-exec "nohlsearch"
-" 匹配的文本立即更新
-set incsearch
-" 忽略大小写
-set ignorecase
-" 智能区分大小写
-set smartcase
-" 语法高亮
-syntax on
-" 编码
-set encoding=UTF-8
-" 显示行号
-set number
-" 显示相对行号
-set relativenumber
-" 高亮当前行
-set cursorline
-" 鼠标模式
-set mouse=a
-" 禁用vim的兼容模式
 set nocompatible
-" 启用文件类型检测
+set showcmd
+set mouse=a
+set clipboard=unnamed
+"sudo apt install xclip
+vnoremap Y :w !xclip -i -sel c&lt;CR&gt;
 filetype on
-" 启用文件类型缩进
 filetype indent on
-" 启用插件
 filetype plugin on
-" 启用插件缩进
 filetype plugin indent on
-" 设置终端的下划线属性
-let &amp;t_ut=''
-" 启用空格替代制表符
-set expandtab
-" 设置制表符为2个空格
-set tabstop=2
-" 设置缩进宽度
-set shiftwidth=2
-" 设置软制表符
-set softtabstop=2
-" 显示空格和制表符
-set list
-" 定义不可见字符的显示方式
-set listchars=tab:▸\ ,trail:▫
-" 设置光标在屏幕边缘时滚动
-set scrolloff=5
-" 不限制文本的宽度
-set tw=0
-" 清空缩进表达式
-set indentexpr=
-" 允许退格键删除空格
-set backspace=indent,eol,start
-" 缩进模式折叠
-set foldmethod=indent
-" 折叠级别
-set foldlevel=99
-" airline
 "set laststatus=2
-" 改变目录
 set autochdir
-" 设置字典
 set dictionary+=/usr/share/dict/words
-" 离开插入模式自动保存
 "autocmd InsertLeave * write
-" 离开焦点自动保存
 "autocmd FocusLost * if &amp;modified | write | endif
+
+
+
+"===
+"===Show command autocomplete
+"===
+set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
+set wildmenu
+set wildmode=longest,list,full
+
+
+
+"===
+"===Search Setting
+"===
+set hlsearch
+exec "nohlsearch"
+set incsearch
+set ignorecase
+set smartcase
+
+
+"===
+"===Code Display
+"===
+set encoding=UTF-8
+syntax on
+set number
+set relativenumber
+set cursorline
+let &amp;t_ut=''
+
+
+
+"===
+"===Tab behavior
+"===
+set expandtab
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set list
+set listchars=tab:▸\ ,trail:▫
+set scrolloff=10
+
+
+
+"===
+"===Prevent auto line split
+"===
+set tw=0
+set wrap
+set indentexpr=
+set backspace=indent,eol,start
+set foldmethod=indent
+set foldlevel=99
 
 
 
@@ -792,7 +796,7 @@ mv 视频/ video
 <pre><code class="language-bash">curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 </code></pre>
-<h3 id="modify-vimrc"><a class="header" href="#modify-vimrc">Modify .vimrc</a></h3>
+<h3 id="modify-vimrc-1"><a class="header" href="#modify-vimrc-1">Modify .vimrc</a></h3>
 <p>Add the following content:</p>
 <pre><code class="language-bash">call plug#begin('~/.vim/plugged')
 
