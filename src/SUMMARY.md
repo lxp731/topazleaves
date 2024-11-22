@@ -9,6 +9,7 @@
     - [Install Docker](./docker_install.md)
     - [Crack Pycharm](./pycharm_crack.md)
     - [Entertainment](./entertainment.md)
+    - [Tmux](./tmux.md)
     - [Vim Support System Clipboard](./vim_support_system_clipboard.md)
 
 - [Setting ENV](./env_variable_setting.md)
@@ -41,8 +42,6 @@
 - [Disable Hibernation](./disable_sleep.md)
 
 - [WindTerm Desktop](./windterm_desktop.md)
-
-- [Tmux](./tmux.md)
 
 - [FRP Usage](./frp_usage.md)
 
