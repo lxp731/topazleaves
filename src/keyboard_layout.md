@@ -6,6 +6,8 @@ Switch to colemak layout.
 setxkbmap us -variant colemak
 ```
 
+![Colemak](https://colemak.com/wiki/images/e/ef/Colemak_fingers.png)
+
 Switch to `QWERTY` layout.
 
 ```bash

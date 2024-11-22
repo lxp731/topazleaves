@@ -42,6 +42,8 @@
 
 - [WindTerm Desktop](./windterm_desktop.md)
 
+- [Tmux](./tmux.md)
+
 - [FRP Usage](./frp_usage.md)
 
 - [Asciiquarium](./asciiquarium_usage.md)
