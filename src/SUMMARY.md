@@ -20,6 +20,7 @@
     - [NerdTree](./nerdtree.md)
     - [NerdTree-Git](./nerdtree-git.md)
     - [YouCompleteMe](./ycm.md)
+
 - [FZF](./fzf.md)
     - [FZF Replace Bash Completion](./fzf_completion.md)
     - [FZF Integrate Git](./fzf_integrate_git.md)
@@ -34,6 +35,8 @@
     - [Switch Node Version](./node_version_control.md)
     - [Docker Proxy ON & OFF](./docker_proxy_start_stop.md)
     - [Docker Push Private Registry](./docker_push_registry.md)
+
+- [Keyboard Layout](./keyboard_layout.md)
 
 - [Disable Hibernation](./disable_sleep.md)
 
