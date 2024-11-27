@@ -306,9 +306,11 @@ sudo apt install kodi
 <p><a href="https://github.com/lyswhut/lx-music-desktop/releases">https://github.com/lyswhut/lx-music-desktop/releases</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tmux"><a class="header" href="#tmux">Tmux</a></h1>
 <h3 id="installation"><a class="header" href="#installation">Installation</a></h3>
+<p><a href="https://github.com/tmux/tmux">https://github.com/tmux/tmux</a></p>
 <pre><code class="language-bash">sudo apt install -y tmux
 </code></pre>
 <h3 id="install-tmux-plugins-manager"><a class="header" href="#install-tmux-plugins-manager">Install Tmux Plugins Manager</a></h3>
+<p><a href="https://github.com/tmux-plugins/tpm">https://github.com/tmux-plugins/tpm</a></p>
 <pre><code class="language-bash">git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 </code></pre>
 <h3 id="create-tmuxconf-file"><a class="header" href="#create-tmuxconf-file">Create .tmux.conf File</a></h3>
@@ -374,8 +376,8 @@ bind &gt; swap-pane -D
 
 # tmux plugins
 run '~/.tmux/plugins/tmux/catppuccin.tmux'
-set -g @catppuccin_flavor 'frappe'
-set -g @catppuccin_window_status_style "basic"
+set -g @catppuccin_flavor 'frappe'    # latte | frappe | mocha | macchiato
+set -g @catppuccin_window_status_style "rounded"    # basic | rounded | slanted | custom | none
 set -g @catppuccin_window_number_color "#{@thm_fg}"
 set -g @catppuccin_window_current_number_color "#{@thm_green}"
 
@@ -383,11 +385,15 @@ set -g status-left ""
 set -g status-right ""
 set -g status-right-length 100
 
+set -g status-right "#{net_speed} "
+set -g @net_speed_interfaces "enp2s0 wlp3s0"
+set -g @net_speed_format "%8s  %8s "
+
+set -agF status-right "#{E:@catppuccin_status_cpu}"
+
 set -agF status-right "#{E:@catppuccin_status_weather}"
 set-option -g @tmux-weather-interval 10
 set-option -g @tmux-weather-location "BeiJing"
-
-set -agF status-right "#{E:@catppuccin_status_cpu}"
 
 set -ag status-right "#{E:@catppuccin_status_date_time}"
 set -g "@catppuccin_date_time_text" " %m-%d %H:%M"
@@ -406,6 +412,7 @@ set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'catppuccin/tmux#v2.1.1'
 set -g @plugin 'tmux-plugins/tmux-cpu'
 set -g @plugin 'xamut/tmux-weather'
+set -g @plugin 'tmux-plugins/tmux-net-speed'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 run '~/.tmux/plugins/tpm/tpm'
 </code></pre>
