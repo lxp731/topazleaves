@@ -2,11 +2,15 @@
 
 ### Installation
 
+[https://github.com/tmux/tmux](https://github.com/tmux/tmux)
+
 ```bash
 sudo apt install -y tmux
 ```
 
 ### Install Tmux Plugins Manager
+
+[https://github.com/tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
 
 ```bash
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
