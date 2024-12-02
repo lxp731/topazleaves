@@ -315,7 +315,7 @@ sudo apt install kodi
 </code></pre>
 <h3 id="create-tmuxconf-file"><a class="header" href="#create-tmuxconf-file">Create .tmux.conf File</a></h3>
 <p>This is my personal tmux config file.</p>
-<pre><code>### tmux.conf
+<pre><code class="language-bash">### tmux.conf
 
 # system setting
 set -g default-terminal "tmux-256color"
@@ -499,6 +499,22 @@ alias cat='batcat'
 alias gcb="git branch | fzf --preview 'git show --color=always {-1}' \
                  --bind 'enter:become(git checkout {-1})' \
                  --height 60% --layout reverse"
+
+# poetry activate VENV
+function cd() {
+  builtin cd "$@" || return
+  if [ -f "pyproject.toml" ]; then
+    # 激活虚拟环境
+    source $(poetry env info --path)/bin/activate
+    export POETRY_ACTIVE=1 # 标记当前处于 Poetry 环境中
+  else
+    # 检查是否需要取消激活虚拟环境
+    if [ "$POETRY_ACTIVE" = "1" ]; then
+      deactivate          # 取消激活虚拟环境
+      unset POETRY_ACTIVE # 清除标记
+    fi
+  fi
+}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="modify-user-dirsdirs"><a class="header" href="#modify-user-dirsdirs">Modify .user-dirs.dirs</a></h1>
 <h4 id="update-the-contents"><a class="header" href="#update-the-contents">Update the Contents</a></h4>
@@ -550,7 +566,7 @@ call plug#end()
 </ul>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="confgure-vimrc"><a class="header" href="#confgure-vimrc">Confgure .vimrc</a></h1>
 <h3 id="my-vimrc"><a class="header" href="#my-vimrc">My .vimrc</a></h3>
-<pre><code>"===
+<pre><code class="language-bash">"===
 "===编写脚本自动插入
 "===
 function  AddTitleForShell()

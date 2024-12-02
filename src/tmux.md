@@ -20,7 +20,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 This is my personal tmux config file.
 
-```
+```bash
 {{#include ./mdbook-files/.tmux.conf}}
 ```
 
