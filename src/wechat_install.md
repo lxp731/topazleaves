@@ -34,3 +34,15 @@ sudo apt remove com.qq.weixin.deepin
 ```bash
 sudo rm /etc/apt/sources.d.list/deepin-wine.i-m.dev.list
 ```
+
+---
+
+### Tencent Official Wechat
+
+[https://linux.weixin.qq.com/](https://linux.weixin.qq.com/)
+
+1. Download
+
+```bash
+wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb
+```
