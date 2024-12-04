@@ -213,7 +213,7 @@ function cd() {
     fi
 
     # Activate Poetry virtual environment
-    source $(poetry env info --path)/bin/activate
+    source .venv/bin/activate
     export POETRY_ACTIVE=1 # Mark that we're in a Poetry environment
 
   else
