@@ -23,28 +23,15 @@ alias gcb="git branch | fzf --preview 'git show --color=always {-1}' \
                  --bind 'enter:become(git checkout {-1})' \
                  --height 60% --layout reverse"
 
-# poetry activate VENV
-function cd() {
-  builtin cd "$@" || return
-
-  if [ -f "pyproject.toml" ]; then
-    # Deactivate Conda base environment if it's active
-    if [[ "$CONDA_DEFAULT_ENV" == "base" ]]; then
-      conda deactivate
+# auto_activate uv virtual_ENV
+function auto_activate() {
+    if [ -d ".venv" ]; then
+        source .venv/bin/activate
+    else
+        if [[ "$VIRTUAL_ENV" != "" ]]; then
+            deactivate
+        fi
     fi
-
-    # Activate Poetry virtual environment
-    source .venv/bin/activate
-    export POETRY_ACTIVE=1 # Mark that we're in a Poetry environment
-
-  else
-    # Check if we're leaving a Poetry-managed project
-    if [ "$POETRY_ACTIVE" = "1" ]; then
-      deactivate          # Deactivate the Poetry virtual environment
-      unset POETRY_ACTIVE # Clear the active marker
-
-      # Reactivate Conda base environment
-      conda activate base
-    fi
-  fi
 }
+PROMPT_COMMAND=auto_activate
+
