@@ -24,14 +24,29 @@ alias gcb="git branch | fzf --preview 'git show --color=always {-1}' \
                  --height 60% --layout reverse"
 
 # auto_activate uv virtual_ENV
-function auto_activate() {
-    if [ -d ".venv" ]; then
-        source .venv/bin/activate
+PROJECT_PATH=""
+CURRENT_PATH=""
+
+auto_activate() {
+    CURRENT_PATH=$(pwd)
+
+    if [[ -z "$PROJECT_PATH" ]]; then
+        if [ -d ".venv" ]; then
+            source .venv/bin/activate
+            PROJECT_PATH="$CURRENT_PATH"
+        fi
     else
-        if [[ "$VIRTUAL_ENV" != "" ]]; then
-            deactivate
+        if [[ "$CURRENT_PATH" == "$PROJECT_PATH"* ]]; then
+            return
+        else
+            if [[ -n "$VIRTUAL_ENV" ]]; then
+                deactivate
+            fi
+            PROJECT_PATH=""
+            CURRENT_PATH=""
         fi
     fi
 }
+
 PROMPT_COMMAND=auto_activate
 
