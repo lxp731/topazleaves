@@ -3,7 +3,5 @@
 ### My .vimrc
 
 ```bash
-{{#include ./mdbook-files/.vimrc}}
+{{#include ./mdbook-files/vimrc}}
 ```
-
-
