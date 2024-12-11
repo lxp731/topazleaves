@@ -1,5 +1,5 @@
 # .bashrc Configuration
 
 ```bash
-{{#include ./mdbook-files/.bashrc}}
+{{#include ./mdbook-files/bashrc}}
 ```

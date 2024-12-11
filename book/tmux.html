@@ -187,7 +187,106 @@
 </code></pre>
 <h3 id="create-tmuxconf-file"><a class="header" href="#create-tmuxconf-file">Create .tmux.conf File</a></h3>
 <p>This is my personal tmux config file.</p>
-<pre><code class="language-bash">{{#include ./mdbook-files/.tmux.conf}}
+<pre><code class="language-bash">### tmux.conf
+
+# system setting
+set -g default-terminal "tmux-256color"
+set -g mouse on
+
+# rebind prefix key
+unbind C-b
+set -g prefix 'C-d'
+
+# reload configuration
+# bind R source-file ~/.tmux.conf \; display '~/.tmux.conf Reloaded!'
+
+# windows behaver
+set -g base-index 1
+setw -g pane-base-index 1
+set -g renumber-windows on
+#setw -g automatic-rename on
+
+# display options
+set -g set-titles on
+set -g display-panes-time 2000
+
+# window navigation
+unbind n
+unbind p
+unbind x
+bind -n C-o previous-window
+bind -n C-p next-window
+bind -n C-n new-window -c "#{pane_current_path}"
+bind -n C-q kill-pane
+
+# split windows
+unbind %
+unbind \"
+bind l split-window -h -c "#{pane_current_path}"
+bind k split-window -v -c "#{pane_current_path}"
+bind h split-window -hb -c "#{pane_current_path}"
+bind j split-window -vb -c "#{pane_current_path}"
+
+# windows size adjusting
+bind -n M-f resize-pane -Z
+bind -n M-j resize-pane -U 5
+bind -n M-k resize-pane -D 5
+bind -n M-h resize-pane -L 5
+bind -n M-l resize-pane -R 5
+
+# cursor-moving setting
+unbind o
+unbind \;
+bind -T root C-Left select-pane -L
+bind -T root C-Right select-pane -R
+bind -T root C-Up select-pane -U
+bind -T root C-Down select-pane -D
+
+# pane-moving setting
+bind &lt; swap-pane -U
+bind &gt; swap-pane -D
+
+# tmux plugins
+run '~/.tmux/plugins/tmux/catppuccin.tmux'
+set -g @catppuccin_flavor 'frappe'    # latte | frappe | mocha | macchiato
+set -g @catppuccin_window_status_style "rounded"    # basic | rounded | slanted | custom | none
+set -g @catppuccin_window_number_color "#{@thm_fg}"
+set -g @catppuccin_window_current_number_color "#{@thm_green}"
+
+set -g status-left ""
+set -g status-right ""
+set -g status-right-length 100
+
+set -g status-right "#{net_speed} "
+set -g @net_speed_interfaces "enp2s0 wlp3s0"
+set -g @net_speed_format "%8s  %8s "
+
+set -agF status-right "#{E:@catppuccin_status_cpu}"
+
+set -agF status-right "#{E:@catppuccin_status_weather}"
+set-option -g @tmux-weather-interval 10
+set-option -g @tmux-weather-location "BeiJing"
+
+set -ag status-right "#{E:@catppuccin_status_date_time}"
+set -g "@catppuccin_date_time_text" " %m-%d %H:%M"
+
+# set -ag status-right "#{E:@catppuccin_status_session}"
+# set -ag status-right "#{E:@catppuccin_status_application}"
+# set -ag status-right "#{E:@catppuccin_status_gitmux}"
+# set -ag status-right "#{E:@catppuccin_status_load}"
+# set -ag status-right "#{E:@catppuccin_status_pomodoro_plus}"
+# set -ag status-right "#{E:@catppuccin_status_kube}"
+# set -ag status-right "#{E:@catppuccin_status_up_time}"
+# set -ag status-right "#{E:@catppuccin_status_user}"
+# set -g status-right '#[fg=#{@thm_crust},bg=#{@thm_teal}] 󰍣 : #S '
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'catppuccin/tmux#v2.1.1'
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'xamut/tmux-weather'
+set -g @plugin 'tmux-plugins/tmux-net-speed'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+run '~/.tmux/plugins/tpm/tpm'
 </code></pre>
 <h3 id="install-nerd-font"><a class="header" href="#install-nerd-font">Install Nerd Font</a></h3>
 <p><a href="https://github.com/ryanoasis/nerd-fonts">Nerd Github Repo</a></p>
