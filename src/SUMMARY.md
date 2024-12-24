@@ -51,6 +51,8 @@
 
 - [Clash For Linux](./clash_for_linux.md)
 
+- [Command](./command.md)
+
 - [VS-Code Link Remote Host](./vscode_remote_usage.md)
 
 - [Ollama Service Discovery](./ollama_services_found.md)
