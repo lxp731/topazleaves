@@ -197,10 +197,13 @@ autocmd BufNewFile *.sh call AddTitleForShell()
 
 
 "===
-"===Open the vimrc file anytime
+"===Sync my plugins setting
 "===
-noremap &lt;LEADER&gt;rc :e ~/.vimrc&lt;CR&gt;
-map &lt;LEADER&gt;fd /\(\&lt;\w\+\&gt;\)\_s*\1
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/lxp731/topazleaves/refs/heads/main/src/mdbook-files/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 
 
@@ -222,6 +225,14 @@ set autochdir
 set dictionary+=/usr/share/dict/words
 "autocmd InsertLeave * write
 "autocmd FocusLost * if &amp;modified | write | endif
+
+
+
+"===
+"===Open the vimrc anytime
+"===
+noremap &lt;LEADER&gt;rc :e ~/.vimrc&lt;CR&gt;
+map &lt;LEADER&gt;fd /\(\&lt;\w\+\&gt;\)\_s*\1
 
 
 
@@ -266,7 +277,7 @@ set shiftwidth=2
 set softtabstop=2
 set list
 set listchars=tab:▸\ ,trail:▫
-set scrolloff=10
+set scrolloff=5
 
 
 
@@ -285,17 +296,18 @@ set foldlevel=99
 "===
 "===快捷键映射
 "===
-noremap &lt;LEADER&gt;&lt;CR&gt; :nohlsearch&lt;CR&gt;
-noremap s &lt;nop&gt;
-noremap S :w&lt;CR&gt;
-noremap R :source $MYVIMRC&lt;CR&gt;
-noremap XX :q!&lt;CR&gt;
-noremap j k
-noremap k j
-noremap = nzz
-noremap - Nzz
-noremap W 5w
-noremap B 5b
+nnoremap &lt;LEADER&gt;&lt;CR&gt; :nohlsearch&lt;CR&gt;
+nnoremap s &lt;nop&gt;
+nnoremap S :w&lt;CR&gt;
+nnoremap R :source $MYVIMRC&lt;CR&gt;
+nnoremap XX :q!&lt;CR&gt;
+nnoremap j k
+nnoremap k j
+nnoremap = nzz
+nnoremap - Nzz
+nnoremap W 5w
+nnoremap B 5b
+nnoremap &lt;C-j&gt; :belowright term&lt;CR&gt;
 
 
 
@@ -306,14 +318,14 @@ inoremap &lt;C-z&gt; &lt;C-o&gt;u
 inoremap &lt;C-l&gt; &lt;C-o&gt;o
 inoremap &lt;C-S-k&gt; &lt;Esc&gt;ddi
 inoremap &lt;C-y&gt; &lt;Esc&gt;:normal! yyp&lt;CR&gt;a
-
+inoremap &lt;C-s&gt; &lt;Esc&gt;:w&lt;CR&gt;i
 
 
 "===
 "===Line Moving
 "===
-noremap &lt;A-Up&gt; dd2kp
-noremap &lt;A-Down&gt; ddp
+nnoremap &lt;A-Down&gt; ddp
+nnoremap &lt;A-Up&gt; dd2kp
 inoremap &lt;A-Up&gt; &lt;Esc&gt;ddkPgi
 inoremap &lt;A-Down&gt; &lt;Esc&gt;ddjPgi
 
@@ -323,7 +335,7 @@ inoremap &lt;A-Down&gt; &lt;Esc&gt;ddjPgi
 "===Words spell Checking
 "===
 map &lt;LEADER&gt;pl :set spell!&lt;CR&gt;
-noremap &lt;C-x&gt; ea&lt;C-x&gt;s
+nnoremap &lt;C-x&gt; ea&lt;C-x&gt;s
 inoremap &lt;C-x&gt; &lt;Esc&gt;ea&lt;C-x&gt;s
 
 
@@ -331,31 +343,31 @@ inoremap &lt;C-x&gt; &lt;Esc&gt;ea&lt;C-x&gt;s
 "===
 "===分割窗口
 "===
-noremap sl :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;
-noremap snl :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;
-noremap sk :set splitbelow&lt;CR&gt;:split&lt;CR&gt;
-noremap snk :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;
-noremap &lt;LEADER&gt;l &lt;C-w&gt;l
-noremap &lt;LEADER&gt;h &lt;C-w&gt;h
-noremap &lt;LEADER&gt;j &lt;C-w&gt;k
-noremap &lt;LEADER&gt;k &lt;C-w&gt;j
-noremap &lt;C-Up&gt; :res +5&lt;CR&gt;
-noremap &lt;C-Down&gt; :res -5&lt;CR&gt;
-noremap &lt;C-Left&gt; :vertical resize-5&lt;CR&gt;
-noremap &lt;C-Right&gt; :vertical resize+5&lt;CR&gt;
-map sv &lt;C-w&gt;t&lt;C-w&gt;H
-map sh &lt;C-w&gt;t&lt;C-w&gt;K
+nnoremap sl :set splitright&lt;CR&gt;:vsplit&lt;CR&gt;
+nnoremap snl :set nosplitright&lt;CR&gt;:vsplit&lt;CR&gt;
+nnoremap sk :set splitbelow&lt;CR&gt;:split&lt;CR&gt;
+nnoremap snk :set nosplitbelow&lt;CR&gt;:split&lt;CR&gt;
+nnoremap &lt;LEADER&gt;l &lt;C-w&gt;l
+nnoremap &lt;LEADER&gt;h &lt;C-w&gt;h
+nnoremap &lt;LEADER&gt;j &lt;C-w&gt;k
+nnoremap &lt;LEADER&gt;k &lt;C-w&gt;j
+nnoremap &lt;C-Up&gt; :res +2&lt;CR&gt;
+nnoremap &lt;C-Down&gt; :res -2&lt;CR&gt;
+nnoremap &lt;C-Left&gt; :vertical resize-2&lt;CR&gt;
+nnoremap &lt;C-Right&gt; :vertical resize+2&lt;CR&gt;
+map &lt;LEADER&gt;sv &lt;C-w&gt;t&lt;C-w&gt;H
+map &lt;LEADER&gt;sh &lt;C-w&gt;t&lt;C-w&gt;K
 
 
 
 "===
 "===Tab Management
 "===
-noremap tl :tabnext&lt;CR&gt;
-noremap th :tabprevious&lt;CR&gt;
-noremap to :tabclose&lt;CR&gt;
-noremap tq :tabfirst&lt;CR&gt;
-noremap tp :tablast&lt;CR&gt;
+nnoremap th :tabprevious&lt;CR&gt;
+nnoremap tl :tabnext&lt;CR&gt;
+nnoremap to :tabclose&lt;CR&gt;
+nnoremap tq :tabfirst&lt;CR&gt;
+nnoremap tp :tablast&lt;CR&gt;
 " Insert mode mappings
 "inoremap tl &lt;C-O&gt;:tabnext&lt;CR&gt;
 "inoremap th &lt;C-O&gt;:tabprevious&lt;CR&gt;
@@ -380,7 +392,6 @@ augroup END
 "===
 call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
-"Plug 'vim-airline/vim-airline'
 Plug 'connorholyday/vim-snazzy'
 
 " File navigation
@@ -419,6 +430,7 @@ Plug 'mattn/emmet-vim'
 
 " Python
 Plug 'vim-scripts/indentpython.vim'
+Plug 'linux-cultist/venv-selector.nvim'
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -&gt; mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
@@ -565,23 +577,53 @@ noremap ms :MarkdownPreviewStop&lt;CR&gt;
 "===
 "===MarkdownEdit
 "===
-"autocmd Filetype markdown map &lt;leader&gt;w yiWi[&lt;esc&gt;Ea](&lt;esc&gt;pa)
-autocmd Filetype markdown inoremap ,f &lt;Esc&gt;/&lt;++&gt;&lt;CR&gt;:nohlsearch&lt;CR&gt;c4l
-autocmd Filetype markdown inoremap ,n ---&lt;Enter&gt;&lt;Enter&gt;
-autocmd Filetype markdown inoremap ,b **** &lt;++&gt;&lt;Esc&gt;F*hi
-autocmd Filetype markdown inoremap ,s ~~~~ &lt;++&gt;&lt;Esc&gt;F~hi
-autocmd Filetype markdown inoremap ,i ** &lt;++&gt;&lt;Esc&gt;F*i
-autocmd Filetype markdown inoremap ,d `` &lt;++&gt;&lt;Esc&gt;F`i
-autocmd Filetype markdown inoremap ,c ```&lt;Enter&gt;&lt;++&gt;&lt;Enter&gt;```&lt;Enter&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;4kA
-autocmd Filetype markdown inoremap ,h ====&lt;Space&gt;&lt;++&gt;&lt;Esc&gt;F=hi
-autocmd Filetype markdown inoremap ,p ![](&lt;++&gt;) &lt;++&gt;&lt;Esc&gt;F[a
-autocmd Filetype markdown inoremap ,a [](&lt;++&gt;) &lt;++&gt;&lt;Esc&gt;F[a
 autocmd Filetype markdown inoremap ,1 #&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
 autocmd Filetype markdown inoremap ,2 ##&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
 autocmd Filetype markdown inoremap ,3 ###&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
 autocmd Filetype markdown inoremap ,4 ####&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
-autocmd Filetype markdown inoremap ,l --------&lt;Enter&gt;
+autocmd Filetype markdown inoremap ,5 #####&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+autocmd Filetype markdown inoremap ,6 ######&lt;Space&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;kA
+autocmd Filetype markdown inoremap ,f &lt;Esc&gt;/&lt;++&gt;&lt;CR&gt;:nohlsearch&lt;CR&gt;c4l
+autocmd Filetype markdown inoremap ,b **** &lt;++&gt;&lt;Esc&gt;F*hi
+autocmd Filetype markdown inoremap ,i ** &lt;++&gt;&lt;Esc&gt;F*i
+autocmd Filetype markdown inoremap ,s ~~~~ &lt;++&gt;&lt;Esc&gt;F~hi
+autocmd Filetype markdown inoremap ,d `` &lt;++&gt;&lt;Esc&gt;F`i
+autocmd Filetype markdown inoremap ,c ```&lt;Enter&gt;&lt;++&gt;&lt;Enter&gt;```&lt;Enter&gt;&lt;Enter&gt;&lt;++&gt;&lt;Esc&gt;4kA
+autocmd Filetype markdown inoremap ,a [](&lt;++&gt;) &lt;++&gt;&lt;Esc&gt;F[a
+autocmd Filetype markdown inoremap ,p ![](&lt;++&gt;) &lt;++&gt;&lt;Esc&gt;F[a
+
+function! CreateTable(num_cols)
+  let col_str = repeat('|&lt;++&gt;', a:num_cols) . '|'
+  let separator = repeat('|:----:', a:num_cols) . '|'
+  let result = col_str . "\n" . separator . "\n" . col_str
+  return result
+endfunction
+
+autocmd Filetype markdown inoremap ,t2 &lt;Esc&gt;i&lt;C-R&gt;=CreateTable(2)&lt;CR&gt;&lt;Esc&gt;^3klc5l
+autocmd Filetype markdown inoremap ,t3 &lt;Esc&gt;i&lt;C-R&gt;=CreateTable(3)&lt;CR&gt;&lt;Esc&gt;^3klc5l
+autocmd Filetype markdown inoremap ,t4 &lt;Esc&gt;i&lt;C-R&gt;=CreateTable(4)&lt;CR&gt;&lt;Esc&gt;^3klc5l
+autocmd Filetype markdown inoremap ,t5 &lt;Esc&gt;i&lt;C-R&gt;=CreateTable(5)&lt;CR&gt;&lt;Esc&gt;^3klc5l
+autocmd Filetype markdown inoremap ,t6 &lt;Esc&gt;i&lt;C-R&gt;=CreateTable(6)&lt;CR&gt;&lt;Esc&gt;^3klc5l
+
+" autocmd Filetype markdown inoremap ,t3 \|&lt;++&gt;\|&lt;++&gt;\|&lt;++&gt;\|&lt;Enter&gt;\|:----:\|:----:\|:----:\|&lt;Enter&gt;\|&lt;++&gt;\|&lt;++&gt;\|&lt;++&gt;\|&lt;Enter&gt;&lt;Esc&gt;3klc4l
+" autocmd Filetype markdown inoremap ,t2 \|&lt;++&gt;\|&lt;++&gt;\|&lt;Enter&gt;\|:----:\|:----:\|&lt;Enter&gt;\|&lt;++&gt;\|&lt;++&gt;\|&lt;Enter&gt;&lt;Esc&gt;3klc4l
+
+function! CreateMarkdownRow(num_cols)
+  let col_str = repeat('|&lt;++&gt;', a:num_cols) . '|'
+  return col_str
+endfunction
+
+autocmd Filetype markdown inoremap ,l2 &lt;Esc&gt;o&lt;C-R&gt;=CreateMarkdownRow(2)&lt;CR&gt;&lt;Esc&gt;^lc5l
+autocmd Filetype markdown inoremap ,l3 &lt;Esc&gt;o&lt;C-R&gt;=CreateMarkdownRow(3)&lt;CR&gt;&lt;Esc&gt;^lc5l
+autocmd Filetype markdown inoremap ,l4 &lt;Esc&gt;o&lt;C-R&gt;=CreateMarkdownRow(4)&lt;CR&gt;&lt;Esc&gt;^lc5l
+autocmd Filetype markdown inoremap ,l5 &lt;Esc&gt;o&lt;C-R&gt;=CreateMarkdownRow(5)&lt;CR&gt;&lt;Esc&gt;^lc5l
+autocmd Filetype markdown inoremap ,l6 &lt;Esc&gt;o&lt;C-R&gt;=CreateMarkdownRow(6)&lt;CR&gt;&lt;Esc&gt;^lc5l
+
+" autocmd Filetype markdown inoremap ,l2 \|&lt;++&gt;\|&lt;++&gt;\|
+" autocmd Filetype markdown inoremap ,l3 \|&lt;++&gt;\|&lt;++&gt;\|&lt;++&gt;\|
+
 autocmd Filetype markdown inoremap &lt;C-s&gt; &lt;C-o&gt;:w&lt;CR&gt;
+
 
 
 

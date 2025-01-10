@@ -16,13 +16,13 @@ fi
 # 根据参数执行不同的操作
 case "$1" in
     local)
-        cp "$HOME/.vimrc" .
-        cp "$HOME/.tmux.conf" .
+        cp "$HOME/.vimrc" ./vimrc
+        cp "$HOME/.tmux.conf" ./tmux.conf
         echo "Copied .vimrc and .tmux.conf to the current directory."
         ;;
     repo)
-        cp ./.vimrc "$HOME/"
-        cp ./.tmux.conf "$HOME/"
+        cp ./vimrc "$HOME/.vimrc"
+        cp ./tmux.conf "$HOME/.tmux.conf"
         echo "Copied all files from the current directory to the home directory."
         ;;
     *)
