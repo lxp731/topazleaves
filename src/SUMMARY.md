@@ -14,6 +14,7 @@
 
 - [ZSH](./zsh.md)
   - [oh-my-zsh](./oh-my-zsh.md)
+  - [powerlevel10K](./powerlevel10k.md)
   - [zsh-autosuggestions](./zsh-autosuggestions.md)
   - [zsh-syntax-highlighting](./zsh-syntax-highlighting.md)
   - [zsh-you-should-use](./zsh-you-should-use.md)
