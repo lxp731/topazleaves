@@ -18,6 +18,7 @@
   - [zsh-autosuggestions](./zsh-autosuggestions.md)
   - [zsh-syntax-highlighting](./zsh-syntax-highlighting.md)
   - [zsh-you-should-use](./zsh-you-should-use.md)
+  - [zsh-ollama-completion](./zsh-ollama-completion.md)
   - [custom plugins](./zsh-custom-plugins.md)
   - [custom themes](./zsh-custom-themes.md)
 
