@@ -2120,6 +2120,76 @@ sudo mv kns /usr/local/bin/kns
 </code></pre>
 <pre><code class="language-bash">diff -eq &lt; (openssl x509 -pubkey -noout -in cert.crt) &lt; (openssl rsa -pubout -in cert.key)
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="arch-linux-init"><a class="header" href="#arch-linux-init">Arch linux Init</a></h1>
+<ol>
+<li>Modify pacman mirror</li>
+</ol>
+<pre><code class="language-bash">sudo vim /etc/pacman.d/mirrorlist
+</code></pre>
+<pre><code class="language-bash">## China
+Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
+Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = http://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+Server = http://mirrors.ustc.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+Server = http://mirrors.neusoft.edu.cn/archlinux/$repo/os/$arch
+Server = http://mirrors.163.com/archlinux/$repo/os/$arch
+Server = http://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
+Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
+</code></pre>
+<pre><code class="language-bash">sudo vim /etc/pacman.conf
+</code></pre>
+<pre><code class="language-bash">[archlinuxcn]
+SigLevel = Optional TrustedOnly
+Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+Server = https://mirrors.aliyun.com/archlinuxcn/$arch
+</code></pre>
+<pre><code class="language-bash">sudo pacman -Syy
+</code></pre>
+<pre><code class="language-bash">sudo pacman -S yay base-devel tree neofetch git
+</code></pre>
+<ol start="2">
+<li>Install firefox</li>
+</ol>
+<pre><code class="language-bash">sudo pacman -S firefox
+</code></pre>
+<ol start="3">
+<li>Install font</li>
+</ol>
+<pre><code class="language-bash">sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-dejavu ttf-liberation
+</code></pre>
+<ol start="4">
+<li>modify</li>
+</ol>
+<pre><code class="language-bash">sudo vim /etc/locale.gen
+</code></pre>
+<pre><code class="language-bash">zh_CN.UTF-8 UTF-8
+</code></pre>
+<pre><code class="language-bash">su
+locale-gen &amp;&amp; echo LANG=zh_CN.UTF-8 &gt; /etc/locale.conf
+exit
+</code></pre>
+<ol start="5">
+<li>google-pinyin</li>
+</ol>
+<pre><code class="language-bash">sudo pacman -S fcitx5-im 
+sudo pacman -S fcitx5-chinese-addons
+sudo pacman -S fcitx5-qt fctitx5-gtk fcitx5-lua
+</code></pre>
+<ol start="6">
+<li>modify</li>
+</ol>
+<pre><code class="language-bash">sudo vim /etc/environment
+</code></pre>
+<pre><code class="language-bash">GTK_IM_MODULE=fcitx
+QT_IM_MODULE=fcitx
+XMODIFIERS=@im=fcitx
+SDL_IM_MODULE=fcitx
+GLFM_IM_MODULE=ibus
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vs-code-control-remote-hosts"><a class="header" href="#vs-code-control-remote-hosts">VS-Code Control Remote Hosts</a></h1>
 <h4 id="configure"><a class="header" href="#configure">Configure</a></h4>
 <pre><code class="language-bash">ssh-keygen -t rsa

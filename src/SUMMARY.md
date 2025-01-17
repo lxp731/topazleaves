@@ -63,6 +63,8 @@
 
 - [Command](./command.md)
 
+- [Arch linux Init](./arch_linux_init.md)
+
 - [VS-Code Link Remote Host](./vscode_remote_usage.md)
 
 - [Ollama Service Discovery](./ollama_services_found.md)
