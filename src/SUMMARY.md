@@ -16,6 +16,7 @@
   - [oh-my-zsh](./zsh/oh-my-zsh.md)
   - [powerlevel10K](./zsh/powerlevel10k.md)
   - [zsh-autosuggestions](./zsh/zsh-autosuggestions.md)
+  - [zsh-autocomplete](./zsh/zsh-autocomplete.md)
   - [zsh-syntax-highlighting](./zsh/zsh-syntax-highlighting.md)
   - [zsh-you-should-use](./zsh/zsh-you-should-use.md)
   - [zsh-ollama-completion](./zsh/zsh-ollama-completion.md)
