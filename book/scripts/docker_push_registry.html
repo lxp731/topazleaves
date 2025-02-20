@@ -1,0 +1,608 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn" class="rust sidebar-visible" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Docker Push Private Registry - TOPAZ LEAF</title>
+
+
+        <!-- Custom HTML head -->
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+
+
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "../";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "rust" : "rust";
+        </script>
+        <!-- Start loading toc.js asap -->
+        <script src="../toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            const html = document.documentElement;
+            html.classList.remove('rust')
+            html.classList.add(theme);
+            html.classList.add("js");
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
+            </noscript>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
+                <div class="sidebar-resize-indicator"></div>
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">TOPAZ LEAF</h1>
+
+                    <div class="right-buttons">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/lxp731/topazleaves.git" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="push-docker-images-to-private-registry"><a class="header" href="#push-docker-images-to-private-registry">Push Docker Images to Private Registry</a></h1>
+<blockquote>
+<p>Tips：When install images, you need open the proxy, but you must close it before push.</p>
+</blockquote>
+<h3 id="extract-images-name-to-file"><a class="header" href="#extract-images-name-to-file">Extract Images Name to File</a></h3>
+<p>From the Helm's values.yaml, extract the images name and tag to images.tmp.</p>
+<p><strong>Usage：get_images.sh values-nginx.yaml</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# **********************************************************
+# * Author        : Burgess Leo
+# * Email         : liuxp731@qq.com
+# * Create time   : 2024-09-13 16:06
+# * Filename      : get_images.sh
+# * Description   : Extracts Docker image names and tags from a YAML file and writes them to images.tmp
+# **********************************************************
+
+# 检查是否传入文件名作为参数
+if [ "$#" -ne 1 ]; then
+  echo "用法: $0 &lt;values-nginx.yaml&gt;"
+  exit 1
+fi
+
+# 从命令行参数获取文件名
+input_file="$1"
+
+# 清空或创建 images.tmp 文件
+&gt; images.tmp
+
+while read -r line; do
+  if [[ $line == *"repository:"* ]]; then
+    repository=$(echo $line | cut -d':' -f2 | xargs)
+  elif [[ $line == *"tag:"* ]]; then
+    tag=$(echo $line | cut -d':' -f2 | xargs)
+    # 将结果写入 images.tmp 文件
+    echo "$repository:$tag" &gt;&gt; images.tmp
+  fi
+done &lt; "$input_file"
+</code></pre>
+<h3 id="pull-docker-images"><a class="header" href="#pull-docker-images">Pull Docker Images</a></h3>
+<p>Install all dcoker images in images.tmp file, one by one. If you have else docker images_list file, you can use it instead, just confirm every lines only has one docker image name.</p>
+<p><strong>Usage：pull_images.sh images.tmp</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# **********************************************************
+# * Author        : Burgess Leo
+# * Email         : liuxp731@qq.com
+# * Create time   : 2024-09-13 16:34
+# * Filename      : pull_images.sh
+# * Description   : Pull images from Internet
+# **********************************************************
+
+# 检查是否传入文件名作为参数
+if [ "$#" -ne 1 ]; then
+  echo "用法: $0 &lt;images.tmp&gt;"
+  exit 1
+fi
+
+# 从命令行参数获取文件名
+input_file="$1"
+
+# 读取文件并拉取每个镜像
+while read -r image; do
+  if [ -n "$image" ]; then
+    echo "正在拉取镜像: $image"
+    docker pull "$image"
+  fi
+done &lt; "$input_file"
+</code></pre>
+<h3 id="rename-docker-images"><a class="header" href="#rename-docker-images">Rename Docker Images</a></h3>
+<p>The modified image names will be saved in the <code>new_images.tmp</code> file. And you can modify the <code>private_registry</code> to change the registry you want to push to.</p>
+<p><strong>Usage：update_images.sh images.tmp</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# **********************************************************
+# * Author        : Burgess Leo
+# * Email         : liuxp731@qq.com
+# * Create time   : 2024-09-13 16:06
+# * Filename      : update_and_tag_images.sh
+# * Description   : Updates image paths and tags Docker images based on a specified file
+# **********************************************************
+
+# 检查是否传入文件名作为参数
+if [ "$#" -ne 1 ]; then
+  echo "用法: $0 &lt;images.tmp&gt;"
+  exit 1
+fi
+
+# 从命令行参数获取文件名
+input_file="$1"
+output_file="new_images.tmp"
+private_registry="192.167.3.18/"
+
+# 创建或清空输出文件
+&gt; "$output_file"
+
+# 处理文件内容并执行 docker tag 命令
+while IFS= read -r original_image; do
+  # 检查行是否为空
+  if [[ -n "$original_image" ]]; then
+    # 在镜像名称前加上私有仓库地址
+    new_image_name="${private_registry}${original_image}"
+    
+    # 输出正在标记的镜像信息
+    echo "正在标记镜像: docker tag $original_image $new_image_name"
+    
+    # 执行 docker tag 命令
+    docker tag "$original_image" "$new_image_name"
+    
+    # 将新的镜像名称写入输出文件
+    echo "$new_image_name" &gt;&gt; "$output_file"
+  fi
+done &lt; "$input_file"
+
+echo "所有镜像已成功标记并保存到 $output_file"
+</code></pre>
+<blockquote>
+<p>After Tag docker images, you must check the <code>new_images_name.tmp</code>, ensure the image names are correct. And you must confirm about projects created in your private harbor.</p>
+</blockquote>
+<h3 id="push-images"><a class="header" href="#push-images">Push Images</a></h3>
+<p>Push images to a remote registry. This script reads a list of image names from a file named "new_images.tmp", and pushes them to a remote registry.</p>
+<p><strong>Usage：push_images.sh new_images.tmp</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# **********************************************************
+# * Author        : Burgess Leo
+# * Email         : liuxp731@qq.com
+# * Create time   : 2024-09-14 09:01
+# * Filename      : push_images.sh
+# * Description   : Push Docker images to a registry
+# **********************************************************
+
+# 检查是否传入文件名作为参数
+if [ "$#" -ne 1 ]; then
+  echo "用法: $0 &lt;images.tmp&gt;"
+  exit 1
+fi
+
+# 从命令行参数获取文件名
+images_file="$1"
+target_registry="192.167.3.18/library/"
+
+# 遍历images.tmp文件中的每一行
+while IFS= read -r line; do
+    # 检查行是否为空
+    if [ -z "$line" ]; then
+        continue
+    fi
+
+    # 打印操作信息
+    echo "正在推送镜像: $line"
+
+    # 推送镜像
+    docker push "$line"
+
+done &lt; "$images_file"
+
+echo "所有指定的镜像已被推送。"
+</code></pre>
+<h3 id="delete-images-from-local"><a class="header" href="#delete-images-from-local">Delete Images from Local</a></h3>
+<p>Delete images from local.</p>
+<p><strong>Usage：delete_images.sh new_images.tmp</strong></p>
+<pre><code class="language-bash">#!/bin/bash
+# **********************************************************
+# * Author        : Burgess Leo
+# * Email         : liuxp731@qq.com
+# * Create time   : 2024-09-14 09:02
+# * Filename      : delete_images.sh
+# * Description   : Delete images that pushed
+# **********************************************************
+
+# 检查是否有参数传递
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 &lt;path-to-file&gt;"
+    exit 1
+fi
+
+# 指定包含镜像名称的文件路径
+images_file="$1"
+
+# 检查文件是否存在
+if [ ! -f "$images_file" ]; then
+    echo "Error: File '$images_file' not found."
+    exit 1
+fi
+
+# 逐行读取文件中的镜像名称
+while IFS= read -r image; do
+    # 删除镜像，忽略不存在的镜像
+    if docker rmi "$image" &amp;&gt;/dev/null; then
+        echo "Image $image has been deleted."
+    else
+        echo "Image $image does not exist or could not be deleted."
+    fi
+done &lt; "$images_file"
+
+echo "All listed images have been processed."
+</code></pre>
+<h3 id="all-in-one"><a class="header" href="#all-in-one">ALL IN ONE</a></h3>
+<p>Merge all the above scripts into one.</p>
+<pre><code class="language-bash">#!/bin/bash
+# **********************************************************
+# * Author        : Burgess Leo
+# * Email         : liuxp731@qq.com
+# * Create time   : 2024-09-13 16:06
+# * Filename      : all_in_one.sh
+# * Description   : Pull images
+# **********************************************************
+
+# 欢迎信息
+echo "欢迎使用 Docker 镜像管理脚本！"
+echo ""
+
+# 菜单函数
+print_menu() {
+  echo "*********************************************************"
+  echo "*                                                       *"
+  echo "*     1. Get images from Helm yaml files.               *"
+  echo "*                                                       *"
+  echo "*     2. Pull images from docker hub to local.          *"
+  echo "*                                                       *"
+  echo "*     3. Docker tag images you need to change.          *"
+  echo "*                                                       *"
+  echo "*     4. Push images to your private docker registry.   *"
+  echo "*                                                       *"
+  echo "*     5. Delete images from local.                      *"
+  echo "*                                                       *"
+  echo "*     6. cat images.tmp.                                *"
+  echo "*                                                       *"
+  echo "*     7. cat new_images.tmp.                            *"
+  echo "*                                                       *"
+  echo "*     8. About.                                         *"
+  echo "*                                                       *"
+  echo "*     0. Exit.                                          *"
+  echo "*                                                       *"
+  echo "*********************************************************"
+}
+
+# 主循环
+while true; do
+  print_menu
+  read -p "请输入功能数字: " choice
+
+  case $choice in
+    1)
+      read -p "请输入 Helm yaml 文件路径: " yaml_file
+      if [ ! -f "$yaml_file" ]; then
+        echo "错误: 文件 '$yaml_file' 不存在."
+      else
+        &gt; images.tmp
+        while read -r line; do
+          if [[ $line == *"repository:"* ]]; then
+            repository=$(echo $line | cut -d':' -f2 | xargs)
+          elif [[ $line == *"tag:"* ]]; then
+            tag=$(echo $line | cut -d':' -f2 | xargs)
+            echo "$repository:$tag" &gt;&gt; images.tmp
+          fi
+        done &lt; "$yaml_file"
+        echo "已从 '$yaml_file' 中提取镜像并保存到 'images.tmp'，由于 Helm yaml 文件可能包含重复的镜像以及失效的 Tag 名称，请手动检查 images.tmp 文件。"
+      fi
+
+    ;;
+    2)
+      read -p "请输入 images.tmp 文件路径 (默认: images.tmp): " images_file
+      images_file=${images_file:-images.tmp} # 设置默认值
+
+      if [ ! -f "$images_file" ]; then
+        echo "错误: 文件 '$images_file' 不存在."
+      else
+        while IFS= read -r image || [ -n "$image" ]; do # 修复读取逻辑以处理没有换行的情况
+          if [ -n "$image" ]; then
+            echo "正在拉取镜像: $image"
+            docker pull "$image"
+          fi
+        done &lt; "$images_file"
+        echo "所有镜像已成功拉取."
+      fi
+
+    ;;
+    3)
+      read -p "请输入 images.tmp 文件路径 (默认: images.tmp): " images_file
+      images_file=${images_file:-images.tmp} # 设置默认值
+
+      if [ ! -f "$images_file" ]; then
+        echo "错误: 文件 '$images_file' 不存在."
+      else
+        output_file="new_images.tmp"
+        header="192.167.3.18/"
+        &gt; "$output_file"
+
+        while IFS= read -r original_image || [ -n "$original_image" ]; do # 修复读取逻辑以处理没有换行的情况
+          # 在每一行前添加私有镜像仓库地址
+          new_image_name="${header}${original_image}"
+          echo "正在标记镜像: docker tag $original_image $new_image_name"
+          docker tag "$original_image" "$new_image_name"
+          echo "$new_image_name" &gt;&gt; "$output_file"
+        done &lt; "$images_file"
+
+        if [ -s "$output_file" ]; then # 检查输出文件是否非空
+          echo "所有镜像已成功标记并保存到 '$output_file'."
+        else
+          echo "警告: '$output_file' 文件为空，未能标记任何镜像."
+        fi
+      fi
+
+    ;;
+    4)
+      read -p "请输入 new_images.tmp 文件路径 (默认: new_images.tmp): " images_file
+      images_file=${images_file:-new_images.tmp} # 设置默认值
+
+      if [ ! -f "$images_file" ]; then
+        echo "错误: 文件 '$images_file' 不存在."
+      else
+        while IFS= read -r line || [ -n "$line" ]; do # 修复读取逻辑以处理没有换行的情况
+          if [ -z "$line" ]; then continue; fi
+          echo "正在推送镜像: $line"
+          docker push "$line"
+        done &lt; "$images_file"
+
+        echo "所有指定的镜像已被推送."
+      fi
+
+    ;;
+    5)
+      read -p "请输入包含要删除的镜像名称的文件路径 (默认: new_images.tmp): " images_file
+      images_file=${images_file:-new_images.tmp} # 设置默认值
+
+      if [ ! -f "$images_file" ]; then
+        echo "错误: 文件 '$images_file' 不存在."
+      else
+        while IFS= read -r image || [ -n "$image" ]; do # 修复读取逻辑以处理没有换行的情况
+          if docker rmi "$image" &amp;&gt;/dev/null; then
+            echo "镜像 $image 已被删除."
+          else
+            echo "镜像 $image 不存在或无法删除."
+          fi
+        done &lt; "$images_file"
+
+        echo "所有列出的镜像已被处理."
+      fi
+
+    ;;
+    6)
+      cat images.tmp
+      
+    ;;
+    7)
+      cat new_images.tmp
+      
+    ;;
+    8)
+      # 打印关于信息
+      cat &lt;&lt; 'EOF'
+        _..._   666       
+      .'     '.      _
+     /    .-""-\   _/ \
+   .-|   /:.   |  |   |
+   |  \  |:.   /.-'-./ 
+   | .-'-;:__.'    =/  
+   .'=  *=|NASA _.='   
+  /   _.  |    ;       
+ ;-.-'|    \   |       
+/   | \    _\  _\      
+\__/'._;. \==' ==\     
+         \    \   |    
+         /    /   /    
+         /-._/-._/     
+  lxp    \   `\  \     
+          `-._/._/     
+EOF
+
+    ;;
+    0)
+      echo "退出程序。再见！"
+      exit 0
+
+    ;;
+    *)
+      echo "无效的选择，请重新输入."
+    ;;
+  esac
+
+  # 打印分隔行以提高可读性，并重新显示菜单
+  printf "\n\n\n"
+
+done
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="../scripts/docker_proxy_start_stop.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="../docker/funny_docker_projects.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="../scripts/docker_proxy_start_stop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="../docker/funny_docker_projects.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
+
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>

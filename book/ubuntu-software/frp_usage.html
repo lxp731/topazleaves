@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>kns Usage - TOPAZ LEAF</title>
+        <title>FRP Usage - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -12,32 +12,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "rust" : "rust";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc.js"></script>
+        <script src="../toc.js"></script>
     </head>
     <body>
     <div id="body-container">
@@ -89,7 +89,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -123,7 +123,7 @@
                     <h1 class="menu-title">TOPAZ LEAF</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/lxp731/topazleaves.git" title="Git repository" aria-label="Git repository">
@@ -155,66 +155,121 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="kns-locking-namespace"><a class="header" href="#kns-locking-namespace">kns Locking Namespace</a></h1>
-<h4 id="install-fzf"><a class="header" href="#install-fzf">Install fzf</a></h4>
-<ol>
-<li>Source Code Install(Recommend)</li>
-</ol>
-<pre><code class="language-bash"># Clone the fzf repository
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-
-# Run the install script
-~/.fzf/install
+                        <h1 id="使用-frp"><a class="header" href="#使用-frp">使用 frp</a></h1>
+<h4 id="project-official-website"><a class="header" href="#project-official-website">Project Official Website</a></h4>
+<p><a href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
+<p><a href="https://gofrp.org/zh-cn/">中文文档</a></p>
+<h3 id="ssh-service"><a class="header" href="#ssh-service">SSH Service</a></h3>
+<h4 id="the-server-configuration"><a class="header" href="#the-server-configuration">The server configuration</a></h4>
+<pre><code class="language-bash">vim frps.toml
 </code></pre>
-<ol start="2">
-<li>apt install</li>
-</ol>
-<pre><code class="language-bash">sudo apt install fzf
+<pre><code class="language-bash">bindPort = 5432  # frp 建立通讯的端口
+auth.token = "123456"
 </code></pre>
-<h4 id="edit-kns-script"><a class="header" href="#edit-kns-script">Edit kns Script</a></h4>
-<pre><code class="language-bash">vim kns
+<h4 id="the-client-configuration"><a class="header" href="#the-client-configuration">The Client configuration</a></h4>
+<pre><code class="language-bash">vim frpc.toml
 </code></pre>
-<pre><code class="language-shell">#!/bin/sh
-# quick Kubernetes Namespace Switcher
-# ISC Blendle, 2017
+<pre><code class="language-bash">serverAddr = "123.00.00.01"
+serverPort = 5432   # frp 建立通讯的端口
+auth.token = "123456"
 
-set -eu
-
-if [ ! -x "$(which kubectl 2&gt;/dev/null)" ]; then
-  echo "please install: kubectl (https://kubernetes.io/docs/tasks/kubectl/install/)" &gt;&amp;2
-  exit 1
-fi
-if [ ! -x "$(which fzf 2&gt;/dev/null)" ]; then
-  echo "please install: fzf (https://github.com/junegunn/fzf)" &gt;&amp;2
-  exit 1
-fi
-
-current="$(kubectl config current-context)"
-namespace="$(kubectl config view -o jsonpath="{.contexts[?(@.name == '${current}')].context.namespace}")"
-if [ -z "$namespace" ]; then
-  namespace="default"
-fi
-
-selected=$( (kubectl get namespaces -o=jsonpath="{.items[?(@.metadata.name!='$namespace')].metadata.name}" | xargs -n 1; echo $namespace ) | fzf -0 -1 --tac -q "${1:-""}" --prompt "$current&gt; ")
-if [ -n "$selected" ]; then
-  kubectl config set-context "$current" "--namespace=$selected" &gt;/dev/null
-  echo "Set context namespace to \"$selected\""
-fi
+[[proxies]]
+name = "ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 22
+remotePort = 10086   # frp 映射的端口，VPS需要打开的端口
 </code></pre>
-<h4 id="add-exec-permission"><a class="header" href="#add-exec-permission">Add Exec Permission</a></h4>
-<pre><code class="language-bash">chmod +x kns
-sudo mv kns /usr/local/bin/kns
+<h3 id="ftp-service"><a class="header" href="#ftp-service">FTP Service</a></h3>
+<h4 id="the-server-configuration-1"><a class="header" href="#the-server-configuration-1">The Server configuration</a></h4>
+<pre><code class="language-bash">vim frps.toml
+</code></pre>
+<pre><code class="language-bash">bindPort = 5432
+auth.token = "123456"
+</code></pre>
+<h4 id="the-client-configuration-1"><a class="header" href="#the-client-configuration-1">The Client configuration</a></h4>
+<pre><code class="language-bash">vim frpc.toml
+</code></pre>
+<pre><code class="language-bash">serverAddr = "123.00.00.01"
+serverPort = 5432
+auth.token = "123456"
+
+[[proxies]]
+name = "test_static_file"
+type = "tcp"
+localPort = 21
+remotePort = 10086
+
+[proxies.plugin]
+type = "static_file"
+
+# 本地文件目录，对外提供访问
+localPath = "/your/local/path"
+
+# URL 中的前缀，将被去除，保留的内容即为要访问的文件路径
+stripPrefix = "static"
+httpUser = "user"
+httpPassword = "password"
+</code></pre>
+<h4 id="systemctl-configuration"><a class="header" href="#systemctl-configuration">systemctl Configuration</a></h4>
+<ul>
+<li>frps | Server configuration</li>
+</ul>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/frps.service
+</code></pre>
+<pre><code class="language-ini">[Unit]
+# 服务名称，可自定义
+Description = frp server
+After = network.target syslog.target
+Wants = network.target
+[Service]
+Type = simple
+# 启动frps的命令，需修改为您的frps的安装路径
+ExecStart = /root/frp/frps -c /root/frp/config.toml
+[Install]
+WantedBy = multi-user.target
+</code></pre>
+<p>reload daemon and start service</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl enable --now frps
+</code></pre>
+<ul>
+<li>frpc | Client configuration</li>
+</ul>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/frpc.service
+</code></pre>
+<pre><code class="language-ini">[Unit]
+Description=FRPC Client Service
+After=network.target
+
+[Service]
+User=knight
+Group=knight
+Type=simple
+ExecStart=/home/knight/frp/frpc -c /home/knight/frp/config.toml
+Restart=on-failure
+RestartSec=5s
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=frpc
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>reload daemon and start service</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl enable --now frpc
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="disable_sleep.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../ubuntu-software/asciiquarium_usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="command.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../ubuntu-software/entertainment.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -224,11 +279,11 @@ sudo mv kns /usr/local/bin/kns
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="disable_sleep.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../ubuntu-software/asciiquarium_usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="command.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../ubuntu-software/entertainment.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -259,13 +314,13 @@ sudo mv kns /usr/local/bin/kns
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 

@@ -250,6 +250,29 @@ sudo apt update
 # 将 Exec 改为：
 Exec=env WEBKIT_DISABLE_COMPOSITING_MODE=1 clash-verge
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="clash-for-linux"><a class="header" href="#clash-for-linux">Clash For Linux</a></h1>
+<h3 id="github-repo"><a class="header" href="#github-repo">Github Repo</a></h3>
+<p><a href="https://github.com/wnlen/clash-for-linux.git">https://github.com/wnlen/clash-for-linux.git</a></p>
+<h3 id="installation"><a class="header" href="#installation">Installation</a></h3>
+<pre><code class="language-bash">git clone https://github.com/wnlen/clash-for-linux.git
+</code></pre>
+<h3 id="modify-env"><a class="header" href="#modify-env">Modify <code>.env</code></a></h3>
+<p>The <code>CLASH_URL</code> is your subscription address, and the <code>CLASH_SECRET</code> is your password, when you login with web, you will use it.</p>
+<h3 id="start-clash"><a class="header" href="#start-clash">Start Clash</a></h3>
+<pre><code class="language-bash">sudo bash start.sh
+</code></pre>
+<p>As show tips, exec cmds.</p>
+<h3 id="else-cmd"><a class="header" href="#else-cmd">Else CMD</a></h3>
+<ul>
+<li>Close clash</li>
+</ul>
+<pre><code class="language-bash">sudo bash shutdown.sh
+</code></pre>
+<ul>
+<li>Close proxy</li>
+</ul>
+<pre><code class="language-bash">proxy-off
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="install-docker"><a class="header" href="#install-docker">Install Docker</a></h1>
 <h4 id="install-official-docker-gpg-key"><a class="header" href="#install-official-docker-gpg-key">Install Official Docker GPG Key</a></h4>
 <pre><code class="language-bash">sudo apt-get update
@@ -300,21 +323,8 @@ sudo chmod a+r /etc/apt/keyrings/docker.asc
 <pre><code class="language-bash">knight@Lenovo:~/workspace/game_of_thrones$ pycharm .
 knight@Lenovo:~/workspace/game_of_thrones$
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="entertainment"><a class="header" href="#entertainment">Entertainment</a></h1>
-<h3 id="install-kodi"><a class="header" href="#install-kodi">Install KODI</a></h3>
-<p><a href="https://kodi.tv/download/">https://kodi.tv/download/</a></p>
-<pre><code class="language-bash">sudo apt install software-properties-common
-sudo add-apt-repository -y ppa:team-xbmc/ppa
-sudo apt install kodi
-</code></pre>
-<h3 id="install-tmm"><a class="header" href="#install-tmm">Install TMM</a></h3>
-<p><a href="https://www.tinymediamanager.org/download/">https://www.tinymediamanager.org/download/</a></p>
-<h3 id="qbittorrent-enhanced"><a class="header" href="#qbittorrent-enhanced">qBittorrent Enhanced</a></h3>
-<p><a href="https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases">https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases </a></p>
-<h3 id="lx-music"><a class="header" href="#lx-music">LX Music</a></h3>
-<p><a href="https://github.com/lyswhut/lx-music-desktop/releases">https://github.com/lyswhut/lx-music-desktop/releases</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="tmux"><a class="header" href="#tmux">Tmux</a></h1>
-<h3 id="installation"><a class="header" href="#installation">Installation</a></h3>
+<h3 id="installation-1"><a class="header" href="#installation-1">Installation</a></h3>
 <p><a href="https://github.com/tmux/tmux">https://github.com/tmux/tmux</a></p>
 <pre><code class="language-bash">sudo apt install -y tmux
 </code></pre>
@@ -344,47 +354,177 @@ cd nerd-fonts/ &amp;&amp; \
 <blockquote>
 <p>nf_downloader.sh default will install all fonts, remember to modify it. The fonts will save in <code>~/.local/share/fonts</code>.</p>
 </blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="vim-support-system-clipboard"><a class="header" href="#vim-support-system-clipboard">Vim Support System Clipboard</a></h1>
-<h3 id="check-vim-version"><a class="header" href="#check-vim-version">Check Vim version</a></h3>
-<pre><code class="language-bash">vim --version | grep clipboard
+<div style="break-before: page; page-break-before: always;"></div><h1 id="create-windterm-desktop-entry"><a class="header" href="#create-windterm-desktop-entry">Create WindTerm Desktop Entry</a></h1>
+<pre><code class="language-ini">[Desktop Entry]
+Name=WindTerm
+Comment=A professional cross-platform SSH/Sftp/Shell/Telnet/Serial terminal
+GenericName=Connect Client
+Exec=/home/knight/windTerm/WindTerm_2.6.1/WindTerm
+Type=Application
+Icon=/home/knight/windTerm/WindTerm_2.6.1/windterm.png
+StartupNotify=false
+StartupWMClass=Code
+Categories=Application;Development
+Actions=new-empty-window
+Keywords=windterm
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Exec=/home/knight/windTerm/WindTerm_2.6.1/WindTerm
+Icon=/home/knight/windTerm/WindTerm_2.6.1/windterm.png
 </code></pre>
-<p>Output:</p>
-<pre><code class="language-bash">knight@Lenovo:~$ vim --version | grep "clipboard"
--clipboard         +keymap            +printer           +vertsplit
-+ex_extra          +mouse_netterm     +syntax            -xterm_clipboard
+<div style="break-before: page; page-break-before: always;"></div><h1 id="asciiquarium-command-install"><a class="header" href="#asciiquarium-command-install">Asciiquarium Command Install</a></h1>
+<h4 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h4>
+<pre><code class="language-bash">sudo apt-get install -y perl libcurses-perl wget
+wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
+wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
+tar -xf Term-Animation-2.4.tar.gz
+tar -xf asciiquarium.tar.gz
+cd Term-Animation-2.4/ &amp;&amp; perl Makefile.PL &amp;&amp; make &amp;&amp; sudo make install
+cd ../asciiquarium_1.1/
+cp asciiquarium /usr/local/bin
+sudo chmod +x /usr/local/bin/asciiquarium
+asciiquarium
 </code></pre>
-<p><code>-clipboard</code> <code>-xterm_clipboard</code> means that vim not support system clipboard.</p>
-<h3 id="remove-vim"><a class="header" href="#remove-vim">Remove vim</a></h3>
-<p>Uninstall vim if you have installed.</p>
-<pre><code class="language-bash">sudo apt remove vim &amp;&amp; sudo apt autoremove
+<h4 id="centos"><a class="header" href="#centos">Centos</a></h4>
+<pre><code class="language-bash">cd /opt
+yum install -y wget
+wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
+tar xf Term-Animation-2.4.tar.gz
+yum install perl-Curses.x86_64  -y
+yum install perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker  -y
+cd /opt/Term-Animation-2.4/  &amp;&amp; perl Makefile.PL
+make
+make install
+cd /opt
+wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
+tar -zxvf asciiquarium.tar.gz
+cd asciiquarium_1.1/
+cp asciiquarium /usr/local/bin
+chmod +x /usr/local/bin/asciiquarium
+asciiquarium
 </code></pre>
-<h3 id="install-vim-gtk3"><a class="header" href="#install-vim-gtk3">Install vim-gtk3</a></h3>
-<pre><code class="language-bash">sudo apt install vim-gtk3
+<div style="break-before: page; page-break-before: always;"></div><h1 id="使用-frp"><a class="header" href="#使用-frp">使用 frp</a></h1>
+<h4 id="project-official-website"><a class="header" href="#project-official-website">Project Official Website</a></h4>
+<p><a href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
+<p><a href="https://gofrp.org/zh-cn/">中文文档</a></p>
+<h3 id="ssh-service"><a class="header" href="#ssh-service">SSH Service</a></h3>
+<h4 id="the-server-configuration"><a class="header" href="#the-server-configuration">The server configuration</a></h4>
+<pre><code class="language-bash">vim frps.toml
 </code></pre>
-<h3 id="check-vim-version-again"><a class="header" href="#check-vim-version-again">Check Vim version again</a></h3>
-<pre><code class="language-bash">vim --version | grep clipboard
+<pre><code class="language-bash">bindPort = 5432  # frp 建立通讯的端口
+auth.token = "123456"
 </code></pre>
-<p>Output:</p>
-<pre><code class="language-bash">knight@Lenovo:~$ vim --version | grep clipboard
-+clipboard         +keymap            +printer           +vertsplit
-+ex_extra          +mouse_netterm     +syntax            +xterm_clipboard
+<h4 id="the-client-configuration"><a class="header" href="#the-client-configuration">The Client configuration</a></h4>
+<pre><code class="language-bash">vim frpc.toml
 </code></pre>
-<p>Confirem the key value is <code>+clipboard</code> or <code>+xterm_clipboard</code>.</p>
-<h3 id="edit-vimrc"><a class="header" href="#edit-vimrc">Edit .vimrc</a></h3>
-<pre><code class="language-bash">set clipboard=unnamedplus
+<pre><code class="language-bash">serverAddr = "123.00.00.01"
+serverPort = 5432   # frp 建立通讯的端口
+auth.token = "123456"
+
+[[proxies]]
+name = "ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 22
+remotePort = 10086   # frp 映射的端口，VPS需要打开的端口
 </code></pre>
-<p>The last you can use <code>"*y</code> to copy the text to system clipboard.</p>
-<hr />
-<h3 id="use-xclip"><a class="header" href="#use-xclip">Use Xclip</a></h3>
-<pre><code class="language-bash">sudo apt install xclip
+<h3 id="ftp-service"><a class="header" href="#ftp-service">FTP Service</a></h3>
+<h4 id="the-server-configuration-1"><a class="header" href="#the-server-configuration-1">The Server configuration</a></h4>
+<pre><code class="language-bash">vim frps.toml
 </code></pre>
-<h3 id="modify-vimrc"><a class="header" href="#modify-vimrc">Modify .vimrc</a></h3>
-<pre><code class="language-bash">vnoremap Y :w !xclip -i -sel c&lt;CR&gt;
+<pre><code class="language-bash">bindPort = 5432
+auth.token = "123456"
 </code></pre>
-<p>Then you can select some contents in visual mode, and press <code>Y</code>. Finally, you can use <code>&lt;Ctrl-v&gt;</code> to paste it anywhere.</p>
+<h4 id="the-client-configuration-1"><a class="header" href="#the-client-configuration-1">The Client configuration</a></h4>
+<pre><code class="language-bash">vim frpc.toml
+</code></pre>
+<pre><code class="language-bash">serverAddr = "123.00.00.01"
+serverPort = 5432
+auth.token = "123456"
+
+[[proxies]]
+name = "test_static_file"
+type = "tcp"
+localPort = 21
+remotePort = 10086
+
+[proxies.plugin]
+type = "static_file"
+
+# 本地文件目录，对外提供访问
+localPath = "/your/local/path"
+
+# URL 中的前缀，将被去除，保留的内容即为要访问的文件路径
+stripPrefix = "static"
+httpUser = "user"
+httpPassword = "password"
+</code></pre>
+<h4 id="systemctl-configuration"><a class="header" href="#systemctl-configuration">systemctl Configuration</a></h4>
+<ul>
+<li>frps | Server configuration</li>
+</ul>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/frps.service
+</code></pre>
+<pre><code class="language-ini">[Unit]
+# 服务名称，可自定义
+Description = frp server
+After = network.target syslog.target
+Wants = network.target
+[Service]
+Type = simple
+# 启动frps的命令，需修改为您的frps的安装路径
+ExecStart = /root/frp/frps -c /root/frp/config.toml
+[Install]
+WantedBy = multi-user.target
+</code></pre>
+<p>reload daemon and start service</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl enable --now frps
+</code></pre>
+<ul>
+<li>frpc | Client configuration</li>
+</ul>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/frpc.service
+</code></pre>
+<pre><code class="language-ini">[Unit]
+Description=FRPC Client Service
+After=network.target
+
+[Service]
+User=knight
+Group=knight
+Type=simple
+ExecStart=/home/knight/frp/frpc -c /home/knight/frp/config.toml
+Restart=on-failure
+RestartSec=5s
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=frpc
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>reload daemon and start service</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl enable --now frpc
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="entertainment"><a class="header" href="#entertainment">Entertainment</a></h1>
+<h3 id="install-kodi"><a class="header" href="#install-kodi">Install KODI</a></h3>
+<p><a href="https://kodi.tv/download/">https://kodi.tv/download/</a></p>
+<pre><code class="language-bash">sudo apt install software-properties-common
+sudo add-apt-repository -y ppa:team-xbmc/ppa
+sudo apt install kodi
+</code></pre>
+<h3 id="install-tmm"><a class="header" href="#install-tmm">Install TMM</a></h3>
+<p><a href="https://www.tinymediamanager.org/download/">https://www.tinymediamanager.org/download/</a></p>
+<h3 id="qbittorrent-enhanced"><a class="header" href="#qbittorrent-enhanced">qBittorrent Enhanced</a></h3>
+<p><a href="https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases">https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases </a></p>
+<h3 id="lx-music"><a class="header" href="#lx-music">LX Music</a></h3>
+<p><a href="https://github.com/lyswhut/lx-music-desktop/releases">https://github.com/lyswhut/lx-music-desktop/releases</a></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="zsh"><a class="header" href="#zsh">ZSH</a></h1>
 <p>zsh is a shell that can be used as a replacement for bash.</p>
-<h3 id="installation-1"><a class="header" href="#installation-1">Installation</a></h3>
+<h3 id="installation-2"><a class="header" href="#installation-2">Installation</a></h3>
 <p><a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH">https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH</a></p>
 <pre><code class="language-bash">sudo apt install zsh
 </code></pre>
@@ -395,7 +535,7 @@ cd nerd-fonts/ &amp;&amp; \
 <div style="break-before: page; page-break-before: always;"></div><h1 id="zsh--oh-my-zsh"><a class="header" href="#zsh--oh-my-zsh">zsh &amp; oh-my-zsh</a></h1>
 <h3 id="git-repo"><a class="header" href="#git-repo">Git repo</a></h3>
 <p><a href="https://github.com/ohmyzsh/ohmyzsh">https://github.com/ohmyzsh/ohmyzsh</a></p>
-<h3 id="installation-2"><a class="header" href="#installation-2">Installation</a></h3>
+<h3 id="installation-3"><a class="header" href="#installation-3">Installation</a></h3>
 <pre><code class="language-bash">sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 </code></pre>
 <p>The default location is <code>~/.oh-my-zsh</code> (hidden in your home directory, you can access it with <code>cd ~/.oh-my-zsh</code>)</p>
@@ -409,7 +549,7 @@ cd nerd-fonts/ &amp;&amp; \
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="powerlevel10k"><a class="header" href="#powerlevel10k">powerlevel10K</a></h1>
 <p><a href="https://github.com/romkatv/powerlevel10k.git">https://github.com/romkatv/powerlevel10k.git</a></p>
-<h3 id="installation-3"><a class="header" href="#installation-3">Installation</a></h3>
+<h3 id="installation-4"><a class="header" href="#installation-4">Installation</a></h3>
 <ol>
 <li>Clone repo into oh-my-zsh custom themes path:</li>
 </ol>
@@ -425,7 +565,7 @@ cd nerd-fonts/ &amp;&amp; \
 </ol>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-autosuggestions"><a class="header" href="#zsh-autosuggestions">zsh-autosuggestions</a></h1>
 <p><a href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md">https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md</a></p>
-<h3 id="installation-4"><a class="header" href="#installation-4">Installation</a></h3>
+<h3 id="installation-5"><a class="header" href="#installation-5">Installation</a></h3>
 <ol>
 <li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
 </ol>
@@ -441,7 +581,7 @@ cd nerd-fonts/ &amp;&amp; \
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-autocomplete"><a class="header" href="#zsh-autocomplete">zsh-autocomplete</a></h1>
 <p><a href="https://github.com/marlonrichert/zsh-autocomplete">https://github.com/marlonrichert/zsh-autocomplete</a></p>
-<h3 id="installation-5"><a class="header" href="#installation-5">Installation</a></h3>
+<h3 id="installation-6"><a class="header" href="#installation-6">Installation</a></h3>
 <ol>
 <li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
 </ol>
@@ -457,7 +597,7 @@ cd nerd-fonts/ &amp;&amp; \
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-syntax-highlighting"><a class="header" href="#zsh-syntax-highlighting">zsh-syntax-highlighting</a></h1>
 <p><a href="https://github.com/zsh-users/zsh-syntax-highlighting">https://github.com/zsh-users/zsh-syntax-highlighting</a></p>
-<h3 id="installation-6"><a class="header" href="#installation-6">Installation</a></h3>
+<h3 id="installation-7"><a class="header" href="#installation-7">Installation</a></h3>
 <ol>
 <li>
 <ol>
@@ -476,7 +616,7 @@ cd nerd-fonts/ &amp;&amp; \
 )
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-you-should-use"><a class="header" href="#zsh-you-should-use">zsh-you-should-use</a></h1>
-<h3 id="installation-7"><a class="header" href="#installation-7">Installation</a></h3>
+<h3 id="installation-8"><a class="header" href="#installation-8">Installation</a></h3>
 <ol>
 <li>Clone the repo into your oh-my-zsh plugins directory.</li>
 </ol>
@@ -492,7 +632,7 @@ cd nerd-fonts/ &amp;&amp; \
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-ollama-completion"><a class="header" href="#zsh-ollama-completion">zsh-ollama-completion</a></h1>
 <p><a href="https://github.com/Katrovsky/zsh-ollama-completion">https://github.com/Katrovsky/zsh-ollama-completion</a></p>
-<h3 id="installation-8"><a class="header" href="#installation-8">Installation</a></h3>
+<h3 id="installation-9"><a class="header" href="#installation-9">Installation</a></h3>
 <ol>
 <li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
 </ol>
@@ -622,7 +762,7 @@ mv 视频/ video
 <pre><code class="language-bash">curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 </code></pre>
-<h3 id="modify-vimrc-1"><a class="header" href="#modify-vimrc-1">Modify .vimrc</a></h3>
+<h3 id="modify-vimrc"><a class="header" href="#modify-vimrc">Modify .vimrc</a></h3>
 <p>Add the following content:</p>
 <pre><code class="language-bash">call plug#begin('~/.vim/plugged')
 
@@ -1157,7 +1297,7 @@ autocmd BufEnter * if winnr('$') == 1 &amp;&amp; exists('b:NERDTree') &amp;&amp;
 <h3 id="rendering"><a class="header" href="#rendering">Rendering</a></h3>
 <p><img src="https://github.com/preservim/nerdtree/raw/master/screenshot.png" alt="Rendering" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="nerdtree-git"><a class="header" href="#nerdtree-git">NerdTree-Git</a></h1>
-<h3 id="github-repo"><a class="header" href="#github-repo">Github Repo</a></h3>
+<h3 id="github-repo-1"><a class="header" href="#github-repo-1">Github Repo</a></h3>
 <p><a href="https://github.com/Xuyuanp/nerdtree-git-plugin">https://github.com/Xuyuanp/nerdtree-git-plugin</a></p>
 <h3 id="install"><a class="header" href="#install">Install</a></h3>
 <pre><code class="language-bash">Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -1181,10 +1321,10 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 <h3 id="rendering-1"><a class="header" href="#rendering-1">Rendering</a></h3>
 <p><img src="https://camo.githubusercontent.com/5ee5b6171cda9ea0eb6ea834185b2ef869e7cb0f81ded740e9c396b8cc47a23e/687474703a2f2f692e696d6775722e636f6d2f6a534377476a552e6769663f31" alt="Rendering" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="youcompleteme"><a class="header" href="#youcompleteme">YouCompleteMe</a></h1>
-<h3 id="github-repo-1"><a class="header" href="#github-repo-1">Github Repo</a></h3>
+<h3 id="github-repo-2"><a class="header" href="#github-repo-2">Github Repo</a></h3>
 <p><a href="https://github.com/ycm-core/YouCompleteMe">https://github.com/ycm-core/YouCompleteMe</a></p>
 <p><a href="https://vimawesome.com/plugin/youcompleteme">https://vimawesome.com/plugin/youcompleteme</a></p>
-<h3 id="installation-9"><a class="header" href="#installation-9">Installation</a></h3>
+<h3 id="installation-10"><a class="header" href="#installation-10">Installation</a></h3>
 <pre><code class="language-bash">Plug 'Valloric/YouCompleteMe'
 </code></pre>
 <p>After <code>:PlugInstall</code>, if you use <code>vim-plug</code></p>
@@ -1203,6 +1343,44 @@ sudo apt install libstdc++6
 </code></pre>
 <h3 id="rendering-2"><a class="header" href="#rendering-2">Rendering</a></h3>
 <p><img src="https://camo.githubusercontent.com/ff645d6ac63801b82adf04c354be7edfce79c60f38889f441b351dd8fe27372b/68747470733a2f2f692e696d6775722e636f6d2f304f50346f6f642e676966" alt="https://camo.githubusercontent.com/ff645d6ac63801b82adf04c354be7edfce79c60f38889f441b351dd8fe27372b/68747470733a2f2f692e696d6775722e636f6d2f304f50346f6f642e676966" /></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vim-support-system-clipboard"><a class="header" href="#vim-support-system-clipboard">Vim Support System Clipboard</a></h1>
+<h3 id="check-vim-version"><a class="header" href="#check-vim-version">Check Vim version</a></h3>
+<pre><code class="language-bash">vim --version | grep clipboard
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-bash">knight@Lenovo:~$ vim --version | grep "clipboard"
+-clipboard         +keymap            +printer           +vertsplit
++ex_extra          +mouse_netterm     +syntax            -xterm_clipboard
+</code></pre>
+<p><code>-clipboard</code> <code>-xterm_clipboard</code> means that vim not support system clipboard.</p>
+<h3 id="remove-vim"><a class="header" href="#remove-vim">Remove vim</a></h3>
+<p>Uninstall vim if you have installed.</p>
+<pre><code class="language-bash">sudo apt remove vim &amp;&amp; sudo apt autoremove
+</code></pre>
+<h3 id="install-vim-gtk3"><a class="header" href="#install-vim-gtk3">Install vim-gtk3</a></h3>
+<pre><code class="language-bash">sudo apt install vim-gtk3
+</code></pre>
+<h3 id="check-vim-version-again"><a class="header" href="#check-vim-version-again">Check Vim version again</a></h3>
+<pre><code class="language-bash">vim --version | grep clipboard
+</code></pre>
+<p>Output:</p>
+<pre><code class="language-bash">knight@Lenovo:~$ vim --version | grep clipboard
++clipboard         +keymap            +printer           +vertsplit
++ex_extra          +mouse_netterm     +syntax            +xterm_clipboard
+</code></pre>
+<p>Confirem the key value is <code>+clipboard</code> or <code>+xterm_clipboard</code>.</p>
+<h3 id="edit-vimrc"><a class="header" href="#edit-vimrc">Edit .vimrc</a></h3>
+<pre><code class="language-bash">set clipboard=unnamedplus
+</code></pre>
+<p>The last you can use <code>"*y</code> to copy the text to system clipboard.</p>
+<hr />
+<h3 id="use-xclip"><a class="header" href="#use-xclip">Use Xclip</a></h3>
+<pre><code class="language-bash">sudo apt install xclip
+</code></pre>
+<h3 id="modify-vimrc-1"><a class="header" href="#modify-vimrc-1">Modify .vimrc</a></h3>
+<pre><code class="language-bash">vnoremap Y :w !xclip -i -sel c&lt;CR&gt;
+</code></pre>
+<p>Then you can select some contents in visual mode, and press <code>Y</code>. Finally, you can use <code>&lt;Ctrl-v&gt;</code> to paste it anywhere.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fzf"><a class="header" href="#fzf">FZF</a></h1>
 <h3 id="official-website-1"><a class="header" href="#official-website-1">Official Website</a></h3>
 <ul>
@@ -1277,7 +1455,7 @@ rfv() (
 <p>In fzf model, you can press <kbd>Esc</kbd> to quit fzf model.</p>
 </blockquote>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fzf-replace-bash-completion"><a class="header" href="#fzf-replace-bash-completion">FZF Replace Bash Completion</a></h1>
-<h3 id="github-repo-2"><a class="header" href="#github-repo-2">Github Repo</a></h3>
+<h3 id="github-repo-3"><a class="header" href="#github-repo-3">Github Repo</a></h3>
 <p><a href="https://github.com/lincheney/fzf-tab-completion">https://github.com/lincheney/fzf-tab-completion</a></p>
 <h3 id="install-script"><a class="header" href="#install-script">Install Script</a></h3>
 <pre><code class="language-bash">mkdir -p ~/.fzf/shell &amp;&amp; \
@@ -1294,7 +1472,7 @@ EOF
 <pre><code class="language-bash">source ~/.bashrc
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fzf-integrate-git"><a class="header" href="#fzf-integrate-git">FZF Integrate Git</a></h1>
-<h3 id="github-repo-3"><a class="header" href="#github-repo-3">Github Repo</a></h3>
+<h3 id="github-repo-4"><a class="header" href="#github-repo-4">Github Repo</a></h3>
 <p><a href="https://github.com/junegunn/fzf-git.sh">https://github.com/junegunn/fzf-git.sh</a></p>
 <h3 id="install-2"><a class="header" href="#install-2">Install</a></h3>
 <pre><code class="language-bash">mkdir -p ~/.fzf/shell &amp;&amp; \
@@ -1878,263 +2056,55 @@ EOF
 
 done
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="keyboard-layout"><a class="header" href="#keyboard-layout">Keyboard Layout</a></h1>
-<p>Switch to colemak layout.</p>
-<pre><code class="language-bash">setxkbmap us -variant colemak
-</code></pre>
-<p><img src="https://colemak.com/wiki/images/e/ef/Colemak_fingers.png" alt="Colemak" /></p>
-<p>Switch to <code>QWERTY</code> layout.</p>
-<pre><code class="language-bash">setxkbmap us; xset -r 66
+<div style="break-before: page; page-break-before: always;"></div><h1 id="funny-docker-projects"><a class="header" href="#funny-docker-projects">Funny Docker Projects</a></h1>
+<p>Collected some funny docker projects here. If you want to try, confirm you install docker and docker-compose first.</p>
+<ul>
+<li>
+<p><a href="docker/./openweb-ui.html">OpenWeb-UI</a></p>
+<p>You can chat with your local ollama models in browser. It's provide history management and session management.</p>
+</li>
+<li>
+<p><a href="docker/./yesplaymusic.html">YesplayMusic</a></p>
+<p>A music player with a beautiful UI. You can deploy it on your own server.</p>
+</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="openweb-ui"><a class="header" href="#openweb-ui">OpenWeb-UI</a></h1>
+<h4 id="open-webui-official-website"><a class="header" href="#open-webui-official-website">open-webui Official Website</a></h4>
+<p><a href="https://docs.openwebui.com/">https://docs.openwebui.com/</a></p>
+<h4 id="docker-deployment"><a class="header" href="#docker-deployment">Docker Deployment</a></h4>
+<pre><code class="language-bash">version: '3'
+
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: open-webui
+    ports:
+      - "3000:8080"
+    volumes:
+      - open-webui:/app/backend/data
+#    restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+volumes:
+  open-webui:
 </code></pre>
 <blockquote>
-<p>Ref: <a href="https://colemak.com/Unix">https://colemak.com/Unix</a></p>
+<p>Docker deploy open-webui needs to configure <a href="docker/./ollama_services_found.html">ollama Service Discovery</a>, or ollama can't discern local models.</p>
 </blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="disable-hibernate-when-close-laptop"><a class="header" href="#disable-hibernate-when-close-laptop">Disable Hibernate When Close Laptop</a></h1>
-<h4 id="edit-conf-file-1"><a class="header" href="#edit-conf-file-1">Edit Conf File</a></h4>
-<pre><code class="language-bash">sudo gedit /etc/systemd/logind.conf
-</code></pre>
-<h4 id="modify-line"><a class="header" href="#modify-line">Modify Line</a></h4>
-<pre><code class="language-bash">HandleLidSwitch=ignore
-</code></pre>
-<h4 id="restart-service"><a class="header" href="#restart-service">Restart Service</a></h4>
-<pre><code class="language-bash">sudo systemctl restart systemd-logind
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="create-windterm-desktop-entry"><a class="header" href="#create-windterm-desktop-entry">Create WindTerm Desktop Entry</a></h1>
-<pre><code class="language-ini">[Desktop Entry]
-Name=WindTerm
-Comment=A professional cross-platform SSH/Sftp/Shell/Telnet/Serial terminal
-GenericName=Connect Client
-Exec=/home/knight/windTerm/WindTerm_2.6.1/WindTerm
-Type=Application
-Icon=/home/knight/windTerm/WindTerm_2.6.1/windterm.png
-StartupNotify=false
-StartupWMClass=Code
-Categories=Application;Development
-Actions=new-empty-window
-Keywords=windterm
+<div style="break-before: page; page-break-before: always;"></div><h1 id="yesplaymusic"><a class="header" href="#yesplaymusic">Yesplaymusic</a></h1>
+<h4 id="official-website-2"><a class="header" href="#official-website-2">Official Website</a></h4>
+<p><a href="https://github.com/qier222/YesPlayMusic">https://github.com/qier222/YesPlayMusic</a></p>
+<h4 id="docker-deployment-1"><a class="header" href="#docker-deployment-1">Docker Deployment</a></h4>
+<pre><code class="language-yaml">version: '3.9'
 
-[Desktop Action new-empty-window]
-Name=New Empty Window
-Exec=/home/knight/windTerm/WindTerm_2.6.1/WindTerm
-Icon=/home/knight/windTerm/WindTerm_2.6.1/windterm.png
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="使用-frp"><a class="header" href="#使用-frp">使用 frp</a></h1>
-<h4 id="project-official-website"><a class="header" href="#project-official-website">Project Official Website</a></h4>
-<p><a href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
-<p><a href="https://gofrp.org/zh-cn/">中文文档</a></p>
-<h3 id="ssh-service"><a class="header" href="#ssh-service">SSH Service</a></h3>
-<h4 id="the-server-configuration"><a class="header" href="#the-server-configuration">The server configuration</a></h4>
-<pre><code class="language-bash">vim frps.toml
-</code></pre>
-<pre><code class="language-bash">bindPort = 5432  # frp 建立通讯的端口
-auth.token = "123456"
-</code></pre>
-<h4 id="the-client-configuration"><a class="header" href="#the-client-configuration">The Client configuration</a></h4>
-<pre><code class="language-bash">vim frpc.toml
-</code></pre>
-<pre><code class="language-bash">serverAddr = "123.00.00.01"
-serverPort = 5432   # frp 建立通讯的端口
-auth.token = "123456"
-
-[[proxies]]
-name = "ssh"
-type = "tcp"
-localIP = "127.0.0.1"
-localPort = 22
-remotePort = 10086   # frp 映射的端口，VPS需要打开的端口
-</code></pre>
-<h3 id="ftp-service"><a class="header" href="#ftp-service">FTP Service</a></h3>
-<h4 id="the-server-configuration-1"><a class="header" href="#the-server-configuration-1">The Server configuration</a></h4>
-<pre><code class="language-bash">vim frps.toml
-</code></pre>
-<pre><code class="language-bash">bindPort = 5432
-auth.token = "123456"
-</code></pre>
-<h4 id="the-client-configuration-1"><a class="header" href="#the-client-configuration-1">The Client configuration</a></h4>
-<pre><code class="language-bash">vim frpc.toml
-</code></pre>
-<pre><code class="language-bash">serverAddr = "123.00.00.01"
-serverPort = 5432
-auth.token = "123456"
-
-[[proxies]]
-name = "test_static_file"
-type = "tcp"
-localPort = 21
-remotePort = 10086
-
-[proxies.plugin]
-type = "static_file"
-
-# 本地文件目录，对外提供访问
-localPath = "/your/local/path"
-
-# URL 中的前缀，将被去除，保留的内容即为要访问的文件路径
-stripPrefix = "static"
-httpUser = "user"
-httpPassword = "password"
-</code></pre>
-<h4 id="systemctl-configuration"><a class="header" href="#systemctl-configuration">systemctl Configuration</a></h4>
-<ul>
-<li>frps | Server configuration</li>
-</ul>
-<pre><code class="language-bash">sudo vim /etc/systemd/system/frps.service
-</code></pre>
-<pre><code class="language-ini">[Unit]
-# 服务名称，可自定义
-Description = frp server
-After = network.target syslog.target
-Wants = network.target
-[Service]
-Type = simple
-# 启动frps的命令，需修改为您的frps的安装路径
-ExecStart = /root/frp/frps -c /root/frp/config.toml
-[Install]
-WantedBy = multi-user.target
-</code></pre>
-<p>reload daemon and start service</p>
-<pre><code class="language-bash">sudo systemctl daemon-reload
-sudo systemctl enable --now frps
-</code></pre>
-<ul>
-<li>frpc | Client configuration</li>
-</ul>
-<pre><code class="language-bash">sudo vim /etc/systemd/system/frpc.service
-</code></pre>
-<pre><code class="language-ini">[Unit]
-Description=FRPC Client Service
-After=network.target
-
-[Service]
-User=knight
-Group=knight
-Type=simple
-ExecStart=/home/knight/frp/frpc -c /home/knight/frp/config.toml
-Restart=on-failure
-RestartSec=5s
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=frpc
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<p>reload daemon and start service</p>
-<pre><code class="language-bash">sudo systemctl daemon-reload
-sudo systemctl enable --now frpc
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="asciiquarium-command-install"><a class="header" href="#asciiquarium-command-install">Asciiquarium Command Install</a></h1>
-<h4 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h4>
-<pre><code class="language-bash">sudo apt-get install -y perl libcurses-perl wget
-wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
-wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
-tar -xf Term-Animation-2.4.tar.gz
-tar -xf asciiquarium.tar.gz
-cd Term-Animation-2.4/ &amp;&amp; perl Makefile.PL &amp;&amp; make &amp;&amp; sudo make install
-cd ../asciiquarium_1.1/
-cp asciiquarium /usr/local/bin
-sudo chmod +x /usr/local/bin/asciiquarium
-asciiquarium
-</code></pre>
-<h4 id="centos"><a class="header" href="#centos">Centos</a></h4>
-<pre><code class="language-bash">cd /opt
-yum install -y wget
-wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
-tar xf Term-Animation-2.4.tar.gz
-yum install perl-Curses.x86_64  -y
-yum install perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker  -y
-cd /opt/Term-Animation-2.4/  &amp;&amp; perl Makefile.PL
-make
-make install
-cd /opt
-wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
-tar -zxvf asciiquarium.tar.gz
-cd asciiquarium_1.1/
-cp asciiquarium /usr/local/bin
-chmod +x /usr/local/bin/asciiquarium
-asciiquarium
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kns-locking-namespace"><a class="header" href="#kns-locking-namespace">kns Locking Namespace</a></h1>
-<h4 id="install-fzf"><a class="header" href="#install-fzf">Install fzf</a></h4>
-<ol>
-<li>Source Code Install(Recommend)</li>
-</ol>
-<pre><code class="language-bash"># Clone the fzf repository
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-
-# Run the install script
-~/.fzf/install
-</code></pre>
-<ol start="2">
-<li>apt install</li>
-</ol>
-<pre><code class="language-bash">sudo apt install fzf
-</code></pre>
-<h4 id="edit-kns-script"><a class="header" href="#edit-kns-script">Edit kns Script</a></h4>
-<pre><code class="language-bash">vim kns
-</code></pre>
-<pre><code class="language-shell">#!/bin/sh
-# quick Kubernetes Namespace Switcher
-# ISC Blendle, 2017
-
-set -eu
-
-if [ ! -x "$(which kubectl 2&gt;/dev/null)" ]; then
-  echo "please install: kubectl (https://kubernetes.io/docs/tasks/kubectl/install/)" &gt;&amp;2
-  exit 1
-fi
-if [ ! -x "$(which fzf 2&gt;/dev/null)" ]; then
-  echo "please install: fzf (https://github.com/junegunn/fzf)" &gt;&amp;2
-  exit 1
-fi
-
-current="$(kubectl config current-context)"
-namespace="$(kubectl config view -o jsonpath="{.contexts[?(@.name == '${current}')].context.namespace}")"
-if [ -z "$namespace" ]; then
-  namespace="default"
-fi
-
-selected=$( (kubectl get namespaces -o=jsonpath="{.items[?(@.metadata.name!='$namespace')].metadata.name}" | xargs -n 1; echo $namespace ) | fzf -0 -1 --tac -q "${1:-""}" --prompt "$current&gt; ")
-if [ -n "$selected" ]; then
-  kubectl config set-context "$current" "--namespace=$selected" &gt;/dev/null
-  echo "Set context namespace to \"$selected\""
-fi
-</code></pre>
-<h4 id="add-exec-permission-1"><a class="header" href="#add-exec-permission-1">Add Exec Permission</a></h4>
-<pre><code class="language-bash">chmod +x kns
-sudo mv kns /usr/local/bin/kns
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="clash-for-linux"><a class="header" href="#clash-for-linux">Clash For Linux</a></h1>
-<h3 id="github-repo-4"><a class="header" href="#github-repo-4">Github Repo</a></h3>
-<p><a href="https://github.com/wnlen/clash-for-linux.git">https://github.com/wnlen/clash-for-linux.git</a></p>
-<h3 id="installation-10"><a class="header" href="#installation-10">Installation</a></h3>
-<pre><code class="language-bash">git clone https://github.com/wnlen/clash-for-linux.git
-</code></pre>
-<h3 id="modify-env"><a class="header" href="#modify-env">Modify <code>.env</code></a></h3>
-<p>The <code>CLASH_URL</code> is your subscription address, and the <code>CLASH_SECRET</code> is your password, when you login with web, you will use it.</p>
-<h3 id="start-clash"><a class="header" href="#start-clash">Start Clash</a></h3>
-<pre><code class="language-bash">sudo bash start.sh
-</code></pre>
-<p>As show tips, exec cmds.</p>
-<h3 id="else-cmd"><a class="header" href="#else-cmd">Else CMD</a></h3>
-<ul>
-<li>Close clash</li>
-</ul>
-<pre><code class="language-bash">sudo bash shutdown.sh
-</code></pre>
-<ul>
-<li>Close proxy</li>
-</ul>
-<pre><code class="language-bash">proxy-off
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="command"><a class="header" href="#command">Command</a></h1>
-<pre><code class="language-bash">:w !sudo tee %
-</code></pre>
-<pre><code class="language-bash">openssl x509 -noout -text -in ca.crt
-</code></pre>
-<pre><code class="language-bash">openssl verify -CAfiile ca.pem client.pem
-</code></pre>
-<pre><code class="language-bash">diff -eq &lt; (openssl x509 -pubkey -noout -in cert.crt) &lt; (openssl rsa -pubout -in cert.key)
+services:
+  yesplaymusic:
+    image: fogforest/yesplaymusic
+    container_name: yesplaymusic
+    restart: always
+    ports:
+      - "7900:80"
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="arch-linux-init"><a class="header" href="#arch-linux-init">Arch linux Init</a></h1>
 <ol>
@@ -2206,6 +2176,86 @@ XMODIFIERS=@im=fcitx
 SDL_IM_MODULE=fcitx
 GLFM_IM_MODULE=ibus
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="keyboard-layout"><a class="header" href="#keyboard-layout">Keyboard Layout</a></h1>
+<p>Switch to colemak layout.</p>
+<pre><code class="language-bash">setxkbmap us -variant colemak
+</code></pre>
+<p><img src="https://colemak.com/wiki/images/e/ef/Colemak_fingers.png" alt="Colemak" /></p>
+<p>Switch to <code>QWERTY</code> layout.</p>
+<pre><code class="language-bash">setxkbmap us; xset -r 66
+</code></pre>
+<blockquote>
+<p>Ref: <a href="https://colemak.com/Unix">https://colemak.com/Unix</a></p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="disable-hibernate-when-close-laptop"><a class="header" href="#disable-hibernate-when-close-laptop">Disable Hibernate When Close Laptop</a></h1>
+<h4 id="edit-conf-file-1"><a class="header" href="#edit-conf-file-1">Edit Conf File</a></h4>
+<pre><code class="language-bash">sudo gedit /etc/systemd/logind.conf
+</code></pre>
+<h4 id="modify-line"><a class="header" href="#modify-line">Modify Line</a></h4>
+<pre><code class="language-bash">HandleLidSwitch=ignore
+</code></pre>
+<h4 id="restart-service"><a class="header" href="#restart-service">Restart Service</a></h4>
+<pre><code class="language-bash">sudo systemctl restart systemd-logind
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kns-locking-namespace"><a class="header" href="#kns-locking-namespace">kns Locking Namespace</a></h1>
+<h4 id="install-fzf"><a class="header" href="#install-fzf">Install fzf</a></h4>
+<ol>
+<li>Source Code Install(Recommend)</li>
+</ol>
+<pre><code class="language-bash"># Clone the fzf repository
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
+# Run the install script
+~/.fzf/install
+</code></pre>
+<ol start="2">
+<li>apt install</li>
+</ol>
+<pre><code class="language-bash">sudo apt install fzf
+</code></pre>
+<h4 id="edit-kns-script"><a class="header" href="#edit-kns-script">Edit kns Script</a></h4>
+<pre><code class="language-bash">vim kns
+</code></pre>
+<pre><code class="language-shell">#!/bin/sh
+# quick Kubernetes Namespace Switcher
+# ISC Blendle, 2017
+
+set -eu
+
+if [ ! -x "$(which kubectl 2&gt;/dev/null)" ]; then
+  echo "please install: kubectl (https://kubernetes.io/docs/tasks/kubectl/install/)" &gt;&amp;2
+  exit 1
+fi
+if [ ! -x "$(which fzf 2&gt;/dev/null)" ]; then
+  echo "please install: fzf (https://github.com/junegunn/fzf)" &gt;&amp;2
+  exit 1
+fi
+
+current="$(kubectl config current-context)"
+namespace="$(kubectl config view -o jsonpath="{.contexts[?(@.name == '${current}')].context.namespace}")"
+if [ -z "$namespace" ]; then
+  namespace="default"
+fi
+
+selected=$( (kubectl get namespaces -o=jsonpath="{.items[?(@.metadata.name!='$namespace')].metadata.name}" | xargs -n 1; echo $namespace ) | fzf -0 -1 --tac -q "${1:-""}" --prompt "$current&gt; ")
+if [ -n "$selected" ]; then
+  kubectl config set-context "$current" "--namespace=$selected" &gt;/dev/null
+  echo "Set context namespace to \"$selected\""
+fi
+</code></pre>
+<h4 id="add-exec-permission-1"><a class="header" href="#add-exec-permission-1">Add Exec Permission</a></h4>
+<pre><code class="language-bash">chmod +x kns
+sudo mv kns /usr/local/bin/kns
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="command"><a class="header" href="#command">Command</a></h1>
+<pre><code class="language-bash">:w !sudo tee %
+</code></pre>
+<pre><code class="language-bash">openssl x509 -noout -text -in ca.crt
+</code></pre>
+<pre><code class="language-bash">openssl verify -CAfiile ca.pem client.pem
+</code></pre>
+<pre><code class="language-bash">diff -eq &lt; (openssl x509 -pubkey -noout -in cert.crt) &lt; (openssl rsa -pubout -in cert.key)
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vs-code-control-remote-hosts"><a class="header" href="#vs-code-control-remote-hosts">VS-Code Control Remote Hosts</a></h1>
 <h4 id="configure"><a class="header" href="#configure">Configure</a></h4>
 <pre><code class="language-bash">ssh-keygen -t rsa
@@ -2235,56 +2285,6 @@ Environment="OLLAMA_HOST=0.0.0.0"
 <h4 id="reload-and-restart"><a class="header" href="#reload-and-restart">Reload and Restart</a></h4>
 <pre><code class="language-bash">sudo systemctl daemon-reload
 sudo systemctl restart ollama
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="some-funny-docker-projects"><a class="header" href="#some-funny-docker-projects">Some Funny Docker Projects</a></h1>
-<p>Collected some funny docker projects here. If you want to try, confirm you install docker and docker-compose first.</p>
-<ul>
-<li>
-<p><a href="./openweb-ui.html">OpenWeb-UI</a></p>
-<p>You can chat with your local ollama models in browser. It's provide history management and session management.</p>
-</li>
-<li>
-<p><a href="./yesplaymusic.html">YesplayMusic</a></p>
-<p>A music player with a beautiful UI. You can deploy it on your own server.</p>
-</li>
-</ul>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="openweb-ui"><a class="header" href="#openweb-ui">OpenWeb-UI</a></h1>
-<h4 id="open-webui-official-website"><a class="header" href="#open-webui-official-website">open-webui Official Website</a></h4>
-<p><a href="https://docs.openwebui.com/">https://docs.openwebui.com/</a></p>
-<h4 id="docker-deployment"><a class="header" href="#docker-deployment">Docker Deployment</a></h4>
-<pre><code class="language-bash">version: '3'
-
-services:
-  open-webui:
-    image: ghcr.io/open-webui/open-webui:main
-    container_name: open-webui
-    ports:
-      - "3000:8080"
-    volumes:
-      - open-webui:/app/backend/data
-#    restart: always
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-
-volumes:
-  open-webui:
-</code></pre>
-<blockquote>
-<p>Docker deploy open-webui needs to configure <a href="./ollama_services_found.html">ollama Service Discovery</a>, or ollama can't discern local models.</p>
-</blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="yesplaymusic"><a class="header" href="#yesplaymusic">Yesplaymusic</a></h1>
-<h4 id="official-website-2"><a class="header" href="#official-website-2">Official Website</a></h4>
-<p><a href="https://github.com/qier222/YesPlayMusic">https://github.com/qier222/YesPlayMusic</a></p>
-<h4 id="docker-deployment-1"><a class="header" href="#docker-deployment-1">Docker Deployment</a></h4>
-<pre><code class="language-yaml">version: '3.9'
-
-services:
-  yesplaymusic:
-    image: fogforest/yesplaymusic
-    container_name: yesplaymusic
-    restart: always
-    ports:
-      - "7900:80"
 </code></pre>
 
                     </main>

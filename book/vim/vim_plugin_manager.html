@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>kns Usage - TOPAZ LEAF</title>
+        <title>Vim &amp; Plugins - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -12,32 +12,32 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon.svg">
-        <link rel="shortcut icon" href="favicon.png">
-        <link rel="stylesheet" href="css/variables.css">
-        <link rel="stylesheet" href="css/general.css">
-        <link rel="stylesheet" href="css/chrome.css">
-        <link rel="stylesheet" href="css/print.css" media="print">
+        <link rel="icon" href="../favicon.svg">
+        <link rel="shortcut icon" href="../favicon.png">
+        <link rel="stylesheet" href="../css/variables.css">
+        <link rel="stylesheet" href="../css/general.css">
+        <link rel="stylesheet" href="../css/chrome.css">
+        <link rel="stylesheet" href="../css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
-        <link rel="stylesheet" href="fonts/fonts.css">
+        <link rel="stylesheet" href="../FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="../fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" href="../highlight.css">
+        <link rel="stylesheet" href="../tomorrow-night.css">
+        <link rel="stylesheet" href="../ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
 
         <!-- Provide site root to javascript -->
         <script>
-            var path_to_root = "";
+            var path_to_root = "../";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "rust" : "rust";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc.js"></script>
+        <script src="../toc.js"></script>
     </head>
     <body>
     <div id="body-container">
@@ -89,7 +89,7 @@
             <!-- populated by js -->
             <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
             <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+                <iframe class="sidebar-iframe-outer" src="../toc.html"></iframe>
             </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
@@ -123,7 +123,7 @@
                     <h1 class="menu-title">TOPAZ LEAF</h1>
 
                     <div class="right-buttons">
-                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                        <a href="../print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
                         <a href="https://github.com/lxp731/topazleaves.git" title="Git repository" aria-label="Git repository">
@@ -155,66 +155,40 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="kns-locking-namespace"><a class="header" href="#kns-locking-namespace">kns Locking Namespace</a></h1>
-<h4 id="install-fzf"><a class="header" href="#install-fzf">Install fzf</a></h4>
-<ol>
-<li>Source Code Install(Recommend)</li>
-</ol>
-<pre><code class="language-bash"># Clone the fzf repository
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-
-# Run the install script
-~/.fzf/install
+                        <h1 id="vim-plugin-manager"><a class="header" href="#vim-plugin-manager">Vim Plugin Manager</a></h1>
+<h3 id="official-website"><a class="header" href="#official-website">Official Website</a></h3>
+<p><a href="https://github.com/junegunn/vim-plug?tab=readme-ov-file">https://github.com/junegunn/vim-plug?tab=readme-ov-file</a></p>
+<h3 id="install-vim-plug"><a class="header" href="#install-vim-plug">Install vim-plug</a></h3>
+<pre><code class="language-bash">curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 </code></pre>
-<ol start="2">
-<li>apt install</li>
-</ol>
-<pre><code class="language-bash">sudo apt install fzf
-</code></pre>
-<h4 id="edit-kns-script"><a class="header" href="#edit-kns-script">Edit kns Script</a></h4>
-<pre><code class="language-bash">vim kns
-</code></pre>
-<pre><code class="language-shell">#!/bin/sh
-# quick Kubernetes Namespace Switcher
-# ISC Blendle, 2017
+<h3 id="modify-vimrc"><a class="header" href="#modify-vimrc">Modify .vimrc</a></h3>
+<p>Add the following content:</p>
+<pre><code class="language-bash">call plug#begin('~/.vim/plugged')
 
-set -eu
+" List your plugins here
+Plug 'tpope/vim-sensible'
 
-if [ ! -x "$(which kubectl 2&gt;/dev/null)" ]; then
-  echo "please install: kubectl (https://kubernetes.io/docs/tasks/kubectl/install/)" &gt;&amp;2
-  exit 1
-fi
-if [ ! -x "$(which fzf 2&gt;/dev/null)" ]; then
-  echo "please install: fzf (https://github.com/junegunn/fzf)" &gt;&amp;2
-  exit 1
-fi
-
-current="$(kubectl config current-context)"
-namespace="$(kubectl config view -o jsonpath="{.contexts[?(@.name == '${current}')].context.namespace}")"
-if [ -z "$namespace" ]; then
-  namespace="default"
-fi
-
-selected=$( (kubectl get namespaces -o=jsonpath="{.items[?(@.metadata.name!='$namespace')].metadata.name}" | xargs -n 1; echo $namespace ) | fzf -0 -1 --tac -q "${1:-""}" --prompt "$current&gt; ")
-if [ -n "$selected" ]; then
-  kubectl config set-context "$current" "--namespace=$selected" &gt;/dev/null
-  echo "Set context namespace to \"$selected\""
-fi
+call plug#end()
 </code></pre>
-<h4 id="add-exec-permission"><a class="header" href="#add-exec-permission">Add Exec Permission</a></h4>
-<pre><code class="language-bash">chmod +x kns
-sudo mv kns /usr/local/bin/kns
-</code></pre>
+<p>You can add any plugins in the middle of call plug.</p>
+<p>Reload the file or restart Vim, then you can:</p>
+<ul>
+<li><code>:PlugInstall</code> to install the plugins</li>
+<li><code>:PlugUpdate</code> to install or update the plugins</li>
+<li><code>:PlugDiff</code> to review the changes from the last update</li>
+<li><code>:PlugClean</code> to remove plugins no longer in the list</li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="disable_sleep.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../env/user-dirs.dirs_setting.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="command.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../vim/vimrc_basic_setting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -224,11 +198,11 @@ sudo mv kns /usr/local/bin/kns
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="disable_sleep.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../env/user-dirs.dirs_setting.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="command.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../vim/vimrc_basic_setting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
@@ -259,13 +233,13 @@ sudo mv kns /usr/local/bin/kns
         </script>
 
 
-        <script src="elasticlunr.min.js"></script>
-        <script src="mark.min.js"></script>
-        <script src="searcher.js"></script>
+        <script src="../elasticlunr.min.js"></script>
+        <script src="../mark.min.js"></script>
+        <script src="../searcher.js"></script>
 
-        <script src="clipboard.min.js"></script>
-        <script src="highlight.js"></script>
-        <script src="book.js"></script>
+        <script src="../clipboard.min.js"></script>
+        <script src="../highlight.js"></script>
+        <script src="../book.js"></script>
 
         <!-- Custom JS scripts -->
 
