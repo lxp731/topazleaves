@@ -2247,6 +2247,53 @@ fi
 <pre><code class="language-bash">chmod +x kns
 sudo mv kns /usr/local/bin/kns
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="classic-cicd-script"><a class="header" href="#classic-cicd-script">Classic CI/CD Script</a></h1>
+<pre><code class="language-bash">variables:
+  $CI_REGISTRY: habor.dcits.auto
+  $CI_REGISTRY_IMAGE: liuxp731/webui
+
+
+stages:
+  - test
+  - build
+  - deploy
+
+
+run_test:
+  stage: test
+  image: python:3.9-slim-buster
+  before_script:
+    - apt-get update &amp;&amp; apt-get install -y make
+  script:
+    - make test
+
+
+build_image:
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  before_script:
+   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY  
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+
+
+deploy:
+  stage: deploy
+  before_script:
+    - chmod 400 $SSH_KEY
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_USER@$SSH_HOST "
+      docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &amp;&amp;
+      docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA &amp;&amp;
+      docker ps -a | xargs docker stop | xargs docker rm &amp;&amp;
+      docker run -dit -p 5000:5000 $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+      "
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="command"><a class="header" href="#command">Command</a></h1>
 <pre><code class="language-bash">:w !sudo tee %
 </code></pre>

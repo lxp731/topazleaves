@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>kns Usage - TOPAZ LEAF</title>
+        <title>Classic CI/CD Script - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -155,66 +155,63 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="kns-locking-namespace"><a class="header" href="#kns-locking-namespace">kns Locking Namespace</a></h1>
-<h4 id="install-fzf"><a class="header" href="#install-fzf">Install fzf</a></h4>
-<ol>
-<li>Source Code Install(Recommend)</li>
-</ol>
-<pre><code class="language-bash"># Clone the fzf repository
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+                        <h1 id="classic-cicd-script"><a class="header" href="#classic-cicd-script">Classic CI/CD Script</a></h1>
+<pre><code class="language-bash">variables:
+  $CI_REGISTRY: habor.dcits.auto
+  $CI_REGISTRY_IMAGE: liuxp731/webui
 
-# Run the install script
-~/.fzf/install
-</code></pre>
-<ol start="2">
-<li>apt install</li>
-</ol>
-<pre><code class="language-bash">sudo apt install fzf
-</code></pre>
-<h4 id="edit-kns-script"><a class="header" href="#edit-kns-script">Edit kns Script</a></h4>
-<pre><code class="language-bash">vim kns
-</code></pre>
-<pre><code class="language-shell">#!/bin/sh
-# quick Kubernetes Namespace Switcher
-# ISC Blendle, 2017
 
-set -eu
+stages:
+  - test
+  - build
+  - deploy
 
-if [ ! -x "$(which kubectl 2&gt;/dev/null)" ]; then
-  echo "please install: kubectl (https://kubernetes.io/docs/tasks/kubectl/install/)" &gt;&amp;2
-  exit 1
-fi
-if [ ! -x "$(which fzf 2&gt;/dev/null)" ]; then
-  echo "please install: fzf (https://github.com/junegunn/fzf)" &gt;&amp;2
-  exit 1
-fi
 
-current="$(kubectl config current-context)"
-namespace="$(kubectl config view -o jsonpath="{.contexts[?(@.name == '${current}')].context.namespace}")"
-if [ -z "$namespace" ]; then
-  namespace="default"
-fi
+run_test:
+  stage: test
+  image: python:3.9-slim-buster
+  before_script:
+    - apt-get update &amp;&amp; apt-get install -y make
+  script:
+    - make test
 
-selected=$( (kubectl get namespaces -o=jsonpath="{.items[?(@.metadata.name!='$namespace')].metadata.name}" | xargs -n 1; echo $namespace ) | fzf -0 -1 --tac -q "${1:-""}" --prompt "$current&gt; ")
-if [ -n "$selected" ]; then
-  kubectl config set-context "$current" "--namespace=$selected" &gt;/dev/null
-  echo "Set context namespace to \"$selected\""
-fi
-</code></pre>
-<h4 id="add-exec-permission"><a class="header" href="#add-exec-permission">Add Exec Permission</a></h4>
-<pre><code class="language-bash">chmod +x kns
-sudo mv kns /usr/local/bin/kns
+
+build_image:
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  before_script:
+   - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY  
+  script:
+    - docker build -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+    - docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+
+
+deploy:
+  stage: deploy
+  before_script:
+    - chmod 400 $SSH_KEY
+  script:
+    - ssh -o StrictHostKeyChecking=no -i $SSH_KEY $SSH_USER@$SSH_HOST "
+      docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY &amp;&amp;
+      docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA &amp;&amp;
+      docker ps -a | xargs docker stop | xargs docker rm &amp;&amp;
+      docker run -dit -p 5000:5000 $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+      "
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="disable_sleep.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="kns_usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="classic_ci_script.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="command.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -224,11 +221,11 @@ sudo mv kns /usr/local/bin/kns
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="disable_sleep.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="kns_usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="classic_ci_script.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="command.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

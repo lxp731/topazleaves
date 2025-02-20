@@ -64,6 +64,8 @@
 
 - [kns Usage](./kns_usage.md)
 
+- [Classic CI/CD Script](./classic_ci_script.md)
+
 - [Command](./command.md)
 
 - [VS-Code Link Remote Host](./vscode_remote_usage.md)
