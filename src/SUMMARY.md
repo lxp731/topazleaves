@@ -44,7 +44,6 @@
 - [Proxy Configuration](./proxy/kinds_proxy_setting.md)
   - [System Proxy](./proxy/system_proxy_setting.md)
   - [Docker Proxy](./proxy/docker_proxy_setting.md)
-  - [Container Proxy](./proxy/container_proxy_setting.md)
   - [K3S Proxy](./proxy/k3s_proxy_setting.md)
 
 - [Useful Scripts](./scripts/useful_scripts.md)
