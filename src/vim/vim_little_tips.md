@@ -28,3 +28,11 @@ Sometimes, you may edit a file in vim, but you don't use `sudo`. However, you ne
 ```bash
 :w !sudo tee %
 ```
+
+### Jump Quickly
+
+1. In normal mode, press `Ctrl-o` to jump to the previous position. Press `Ctrl-i` to jump to the next position. Samely, they can jump each other between two files.
+
+2. In normal mode, press `gf` to jump to the file which the cursor is pointing to.
+
+3. In normal mode, press `gx` to open the url which the cursor is pointing to.
