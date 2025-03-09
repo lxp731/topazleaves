@@ -2,6 +2,22 @@
 
 # TOPAZ LEAF
 
+- [Arch linux Init](./arch_linux_init.md)
+
+- [Keyboard Layout](./keyboard_layout.md)
+
+- [Disable Hibernation](./disable_sleep.md)
+
+- [kns Usage](./kns_usage.md)
+
+- [Classic CI/CD Script](./classic_ci_script.md)
+
+- [Command](./command.md)
+
+- [SSH config](./vscode_remote_usage.md)
+
+- [Ollama Service Discovery](./ollama_services_found.md)
+
 - [Ubuntu Software](./ubuntu-software/ubuntu_software.md)
   - [Install Google-PinYin](./ubuntu-software/google_input_install.md)
   - [Install Wechat](./ubuntu-software/wechat_install.md)
@@ -31,6 +47,7 @@
   - [.user-dirs.dirs](./env/user-dirs.dirs_setting.md)
 
 - [Vim & Plugins](./vim/vim_plugin_manager.md)
+  - [Vim Little Tips](./vim/vim_little_tips.md)
   - [Basic .vimrc](./vim/vimrc_basic_setting.md)
   - [NerdTree](./vim/nerdtree.md)
   - [NerdTree-Git](./vim/nerdtree-git.md)
@@ -54,19 +71,3 @@
 - [Funny Docker Projects](./docker/funny_docker_projects.md)
   - [Openweb-UI](./docker/openweb-ui.md)
   - [Yesplaymusic](./docker/yesplaymusic.md)
-
-- [Arch linux Init](./arch_linux_init.md)
-
-- [Keyboard Layout](./keyboard_layout.md)
-
-- [Disable Hibernation](./disable_sleep.md)
-
-- [kns Usage](./kns_usage.md)
-
-- [Classic CI/CD Script](./classic_ci_script.md)
-
-- [Command](./command.md)
-
-- [VS-Code Link Remote Host](./vscode_remote_usage.md)
-
-- [Ollama Service Discovery](./ollama_services_found.md)

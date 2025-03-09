@@ -53,7 +53,7 @@ sudo pacman -S firefox
 sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-dejavu ttf-liberation
 ```
 
-4. modify
+4. Modify locale
 
 ```bash
 sudo vim /etc/locale.gen
@@ -69,7 +69,7 @@ locale-gen && echo LANG=zh_CN.UTF-8 > /etc/locale.conf
 exit
 ```
 
-5. google-pinyin
+5. Install google-pinyin input method 
 
 ```bash
 sudo pacman -S fcitx5-im 
@@ -77,7 +77,7 @@ sudo pacman -S fcitx5-chinese-addons
 sudo pacman -S fcitx5-qt fctitx5-gtk fcitx5-lua
 ```
 
-6. modify
+6. Modify environment
 
 ```bash
 sudo vim /etc/environment
@@ -90,3 +90,39 @@ XMODIFIERS=@im=fcitx
 SDL_IM_MODULE=fcitx
 GLFM_IM_MODULE=ibus
 ```
+
+7. Fix japan-font problem
+
+Create a new file named 64-language-selector-prefer.conf.
+
+```bash
+cd /etc/fonts/conf.d/
+sudo vim 64-language-selector-prefer.conf
+```
+
+Add the following code:
+
+```bash
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "fonts.dtd">
+<fontconfig>
+  <alias>
+    <family>sans-serif</family>
+    <prefer>
+      <family>Noto Sans CJK SC</family>
+      <family>Noto Sans CJK TC</family>
+      <family>Noto Sans CJK JP</family>
+    </prefer>
+  </alias>
+  <alias>
+    <family>monospace</family>
+    <prefer>
+      <family>Noto Sans Mono CJK SC</family>
+      <family>Noto Sans Mono CJK TC</family>
+      <family>Noto Sans Mono CJK JP</family>
+    </prefer>
+  </alias>
+</fontconfig>
+```
+
+> Ref: [Arch 简体中文本地化](https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96)

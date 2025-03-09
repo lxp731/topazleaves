@@ -1,10 +1,6 @@
 # Command
 
 ```bash
-:w !sudo tee %
-```
-
-```bash
 openssl x509 -noout -text -in ca.crt
 ```
 ```bash
