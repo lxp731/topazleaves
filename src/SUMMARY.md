@@ -2,8 +2,6 @@
 
 # TOPAZ LEAF
 
-- [Command](./command.md)
-
 - [kns Usage](./kns_usage.md)
 
 - [SSH config](./vscode_remote_usage.md)

@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Command - TOPAZ LEAF</title>
+        <title>kns Usage - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -155,12 +155,55 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="command"><a class="header" href="#command">Command</a></h1>
-<pre><code class="language-bash">openssl x509 -noout -text -in ca.crt
+                        <h1 id="kns-install-locking-namespace"><a class="header" href="#kns-install-locking-namespace">kns Install (Locking Namespace)</a></h1>
+<h4 id="install-fzf"><a class="header" href="#install-fzf">Install fzf</a></h4>
+<ol>
+<li>Source Code Install(Recommend)</li>
+</ol>
+<pre><code class="language-bash"># Clone the fzf repository
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
+# Run the install script
+~/.fzf/install
 </code></pre>
-<pre><code class="language-bash">openssl verify -CAfiile ca.pem client.pem
+<ol start="2">
+<li>apt install</li>
+</ol>
+<pre><code class="language-bash">sudo apt install fzf
 </code></pre>
-<pre><code class="language-bash">diff -eq &lt; (openssl x509 -pubkey -noout -in cert.crt) &lt; (openssl rsa -pubout -in cert.key)
+<h4 id="edit-kns-script"><a class="header" href="#edit-kns-script">Edit kns Script</a></h4>
+<pre><code class="language-bash">vim kns
+</code></pre>
+<pre><code class="language-shell">#!/bin/sh
+# quick Kubernetes Namespace Switcher
+# ISC Blendle, 2017
+
+set -eu
+
+if [ ! -x "$(which kubectl 2&gt;/dev/null)" ]; then
+  echo "please install: kubectl (https://kubernetes.io/docs/tasks/kubectl/install/)" &gt;&amp;2
+  exit 1
+fi
+if [ ! -x "$(which fzf 2&gt;/dev/null)" ]; then
+  echo "please install: fzf (https://github.com/junegunn/fzf)" &gt;&amp;2
+  exit 1
+fi
+
+current="$(kubectl config current-context)"
+namespace="$(kubectl config view -o jsonpath="{.contexts[?(@.name == '${current}')].context.namespace}")"
+if [ -z "$namespace" ]; then
+  namespace="default"
+fi
+
+selected=$( (kubectl get namespaces -o=jsonpath="{.items[?(@.metadata.name!='$namespace')].metadata.name}" | xargs -n 1; echo $namespace ) | fzf -0 -1 --tac -q "${1:-""}" --prompt "$current&gt; ")
+if [ -n "$selected" ]; then
+  kubectl config set-context "$current" "--namespace=$selected" &gt;/dev/null
+  echo "Set context namespace to \"$selected\""
+fi
+</code></pre>
+<h4 id="add-exec-permission"><a class="header" href="#add-exec-permission">Add Exec Permission</a></h4>
+<pre><code class="language-bash">chmod +x kns
+sudo mv kns /usr/local/bin/kns
 </code></pre>
 
                     </main>
@@ -168,7 +211,7 @@
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
 
-                            <a rel="next prefetch" href="kns_usage.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="vscode_remote_usage.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -179,7 +222,7 @@
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
 
-                    <a rel="next prefetch" href="kns_usage.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="vscode_remote_usage.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

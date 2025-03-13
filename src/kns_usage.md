@@ -1,5 +1,4 @@
-# kns Locking Namespace
-
+# kns Install (Locking Namespace)
 
 #### Install fzf
 
