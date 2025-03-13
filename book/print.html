@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="zh-cn" class="rust" dir="ltr">
+<html lang="zh-cn" class="rust sidebar-visible" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -8,7 +8,7 @@
 
 
         <!-- Custom HTML head -->
-        
+
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
@@ -31,15 +31,17 @@
 
         <!-- Custom theme stylesheets -->
 
-    </head>
-    <body class="sidebar-visible no-js">
-    <div id="body-container">
+
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
             var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "rust" : "rust";
         </script>
-
+        <!-- Start loading toc.js asap -->
+        <script src="toc.js"></script>
+    </head>
+    <body>
+    <div id="body-container">
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
@@ -61,19 +63,16 @@
             var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            var html = document.querySelector('html');
+            const html = document.documentElement;
             html.classList.remove('rust')
             html.classList.add(theme);
-            var body = document.querySelector('body');
-            body.classList.remove('no-js')
-            body.classList.add('js');
+            html.classList.add("js");
         </script>
 
         <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var body = document.querySelector('body');
             var sidebar = null;
             var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
@@ -83,45 +82,25 @@
                 sidebar = 'hidden';
             }
             sidebar_toggle.checked = sidebar === 'visible';
-            body.classList.remove('sidebar-visible');
-            body.classList.add("sidebar-" + sidebar);
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
         </script>
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
-            <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item affix "><li class="part-title">TOPAZ LEAF</li><li class="chapter-item "><a href="arch_linux_init.html"><strong aria-hidden="true">1.</strong> Arch linux Init</a></li><li class="chapter-item "><a href="keyboard_layout.html"><strong aria-hidden="true">2.</strong> Keyboard Layout</a></li><li class="chapter-item "><a href="disable_sleep.html"><strong aria-hidden="true">3.</strong> Disable Hibernation</a></li><li class="chapter-item "><a href="kns_usage.html"><strong aria-hidden="true">4.</strong> kns Usage</a></li><li class="chapter-item "><a href="classic_ci_script.html"><strong aria-hidden="true">5.</strong> Classic CI/CD Script</a></li><li class="chapter-item "><a href="command.html"><strong aria-hidden="true">6.</strong> Command</a></li><li class="chapter-item "><a href="vscode_remote_usage.html"><strong aria-hidden="true">7.</strong> SSH config</a></li><li class="chapter-item "><a href="ollama_services_found.html"><strong aria-hidden="true">8.</strong> Ollama Service Discovery</a></li><li class="chapter-item "><a href="ubuntu-software/ubuntu_software.html"><strong aria-hidden="true">9.</strong> Ubuntu Software</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="ubuntu-software/google_input_install.html"><strong aria-hidden="true">9.1.</strong> Install Google-PinYin</a></li><li class="chapter-item "><a href="ubuntu-software/wechat_install.html"><strong aria-hidden="true">9.2.</strong> Install Wechat</a></li><li class="chapter-item "><a href="ubuntu-software/clash_verge_install.html"><strong aria-hidden="true">9.3.</strong> Install Clash-Verge</a></li><li class="chapter-item "><a href="ubuntu-software/clash_for_linux.html"><strong aria-hidden="true">9.4.</strong> Clash For Linux</a></li><li class="chapter-item "><a href="ubuntu-software/docker_install.html"><strong aria-hidden="true">9.5.</strong> Install Docker</a></li><li class="chapter-item "><a href="ubuntu-software/pycharm_crack.html"><strong aria-hidden="true">9.6.</strong> Crack Pycharm</a></li><li class="chapter-item "><a href="ubuntu-software/tmux.html"><strong aria-hidden="true">9.7.</strong> Tmux & Plugins</a></li><li class="chapter-item "><a href="ubuntu-software/windterm_desktop.html"><strong aria-hidden="true">9.8.</strong> WindTerm Desktop</a></li><li class="chapter-item "><a href="ubuntu-software/asciiquarium_usage.html"><strong aria-hidden="true">9.9.</strong> Asciiquarium</a></li><li class="chapter-item "><a href="ubuntu-software/frp_usage.html"><strong aria-hidden="true">9.10.</strong> FRP Usage</a></li><li class="chapter-item "><a href="ubuntu-software/entertainment.html"><strong aria-hidden="true">9.11.</strong> Entertainment</a></li></ol></li><li class="chapter-item "><a href="zsh/zsh.html"><strong aria-hidden="true">10.</strong> ZSH</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="zsh/oh-my-zsh.html"><strong aria-hidden="true">10.1.</strong> oh-my-zsh</a></li><li class="chapter-item "><a href="zsh/powerlevel10k.html"><strong aria-hidden="true">10.2.</strong> powerlevel10K</a></li><li class="chapter-item "><a href="zsh/zsh-autosuggestions.html"><strong aria-hidden="true">10.3.</strong> zsh-autosuggestions</a></li><li class="chapter-item "><a href="zsh/zsh-autocomplete.html"><strong aria-hidden="true">10.4.</strong> zsh-autocomplete</a></li><li class="chapter-item "><a href="zsh/zsh-syntax-highlighting.html"><strong aria-hidden="true">10.5.</strong> zsh-syntax-highlighting</a></li><li class="chapter-item "><a href="zsh/zsh-you-should-use.html"><strong aria-hidden="true">10.6.</strong> zsh-you-should-use</a></li><li class="chapter-item "><a href="zsh/zsh-ollama-completion.html"><strong aria-hidden="true">10.7.</strong> zsh-ollama-completion</a></li><li class="chapter-item "><a href="zsh/zsh-custom-plugins.html"><strong aria-hidden="true">10.8.</strong> custom plugins</a></li><li class="chapter-item "><a href="zsh/zsh-custom-themes.html"><strong aria-hidden="true">10.9.</strong> custom themes</a></li></ol></li><li class="chapter-item "><a href="env/env_variable_setting.html"><strong aria-hidden="true">11.</strong> Setting ENV</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="env/bashrc_setting.html"><strong aria-hidden="true">11.1.</strong> Basic .bashrc</a></li><li class="chapter-item "><a href="env/user-dirs.dirs_setting.html"><strong aria-hidden="true">11.2.</strong> .user-dirs.dirs</a></li></ol></li><li class="chapter-item "><a href="vim/vim_plugin_manager.html"><strong aria-hidden="true">12.</strong> Vim & Plugins</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="vim/vim_little_tips.html"><strong aria-hidden="true">12.1.</strong> Vim Little Tips</a></li><li class="chapter-item "><a href="vim/vimrc_basic_setting.html"><strong aria-hidden="true">12.2.</strong> Basic .vimrc</a></li><li class="chapter-item "><a href="vim/nerdtree.html"><strong aria-hidden="true">12.3.</strong> NerdTree</a></li><li class="chapter-item "><a href="vim/nerdtree-git.html"><strong aria-hidden="true">12.4.</strong> NerdTree-Git</a></li><li class="chapter-item "><a href="vim/ycm.html"><strong aria-hidden="true">12.5.</strong> YouCompleteMe</a></li><li class="chapter-item "><a href="vim/vim_support_system_clipboard.html"><strong aria-hidden="true">12.6.</strong> Vim Support System Clipboard</a></li></ol></li><li class="chapter-item "><a href="fzf/fzf.html"><strong aria-hidden="true">13.</strong> FZF</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="fzf/fzf_completion.html"><strong aria-hidden="true">13.1.</strong> FZF Replace Bash Completion</a></li><li class="chapter-item "><a href="fzf/fzf_integrate_git.html"><strong aria-hidden="true">13.2.</strong> FZF Integrate Git</a></li></ol></li><li class="chapter-item "><a href="proxy/kinds_proxy_setting.html"><strong aria-hidden="true">14.</strong> Proxy Configuration</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="proxy/system_proxy_setting.html"><strong aria-hidden="true">14.1.</strong> System Proxy</a></li><li class="chapter-item "><a href="proxy/docker_proxy_setting.html"><strong aria-hidden="true">14.2.</strong> Docker Proxy</a></li><li class="chapter-item "><a href="proxy/k3s_proxy_setting.html"><strong aria-hidden="true">14.3.</strong> K3S Proxy</a></li></ol></li><li class="chapter-item "><a href="scripts/useful_scripts.html"><strong aria-hidden="true">15.</strong> Useful Scripts</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="scripts/node_version_control.html"><strong aria-hidden="true">15.1.</strong> Switch Node Version</a></li><li class="chapter-item "><a href="scripts/docker_proxy_start_stop.html"><strong aria-hidden="true">15.2.</strong> Docker Proxy ON & OFF</a></li><li class="chapter-item "><a href="scripts/docker_push_registry.html"><strong aria-hidden="true">15.3.</strong> Docker Push Private Registry</a></li></ol></li><li class="chapter-item "><a href="docker/funny_docker_projects.html"><strong aria-hidden="true">16.</strong> Funny Docker Projects</a><a class="toggle"><div>❱</div></a></li><li><ol class="section"><li class="chapter-item "><a href="docker/openweb-ui.html"><strong aria-hidden="true">16.1.</strong> Openweb-UI</a></li><li class="chapter-item "><a href="docker/yesplaymusic.html"><strong aria-hidden="true">16.2.</strong> Yesplaymusic</a></li></ol></li></ol>
-            </div>
+            <!-- populated by js -->
+            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
+            <noscript>
+                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
+            </noscript>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <!-- Track and set sidebar scroll position -->
-        <script>
-            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
-            sidebarScrollbox.addEventListener('click', function(e) {
-                if (e.target.tagName === 'A') {
-                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
-                }
-            }, { passive: true });
-            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
-            sessionStorage.removeItem('sidebar-scroll');
-            if (sidebarScrollTop) {
-                // preserve sidebar scroll position when navigating via links within sidebar
-                sidebarScrollbox.scrollTop = sidebarScrollTop;
-            } else {
-                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
-                var activeSection = document.querySelector('#sidebar .active');
-                if (activeSection) {
-                    activeSection.scrollIntoView({ block: 'center' });
-                }
-            }
-        </script>
-
         <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar-hover-placeholder"></div>
                 <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
                         <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
@@ -177,7 +156,82 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="arch-linux-init"><a class="header" href="#arch-linux-init">Arch linux Init</a></h1>
+                        <h1 id="command"><a class="header" href="#command">Command</a></h1>
+<pre><code class="language-bash">openssl x509 -noout -text -in ca.crt
+</code></pre>
+<pre><code class="language-bash">openssl verify -CAfiile ca.pem client.pem
+</code></pre>
+<pre><code class="language-bash">diff -eq &lt; (openssl x509 -pubkey -noout -in cert.crt) &lt; (openssl rsa -pubout -in cert.key)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="kns-locking-namespace"><a class="header" href="#kns-locking-namespace">kns Locking Namespace</a></h1>
+<h4 id="install-fzf"><a class="header" href="#install-fzf">Install fzf</a></h4>
+<ol>
+<li>Source Code Install(Recommend)</li>
+</ol>
+<pre><code class="language-bash"># Clone the fzf repository
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+
+# Run the install script
+~/.fzf/install
+</code></pre>
+<ol start="2">
+<li>apt install</li>
+</ol>
+<pre><code class="language-bash">sudo apt install fzf
+</code></pre>
+<h4 id="edit-kns-script"><a class="header" href="#edit-kns-script">Edit kns Script</a></h4>
+<pre><code class="language-bash">vim kns
+</code></pre>
+<pre><code class="language-shell">#!/bin/sh
+# quick Kubernetes Namespace Switcher
+# ISC Blendle, 2017
+
+set -eu
+
+if [ ! -x "$(which kubectl 2&gt;/dev/null)" ]; then
+  echo "please install: kubectl (https://kubernetes.io/docs/tasks/kubectl/install/)" &gt;&amp;2
+  exit 1
+fi
+if [ ! -x "$(which fzf 2&gt;/dev/null)" ]; then
+  echo "please install: fzf (https://github.com/junegunn/fzf)" &gt;&amp;2
+  exit 1
+fi
+
+current="$(kubectl config current-context)"
+namespace="$(kubectl config view -o jsonpath="{.contexts[?(@.name == '${current}')].context.namespace}")"
+if [ -z "$namespace" ]; then
+  namespace="default"
+fi
+
+selected=$( (kubectl get namespaces -o=jsonpath="{.items[?(@.metadata.name!='$namespace')].metadata.name}" | xargs -n 1; echo $namespace ) | fzf -0 -1 --tac -q "${1:-""}" --prompt "$current&gt; ")
+if [ -n "$selected" ]; then
+  kubectl config set-context "$current" "--namespace=$selected" &gt;/dev/null
+  echo "Set context namespace to \"$selected\""
+fi
+</code></pre>
+<h4 id="add-exec-permission"><a class="header" href="#add-exec-permission">Add Exec Permission</a></h4>
+<pre><code class="language-bash">chmod +x kns
+sudo mv kns /usr/local/bin/kns
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vs-code-control-remote-hosts"><a class="header" href="#vs-code-control-remote-hosts">VS-Code Control Remote Hosts</a></h1>
+<h4 id="configure"><a class="header" href="#configure">Configure</a></h4>
+<pre><code class="language-bash">ssh-keygen -t rsa
+
+ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.1
+</code></pre>
+<h4 id="add-ssh-config"><a class="header" href="#add-ssh-config">Add ssh config</a></h4>
+<pre><code class="language-bash">vim ~/.ssh/config
+
+# 添加以下内容
+Host ali
+  HostName 192.168.1.1
+  User root
+  IdentityFile ~/.ssh/id_rsa
+  Port 22
+</code></pre>
+<h4 id="install-vs-code-plugin"><a class="header" href="#install-vs-code-plugin">Install VS-Code Plugin</a></h4>
+<p>点击VSCode左下角图标，形似“&gt;&lt;”，点击会自动安装。</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="arch-linux-init"><a class="header" href="#arch-linux-init">Arch linux Init</a></h1>
 <ol>
 <li>Modify pacman mirror</li>
 </ol>
@@ -300,56 +354,282 @@ sudo vim 64-language-selector-prefer.conf
 <h4 id="restart-service"><a class="header" href="#restart-service">Restart Service</a></h4>
 <pre><code class="language-bash">sudo systemctl restart systemd-logind
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="kns-locking-namespace"><a class="header" href="#kns-locking-namespace">kns Locking Namespace</a></h1>
-<h4 id="install-fzf"><a class="header" href="#install-fzf">Install fzf</a></h4>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ollama-service-discovery"><a class="header" href="#ollama-service-discovery">Ollama Service Discovery</a></h1>
+<h4 id="editing-the-systemd-service-file"><a class="header" href="#editing-the-systemd-service-file">Editing the systemd service file</a></h4>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/ollama.service
+</code></pre>
+<h4 id="add-env-under-service-item"><a class="header" href="#add-env-under-service-item">Add ENV under [Service] Item</a></h4>
+<pre><code class="language-ini">[Service]
+Environment="OLLAMA_HOST=0.0.0.0"
+</code></pre>
+<h4 id="reload-and-restart"><a class="header" href="#reload-and-restart">Reload and Restart</a></h4>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl restart ollama
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh"><a class="header" href="#zsh">ZSH</a></h1>
+<p>zsh is a shell that can be used as a replacement for bash.</p>
+<h3 id="installation"><a class="header" href="#installation">Installation</a></h3>
+<p><a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH">https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH</a></p>
+<pre><code class="language-bash">sudo apt install zsh
+</code></pre>
+<h3 id="configuration"><a class="header" href="#configuration">Configuration</a></h3>
+<pre><code class="language-bash">chsh -s $(which zsh) $USER
+</code></pre>
+<p>Make it works, you can <code>logout</code> system and relogin again.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh--oh-my-zsh"><a class="header" href="#zsh--oh-my-zsh">zsh &amp; oh-my-zsh</a></h1>
+<h3 id="git-repo"><a class="header" href="#git-repo">Git repo</a></h3>
+<p><a href="https://github.com/ohmyzsh/ohmyzsh">https://github.com/ohmyzsh/ohmyzsh</a></p>
+<h3 id="installation-1"><a class="header" href="#installation-1">Installation</a></h3>
+<pre><code class="language-bash">sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+</code></pre>
+<p>The default location is <code>~/.oh-my-zsh</code> (hidden in your home directory, you can access it with <code>cd ~/.oh-my-zsh</code>)</p>
+<h3 id="manual-installation"><a class="header" href="#manual-installation">Manual Installation</a></h3>
+<p>If you want to change the location, you can do so by setting the <code>ZSH</code> environment variable before installing:</p>
+<p>Firstly, install the install script:</p>
+<pre><code class="language-bash">wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+</code></pre>
+<p>Secondly, setting the install path run the install script, if you want to install oh-my-zsh to <code>$HOME/awesome-shell/oh-my-zsh</code>:</p>
+<pre><code class="language-bash">ZSH="$HOME/awesome-shell/oh-my-zsh" sh install.sh
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="powerlevel10k"><a class="header" href="#powerlevel10k">powerlevel10K</a></h1>
+<p><a href="https://github.com/romkatv/powerlevel10k.git">https://github.com/romkatv/powerlevel10k.git</a></p>
+<h3 id="installation-2"><a class="header" href="#installation-2">Installation</a></h3>
 <ol>
-<li>Source Code Install(Recommend)</li>
+<li>Clone repo into oh-my-zsh custom themes path:</li>
 </ol>
+<pre><code class="language-bash">git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+</code></pre>
+<ol start="2">
+<li>Modify <code>.zshrc</code>:</li>
+</ol>
+<pre><code class="language-bash">ZSH_THEME="powerlevel10k/powerlevel10k"
+</code></pre>
+<ol start="3">
+<li>Exit terminal and reopen it.</li>
+</ol>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-autosuggestions"><a class="header" href="#zsh-autosuggestions">zsh-autosuggestions</a></h1>
+<p><a href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md">https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md</a></p>
+<h3 id="installation-3"><a class="header" href="#installation-3">Installation</a></h3>
+<ol>
+<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+</code></pre>
+<ol start="2">
+<li>Add the plugin to the list of plugins for Oh My Zsh to load (inside <code>~/.zshrc</code>):</li>
+</ol>
+<pre><code class="language-bash">plugins=( 
+    # other plugins...
+    zsh-autosuggestions
+)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-autocomplete"><a class="header" href="#zsh-autocomplete">zsh-autocomplete</a></h1>
+<p><a href="https://github.com/marlonrichert/zsh-autocomplete">https://github.com/marlonrichert/zsh-autocomplete</a></p>
+<h3 id="installation-4"><a class="header" href="#installation-4">Installation</a></h3>
+<ol>
+<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
+</ol>
+<pre><code class="language-bash">git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+</code></pre>
+<ol start="2">
+<li>Add the plugin to the list of plugins for Oh My Zsh to load (inside <code>~/.zshrc</code>):</li>
+</ol>
+<pre><code class="language-bash">plugins=( 
+    # other plugins...
+    zsh-autocomplete
+)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-syntax-highlighting"><a class="header" href="#zsh-syntax-highlighting">zsh-syntax-highlighting</a></h1>
+<p><a href="https://github.com/zsh-users/zsh-syntax-highlighting">https://github.com/zsh-users/zsh-syntax-highlighting</a></p>
+<h3 id="installation-5"><a class="header" href="#installation-5">Installation</a></h3>
+<ol>
+<li>
+<ol>
+<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
+</ol>
+</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+</code></pre>
+<ol start="2">
+<li>Add the plugin to the list of plugins for Oh My Zsh to load (inside <code>~/.zshrc</code>):</li>
+</ol>
+<pre><code class="language-bash">plugins=(
+    # ...
+    zsh-syntax-highlighting
+)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-you-should-use"><a class="header" href="#zsh-you-should-use">zsh-you-should-use</a></h1>
+<h3 id="installation-6"><a class="header" href="#installation-6">Installation</a></h3>
+<ol>
+<li>Clone the repo into your oh-my-zsh plugins directory.</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
+</code></pre>
+<ol start="2">
+<li>Add <code>you-should-use</code> to the list of plugins in your <code>~/.zshrc</code> file.</li>
+</ol>
+<pre><code class="language-bash">plugins=(
+    # other plugins...
+    you-should-use
+)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-ollama-completion"><a class="header" href="#zsh-ollama-completion">zsh-ollama-completion</a></h1>
+<p><a href="https://github.com/Katrovsky/zsh-ollama-completion">https://github.com/Katrovsky/zsh-ollama-completion</a></p>
+<h3 id="installation-7"><a class="header" href="#installation-7">Installation</a></h3>
+<ol>
+<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/Katrovsky/zsh-ollama-completion.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/ollama
+</code></pre>
+<ol start="2">
+<li>Add the plugin to the list of plugins for Oh My Zsh to load (inside <code>~/.zshrc</code>):</li>
+</ol>
+<pre><code class="language-bash">plugins=(
+    # ...
+    ollama
+)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-plugins"><a class="header" href="#custom-plugins">Custom Plugins</a></h1>
+<h3 id="auto-activate-virtual-environments-in-python-projects"><a class="header" href="#auto-activate-virtual-environments-in-python-projects">Auto-activate Virtual Environments in Python Projects</a></h3>
+<ol>
+<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/lxp731/auto-venv $ZSH_CUSTOM/plugins/auto-venv
+</code></pre>
+<ol start="2">
+<li>Add <code>auto-venv</code> to the plugins array in your <code>~/.zshrc</code> file</li>
+</ol>
+<pre><code class="language-bash">plugins=(
+    ...
+    auto-venv
+)
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-themes"><a class="header" href="#custom-themes">custom themes</a></h1>
+<ol>
+<li>Clone this repo into <code>${ZSH_CUSTMO}/themes</code></li>
+</ol>
+<pre><code class="language-bash">git clone --depth 1 https://github.com/lxp731/zsh-custom-themes.git ${ZSH_CUSTOM}/themes
+</code></pre>
+<ol start="2">
+<li>Modify the following to your <code>~/.zshrc</code>:</li>
+</ol>
+<pre><code class="language-bash">ZSH_THEME="awesome"
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fzf"><a class="header" href="#fzf">FZF</a></h1>
+<h3 id="official-website"><a class="header" href="#official-website">Official Website</a></h3>
+<ul>
+<li>
+<p><a href="https://github.com/junegunn/fzf">Github repo</a></p>
+</li>
+<li>
+<p><a href="https://junegunn.github.io/fzf/search-syntax/">HandBook</a></p>
+</li>
+</ul>
+<h3 id="install"><a class="header" href="#install">Install</a></h3>
 <pre><code class="language-bash"># Clone the fzf repository
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # Run the install script
 ~/.fzf/install
 </code></pre>
-<ol start="2">
-<li>apt install</li>
-</ol>
-<pre><code class="language-bash">sudo apt install fzf
+<h3 id="setting-bashrc"><a class="header" href="#setting-bashrc">Setting .bashrc</a></h3>
+<p>A basic example, to show how to link progress with fzf.</p>
+<pre><code class="language-bash"># add a alias to change git branch
+alias gcb="git branch | fzf --preview 'git show --color=always {-1}' \
+                 --bind 'enter:become(git checkout {-1})' \
+                 --height 60% --layout reverse"
 </code></pre>
-<h4 id="edit-kns-script"><a class="header" href="#edit-kns-script">Edit kns Script</a></h4>
-<pre><code class="language-bash">vim kns
+<p>Then, setting ENV vars of fzf, unlock advanced function.</p>
+<pre><code class="language-bash"># fzf init
+eval "$(~/.fzf/bin/fzf --bash)"
+[ -f ~/.fzf.bash ] &amp;&amp; source ~/.fzf.bash
 </code></pre>
-<pre><code class="language-shell">#!/bin/sh
-# quick Kubernetes Namespace Switcher
-# ISC Blendle, 2017
+<p>Default fzf self build-in <kbd>Ctrl</kbd>+<kbd>R</kbd> to display history cmd, <kbd>Ctrl</kbd>+<kbd>T</kbd> to show files and dirs of local path, <kbd>Alt</kbd>+<kbd>C</kbd> to exec <code>cd</code> cmd. Well, you can rewrite these function.</p>
+<pre><code class="language-bash"># CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'
+  --height 80% --layout reverse"
 
-set -eu
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'batcat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'
+  --height 80% --layout reverse"
 
-if [ ! -x "$(which kubectl 2&gt;/dev/null)" ]; then
-  echo "please install: kubectl (https://kubernetes.io/docs/tasks/kubectl/install/)" &gt;&amp;2
-  exit 1
-fi
-if [ ! -x "$(which fzf 2&gt;/dev/null)" ]; then
-  echo "please install: fzf (https://github.com/junegunn/fzf)" &gt;&amp;2
-  exit 1
-fi
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'tree -C {}'
+  --height 80% --layout reverse"
 
-current="$(kubectl config current-context)"
-namespace="$(kubectl config view -o jsonpath="{.contexts[?(@.name == '${current}')].context.namespace}")"
-if [ -z "$namespace" ]; then
-  namespace="default"
-fi
-
-selected=$( (kubectl get namespaces -o=jsonpath="{.items[?(@.metadata.name!='$namespace')].metadata.name}" | xargs -n 1; echo $namespace ) | fzf -0 -1 --tac -q "${1:-""}" --prompt "$current&gt; ")
-if [ -n "$selected" ]; then
-  kubectl config set-context "$current" "--namespace=$selected" &gt;/dev/null
-  echo "Set context namespace to \"$selected\""
-fi
+# ripgrep-&gt;fzf-&gt;vim [QUERY]
+# sudo apt install -y ripgrep
+rfv() (
+  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
+  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
+            vim {1} +{2}     # No selection. Open the current line in Vim.
+          else
+            vim +cw -q {+f}  # Build quickfix list for the selected items.
+          fi'
+  fzf --disabled --ansi --multi \
+      --bind "start:$RELOAD" --bind "change:$RELOAD" \
+      --bind "enter:become:$OPENER" \
+      --bind "ctrl-o:execute:$OPENER" \
+      --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
+      --delimiter : \
+      --preview 'batcat --style=full --color=always --highlight-line {2} {1}' \
+      --preview-window '~4,+{2}+4/3,&lt;80(up)' \
+      --query "$*"
+)
 </code></pre>
-<h4 id="add-exec-permission"><a class="header" href="#add-exec-permission">Add Exec Permission</a></h4>
-<pre><code class="language-bash">chmod +x kns
-sudo mv kns /usr/local/bin/kns
+<blockquote>
+<p>In fzf model, you can press <kbd>Esc</kbd> to quit fzf model.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fzf-replace-bash-completion"><a class="header" href="#fzf-replace-bash-completion">FZF Replace Bash Completion</a></h1>
+<h3 id="github-repo"><a class="header" href="#github-repo">Github Repo</a></h3>
+<p><a href="https://github.com/lincheney/fzf-tab-completion">https://github.com/lincheney/fzf-tab-completion</a></p>
+<h3 id="install-script"><a class="header" href="#install-script">Install Script</a></h3>
+<pre><code class="language-bash">mkdir -p ~/.fzf/shell &amp;&amp; \
+wget -O ~/.fzf/shell/fzf-bash-completion.sh \
+    https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh
 </code></pre>
+<h3 id="modify-bashrc"><a class="header" href="#modify-bashrc">Modify .bashrc</a></h3>
+<pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
+# use fzf replace system completion
+source ~/.fzf/shell/fzf-bash-completion.sh
+bind -x '"\t": fzf_bash_completion'
+EOF
+</code></pre>
+<pre><code class="language-bash">source ~/.bashrc
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="fzf-integrate-git"><a class="header" href="#fzf-integrate-git">FZF Integrate Git</a></h1>
+<h3 id="github-repo-1"><a class="header" href="#github-repo-1">Github Repo</a></h3>
+<p><a href="https://github.com/junegunn/fzf-git.sh">https://github.com/junegunn/fzf-git.sh</a></p>
+<h3 id="install-1"><a class="header" href="#install-1">Install</a></h3>
+<pre><code class="language-bash">mkdir -p ~/.fzf/shell &amp;&amp; \
+cd ~/.fzf/shell &amp;&amp; \
+wget https://raw.githubusercontent.com/junegunn/fzf-git.sh/refs/heads/main/fzf-git.sh
+</code></pre>
+<h3 id="modify-bashrc-1"><a class="header" href="#modify-bashrc-1">Modify .bashrc</a></h3>
+<pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
+# fzf integrade git
+source ~/.fzf/shell/fzf-git.sh
+EOF
+</code></pre>
+<pre><code class="language-bash">source ~/.bashrc
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ci--cd"><a class="header" href="#ci--cd">CI &amp; CD</a></h1>
+<h3 id="overview"><a class="header" href="#overview">Overview</a></h3>
+<p>CI/CD, which stands for continuous integration and continuous delivery/deployment, aims to streamline and accelerate the software development lifecycle.</p>
+<p>Continuous integration (CI) refers to the practice of automatically and frequently integrating code changes into a shared source code repository. Continuous delivery and/or deployment (CD) is a 2 part process that refers to the integration, testing, and delivery of code changes. Continuous delivery stops short of automatic production deployment, while continuous deployment automatically releases the updates into the production environment.</p>
+<h3 id="why-is-cicd-important"><a class="header" href="#why-is-cicd-important">Why is CI/CD important?</a></h3>
+<p>CI/CD helps organizations avoid bugs and code failures while maintaining a continuous cycle of software development and updates.</p>
+<p>As apps grow larger, features of CI/CD can help decrease complexity, increase efficiency, and streamline workflows.</p>
+<p>Because CI/CD automates the manual human intervention traditionally needed to get new code from a commit into production, downtime is minimized and code releases happen faster. And with the ability to more quickly integrate updates and changes to code, user feedback can be incorporated more frequently and effectively, meaning positive outcomes for end users and more satisfied customers overall.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="classic-cicd-script"><a class="header" href="#classic-cicd-script">Classic CI/CD Script</a></h1>
 <pre><code class="language-bash">variables:
   $CI_REGISTRY: habor.dcits.auto
@@ -397,662 +677,117 @@ deploy:
       docker run -dit -p 5000:5000 $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
       "
 </code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="command"><a class="header" href="#command">Command</a></h1>
-<pre><code class="language-bash">openssl x509 -noout -text -in ca.crt
-</code></pre>
-<pre><code class="language-bash">openssl verify -CAfiile ca.pem client.pem
-</code></pre>
-<pre><code class="language-bash">diff -eq &lt; (openssl x509 -pubkey -noout -in cert.crt) &lt; (openssl rsa -pubout -in cert.key)
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="vs-code-control-remote-hosts"><a class="header" href="#vs-code-control-remote-hosts">VS-Code Control Remote Hosts</a></h1>
-<h4 id="configure"><a class="header" href="#configure">Configure</a></h4>
-<pre><code class="language-bash">ssh-keygen -t rsa
-
-ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.1
-</code></pre>
-<h4 id="add-ssh-config"><a class="header" href="#add-ssh-config">Add ssh config</a></h4>
-<pre><code class="language-bash">vim ~/.ssh/config
-
-# 添加以下内容
-Host ali
-  HostName 192.168.1.1
-  User root
-  IdentityFile ~/.ssh/id_rsa
-  Port 22
-</code></pre>
-<h4 id="install-vs-code-plugin"><a class="header" href="#install-vs-code-plugin">Install VS-Code Plugin</a></h4>
-<p>点击VSCode左下角图标，形似“&gt;&lt;”，点击会自动安装。</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ollama-service-discovery"><a class="header" href="#ollama-service-discovery">Ollama Service Discovery</a></h1>
-<h4 id="editing-the-systemd-service-file"><a class="header" href="#editing-the-systemd-service-file">Editing the systemd service file</a></h4>
-<pre><code class="language-bash">sudo vim /etc/systemd/system/ollama.service
-</code></pre>
-<h4 id="add-env-under-service-item"><a class="header" href="#add-env-under-service-item">Add ENV under [Service] Item</a></h4>
-<pre><code class="language-ini">[Service]
-Environment="OLLAMA_HOST=0.0.0.0"
-</code></pre>
-<h4 id="reload-and-restart"><a class="header" href="#reload-and-restart">Reload and Restart</a></h4>
-<pre><code class="language-bash">sudo systemctl daemon-reload
-sudo systemctl restart ollama
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="ubuntu-software"><a class="header" href="#ubuntu-software">Ubuntu Software</a></h1>
-<p>Collection of useful software for Ubuntu.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="jenkins-ci"><a class="header" href="#jenkins-ci">Jenkins CI</a></h1>
+<h3 id="jenkins-variables"><a class="header" href="#jenkins-variables">Jenkins Variables</a></h3>
+<p>Jenkins 提供了许多内置变量，可以用来生成唯一的镜像标签。常用的变量包括：</p>
 <ul>
 <li>
-<p><a href="ubuntu-software/./google_input_install.html">Google-PinYin</a></p>
-<p>The best choice for Chinese input. Although Sougou Input is aviailable, it will make your system slow, especially when you restart your system.</p>
+<p>BUILD_ID：当前构建的唯一 ID。</p>
 </li>
 <li>
-<p><a href="ubuntu-software/./wechat_install.html">Wechat</a></p>
-<p>Based on wine, it can be used to install wechat on Ubuntu. In spite of defects, it is a good choice for Chinese users.</p>
+<p>BUILD_NUMBER：当前构建的编号（每次构建递增）。</p>
+<p><img src="ci_cd/../img/build_num.png" alt="Build number" /></p>
 </li>
 <li>
-<p><a href="ubuntu-software/./clash_verge_install.html">Clash Verge</a></p>
-<p>After clash for windows, it is recommended to use clash verge.</p>
+<p>GIT_COMMIT：当前 Git 提交的 SHA-1 哈希值（前 7 位即可）。</p>
 </li>
 <li>
-<p><a href="ubuntu-software/./tmux.html">Tmux</a></p>
-<p>An incrediable tool of split-screen.</p>
-</li>
-<li>
-<p><a href="ubuntu-software/./docker_install.html">Docker</a></p>
-</li>
-<li>
-<p><a href="ubuntu-software/./pycharm_install.html">Pycharm</a></p>
-</li>
-<li>
-<p><a href="ubuntu-software/./vim_support_system_clipboard.html">VIM Clipboard</a></p>
+<p>BRANCH_NAME：当前 Git 分支的名称。</p>
 </li>
 </ul>
-<pre><code class="language-bash">sudo apt install -y vim-gtk3 highlight bat ripgrep tree net-tools nmap
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="install-google-pinyin"><a class="header" href="#install-google-pinyin">Install Google-PinYin</a></h1>
-<h3 id="on-ubuntu-google-pinyin-based-on-fcitx-so-install-fcitx-firstly"><a class="header" href="#on-ubuntu-google-pinyin-based-on-fcitx-so-install-fcitx-firstly">On Ubuntu, Google-PinYin based on Fcitx. So install Fcitx firstly.</a></h3>
-<pre><code class="language-bash">sudo apt install fcitx
-</code></pre>
-<h3 id="configure-fcitx"><a class="header" href="#configure-fcitx">Configure Fcitx</a></h3>
-<pre><code class="language-bash">im-config
-</code></pre>
-<h3 id="install-google-pinyin-1"><a class="header" href="#install-google-pinyin-1">Install Google-PinYin</a></h3>
-<pre><code class="language-bash">sudo apt install fcitx-googlepinyin
-</code></pre>
-<h3 id="running-fcitx"><a class="header" href="#running-fcitx">Running Fcitx</a></h3>
-<pre><code class="language-bash">fcitx-config-gtk3
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="wechat-install"><a class="header" href="#wechat-install">Wechat Install</a></h1>
-<h4 id="install-deepin-repository"><a class="header" href="#install-deepin-repository">Install Deepin Repository</a></h4>
-<pre><code class="language-bash">wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
-</code></pre>
-<h4 id="install-wechat"><a class="header" href="#install-wechat">Install Wechat</a></h4>
-<pre><code class="language-bash">sudo apt install com.qq.weixin.deepin
-</code></pre>
-<h4 id="解决统信应用解压失败的问题"><a class="header" href="#解决统信应用解压失败的问题">解决统信应用解压失败的问题</a></h4>
-<pre><code class="language-bash">sudo vim /opt/deepinwine/tools/run_v4.sh
+<h3 id="classic-jenkinsfile-example"><a class="header" href="#classic-jenkinsfile-example">Classic Jenkinsfile Example</a></h3>
+<pre><code class="language-groovy">pipeline {
+    environment {
+        // DOCKER_IMAGE_TAG = "${env.GIT_COMMIT.substring(0, 7)}"
+        DOCKER_IMAGE_TAG = "0.${env.BUILD_NUMBER}"
+        DOCKER_IMAGE = "harbor.frombyte.auto/library/my-nginx:${DOCKER_IMAGE_TAG}"
+        REGISTRY_CREDENTIAL = '53464224-8c68-45a8-adb1-e8974d14e122'
+    }
 
-# find this line
-7z x "$APPDIR/$APPTAR" -o"$1"
-# update it following line
-7z x "$APPDIR/$APPTAR" -o"$1" || true
-</code></pre>
-<h4 id="remove-wechat"><a class="header" href="#remove-wechat">Remove Wechat</a></h4>
-<pre><code class="language-bash">sudo apt remove com.qq.weixin.deepin
-</code></pre>
-<h4 id="delete-deepin-repository"><a class="header" href="#delete-deepin-repository">Delete Deepin Repository</a></h4>
-<pre><code class="language-bash">sudo rm /etc/apt/sources.d.list/deepin-wine.i-m.dev.list
-</code></pre>
-<hr />
-<h3 id="tencent-official-wechat"><a class="header" href="#tencent-official-wechat">Tencent Official Wechat</a></h3>
-<p><a href="https://linux.weixin.qq.com/">https://linux.weixin.qq.com/</a></p>
-<ol>
-<li>Download</li>
-</ol>
-<pre><code class="language-bash">wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="install-clash-verge"><a class="header" href="#install-clash-verge">Install Clash-Verge</a></h1>
-<h4 id="clash-verge-project-github"><a class="header" href="#clash-verge-project-github">clash-verge Project Github</a></h4>
-<p><a href="https://github.com/clash-verge-rev/clash-verge-rev">https://github.com/clash-verge-rev/clash-verge-rev</a></p>
-<h4 id="sloved-error-of-clash-verge-依赖于-libwebkit2gtk-40-37"><a class="header" href="#sloved-error-of-clash-verge-依赖于-libwebkit2gtk-40-37">Sloved Error of "clash-verge 依赖于 libwebkit2gtk-4.0-37."</a></h4>
-<pre><code class="language-bash">sudo vim /etc/apt/sources.list.d/ubuntu.sources
+    agent {
+        node {
+            label 'rancher'
+        }
+    }
 
-# 添加以下内容
-Types: deb
-URIs: http://br.archive.ubuntu.com/ubuntu/
-Suites: jammy
-Components: main restricted universe multiverse
-Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+    stages {
+        stage('Check Tools Version') {
+            steps {
+                sh 'git --version'
+                sh 'docker --version'
+            }
+            post {
+                failure {
+                    echo "Error: Failed to check tools version!"
+                }
+            }
+        }
 
-sudo apt update
-</code></pre>
-<h4 id="sloved-error-of-starting-clash-verge-but-no-display-window"><a class="header" href="#sloved-error-of-starting-clash-verge-but-no-display-window">Sloved Error of starting "clash-verge" but no display window</a></h4>
-<pre><code>vim /usr/share/applications/clash-verge.desktop 
+        stage('Prepare') {
+            steps {
+                sh '''
+                    if [ ! -d "automation" ]; then
+                        git clone https://gitea.tryanks.com/burgess/automation.git
+                        cd automation
+                    else
+                        cd automation
+                        git fetch --all
+                        git reset --hard origin/main
+                    fi
+                '''
+            }
+            post {
+                failure {
+                    echo "Error: Failed to prepare the repository!"
+                }
+            }
+        }
 
-# 将 Exec 改为：
-Exec=env WEBKIT_DISABLE_COMPOSITING_MODE=1 clash-verge
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="clash-for-linux"><a class="header" href="#clash-for-linux">Clash For Linux</a></h1>
-<h3 id="github-repo"><a class="header" href="#github-repo">Github Repo</a></h3>
-<p><a href="https://github.com/wnlen/clash-for-linux.git">https://github.com/wnlen/clash-for-linux.git</a></p>
-<h3 id="installation"><a class="header" href="#installation">Installation</a></h3>
-<pre><code class="language-bash">git clone https://github.com/wnlen/clash-for-linux.git
-</code></pre>
-<h3 id="modify-env"><a class="header" href="#modify-env">Modify <code>.env</code></a></h3>
-<p>The <code>CLASH_URL</code> is your subscription address, and the <code>CLASH_SECRET</code> is your password, when you login with web, you will use it.</p>
-<h3 id="start-clash"><a class="header" href="#start-clash">Start Clash</a></h3>
-<pre><code class="language-bash">sudo bash start.sh
-</code></pre>
-<p>As show tips, exec cmds.</p>
-<h3 id="else-cmd"><a class="header" href="#else-cmd">Else CMD</a></h3>
-<ul>
-<li>Close clash</li>
-</ul>
-<pre><code class="language-bash">sudo bash shutdown.sh
-</code></pre>
-<ul>
-<li>Close proxy</li>
-</ul>
-<pre><code class="language-bash">proxy-off
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="install-docker"><a class="header" href="#install-docker">Install Docker</a></h1>
-<h4 id="install-official-docker-gpg-key"><a class="header" href="#install-official-docker-gpg-key">Install Official Docker GPG Key</a></h4>
-<pre><code class="language-bash">sudo apt-get update
-sudo apt-get install ca-certificates curl
-sudo install -m 0755 -d /etc/apt/keyrings
-sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
-sudo chmod a+r /etc/apt/keyrings/docker.asc
-</code></pre>
-<h4 id="add-official-docker-repo"><a class="header" href="#add-official-docker-repo">Add Official Docker Repo</a></h4>
-<pre><code class="language-bash">echo \
-  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
-  $(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME") stable" | \
-  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
-</code></pre>
-<h4 id="update-package-lists"><a class="header" href="#update-package-lists">Update Package Lists</a></h4>
-<pre><code class="language-bash">sudo apt-get update
-</code></pre>
-<h4 id="install-docker-1"><a class="header" href="#install-docker-1">Install Docker</a></h4>
-<pre><code class="language-bash">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
-</code></pre>
-<hr />
-<p>Well, you can access <a href="https://download.docker.com/">https://download.docker.com/</a> and download the <code>.deb</code> file manually.</p>
-<p>Such Path: <code>https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/</code></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="crack-pycharm"><a class="header" href="#crack-pycharm">Crack Pycharm</a></h1>
-<h3 id="edit-vmoptions"><a class="header" href="#edit-vmoptions">Edit vmoptions</a></h3>
-<pre><code class="language-bash">vim /pycharm/install/path/bin/pycharm64.vmoptions
-</code></pre>
-<h3 id="add-following-options-to-the-end-of-the-file"><a class="header" href="#add-following-options-to-the-end-of-the-file">Add following options to the end of the file</a></h3>
-<pre><code class="language-bash">-javaagent:/jar-package/path/jetbra/ja-netfilter.jar=jetbrains
---add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
---add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
-</code></pre>
-<h3 id="activation-code"><a class="header" href="#activation-code">Activation Code</a></h3>
-<pre><code class="language-bash">YQLSN55KLT-eyJsaWNlbnNlSWQiOiJZUUxTTjU1S0xUIiwibGljZW5zZWVOYW1lIjoi5rC45LmF5Zyw5Z2AIHd3d8K3YWppaHVvwrdjb20iLCJsaWNlbnNlZVR5cGUiOiJQRVJTT05BTCIsImFzc2lnbmVlTmFtZSI6IiIsImFzc2lnbmVlRW1haWwiOiIiLCJsaWNlbnNlUmVzdHJpY3Rpb24iOiIiLCJjaGVja0NvbmN1cnJlbnRVc2UiOmZhbHNlLCJwcm9kdWN0cyI6W3siY29kZSI6IkdPIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSUzAiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IkRNIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJDTCIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUlNVIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSU0MiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUEMiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IkRTIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSRCIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUUEiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlJDIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSU0YiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUk0iLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IklJIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJEUE4iLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IkRCIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJEQyIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUFMiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlJSIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSU1YiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiV1MiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlBTSSIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQQ1dNUCIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJBSUwiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlJTIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IkRQIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBEQiIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQUlIiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6dHJ1ZX1dLCJtZXRhZGF0YSI6IjAyMjAyNTAyMTJQUEFNMDA2MDA1QSIsImhhc2giOiI2NjM5MzE5MS8wOjc2MDEyODIxNCIsImdyYWNlUGVyaW9kRGF5cyI6NywiYXV0b1Byb2xvbmdhdGVkIjpmYWxzZSwiaXNBdXRvUHJvbG9uZ2F0ZWQiOmZhbHNlLCJ0cmlhbCI6ZmFsc2UsImFpQWxsb3dlZCI6dHJ1ZX0=-HhxiOkGKCb3ymp+pacIhMlNE/54EGAr0LE2Qu7IBbQFZjk144sEBxR8JB3ZXyp6L1S5ruxTVpORLqQXLBrfH5m3Y7llwnp0DXPrvFLmPnYU1GnROYxpdGWZO3Tl8DpYu4uFQEY1AWkZXcy4TonPGkChktneR/7Z04tKapCFMbomkuEGb8d73c3Sviv40j1QbhKRaBlGhUUFcto9oJPl7cUf/i8Tz9FQgqdZvxpWtFgK7IeDh2N2b5AJvKH6UJadPjLYeI55r6aRNnvdyQHRTUmWvvSRO3CxNGdEeOp5YPR7pdUStvigYD+0Ww6lUuv4BB5BRY26ale5djLaBHoL7BA==-MIIETDCCAjSgAwIBAgIBETANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTI0MDkyMDEyMTEyN1oXDTI2MDkyMjEyMTEyN1owHzEdMBsGA1UEAwwUcHJvZDJ5LWZyb20tMjAyNDA5MjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7SH/XcUoMwkDi8JJPzXWWHWFdOZdrP2Dqkz2W8iUi650cwz2vdPEd0tMzosLAj7ifkFEHUyiuEcL//q9d9Op7ZsV23lpPXX8tFMLFwugoQ9D8jDLT/XP9pp/YukWkKF5jpNbaCvsVQkDdYkArBkYvhH3aN4v9BkEsXahfgLLOPe4IG2FDJNf9R4to9V1vt+m2UVJB0zV4a/sVMKUZLgqKmKKKOKoLrE3OjBlZlb+Q0z2N5dsW0hDEVRFGmBUAbHN/mp44MMMvEIFKfoLIGpgic92P2O6uFh75PI7mcultL6yuR48ajErx8CjjQEGOSnoq/8hD+yVE+6GW2gJa2CPvAgMBAAGjgZkwgZYwCQYDVR0TBAIwADAdBgNVHQ4EFgQUb5NERj05GyNerQ/Mjm9XH8HXtLIwSAYDVR0jBEEwP4AUo562SGdCEjZBvW3gubSgUouX8bOhHKQaMBgxFjAUBgNVBAMMDUpldFByb2ZpbGUgQ0GCCQDSbLGDsoN54TATBgNVHSUEDDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBaAwDQYJKoZIhvcNAQELBQADggIBALq6VfVUjmPI3N/w0RYoPGFYUieCfRO0zVvD1VYHDWsN3F9buVsdudhxEsUb8t7qZPkDKTOB6DB+apgt2ZdKwok8S0pwifwLfjHAhO3b+LUQaz/VmKQW8gTOS5kTVcpM0BY7UPF8cRBqxMsdUfm5ejYk93lBRPBAqntznDY+DNc9aXOldFiACyutB1/AIh7ikUYPbpEIPZirPdAahroVvfp2tr4BHgCrk9z0dVi0tk8AHE5t7Vk4OOaQRJzy3lST4Vv6Mc0+0z8lNa+Sc3SVL8CrRtnTAs7YpD4fpI5AFDtchNrgFalX+BZ9GLu4FDsshVI4neqV5Jd5zwWPnwRuKLxsCO/PB6wiBKzdapQBG+P9z74dQ0junol+tqxd7vUV/MFsR3VwVMTndyapIS+fMoe+ZR5g+y44R8C7fXyVE/geg+JXQKvRwS0C5UpnS5FcGk+61b0e4U7pwO20RlwhEFHLSaP61p2TaVGo/TQtT/fWmrtV+HegAv9P3X3Se+xIVtJzQsk8QrB/w52IB3FKiAKl/KRn1egbMIs4uoNAkqNZ9Ih2P1NpiQnONFmkiAgeynJ+0FPykKdJQbV3Mx44jkaHIif4aFReTsYX1WUBNu/QerZRjn4FVSHRaZPSR5Oi82Wz0Nj7IY9ocTpLnXFrqkb/Kt3S6B9s2Kol3Lr1ElYA
-</code></pre>
-<h3 id="start-pycharm-like-vs-code"><a class="header" href="#start-pycharm-like-vs-code">Start Pycharm like VS-Code</a></h3>
-<h4 id="modify-pycharmsh"><a class="header" href="#modify-pycharmsh">Modify pycharm.sh</a></h4>
-<p>Generally pycharm.sh is located at <code>/pycharm/install/path/bin/pycharm.sh</code>.</p>
-<p>Add <code>&gt; /dev/null 2&gt;&amp;1 &amp;</code> to the end of the file. Make sure the file looks like this:</p>
-<pre><code class="language-bash">  com.intellij.idea.Main \
-  "$@" \
-  &gt; /dev/null 2&gt;&amp;1 &amp;
-</code></pre>
-<h4 id="create-a-link-file"><a class="header" href="#create-a-link-file">Create a link file</a></h4>
-<pre><code class="language-bash">sudo ln -sf /pycharm/install/path/bin/pycharm.sh /usr/local/bin/pycharm
-</code></pre>
-<p>Then, you can start Pycharm by typing <code>pycharm</code> in the terminal.</p>
-<pre><code class="language-bash">knight@Lenovo:~/workspace/game_of_thrones$ pycharm .
-knight@Lenovo:~/workspace/game_of_thrones$
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="tmux"><a class="header" href="#tmux">Tmux</a></h1>
-<h3 id="installation-1"><a class="header" href="#installation-1">Installation</a></h3>
-<p><a href="https://github.com/tmux/tmux">https://github.com/tmux/tmux</a></p>
-<pre><code class="language-bash">sudo apt install -y tmux
-</code></pre>
-<h3 id="install-tmux-plugins-manager"><a class="header" href="#install-tmux-plugins-manager">Install Tmux Plugins Manager</a></h3>
-<p><a href="https://github.com/tmux-plugins/tpm">https://github.com/tmux-plugins/tpm</a></p>
-<pre><code class="language-bash">git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-</code></pre>
-<h3 id="create-tmuxconf-file"><a class="header" href="#create-tmuxconf-file">Create .tmux.conf File</a></h3>
-<p>This is my personal tmux config file.</p>
-<pre><code class="language-bash">### tmux.conf
+        stage('Build') {
+            steps {
+                sh 'cd automation &amp;&amp; docker build -t ${DOCKER_IMAGE} .'
+            }
+            post {
+                failure {
+                    echo "Error: Failed to build the Docker image!"
+                }
+            }
+        }
 
-# system setting
-set -g default-terminal "tmux-256color"
-set -g mouse on
+        stage('Push') {
+            steps {
+                withCredentials([usernamePassword(
+                    credentialsId: "${REGISTRY_CREDENTIAL}",
+                    usernameVariable: 'HARBOR_USERNAME',
+                    passwordVariable: 'HARBOR_PASSWORD'
+                )]) {
+                    sh '''
+                        docker login -u ${HARBOR_USERNAME} -p ${HARBOR_PASSWORD} harbor.frombyte.auto
+                        docker push ${DOCKER_IMAGE}
+                        docker logout
+                    '''
+                }
+            }
+            post {
+                failure {
+                    echo "Error: Failed to push the Docker image!"
+                }
+            }
+        }
+    }
 
-# rebind prefix key
-unbind C-b
-set -g prefix 'C-d'
-set -g mode-keys vi
-
-# reload configuration
-# bind R source-file ~/.tmux.conf \; display '~/.tmux.conf Reloaded!'
-
-# windows behaver
-set -g base-index 1
-setw -g pane-base-index 1
-set -g renumber-windows on
-#setw -g automatic-rename on
-
-# display options
-set -g set-titles on
-set -g display-panes-time 2000
-
-# window navigation
-unbind n
-unbind p
-unbind x
-bind -n C-o previous-window
-bind -n C-p next-window
-bind -n C-n new-window -c "#{pane_current_path}"
-bind -n C-q kill-pane
-
-# split windows
-unbind %
-unbind \"
-bind l split-window -h -c "#{pane_current_path}"
-bind k split-window -v -c "#{pane_current_path}"
-bind h split-window -hb -c "#{pane_current_path}"
-bind j split-window -vb -c "#{pane_current_path}"
-
-# windows size adjusting
-bind -n M-f resize-pane -Z
-bind -n M-j resize-pane -U 5
-bind -n M-k resize-pane -D 5
-bind -n M-h resize-pane -L 5
-bind -n M-l resize-pane -R 5
-
-# cursor-moving setting
-unbind o
-unbind \;
-bind -T root C-Left select-pane -L
-bind -T root C-Right select-pane -R
-bind -T root C-Up select-pane -U
-bind -T root C-Down select-pane -D
-
-# pane-moving setting
-bind &lt; swap-pane -U
-bind &gt; swap-pane -D
-
-# tmux plugins
-run '~/.tmux/plugins/tmux/catppuccin.tmux'
-set -g @catppuccin_flavor 'frappe'    # latte | frappe | mocha | macchiato
-set -g @catppuccin_window_status_style "rounded"    # basic | rounded | slanted | custom | none
-set -g @catppuccin_window_number_color "#{@thm_fg}"
-set -g @catppuccin_window_current_number_color "#{@thm_green}"
-
-set -g status-left ""
-set -g status-right ""
-set -g status-right-length 100
-
-set -g @yank_action 'copy-pipe' # or 'copy-pipe-and-cancel' for the default
-
-set -g status-right "#{net_speed} "
-set -g @net_speed_interfaces "enp2s0 wlp3s0"
-set -g @net_speed_format "%8s  %8s "
-
-set -agF status-right "#{E:@catppuccin_status_cpu}"
-
-set -agF status-right "#{E:@catppuccin_status_weather}"
-set-option -g @tmux-weather-interval 10
-set -gq @catppuccin_weather_color "#ea999c"
-set-option -g @tmux-weather-location "BeiJing"
-
-set -ag status-right "#{E:@catppuccin_status_date_time}"
-set -g "@catppuccin_date_time_text" " %m-%d %H:%M"
-
-# set -ag status-right "#{E:@catppuccin_status_session}"
-# set -ag status-right "#{E:@catppuccin_status_application}"
-# set -ag status-right "#{E:@catppuccin_status_gitmux}"
-# set -ag status-right "#{E:@catppuccin_status_load}"
-# set -ag status-right "#{E:@catppuccin_status_pomodoro_plus}"
-# set -ag status-right "#{E:@catppuccin_status_kube}"
-# set -ag status-right "#{E:@catppuccin_status_up_time}"
-# set -ag status-right "#{E:@catppuccin_status_user}"
-# set -g status-right '#[fg=#{@thm_crust},bg=#{@thm_teal}] 󰍣 : #S '
-
-set -g @plugin 'tmux-plugins/tpm'
-set -g @plugin 'tmux-plugins/tmux-yank'
-set -g @plugin 'tmux-plugins/tmux-sensible'
-set -g @plugin 'tmux-plugins/tmux-cpu'
-set -g @plugin 'tmux-plugins/tmux-net-speed'
-set -g @plugin 'xamut/tmux-weather'
-set -g @plugin 'catppuccin/tmux#v2.1.1'
-run '~/.tmux/plugins/tpm/tpm'
-</code></pre>
-<h3 id="install-nerd-font"><a class="header" href="#install-nerd-font">Install Nerd Font</a></h3>
-<p><a href="https://github.com/ryanoasis/nerd-fonts">Nerd Github Repo</a></p>
-<ol>
-<li>Clone Repo to install</li>
-</ol>
-<p>Get script of install Nerd fonts. After many attempts, Font <code>Meslo</code> performed best.</p>
-<pre><code class="language-bash">git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git &amp;&amp; \
-cd nerd-fonts/ &amp;&amp; \
-./install.sh Meslo
-</code></pre>
-<ol start="2">
-<li>Use script to install <strong>(Recommend)</strong></li>
-</ol>
-<pre><code class="language-bash">wget https://raw.githubusercontent.com/mcarvalho1/Simple-NerdFonts-Downloader/c7854dae2153aa199277926bed4b992488b65a3d/nf_downloader.sh
-</code></pre>
-<blockquote>
-<p>nf_downloader.sh default will install all fonts, remember to modify it. The fonts will save in <code>~/.local/share/fonts</code>.</p>
-</blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="create-windterm-desktop-entry"><a class="header" href="#create-windterm-desktop-entry">Create WindTerm Desktop Entry</a></h1>
-<pre><code class="language-ini">[Desktop Entry]
-Name=WindTerm
-Comment=A professional cross-platform SSH/Sftp/Shell/Telnet/Serial terminal
-GenericName=Connect Client
-Exec=/home/knight/windTerm/WindTerm_2.6.1/WindTerm
-Type=Application
-Icon=/home/knight/windTerm/WindTerm_2.6.1/windterm.png
-StartupNotify=false
-StartupWMClass=Code
-Categories=Application;Development
-Actions=new-empty-window
-Keywords=windterm
-
-[Desktop Action new-empty-window]
-Name=New Empty Window
-Exec=/home/knight/windTerm/WindTerm_2.6.1/WindTerm
-Icon=/home/knight/windTerm/WindTerm_2.6.1/windterm.png
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="asciiquarium-command-install"><a class="header" href="#asciiquarium-command-install">Asciiquarium Command Install</a></h1>
-<h4 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h4>
-<pre><code class="language-bash">sudo apt-get install -y perl libcurses-perl wget
-wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
-wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
-tar -xf Term-Animation-2.4.tar.gz
-tar -xf asciiquarium.tar.gz
-cd Term-Animation-2.4/ &amp;&amp; perl Makefile.PL &amp;&amp; make &amp;&amp; sudo make install
-cd ../asciiquarium_1.1/
-cp asciiquarium /usr/local/bin
-sudo chmod +x /usr/local/bin/asciiquarium
-asciiquarium
-</code></pre>
-<h4 id="centos"><a class="header" href="#centos">Centos</a></h4>
-<pre><code class="language-bash">cd /opt
-yum install -y wget
-wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
-tar xf Term-Animation-2.4.tar.gz
-yum install perl-Curses.x86_64  -y
-yum install perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker  -y
-cd /opt/Term-Animation-2.4/  &amp;&amp; perl Makefile.PL
-make
-make install
-cd /opt
-wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
-tar -zxvf asciiquarium.tar.gz
-cd asciiquarium_1.1/
-cp asciiquarium /usr/local/bin
-chmod +x /usr/local/bin/asciiquarium
-asciiquarium
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="使用-frp"><a class="header" href="#使用-frp">使用 frp</a></h1>
-<h4 id="project-official-website"><a class="header" href="#project-official-website">Project Official Website</a></h4>
-<p><a href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
-<p><a href="https://gofrp.org/zh-cn/">中文文档</a></p>
-<h3 id="ssh-service"><a class="header" href="#ssh-service">SSH Service</a></h3>
-<h4 id="the-server-configuration"><a class="header" href="#the-server-configuration">The server configuration</a></h4>
-<pre><code class="language-bash">vim frps.toml
-</code></pre>
-<pre><code class="language-bash">bindPort = 5432  # frp 建立通讯的端口
-auth.token = "123456"
-</code></pre>
-<h4 id="the-client-configuration"><a class="header" href="#the-client-configuration">The Client configuration</a></h4>
-<pre><code class="language-bash">vim frpc.toml
-</code></pre>
-<pre><code class="language-bash">serverAddr = "123.00.00.01"
-serverPort = 5432   # frp 建立通讯的端口
-auth.token = "123456"
-
-[[proxies]]
-name = "ssh"
-type = "tcp"
-localIP = "127.0.0.1"
-localPort = 22
-remotePort = 10086   # frp 映射的端口，VPS需要打开的端口
-</code></pre>
-<h3 id="ftp-service"><a class="header" href="#ftp-service">FTP Service</a></h3>
-<h4 id="the-server-configuration-1"><a class="header" href="#the-server-configuration-1">The Server configuration</a></h4>
-<pre><code class="language-bash">vim frps.toml
-</code></pre>
-<pre><code class="language-bash">bindPort = 5432
-auth.token = "123456"
-</code></pre>
-<h4 id="the-client-configuration-1"><a class="header" href="#the-client-configuration-1">The Client configuration</a></h4>
-<pre><code class="language-bash">vim frpc.toml
-</code></pre>
-<pre><code class="language-bash">serverAddr = "123.00.00.01"
-serverPort = 5432
-auth.token = "123456"
-
-[[proxies]]
-name = "test_static_file"
-type = "tcp"
-localPort = 21
-remotePort = 10086
-
-[proxies.plugin]
-type = "static_file"
-
-# 本地文件目录，对外提供访问
-localPath = "/your/local/path"
-
-# URL 中的前缀，将被去除，保留的内容即为要访问的文件路径
-stripPrefix = "static"
-httpUser = "user"
-httpPassword = "password"
-</code></pre>
-<h4 id="systemctl-configuration"><a class="header" href="#systemctl-configuration">systemctl Configuration</a></h4>
-<ul>
-<li>frps | Server configuration</li>
-</ul>
-<pre><code class="language-bash">sudo vim /etc/systemd/system/frps.service
-</code></pre>
-<pre><code class="language-ini">[Unit]
-# 服务名称，可自定义
-Description = frp server
-After = network.target syslog.target
-Wants = network.target
-[Service]
-Type = simple
-# 启动frps的命令，需修改为您的frps的安装路径
-ExecStart = /root/frp/frps -c /root/frp/config.toml
-[Install]
-WantedBy = multi-user.target
-</code></pre>
-<p>reload daemon and start service</p>
-<pre><code class="language-bash">sudo systemctl daemon-reload
-sudo systemctl enable --now frps
-</code></pre>
-<ul>
-<li>frpc | Client configuration</li>
-</ul>
-<pre><code class="language-bash">sudo vim /etc/systemd/system/frpc.service
-</code></pre>
-<pre><code class="language-ini">[Unit]
-Description=FRPC Client Service
-After=network.target
-
-[Service]
-User=knight
-Group=knight
-Type=simple
-ExecStart=/home/knight/frp/frpc -c /home/knight/frp/config.toml
-Restart=on-failure
-RestartSec=5s
-StandardOutput=syslog
-StandardError=syslog
-SyslogIdentifier=frpc
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<p>reload daemon and start service</p>
-<pre><code class="language-bash">sudo systemctl daemon-reload
-sudo systemctl enable --now frpc
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="entertainment"><a class="header" href="#entertainment">Entertainment</a></h1>
-<h3 id="install-kodi"><a class="header" href="#install-kodi">Install KODI</a></h3>
-<p><a href="https://kodi.tv/download/">https://kodi.tv/download/</a></p>
-<pre><code class="language-bash">sudo apt install software-properties-common
-sudo add-apt-repository -y ppa:team-xbmc/ppa
-sudo apt install kodi
-</code></pre>
-<h3 id="install-tmm"><a class="header" href="#install-tmm">Install TMM</a></h3>
-<p><a href="https://www.tinymediamanager.org/download/">https://www.tinymediamanager.org/download/</a></p>
-<h3 id="qbittorrent-enhanced"><a class="header" href="#qbittorrent-enhanced">qBittorrent Enhanced</a></h3>
-<p><a href="https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases">https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases </a></p>
-<h3 id="lx-music"><a class="header" href="#lx-music">LX Music</a></h3>
-<p><a href="https://github.com/lyswhut/lx-music-desktop/releases">https://github.com/lyswhut/lx-music-desktop/releases</a></p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh"><a class="header" href="#zsh">ZSH</a></h1>
-<p>zsh is a shell that can be used as a replacement for bash.</p>
-<h3 id="installation-2"><a class="header" href="#installation-2">Installation</a></h3>
-<p><a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH">https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH</a></p>
-<pre><code class="language-bash">sudo apt install zsh
-</code></pre>
-<h3 id="configuration"><a class="header" href="#configuration">Configuration</a></h3>
-<pre><code class="language-bash">chsh -s $(which zsh) $USER
-</code></pre>
-<p>Make it works, you can <code>logout</code> system and relogin again.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh--oh-my-zsh"><a class="header" href="#zsh--oh-my-zsh">zsh &amp; oh-my-zsh</a></h1>
-<h3 id="git-repo"><a class="header" href="#git-repo">Git repo</a></h3>
-<p><a href="https://github.com/ohmyzsh/ohmyzsh">https://github.com/ohmyzsh/ohmyzsh</a></p>
-<h3 id="installation-3"><a class="header" href="#installation-3">Installation</a></h3>
-<pre><code class="language-bash">sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-</code></pre>
-<p>The default location is <code>~/.oh-my-zsh</code> (hidden in your home directory, you can access it with <code>cd ~/.oh-my-zsh</code>)</p>
-<h3 id="manual-installation"><a class="header" href="#manual-installation">Manual Installation</a></h3>
-<p>If you want to change the location, you can do so by setting the <code>ZSH</code> environment variable before installing:</p>
-<p>Firstly, install the install script:</p>
-<pre><code class="language-bash">wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
-</code></pre>
-<p>Secondly, setting the install path run the install script, if you want to install oh-my-zsh to <code>$HOME/awesome-shell/oh-my-zsh</code>:</p>
-<pre><code class="language-bash">ZSH="$HOME/awesome-shell/oh-my-zsh" sh install.sh
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="powerlevel10k"><a class="header" href="#powerlevel10k">powerlevel10K</a></h1>
-<p><a href="https://github.com/romkatv/powerlevel10k.git">https://github.com/romkatv/powerlevel10k.git</a></p>
-<h3 id="installation-4"><a class="header" href="#installation-4">Installation</a></h3>
-<ol>
-<li>Clone repo into oh-my-zsh custom themes path:</li>
-</ol>
-<pre><code class="language-bash">git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-</code></pre>
-<ol start="2">
-<li>Modify <code>.zshrc</code>:</li>
-</ol>
-<pre><code class="language-bash">ZSH_THEME="powerlevel10k/powerlevel10k"
-</code></pre>
-<ol start="3">
-<li>Exit terminal and reopen it.</li>
-</ol>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-autosuggestions"><a class="header" href="#zsh-autosuggestions">zsh-autosuggestions</a></h1>
-<p><a href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md">https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md</a></p>
-<h3 id="installation-5"><a class="header" href="#installation-5">Installation</a></h3>
-<ol>
-<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
-</ol>
-<pre><code class="language-bash">git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-</code></pre>
-<ol start="2">
-<li>Add the plugin to the list of plugins for Oh My Zsh to load (inside <code>~/.zshrc</code>):</li>
-</ol>
-<pre><code class="language-bash">plugins=( 
-    # other plugins...
-    zsh-autosuggestions
-)
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-autocomplete"><a class="header" href="#zsh-autocomplete">zsh-autocomplete</a></h1>
-<p><a href="https://github.com/marlonrichert/zsh-autocomplete">https://github.com/marlonrichert/zsh-autocomplete</a></p>
-<h3 id="installation-6"><a class="header" href="#installation-6">Installation</a></h3>
-<ol>
-<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
-</ol>
-<pre><code class="language-bash">git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
-</code></pre>
-<ol start="2">
-<li>Add the plugin to the list of plugins for Oh My Zsh to load (inside <code>~/.zshrc</code>):</li>
-</ol>
-<pre><code class="language-bash">plugins=( 
-    # other plugins...
-    zsh-autocomplete
-)
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-syntax-highlighting"><a class="header" href="#zsh-syntax-highlighting">zsh-syntax-highlighting</a></h1>
-<p><a href="https://github.com/zsh-users/zsh-syntax-highlighting">https://github.com/zsh-users/zsh-syntax-highlighting</a></p>
-<h3 id="installation-7"><a class="header" href="#installation-7">Installation</a></h3>
-<ol>
-<li>
-<ol>
-<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
-</ol>
-</li>
-</ol>
-<pre><code class="language-bash">git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-</code></pre>
-<ol start="2">
-<li>Add the plugin to the list of plugins for Oh My Zsh to load (inside <code>~/.zshrc</code>):</li>
-</ol>
-<pre><code class="language-bash">plugins=(
-    # ...
-    zsh-syntax-highlighting
-)
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-you-should-use"><a class="header" href="#zsh-you-should-use">zsh-you-should-use</a></h1>
-<h3 id="installation-8"><a class="header" href="#installation-8">Installation</a></h3>
-<ol>
-<li>Clone the repo into your oh-my-zsh plugins directory.</li>
-</ol>
-<pre><code class="language-bash">git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
-</code></pre>
-<ol start="2">
-<li>Add <code>you-should-use</code> to the list of plugins in your <code>~/.zshrc</code> file.</li>
-</ol>
-<pre><code class="language-bash">plugins=(
-    # other plugins...
-    you-should-use
-)
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="zsh-ollama-completion"><a class="header" href="#zsh-ollama-completion">zsh-ollama-completion</a></h1>
-<p><a href="https://github.com/Katrovsky/zsh-ollama-completion">https://github.com/Katrovsky/zsh-ollama-completion</a></p>
-<h3 id="installation-9"><a class="header" href="#installation-9">Installation</a></h3>
-<ol>
-<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
-</ol>
-<pre><code class="language-bash">git clone https://github.com/Katrovsky/zsh-ollama-completion.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/ollama
-</code></pre>
-<ol start="2">
-<li>Add the plugin to the list of plugins for Oh My Zsh to load (inside <code>~/.zshrc</code>):</li>
-</ol>
-<pre><code class="language-bash">plugins=(
-    # ...
-    ollama
-)
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-plugins"><a class="header" href="#custom-plugins">Custom Plugins</a></h1>
-<h3 id="auto-activate-virtual-environments-in-python-projects"><a class="header" href="#auto-activate-virtual-environments-in-python-projects">Auto-activate Virtual Environments in Python Projects</a></h3>
-<ol>
-<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
-</ol>
-<pre><code class="language-bash">git clone https://github.com/lxp731/auto-venv $ZSH_CUSTOM/plugins/auto-venv
-</code></pre>
-<ol start="2">
-<li>Add <code>auto-venv</code> to the plugins array in your <code>~/.zshrc</code> file</li>
-</ol>
-<pre><code class="language-bash">plugins=(
-    ...
-    auto-venv
-)
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-themes"><a class="header" href="#custom-themes">custom themes</a></h1>
-<ol>
-<li>Clone this repo into <code>${ZSH_CUSTMO}/themes</code></li>
-</ol>
-<pre><code class="language-bash">git clone --depth 1 https://github.com/lxp731/zsh-custom-themes.git ${ZSH_CUSTOM}/themes
-</code></pre>
-<ol start="2">
-<li>Modify the following to your <code>~/.zshrc</code>:</li>
-</ol>
-<pre><code class="language-bash">ZSH_THEME="awesome"
+    post {
+        always {
+            sh 'docker rmi ${DOCKER_IMAGE} || true'
+        }
+        failure {
+            echo "Pipeline failed! Check the logs for more details."
+        }
+        success {
+            echo "Pipeline succeeded!"
+        }
+    }
+}
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="env-variable-setting"><a class="header" href="#env-variable-setting">ENV Variable Setting</a></h1>
 <p>In Linux, environment variables are used to store information that can be used by programs when they are executed. They play a important role in Linux system.</p>
@@ -1138,7 +873,7 @@ mv 视频/ video
 <pre><code class="language-bash">reboot
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="vim-plugin-manager"><a class="header" href="#vim-plugin-manager">Vim Plugin Manager</a></h1>
-<h3 id="official-website"><a class="header" href="#official-website">Official Website</a></h3>
+<h3 id="official-website-1"><a class="header" href="#official-website-1">Official Website</a></h3>
 <p><a href="https://github.com/junegunn/vim-plug?tab=readme-ov-file">https://github.com/junegunn/vim-plug?tab=readme-ov-file</a></p>
 <h3 id="install-vim-plug"><a class="header" href="#install-vim-plug">Install vim-plug</a></h3>
 <pre><code class="language-bash">curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
@@ -1718,9 +1453,9 @@ autocmd BufEnter * if winnr('$') == 1 &amp;&amp; exists('b:NERDTree') &amp;&amp;
 <h3 id="rendering"><a class="header" href="#rendering">Rendering</a></h3>
 <p><img src="https://github.com/preservim/nerdtree/raw/master/screenshot.png" alt="Rendering" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="nerdtree-git"><a class="header" href="#nerdtree-git">NerdTree-Git</a></h1>
-<h3 id="github-repo-1"><a class="header" href="#github-repo-1">Github Repo</a></h3>
+<h3 id="github-repo-2"><a class="header" href="#github-repo-2">Github Repo</a></h3>
 <p><a href="https://github.com/Xuyuanp/nerdtree-git-plugin">https://github.com/Xuyuanp/nerdtree-git-plugin</a></p>
-<h3 id="install"><a class="header" href="#install">Install</a></h3>
+<h3 id="install-2"><a class="header" href="#install-2">Install</a></h3>
 <pre><code class="language-bash">Plug 'Xuyuanp/nerdtree-git-plugin'
 </code></pre>
 <pre><code class="language-bash">let g:NERDTreeGitStatusShowCounts = 1
@@ -1742,10 +1477,10 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 <h3 id="rendering-1"><a class="header" href="#rendering-1">Rendering</a></h3>
 <p><img src="https://camo.githubusercontent.com/5ee5b6171cda9ea0eb6ea834185b2ef869e7cb0f81ded740e9c396b8cc47a23e/687474703a2f2f692e696d6775722e636f6d2f6a534377476a552e6769663f31" alt="Rendering" /></p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="youcompleteme"><a class="header" href="#youcompleteme">YouCompleteMe</a></h1>
-<h3 id="github-repo-2"><a class="header" href="#github-repo-2">Github Repo</a></h3>
+<h3 id="github-repo-3"><a class="header" href="#github-repo-3">Github Repo</a></h3>
 <p><a href="https://github.com/ycm-core/YouCompleteMe">https://github.com/ycm-core/YouCompleteMe</a></p>
 <p><a href="https://vimawesome.com/plugin/youcompleteme">https://vimawesome.com/plugin/youcompleteme</a></p>
-<h3 id="installation-10"><a class="header" href="#installation-10">Installation</a></h3>
+<h3 id="installation-8"><a class="header" href="#installation-8">Installation</a></h3>
 <pre><code class="language-bash">Plug 'Valloric/YouCompleteMe'
 </code></pre>
 <p>After <code>:PlugInstall</code>, if you use <code>vim-plug</code></p>
@@ -1802,203 +1537,6 @@ sudo apt install libstdc++6
 <pre><code class="language-bash">vnoremap Y :w !xclip -i -sel c&lt;CR&gt;
 </code></pre>
 <p>Then you can select some contents in visual mode, and press <code>Y</code>. Finally, you can use <code>&lt;Ctrl-v&gt;</code> to paste it anywhere.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="fzf"><a class="header" href="#fzf">FZF</a></h1>
-<h3 id="official-website-1"><a class="header" href="#official-website-1">Official Website</a></h3>
-<ul>
-<li>
-<p><a href="https://github.com/junegunn/fzf">Github repo</a></p>
-</li>
-<li>
-<p><a href="https://junegunn.github.io/fzf/search-syntax/">HandBook</a></p>
-</li>
-</ul>
-<h3 id="install-1"><a class="header" href="#install-1">Install</a></h3>
-<pre><code class="language-bash"># Clone the fzf repository
-git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-
-# Run the install script
-~/.fzf/install
-</code></pre>
-<h3 id="setting-bashrc"><a class="header" href="#setting-bashrc">Setting .bashrc</a></h3>
-<p>A basic example, to show how to link progress with fzf.</p>
-<pre><code class="language-bash"># add a alias to change git branch
-alias gcb="git branch | fzf --preview 'git show --color=always {-1}' \
-                 --bind 'enter:become(git checkout {-1})' \
-                 --height 60% --layout reverse"
-</code></pre>
-<p>Then, setting ENV vars of fzf, unlock advanced function.</p>
-<pre><code class="language-bash"># fzf init
-eval "$(~/.fzf/bin/fzf --bash)"
-[ -f ~/.fzf.bash ] &amp;&amp; source ~/.fzf.bash
-</code></pre>
-<p>Default fzf self build-in <kbd>Ctrl</kbd>+<kbd>R</kbd> to display history cmd, <kbd>Ctrl</kbd>+<kbd>T</kbd> to show files and dirs of local path, <kbd>Alt</kbd>+<kbd>C</kbd> to exec <code>cd</code> cmd. Well, you can rewrite these function.</p>
-<pre><code class="language-bash"># CTRL-Y to copy the command into clipboard using pbcopy
-export FZF_CTRL_R_OPTS="
-  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
-  --color header:italic
-  --header 'Press CTRL-Y to copy command into clipboard'
-  --height 80% --layout reverse"
-
-# Preview file content using bat (https://github.com/sharkdp/bat)
-export FZF_CTRL_T_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'batcat -n --color=always {}'
-  --bind 'ctrl-/:change-preview-window(down|hidden|)'
-  --height 80% --layout reverse"
-
-# Print tree structure in the preview window
-export FZF_ALT_C_OPTS="
-  --walker-skip .git,node_modules,target
-  --preview 'tree -C {}'
-  --height 80% --layout reverse"
-
-# ripgrep-&gt;fzf-&gt;vim [QUERY]
-# sudo apt install -y ripgrep
-rfv() (
-  RELOAD='reload:rg --column --color=always --smart-case {q} || :'
-  OPENER='if [[ $FZF_SELECT_COUNT -eq 0 ]]; then
-            vim {1} +{2}     # No selection. Open the current line in Vim.
-          else
-            vim +cw -q {+f}  # Build quickfix list for the selected items.
-          fi'
-  fzf --disabled --ansi --multi \
-      --bind "start:$RELOAD" --bind "change:$RELOAD" \
-      --bind "enter:become:$OPENER" \
-      --bind "ctrl-o:execute:$OPENER" \
-      --bind 'alt-a:select-all,alt-d:deselect-all,ctrl-/:toggle-preview' \
-      --delimiter : \
-      --preview 'batcat --style=full --color=always --highlight-line {2} {1}' \
-      --preview-window '~4,+{2}+4/3,&lt;80(up)' \
-      --query "$*"
-)
-</code></pre>
-<blockquote>
-<p>In fzf model, you can press <kbd>Esc</kbd> to quit fzf model.</p>
-</blockquote>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="fzf-replace-bash-completion"><a class="header" href="#fzf-replace-bash-completion">FZF Replace Bash Completion</a></h1>
-<h3 id="github-repo-3"><a class="header" href="#github-repo-3">Github Repo</a></h3>
-<p><a href="https://github.com/lincheney/fzf-tab-completion">https://github.com/lincheney/fzf-tab-completion</a></p>
-<h3 id="install-script"><a class="header" href="#install-script">Install Script</a></h3>
-<pre><code class="language-bash">mkdir -p ~/.fzf/shell &amp;&amp; \
-wget -O ~/.fzf/shell/fzf-bash-completion.sh \
-    https://raw.githubusercontent.com/lincheney/fzf-tab-completion/refs/heads/master/bash/fzf-bash-completion.sh
-</code></pre>
-<h3 id="modify-bashrc"><a class="header" href="#modify-bashrc">Modify .bashrc</a></h3>
-<pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
-# use fzf replace system completion
-source ~/.fzf/shell/fzf-bash-completion.sh
-bind -x '"\t": fzf_bash_completion'
-EOF
-</code></pre>
-<pre><code class="language-bash">source ~/.bashrc
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="fzf-integrate-git"><a class="header" href="#fzf-integrate-git">FZF Integrate Git</a></h1>
-<h3 id="github-repo-4"><a class="header" href="#github-repo-4">Github Repo</a></h3>
-<p><a href="https://github.com/junegunn/fzf-git.sh">https://github.com/junegunn/fzf-git.sh</a></p>
-<h3 id="install-2"><a class="header" href="#install-2">Install</a></h3>
-<pre><code class="language-bash">mkdir -p ~/.fzf/shell &amp;&amp; \
-cd ~/.fzf/shell &amp;&amp; \
-wget https://raw.githubusercontent.com/junegunn/fzf-git.sh/refs/heads/main/fzf-git.sh
-</code></pre>
-<h3 id="modify-bashrc-1"><a class="header" href="#modify-bashrc-1">Modify .bashrc</a></h3>
-<pre><code class="language-bash">cat &gt;&gt; ~/.bashrc &lt;&lt; EOF
-# fzf integrade git
-source ~/.fzf/shell/fzf-git.sh
-EOF
-</code></pre>
-<pre><code class="language-bash">source ~/.bashrc
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="all-kinds-of-proxy-setting"><a class="header" href="#all-kinds-of-proxy-setting">All Kinds of Proxy Setting</a></h1>
-<p>In china, you can't access to the real Internet directly. So you have to use some proxy in some software.</p>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="configure-system-proxy"><a class="header" href="#configure-system-proxy">Configure System Proxy</a></h1>
-<h4 id="edit-a-script"><a class="header" href="#edit-a-script">Edit a Script</a></h4>
-<pre><code class="language-bash">sudo vim  /etc/profile.d/proxy.sh
-</code></pre>
-<pre><code class="language-sh"># set proxy config via profie.d - should apply for all users
-export http_proxy="http://10.10.1.10:8080/"
-export https_proxy="http://10.10.1.10:8080/"
-export ftp_proxy="http://10.10.1.10:8080/"
-export no_proxy="127.0.0.1,localhost"
-# For curl
-export HTTP_PROXY="http://10.10.1.10:8080/"
-export HTTPS_PROXY="http://10.10.1.10:8080/"
-export FTP_PROXY="http://10.10.1.10:8080/"
-export NO_PROXY="127.0.0.1,localhost"
-</code></pre>
-<h4 id="add-exec-permission-1"><a class="header" href="#add-exec-permission-1">Add Exec Permission</a></h4>
-<pre><code class="language-bash">sudo chmod +x  /etc/profile.d/proxy.sh
-</code></pre>
-<h4 id="apply-setting"><a class="header" href="#apply-setting">Apply Setting</a></h4>
-<pre><code class="language-bash">source /etc/profile.d/proxy.sh
-</code></pre>
-<h4 id="confirm-env"><a class="header" href="#confirm-env">Confirm ENV</a></h4>
-<pre><code class="language-bash">env | grep -i proxy
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="setting-docker-mirror-acceleration"><a class="header" href="#setting-docker-mirror-acceleration">Setting Docker Mirror Acceleration</a></h1>
-<h4 id="edit-conf-file-1"><a class="header" href="#edit-conf-file-1">Edit Conf File</a></h4>
-<pre><code class="language-bash">sudo vim /etc/docker/daemon.json
-</code></pre>
-<h4 id="add-lines"><a class="header" href="#add-lines">Add Lines</a></h4>
-<pre><code class="language-bash">{
-    "registry-mirrors": [
-        "https://docker.1ms.run",
-        "https://docker.xuanyuan.me",
-        "https://docker.wanpeng.life",
-        "https://docker.imgdb.de"
-    ]
-}
-</code></pre>
-<h4 id="reload-daemon--restart-docker"><a class="header" href="#reload-daemon--restart-docker">Reload Daemon &amp; Restart Docker</a></h4>
-<pre><code class="language-bash">sudo systemctl daemon-reload
-sudo systemctl restart docker
-</code></pre>
-<h1 id="configure-docker-proxy"><a class="header" href="#configure-docker-proxy">Configure Docker Proxy</a></h1>
-<h4 id="edit-conf-file-2"><a class="header" href="#edit-conf-file-2">Edit Conf File</a></h4>
-<pre><code class="language-bash">sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
-</code></pre>
-<h4 id="add-lines-1"><a class="header" href="#add-lines-1">Add Lines</a></h4>
-<pre><code class="language-ini">[Service]
-Environment="HTTP_PROXY=http://127.0.0.1:7890"
-Environment="HTTPS_PROXY=http://127.0.0.1:7890"
-</code></pre>
-<h4 id="reload-daemon--restart-docker-1"><a class="header" href="#reload-daemon--restart-docker-1">Reload Daemon &amp; Restart Docker</a></h4>
-<pre><code class="language-bash">sudo systemctl daemon-reload
-sudo systemctl restart docker
-</code></pre>
-<h1 id="configure-container-proxy"><a class="header" href="#configure-container-proxy">Configure Container Proxy</a></h1>
-<h4 id="edit-conf-file-3"><a class="header" href="#edit-conf-file-3">Edit Conf File</a></h4>
-<pre><code class="language-bash">vim ~/.docker/config.json
-</code></pre>
-<h4 id="add-lines-2"><a class="header" href="#add-lines-2">Add Lines</a></h4>
-<pre><code class="language-bash">{ 
-  "proxies":
-    { 
-      "default": 
-        { 
-          "httpProxy": "http://172.17.0.1:7890", 
-          "httpsProxy": "https://172.17.0.1:7890", 
-          "noProxy": "*.&lt;domain&gt;,127.0.0.0/8" 
-        } 
-    } 
-}
-</code></pre>
-<h4 id="reload-daemon--restart-docker-2"><a class="header" href="#reload-daemon--restart-docker-2">Reload Daemon &amp; Restart Docker</a></h4>
-<pre><code class="language-bash">sudo systemctl daemon-reload
-sudo systemctl restart docker
-</code></pre>
-<div style="break-before: page; page-break-before: always;"></div><h1 id="configure-k3s-proxy"><a class="header" href="#configure-k3s-proxy">Configure K3S Proxy</a></h1>
-<ul>
-<li>
-<p><code>/etc/systemd/system/k3s.service.env</code></p>
-</li>
-<li>
-<p><code>/etc/systemd/system/k3s-agent.service.env</code></p>
-</li>
-</ul>
-<pre><code class="language-bash">HTTP_PROXY=http://your-proxy.example.com:8888
-HTTPS_PROXY=http://your-proxy.example.com:8888
-NO_PROXY=127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
-</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="useful-scripts"><a class="header" href="#useful-scripts">Useful Scripts</a></h1>
 <p>In Linux, you can use some scripts to do some repetitive tasks.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="switch-node-version"><a class="header" href="#switch-node-version">Switch Node Version</a></h1>
@@ -2500,6 +2038,567 @@ EOF
   printf "\n\n\n"
 
 done
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ubuntu-software"><a class="header" href="#ubuntu-software">Ubuntu Software</a></h1>
+<p>Collection of useful software for Ubuntu.</p>
+<ul>
+<li>
+<p><a href="ubuntu-software/./google_input_install.html">Google-PinYin</a></p>
+<p>The best choice for Chinese input. Although Sougou Input is aviailable, it will make your system slow, especially when you restart your system.</p>
+</li>
+<li>
+<p><a href="ubuntu-software/./wechat_install.html">Wechat</a></p>
+<p>Based on wine, it can be used to install wechat on Ubuntu. In spite of defects, it is a good choice for Chinese users.</p>
+</li>
+<li>
+<p><a href="ubuntu-software/./clash_verge_install.html">Clash Verge</a></p>
+<p>After clash for windows, it is recommended to use clash verge.</p>
+</li>
+<li>
+<p><a href="ubuntu-software/./tmux.html">Tmux</a></p>
+<p>An incrediable tool of split-screen.</p>
+</li>
+<li>
+<p><a href="ubuntu-software/./docker_install.html">Docker</a></p>
+</li>
+<li>
+<p><a href="ubuntu-software/./pycharm_install.html">Pycharm</a></p>
+</li>
+<li>
+<p><a href="ubuntu-software/./vim_support_system_clipboard.html">VIM Clipboard</a></p>
+</li>
+</ul>
+<pre><code class="language-bash">sudo apt install -y vim-gtk3 highlight bat ripgrep tree net-tools nmap
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="install-google-pinyin"><a class="header" href="#install-google-pinyin">Install Google-PinYin</a></h1>
+<h3 id="on-ubuntu-google-pinyin-based-on-fcitx-so-install-fcitx-firstly"><a class="header" href="#on-ubuntu-google-pinyin-based-on-fcitx-so-install-fcitx-firstly">On Ubuntu, Google-PinYin based on Fcitx. So install Fcitx firstly.</a></h3>
+<pre><code class="language-bash">sudo apt install fcitx
+</code></pre>
+<h3 id="configure-fcitx"><a class="header" href="#configure-fcitx">Configure Fcitx</a></h3>
+<pre><code class="language-bash">im-config
+</code></pre>
+<h3 id="install-google-pinyin-1"><a class="header" href="#install-google-pinyin-1">Install Google-PinYin</a></h3>
+<pre><code class="language-bash">sudo apt install fcitx-googlepinyin
+</code></pre>
+<h3 id="running-fcitx"><a class="header" href="#running-fcitx">Running Fcitx</a></h3>
+<pre><code class="language-bash">fcitx-config-gtk3
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="wechat-install"><a class="header" href="#wechat-install">Wechat Install</a></h1>
+<h4 id="install-deepin-repository"><a class="header" href="#install-deepin-repository">Install Deepin Repository</a></h4>
+<pre><code class="language-bash">wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
+</code></pre>
+<h4 id="install-wechat"><a class="header" href="#install-wechat">Install Wechat</a></h4>
+<pre><code class="language-bash">sudo apt install com.qq.weixin.deepin
+</code></pre>
+<h4 id="解决统信应用解压失败的问题"><a class="header" href="#解决统信应用解压失败的问题">解决统信应用解压失败的问题</a></h4>
+<pre><code class="language-bash">sudo vim /opt/deepinwine/tools/run_v4.sh
+
+# find this line
+7z x "$APPDIR/$APPTAR" -o"$1"
+# update it following line
+7z x "$APPDIR/$APPTAR" -o"$1" || true
+</code></pre>
+<h4 id="remove-wechat"><a class="header" href="#remove-wechat">Remove Wechat</a></h4>
+<pre><code class="language-bash">sudo apt remove com.qq.weixin.deepin
+</code></pre>
+<h4 id="delete-deepin-repository"><a class="header" href="#delete-deepin-repository">Delete Deepin Repository</a></h4>
+<pre><code class="language-bash">sudo rm /etc/apt/sources.d.list/deepin-wine.i-m.dev.list
+</code></pre>
+<hr />
+<h3 id="tencent-official-wechat"><a class="header" href="#tencent-official-wechat">Tencent Official Wechat</a></h3>
+<p><a href="https://linux.weixin.qq.com/">https://linux.weixin.qq.com/</a></p>
+<ol>
+<li>Download</li>
+</ol>
+<pre><code class="language-bash">wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="install-clash-verge"><a class="header" href="#install-clash-verge">Install Clash-Verge</a></h1>
+<h4 id="clash-verge-project-github"><a class="header" href="#clash-verge-project-github">clash-verge Project Github</a></h4>
+<p><a href="https://github.com/clash-verge-rev/clash-verge-rev">https://github.com/clash-verge-rev/clash-verge-rev</a></p>
+<h4 id="sloved-error-of-clash-verge-依赖于-libwebkit2gtk-40-37"><a class="header" href="#sloved-error-of-clash-verge-依赖于-libwebkit2gtk-40-37">Sloved Error of "clash-verge 依赖于 libwebkit2gtk-4.0-37."</a></h4>
+<pre><code class="language-bash">sudo vim /etc/apt/sources.list.d/ubuntu.sources
+
+# 添加以下内容
+Types: deb
+URIs: http://br.archive.ubuntu.com/ubuntu/
+Suites: jammy
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+sudo apt update
+</code></pre>
+<h4 id="sloved-error-of-starting-clash-verge-but-no-display-window"><a class="header" href="#sloved-error-of-starting-clash-verge-but-no-display-window">Sloved Error of starting "clash-verge" but no display window</a></h4>
+<pre><code>vim /usr/share/applications/clash-verge.desktop 
+
+# 将 Exec 改为：
+Exec=env WEBKIT_DISABLE_COMPOSITING_MODE=1 clash-verge
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="clash-for-linux"><a class="header" href="#clash-for-linux">Clash For Linux</a></h1>
+<h3 id="github-repo-4"><a class="header" href="#github-repo-4">Github Repo</a></h3>
+<p><a href="https://github.com/wnlen/clash-for-linux.git">https://github.com/wnlen/clash-for-linux.git</a></p>
+<h3 id="installation-9"><a class="header" href="#installation-9">Installation</a></h3>
+<pre><code class="language-bash">git clone https://github.com/wnlen/clash-for-linux.git
+</code></pre>
+<h3 id="modify-env"><a class="header" href="#modify-env">Modify <code>.env</code></a></h3>
+<p>The <code>CLASH_URL</code> is your subscription address, and the <code>CLASH_SECRET</code> is your password, when you login with web, you will use it.</p>
+<h3 id="start-clash"><a class="header" href="#start-clash">Start Clash</a></h3>
+<pre><code class="language-bash">sudo bash start.sh
+</code></pre>
+<p>As show tips, exec cmds.</p>
+<h3 id="else-cmd"><a class="header" href="#else-cmd">Else CMD</a></h3>
+<ul>
+<li>Close clash</li>
+</ul>
+<pre><code class="language-bash">sudo bash shutdown.sh
+</code></pre>
+<ul>
+<li>Close proxy</li>
+</ul>
+<pre><code class="language-bash">proxy-off
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="install-docker"><a class="header" href="#install-docker">Install Docker</a></h1>
+<h4 id="install-official-docker-gpg-key"><a class="header" href="#install-official-docker-gpg-key">Install Official Docker GPG Key</a></h4>
+<pre><code class="language-bash">sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+</code></pre>
+<h4 id="add-official-docker-repo"><a class="header" href="#add-official-docker-repo">Add Official Docker Repo</a></h4>
+<pre><code class="language-bash">echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre>
+<h4 id="update-package-lists"><a class="header" href="#update-package-lists">Update Package Lists</a></h4>
+<pre><code class="language-bash">sudo apt-get update
+</code></pre>
+<h4 id="install-docker-1"><a class="header" href="#install-docker-1">Install Docker</a></h4>
+<pre><code class="language-bash">sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+</code></pre>
+<hr />
+<p>Well, you can access <a href="https://download.docker.com/">https://download.docker.com/</a> and download the <code>.deb</code> file manually.</p>
+<p>Such Path: <code>https://download.docker.com/linux/ubuntu/dists/focal/pool/stable/amd64/</code></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="crack-pycharm"><a class="header" href="#crack-pycharm">Crack Pycharm</a></h1>
+<h3 id="edit-vmoptions"><a class="header" href="#edit-vmoptions">Edit vmoptions</a></h3>
+<pre><code class="language-bash">vim /pycharm/install/path/bin/pycharm64.vmoptions
+</code></pre>
+<h3 id="add-following-options-to-the-end-of-the-file"><a class="header" href="#add-following-options-to-the-end-of-the-file">Add following options to the end of the file</a></h3>
+<pre><code class="language-bash">-javaagent:/jar-package/path/jetbra/ja-netfilter.jar=jetbrains
+--add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED
+--add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED
+</code></pre>
+<h3 id="activation-code"><a class="header" href="#activation-code">Activation Code</a></h3>
+<pre><code class="language-bash">YQLSN55KLT-eyJsaWNlbnNlSWQiOiJZUUxTTjU1S0xUIiwibGljZW5zZWVOYW1lIjoi5rC45LmF5Zyw5Z2AIHd3d8K3YWppaHVvwrdjb20iLCJsaWNlbnNlZVR5cGUiOiJQRVJTT05BTCIsImFzc2lnbmVlTmFtZSI6IiIsImFzc2lnbmVlRW1haWwiOiIiLCJsaWNlbnNlUmVzdHJpY3Rpb24iOiIiLCJjaGVja0NvbmN1cnJlbnRVc2UiOmZhbHNlLCJwcm9kdWN0cyI6W3siY29kZSI6IkdPIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSUzAiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IkRNIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJDTCIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUlNVIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSU0MiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUEMiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IkRTIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSRCIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUUEiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlJDIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSU0YiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiUk0iLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IklJIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJEUE4iLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IkRCIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJEQyIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjpmYWxzZX0seyJjb2RlIjoiUFMiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlJSIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOmZhbHNlfSx7ImNvZGUiOiJSU1YiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6dHJ1ZX0seyJjb2RlIjoiV1MiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlBTSSIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQQ1dNUCIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJBSUwiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6ZmFsc2V9LHsiY29kZSI6IlJTIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IkRQIiwicGFpZFVwVG8iOiIyMDI1LTAzLTExIiwiZXh0ZW5kZWQiOnRydWV9LHsiY29kZSI6IlBEQiIsInBhaWRVcFRvIjoiMjAyNS0wMy0xMSIsImV4dGVuZGVkIjp0cnVlfSx7ImNvZGUiOiJQUlIiLCJwYWlkVXBUbyI6IjIwMjUtMDMtMTEiLCJleHRlbmRlZCI6dHJ1ZX1dLCJtZXRhZGF0YSI6IjAyMjAyNTAyMTJQUEFNMDA2MDA1QSIsImhhc2giOiI2NjM5MzE5MS8wOjc2MDEyODIxNCIsImdyYWNlUGVyaW9kRGF5cyI6NywiYXV0b1Byb2xvbmdhdGVkIjpmYWxzZSwiaXNBdXRvUHJvbG9uZ2F0ZWQiOmZhbHNlLCJ0cmlhbCI6ZmFsc2UsImFpQWxsb3dlZCI6dHJ1ZX0=-HhxiOkGKCb3ymp+pacIhMlNE/54EGAr0LE2Qu7IBbQFZjk144sEBxR8JB3ZXyp6L1S5ruxTVpORLqQXLBrfH5m3Y7llwnp0DXPrvFLmPnYU1GnROYxpdGWZO3Tl8DpYu4uFQEY1AWkZXcy4TonPGkChktneR/7Z04tKapCFMbomkuEGb8d73c3Sviv40j1QbhKRaBlGhUUFcto9oJPl7cUf/i8Tz9FQgqdZvxpWtFgK7IeDh2N2b5AJvKH6UJadPjLYeI55r6aRNnvdyQHRTUmWvvSRO3CxNGdEeOp5YPR7pdUStvigYD+0Ww6lUuv4BB5BRY26ale5djLaBHoL7BA==-MIIETDCCAjSgAwIBAgIBETANBgkqhkiG9w0BAQsFADAYMRYwFAYDVQQDDA1KZXRQcm9maWxlIENBMB4XDTI0MDkyMDEyMTEyN1oXDTI2MDkyMjEyMTEyN1owHzEdMBsGA1UEAwwUcHJvZDJ5LWZyb20tMjAyNDA5MjAwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC7SH/XcUoMwkDi8JJPzXWWHWFdOZdrP2Dqkz2W8iUi650cwz2vdPEd0tMzosLAj7ifkFEHUyiuEcL//q9d9Op7ZsV23lpPXX8tFMLFwugoQ9D8jDLT/XP9pp/YukWkKF5jpNbaCvsVQkDdYkArBkYvhH3aN4v9BkEsXahfgLLOPe4IG2FDJNf9R4to9V1vt+m2UVJB0zV4a/sVMKUZLgqKmKKKOKoLrE3OjBlZlb+Q0z2N5dsW0hDEVRFGmBUAbHN/mp44MMMvEIFKfoLIGpgic92P2O6uFh75PI7mcultL6yuR48ajErx8CjjQEGOSnoq/8hD+yVE+6GW2gJa2CPvAgMBAAGjgZkwgZYwCQYDVR0TBAIwADAdBgNVHQ4EFgQUb5NERj05GyNerQ/Mjm9XH8HXtLIwSAYDVR0jBEEwP4AUo562SGdCEjZBvW3gubSgUouX8bOhHKQaMBgxFjAUBgNVBAMMDUpldFByb2ZpbGUgQ0GCCQDSbLGDsoN54TATBgNVHSUEDDAKBggrBgEFBQcDATALBgNVHQ8EBAMCBaAwDQYJKoZIhvcNAQELBQADggIBALq6VfVUjmPI3N/w0RYoPGFYUieCfRO0zVvD1VYHDWsN3F9buVsdudhxEsUb8t7qZPkDKTOB6DB+apgt2ZdKwok8S0pwifwLfjHAhO3b+LUQaz/VmKQW8gTOS5kTVcpM0BY7UPF8cRBqxMsdUfm5ejYk93lBRPBAqntznDY+DNc9aXOldFiACyutB1/AIh7ikUYPbpEIPZirPdAahroVvfp2tr4BHgCrk9z0dVi0tk8AHE5t7Vk4OOaQRJzy3lST4Vv6Mc0+0z8lNa+Sc3SVL8CrRtnTAs7YpD4fpI5AFDtchNrgFalX+BZ9GLu4FDsshVI4neqV5Jd5zwWPnwRuKLxsCO/PB6wiBKzdapQBG+P9z74dQ0junol+tqxd7vUV/MFsR3VwVMTndyapIS+fMoe+ZR5g+y44R8C7fXyVE/geg+JXQKvRwS0C5UpnS5FcGk+61b0e4U7pwO20RlwhEFHLSaP61p2TaVGo/TQtT/fWmrtV+HegAv9P3X3Se+xIVtJzQsk8QrB/w52IB3FKiAKl/KRn1egbMIs4uoNAkqNZ9Ih2P1NpiQnONFmkiAgeynJ+0FPykKdJQbV3Mx44jkaHIif4aFReTsYX1WUBNu/QerZRjn4FVSHRaZPSR5Oi82Wz0Nj7IY9ocTpLnXFrqkb/Kt3S6B9s2Kol3Lr1ElYA
+</code></pre>
+<h3 id="start-pycharm-like-vs-code"><a class="header" href="#start-pycharm-like-vs-code">Start Pycharm like VS-Code</a></h3>
+<h4 id="modify-pycharmsh"><a class="header" href="#modify-pycharmsh">Modify pycharm.sh</a></h4>
+<p>Generally pycharm.sh is located at <code>/pycharm/install/path/bin/pycharm.sh</code>.</p>
+<p>Add <code>&gt; /dev/null 2&gt;&amp;1 &amp;</code> to the end of the file. Make sure the file looks like this:</p>
+<pre><code class="language-bash">  com.intellij.idea.Main \
+  "$@" \
+  &gt; /dev/null 2&gt;&amp;1 &amp;
+</code></pre>
+<h4 id="create-a-link-file"><a class="header" href="#create-a-link-file">Create a link file</a></h4>
+<pre><code class="language-bash">sudo ln -sf /pycharm/install/path/bin/pycharm.sh /usr/local/bin/pycharm
+</code></pre>
+<p>Then, you can start Pycharm by typing <code>pycharm</code> in the terminal.</p>
+<pre><code class="language-bash">knight@Lenovo:~/workspace/game_of_thrones$ pycharm .
+knight@Lenovo:~/workspace/game_of_thrones$
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="tmux"><a class="header" href="#tmux">Tmux</a></h1>
+<h3 id="installation-10"><a class="header" href="#installation-10">Installation</a></h3>
+<p><a href="https://github.com/tmux/tmux">https://github.com/tmux/tmux</a></p>
+<pre><code class="language-bash">sudo apt install -y tmux
+</code></pre>
+<h3 id="install-tmux-plugins-manager"><a class="header" href="#install-tmux-plugins-manager">Install Tmux Plugins Manager</a></h3>
+<p><a href="https://github.com/tmux-plugins/tpm">https://github.com/tmux-plugins/tpm</a></p>
+<pre><code class="language-bash">git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+</code></pre>
+<h3 id="create-tmuxconf-file"><a class="header" href="#create-tmuxconf-file">Create .tmux.conf File</a></h3>
+<p>This is my personal tmux config file.</p>
+<pre><code class="language-bash">### tmux.conf
+
+# system setting
+set -g default-terminal "tmux-256color"
+set -g mouse on
+
+# rebind prefix key
+unbind C-b
+set -g prefix 'C-d'
+set -g mode-keys vi
+
+# reload configuration
+# bind R source-file ~/.tmux.conf \; display '~/.tmux.conf Reloaded!'
+
+# windows behaver
+set -g base-index 1
+setw -g pane-base-index 1
+set -g renumber-windows on
+#setw -g automatic-rename on
+
+# display options
+set -g set-titles on
+set -g display-panes-time 2000
+
+# window navigation
+unbind n
+unbind p
+unbind x
+bind -n C-o previous-window
+bind -n C-p next-window
+bind -n C-n new-window -c "#{pane_current_path}"
+bind -n C-q kill-pane
+
+# split windows
+unbind %
+unbind \"
+bind l split-window -h -c "#{pane_current_path}"
+bind k split-window -v -c "#{pane_current_path}"
+bind h split-window -hb -c "#{pane_current_path}"
+bind j split-window -vb -c "#{pane_current_path}"
+
+# windows size adjusting
+bind -n M-f resize-pane -Z
+bind -n M-j resize-pane -U 5
+bind -n M-k resize-pane -D 5
+bind -n M-h resize-pane -L 5
+bind -n M-l resize-pane -R 5
+
+# cursor-moving setting
+unbind o
+unbind \;
+bind -T root C-Left select-pane -L
+bind -T root C-Right select-pane -R
+bind -T root C-Up select-pane -U
+bind -T root C-Down select-pane -D
+
+# pane-moving setting
+bind &lt; swap-pane -U
+bind &gt; swap-pane -D
+
+# tmux plugins
+run '~/.tmux/plugins/tmux/catppuccin.tmux'
+set -g @catppuccin_flavor 'frappe'    # latte | frappe | mocha | macchiato
+set -g @catppuccin_window_status_style "rounded"    # basic | rounded | slanted | custom | none
+set -g @catppuccin_window_number_color "#{@thm_fg}"
+set -g @catppuccin_window_current_number_color "#{@thm_green}"
+
+set -g status-left ""
+set -g status-right ""
+set -g status-right-length 100
+
+set -g @yank_action 'copy-pipe' # or 'copy-pipe-and-cancel' for the default
+
+set -g status-right "#{net_speed} "
+set -g @net_speed_interfaces "enp2s0 wlp3s0"
+set -g @net_speed_format "%8s  %8s "
+
+set -agF status-right "#{E:@catppuccin_status_cpu}"
+
+set -agF status-right "#{E:@catppuccin_status_weather}"
+set-option -g @tmux-weather-interval 10
+set -gq @catppuccin_weather_color "#ea999c"
+set-option -g @tmux-weather-location "BeiJing"
+
+set -ag status-right "#{E:@catppuccin_status_date_time}"
+set -g "@catppuccin_date_time_text" " %m-%d %H:%M"
+
+# set -ag status-right "#{E:@catppuccin_status_session}"
+# set -ag status-right "#{E:@catppuccin_status_application}"
+# set -ag status-right "#{E:@catppuccin_status_gitmux}"
+# set -ag status-right "#{E:@catppuccin_status_load}"
+# set -ag status-right "#{E:@catppuccin_status_pomodoro_plus}"
+# set -ag status-right "#{E:@catppuccin_status_kube}"
+# set -ag status-right "#{E:@catppuccin_status_up_time}"
+# set -ag status-right "#{E:@catppuccin_status_user}"
+# set -g status-right '#[fg=#{@thm_crust},bg=#{@thm_teal}] 󰍣 : #S '
+
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-yank'
+set -g @plugin 'tmux-plugins/tmux-sensible'
+set -g @plugin 'tmux-plugins/tmux-cpu'
+set -g @plugin 'tmux-plugins/tmux-net-speed'
+set -g @plugin 'xamut/tmux-weather'
+set -g @plugin 'catppuccin/tmux#v2.1.1'
+run '~/.tmux/plugins/tpm/tpm'
+</code></pre>
+<h3 id="install-nerd-font"><a class="header" href="#install-nerd-font">Install Nerd Font</a></h3>
+<p><a href="https://github.com/ryanoasis/nerd-fonts">Nerd Github Repo</a></p>
+<ol>
+<li>Clone Repo to install</li>
+</ol>
+<p>Get script of install Nerd fonts. After many attempts, Font <code>Meslo</code> performed best.</p>
+<pre><code class="language-bash">git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git &amp;&amp; \
+cd nerd-fonts/ &amp;&amp; \
+./install.sh Meslo
+</code></pre>
+<ol start="2">
+<li>Use script to install <strong>(Recommend)</strong></li>
+</ol>
+<pre><code class="language-bash">wget https://raw.githubusercontent.com/mcarvalho1/Simple-NerdFonts-Downloader/c7854dae2153aa199277926bed4b992488b65a3d/nf_downloader.sh
+</code></pre>
+<blockquote>
+<p>nf_downloader.sh default will install all fonts, remember to modify it. The fonts will save in <code>~/.local/share/fonts</code>.</p>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="create-windterm-desktop-entry"><a class="header" href="#create-windterm-desktop-entry">Create WindTerm Desktop Entry</a></h1>
+<pre><code class="language-ini">[Desktop Entry]
+Name=WindTerm
+Comment=A professional cross-platform SSH/Sftp/Shell/Telnet/Serial terminal
+GenericName=Connect Client
+Exec=/home/knight/windTerm/WindTerm_2.6.1/WindTerm
+Type=Application
+Icon=/home/knight/windTerm/WindTerm_2.6.1/windterm.png
+StartupNotify=false
+StartupWMClass=Code
+Categories=Application;Development
+Actions=new-empty-window
+Keywords=windterm
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Exec=/home/knight/windTerm/WindTerm_2.6.1/WindTerm
+Icon=/home/knight/windTerm/WindTerm_2.6.1/windterm.png
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="asciiquarium-command-install"><a class="header" href="#asciiquarium-command-install">Asciiquarium Command Install</a></h1>
+<h4 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h4>
+<pre><code class="language-bash">sudo apt-get install -y perl libcurses-perl wget
+wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
+wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
+tar -xf Term-Animation-2.4.tar.gz
+tar -xf asciiquarium.tar.gz
+cd Term-Animation-2.4/ &amp;&amp; perl Makefile.PL &amp;&amp; make &amp;&amp; sudo make install
+cd ../asciiquarium_1.1/
+cp asciiquarium /usr/local/bin
+sudo chmod +x /usr/local/bin/asciiquarium
+asciiquarium
+</code></pre>
+<h4 id="centos"><a class="header" href="#centos">Centos</a></h4>
+<pre><code class="language-bash">cd /opt
+yum install -y wget
+wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
+tar xf Term-Animation-2.4.tar.gz
+yum install perl-Curses.x86_64  -y
+yum install perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker  -y
+cd /opt/Term-Animation-2.4/  &amp;&amp; perl Makefile.PL
+make
+make install
+cd /opt
+wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
+tar -zxvf asciiquarium.tar.gz
+cd asciiquarium_1.1/
+cp asciiquarium /usr/local/bin
+chmod +x /usr/local/bin/asciiquarium
+asciiquarium
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="使用-frp"><a class="header" href="#使用-frp">使用 frp</a></h1>
+<h4 id="project-official-website"><a class="header" href="#project-official-website">Project Official Website</a></h4>
+<p><a href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
+<p><a href="https://gofrp.org/zh-cn/">中文文档</a></p>
+<h3 id="ssh-service"><a class="header" href="#ssh-service">SSH Service</a></h3>
+<h4 id="the-server-configuration"><a class="header" href="#the-server-configuration">The server configuration</a></h4>
+<pre><code class="language-bash">vim frps.toml
+</code></pre>
+<pre><code class="language-bash">bindPort = 5432  # frp 建立通讯的端口
+auth.token = "123456"
+</code></pre>
+<h4 id="the-client-configuration"><a class="header" href="#the-client-configuration">The Client configuration</a></h4>
+<pre><code class="language-bash">vim frpc.toml
+</code></pre>
+<pre><code class="language-bash">serverAddr = "123.00.00.01"
+serverPort = 5432   # frp 建立通讯的端口
+auth.token = "123456"
+
+[[proxies]]
+name = "ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 22
+remotePort = 10086   # frp 映射的端口，VPS需要打开的端口
+</code></pre>
+<h3 id="ftp-service"><a class="header" href="#ftp-service">FTP Service</a></h3>
+<h4 id="the-server-configuration-1"><a class="header" href="#the-server-configuration-1">The Server configuration</a></h4>
+<pre><code class="language-bash">vim frps.toml
+</code></pre>
+<pre><code class="language-bash">bindPort = 5432
+auth.token = "123456"
+</code></pre>
+<h4 id="the-client-configuration-1"><a class="header" href="#the-client-configuration-1">The Client configuration</a></h4>
+<pre><code class="language-bash">vim frpc.toml
+</code></pre>
+<pre><code class="language-bash">serverAddr = "123.00.00.01"
+serverPort = 5432
+auth.token = "123456"
+
+[[proxies]]
+name = "test_static_file"
+type = "tcp"
+localPort = 21
+remotePort = 10086
+
+[proxies.plugin]
+type = "static_file"
+
+# 本地文件目录，对外提供访问
+localPath = "/your/local/path"
+
+# URL 中的前缀，将被去除，保留的内容即为要访问的文件路径
+stripPrefix = "static"
+httpUser = "user"
+httpPassword = "password"
+</code></pre>
+<h4 id="systemctl-configuration"><a class="header" href="#systemctl-configuration">systemctl Configuration</a></h4>
+<ul>
+<li>frps | Server configuration</li>
+</ul>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/frps.service
+</code></pre>
+<pre><code class="language-ini">[Unit]
+# 服务名称，可自定义
+Description = frp server
+After = network.target syslog.target
+Wants = network.target
+[Service]
+Type = simple
+# 启动frps的命令，需修改为您的frps的安装路径
+ExecStart = /root/frp/frps -c /root/frp/config.toml
+[Install]
+WantedBy = multi-user.target
+</code></pre>
+<p>reload daemon and start service</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl enable --now frps
+</code></pre>
+<ul>
+<li>frpc | Client configuration</li>
+</ul>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/frpc.service
+</code></pre>
+<pre><code class="language-ini">[Unit]
+Description=FRPC Client Service
+After=network.target
+
+[Service]
+User=knight
+Group=knight
+Type=simple
+ExecStart=/home/knight/frp/frpc -c /home/knight/frp/config.toml
+Restart=on-failure
+RestartSec=5s
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=frpc
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>reload daemon and start service</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl enable --now frpc
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="entertainment"><a class="header" href="#entertainment">Entertainment</a></h1>
+<h3 id="install-kodi"><a class="header" href="#install-kodi">Install KODI</a></h3>
+<p><a href="https://kodi.tv/download/">https://kodi.tv/download/</a></p>
+<pre><code class="language-bash">sudo apt install software-properties-common
+sudo add-apt-repository -y ppa:team-xbmc/ppa
+sudo apt install kodi
+</code></pre>
+<h3 id="install-tmm"><a class="header" href="#install-tmm">Install TMM</a></h3>
+<p><a href="https://www.tinymediamanager.org/download/">https://www.tinymediamanager.org/download/</a></p>
+<h3 id="qbittorrent-enhanced"><a class="header" href="#qbittorrent-enhanced">qBittorrent Enhanced</a></h3>
+<p><a href="https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases">https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases </a></p>
+<h3 id="lx-music"><a class="header" href="#lx-music">LX Music</a></h3>
+<p><a href="https://github.com/lyswhut/lx-music-desktop/releases">https://github.com/lyswhut/lx-music-desktop/releases</a></p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="all-kinds-of-proxy-setting"><a class="header" href="#all-kinds-of-proxy-setting">All Kinds of Proxy Setting</a></h1>
+<p>In china, you can't access to the real Internet directly. So you have to use some proxy in some software.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="configure-system-proxy"><a class="header" href="#configure-system-proxy">Configure System Proxy</a></h1>
+<h4 id="edit-a-script"><a class="header" href="#edit-a-script">Edit a Script</a></h4>
+<pre><code class="language-bash">sudo vim  /etc/profile.d/proxy.sh
+</code></pre>
+<pre><code class="language-sh"># set proxy config via profie.d - should apply for all users
+export http_proxy="http://10.10.1.10:8080/"
+export https_proxy="http://10.10.1.10:8080/"
+export ftp_proxy="http://10.10.1.10:8080/"
+export no_proxy="127.0.0.1,localhost"
+# For curl
+export HTTP_PROXY="http://10.10.1.10:8080/"
+export HTTPS_PROXY="http://10.10.1.10:8080/"
+export FTP_PROXY="http://10.10.1.10:8080/"
+export NO_PROXY="127.0.0.1,localhost"
+</code></pre>
+<h4 id="add-exec-permission-1"><a class="header" href="#add-exec-permission-1">Add Exec Permission</a></h4>
+<pre><code class="language-bash">sudo chmod +x  /etc/profile.d/proxy.sh
+</code></pre>
+<h4 id="apply-setting"><a class="header" href="#apply-setting">Apply Setting</a></h4>
+<pre><code class="language-bash">source /etc/profile.d/proxy.sh
+</code></pre>
+<h4 id="confirm-env"><a class="header" href="#confirm-env">Confirm ENV</a></h4>
+<pre><code class="language-bash">env | grep -i proxy
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="setting-docker-mirror-acceleration"><a class="header" href="#setting-docker-mirror-acceleration">Setting Docker Mirror Acceleration</a></h1>
+<h4 id="edit-conf-file-1"><a class="header" href="#edit-conf-file-1">Edit Conf File</a></h4>
+<pre><code class="language-bash">sudo vim /etc/docker/daemon.json
+</code></pre>
+<h4 id="add-lines"><a class="header" href="#add-lines">Add Lines</a></h4>
+<pre><code class="language-bash">{
+    "registry-mirrors": [
+        "https://docker.1ms.run",
+        "https://docker.xuanyuan.me",
+        "https://docker.wanpeng.life",
+        "https://docker.imgdb.de"
+    ]
+}
+</code></pre>
+<h4 id="reload-daemon--restart-docker"><a class="header" href="#reload-daemon--restart-docker">Reload Daemon &amp; Restart Docker</a></h4>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre>
+<h1 id="configure-docker-proxy"><a class="header" href="#configure-docker-proxy">Configure Docker Proxy</a></h1>
+<h4 id="edit-conf-file-2"><a class="header" href="#edit-conf-file-2">Edit Conf File</a></h4>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
+</code></pre>
+<h4 id="add-lines-1"><a class="header" href="#add-lines-1">Add Lines</a></h4>
+<pre><code class="language-ini">[Service]
+Environment="HTTP_PROXY=http://127.0.0.1:7890"
+Environment="HTTPS_PROXY=http://127.0.0.1:7890"
+</code></pre>
+<h4 id="reload-daemon--restart-docker-1"><a class="header" href="#reload-daemon--restart-docker-1">Reload Daemon &amp; Restart Docker</a></h4>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre>
+<h1 id="configure-container-proxy"><a class="header" href="#configure-container-proxy">Configure Container Proxy</a></h1>
+<h4 id="edit-conf-file-3"><a class="header" href="#edit-conf-file-3">Edit Conf File</a></h4>
+<pre><code class="language-bash">vim ~/.docker/config.json
+</code></pre>
+<h4 id="add-lines-2"><a class="header" href="#add-lines-2">Add Lines</a></h4>
+<pre><code class="language-bash">{ 
+  "proxies":
+    { 
+      "default": 
+        { 
+          "httpProxy": "http://172.17.0.1:7890", 
+          "httpsProxy": "https://172.17.0.1:7890", 
+          "noProxy": "*.&lt;domain&gt;,127.0.0.0/8" 
+        } 
+    } 
+}
+</code></pre>
+<h4 id="reload-daemon--restart-docker-2"><a class="header" href="#reload-daemon--restart-docker-2">Reload Daemon &amp; Restart Docker</a></h4>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="configure-k3s-proxy"><a class="header" href="#configure-k3s-proxy">Configure K3S Proxy</a></h1>
+<ul>
+<li>
+<p><code>/etc/systemd/system/k3s.service.env</code></p>
+</li>
+<li>
+<p><code>/etc/systemd/system/k3s-agent.service.env</code></p>
+</li>
+</ul>
+<pre><code class="language-bash">HTTP_PROXY=http://your-proxy.example.com:8888
+HTTPS_PROXY=http://your-proxy.example.com:8888
+NO_PROXY=127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
 </code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="funny-docker-projects"><a class="header" href="#funny-docker-projects">Funny Docker Projects</a></h1>
 <p>Collected some funny docker projects here. If you want to try, confirm you install docker and docker-compose first.</p>
