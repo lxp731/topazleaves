@@ -25,4 +25,4 @@ volumes:
   open-webui:
 ```
 
-> Docker deploy open-webui needs to configure [ollama Service Discovery](./ollama_services_found.md), or ollama can't discern local models.
+> Docker deploy open-webui needs to configure [ollama Service Discovery](../ollama_services_found.md), or ollama can't discern local models.
