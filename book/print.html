@@ -2508,16 +2508,47 @@ sudo apt install kodi
 <h4 id="edit-a-script"><a class="header" href="#edit-a-script">Edit a Script</a></h4>
 <pre><code class="language-bash">sudo vim  /etc/profile.d/proxy.sh
 </code></pre>
-<pre><code class="language-sh"># set proxy config via profie.d - should apply for all users
-export http_proxy="http://10.10.1.10:8080/"
-export https_proxy="http://10.10.1.10:8080/"
-export ftp_proxy="http://10.10.1.10:8080/"
-export no_proxy="127.0.0.1,localhost"
-# For curl
-export HTTP_PROXY="http://10.10.1.10:8080/"
-export HTTPS_PROXY="http://10.10.1.10:8080/"
-export FTP_PROXY="http://10.10.1.10:8080/"
-export NO_PROXY="127.0.0.1,localhost"
+<pre><code class="language-sh">#!/bin/bash
+
+set_proxy() {
+    # set proxy config via profile.d - should apply for all users
+    export http_proxy="http://127.0.0.1:7890/"
+    export https_proxy="http://127.0.0.1:7890/"
+    export ftp_proxy="http://127.0.0.1:7890/"
+    export no_proxy="127.0.0.1,localhost"
+    # For curl
+    export HTTP_PROXY="http://127.0.0.1:7890/"
+    export HTTPS_PROXY="http://127.0.0.1:7890/"
+    export FTP_PROXY="http://127.0.0.1:7890/"
+    export NO_PROXY="127.0.0.1,localhost"
+    echo "Proxy has been set."
+}
+
+unset_proxy() {
+    # unset proxy config
+    unset http_proxy
+    unset https_proxy
+    unset ftp_proxy
+    unset no_proxy
+    # For curl
+    unset HTTP_PROXY
+    unset HTTPS_PROXY
+    unset FTP_PROXY
+    unset NO_PROXY
+    echo "Proxy has been unset."
+}
+
+case $1 in
+    set)
+        set_proxy
+        ;;
+    unset)
+        unset_proxy
+        ;;
+    *)
+        echo "Usage: source $0 {set|unset}"
+        ;;
+esac
 </code></pre>
 <h4 id="add-exec-permission-1"><a class="header" href="#add-exec-permission-1">Add Exec Permission</a></h4>
 <pre><code class="language-bash">sudo chmod +x  /etc/profile.d/proxy.sh
