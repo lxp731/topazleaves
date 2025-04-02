@@ -72,6 +72,7 @@ exit
 5. Install google-pinyin input method 
 
 ```bash
+sudo pacman -S archlinuxcn-keyring
 sudo pacman -S fcitx5-im 
 sudo pacman -S fcitx5-chinese-addons
 sudo pacman -S fcitx5-qt fctitx5-gtk fcitx5-lua
