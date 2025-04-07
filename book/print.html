@@ -499,6 +499,21 @@ sudo systemctl restart ollama
     auto-venv
 )
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="custom-plugins-1"><a class="header" href="#custom-plugins-1">Custom Plugins</a></h1>
+<h3 id="auto-activate-virtual-environments-in-python-projects-1"><a class="header" href="#auto-activate-virtual-environments-in-python-projects-1">Auto-activate Virtual Environments in Python Projects</a></h3>
+<ol>
+<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/lxp731/fzf-hotkey $ZSH_CUSTOM/plugins/fzf-hotkey
+</code></pre>
+<ol start="2">
+<li>Add <code>fzf-hotkey</code> to the plugins array in your <code>~/.zshrc</code> file</li>
+</ol>
+<pre><code class="language-bash">plugins=(
+    ...
+    fzf-hotkey
+)
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="fzf"><a class="header" href="#fzf">FZF</a></h1>
 <h3 id="official-website"><a class="header" href="#official-website">Official Website</a></h3>
 <ul>
