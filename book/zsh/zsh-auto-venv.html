@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>custom themes - TOPAZ LEAF</title>
+        <title>custom plugins - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -155,23 +155,27 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="custom-themes"><a class="header" href="#custom-themes">custom themes</a></h1>
+                        <h1 id="custom-plugins"><a class="header" href="#custom-plugins">Custom Plugins</a></h1>
+<h3 id="auto-activate-virtual-environments-in-python-projects"><a class="header" href="#auto-activate-virtual-environments-in-python-projects">Auto-activate Virtual Environments in Python Projects</a></h3>
 <ol>
-<li>Clone this repo into <code>${ZSH_CUSTMO}/themes</code></li>
+<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
 </ol>
-<pre><code class="language-bash">git clone --depth 1 https://github.com/lxp731/zsh-custom-themes.git ${ZSH_CUSTOM}/themes
+<pre><code class="language-bash">git clone https://github.com/lxp731/auto-venv $ZSH_CUSTOM/plugins/auto-venv
 </code></pre>
 <ol start="2">
-<li>Modify the following to your <code>~/.zshrc</code>:</li>
+<li>Add <code>auto-venv</code> to the plugins array in your <code>~/.zshrc</code> file</li>
 </ol>
-<pre><code class="language-bash">ZSH_THEME="awesome"
+<pre><code class="language-bash">plugins=(
+    ...
+    auto-venv
+)
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../zsh/zsh-custom-plugins.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../zsh/zsh-ollama-completion.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
@@ -185,7 +189,7 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../zsh/zsh-custom-plugins.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../zsh/zsh-ollama-completion.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
