@@ -6,6 +6,8 @@
 
 - [SSH config](./vscode_remote_usage.md)
 
+- [Linux 2FA Auth](./linux_2FA.md)
+
 - [Arch linux Init](./arch_linux_init.md)
 
 - [Keyboard Layout](./keyboard_layout.md)

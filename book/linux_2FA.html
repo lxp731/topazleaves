@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>SSH config - TOPAZ LEAF</title>
+        <title>Linux 2FA Auth - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -155,34 +155,158 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="vs-code-control-remote-hosts"><a class="header" href="#vs-code-control-remote-hosts">VS-Code Control Remote Hosts</a></h1>
-<h4 id="configure"><a class="header" href="#configure">Configure</a></h4>
-<pre><code class="language-bash">ssh-keygen -t rsa
-
-ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.1
+                        <h1 id="linux-2fa-authentication"><a class="header" href="#linux-2fa-authentication">Linux 2FA Authentication</a></h1>
+<h2 id="prepare"><a class="header" href="#prepare">Prepare</a></h2>
+<ol>
+<li>
+<p>Install <code>Google Authenticator</code> or <code>Microsoft Authenticator</code> in your telephone.</p>
+</li>
+<li>
+<p>Install <code>libpam-google-authenticator</code> in your Linux.</p>
+</li>
+</ol>
+<p>For Debian/Ubuntu:</p>
+<pre><code class="language-bash">sudo apt-get install libpam-google-authenticator -y
 </code></pre>
-<h4 id="add-ssh-config"><a class="header" href="#add-ssh-config">Add ssh config</a></h4>
-<pre><code class="language-bash">vim ~/.ssh/config
-
-# 添加以下内容
-Host ali
-  HostName 192.168.1.1
-  User root
-  IdentityFile ~/.ssh/id_rsa
-  Port 22
+<p>For CentOS/RHEL:</p>
+<pre><code class="language-bash">sudo yum install epel-release -y
+sudo yum install libpam-google-authenticator -y
 </code></pre>
-<h4 id="install-vs-code-plugin"><a class="header" href="#install-vs-code-plugin">Install VS-Code Plugin</a></h4>
-<p>点击VSCode左下角图标，形似“&gt;&lt;”，点击会自动安装。</p>
+<h2 id="configure"><a class="header" href="#configure">Configure</a></h2>
+<ol>
+<li>Run <code>google-authenticator</code> in your Linux.</li>
+</ol>
+<pre><code class="language-bash">google-authenticator
+</code></pre>
+<ol start="2">
+<li>Configure the settings.</li>
+</ol>
+<ul>
+<li>
+<p>Do you want authentication tokens to be time-based (y/n)  <strong>y</strong></p>
+</li>
+<li>
+<p>Then scan the QR code into your phone:</p>
+</li>
+<li>
+<p>Enter code from app (-1 to skip):  <strong>-1</strong></p>
+</li>
+<li>
+<p>Do you want me to update your "/home/auther/.google_authenticator" file? (y/n) y</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>In this file you will find the secret key for your authenticator. When your tokens are lost, you can use these token to login in emergency.</strong></p>
+</blockquote>
+<ul>
+<li>Do you want to disallow multiple uses of the same authentication
+token? This restricts you to one login about every 30s, but it increases
+your chances to notice or even prevent man-in-the-middle attacks (y/n) <strong>y</strong></li>
+</ul>
+<blockquote>
+<p>您是否要禁止多次使用同一个身份验证令牌？这会限制您每 30 秒登录一次，但这会增加您注意到甚至阻止中间人攻击的机会 (y/n)</p>
+</blockquote>
+<ul>
+<li>By default, a new token is generated every 30 seconds by the mobile app.
+In order to compensate for possible time-skew between the client and the server,
+we allow an extra token before and after the current time. This allows for a
+time skew of up to 30 seconds between authentication server and client. If you
+experience problems with poor time synchronization, you can increase the window
+from its default size of 3 permitted codes (one previous code, the current
+code, the next code) to 17 permitted codes (the 8 previous codes, the current
+code, and the 8 next codes). This will permit for a time skew of up to 4 minutes
+between client and server.
+Do you want to do so? (y/n) <strong>n</strong></li>
+</ul>
+<blockquote>
+<p>默认情况下，移动应用程序每 30 秒生成一个新令牌。
+为了补偿客户端和服务器之间可能出现的时间偏差，
+我们允许在当前时间之前和之后生成一个额外的令牌。这允许身份验证服务器和客户端之间的时间偏差最多为 30 秒。如果您遇到时间同步不佳的问题，您可以将窗口从默认的 3 个允许代码（一个前一个代码、当前代码、下一个代码）增加到 17 个允许代码（8 个前一个代码、当前代码和 8 个下一个代码）。这将允许客户端和服务器之间的时间偏差最多为 4 分钟。
+你想这样做吗？（是/否）</p>
+</blockquote>
+<ul>
+<li>If the computer that you are logging into isn't hardened against brute-force
+login attempts, you can enable rate-limiting for the authentication module.
+By default, this limits attackers to no more than 3 login attempts every 30s.
+Do you want to enable rate-limiting? (y/n) <strong>y</strong></li>
+</ul>
+<blockquote>
+<p>如果您登录的计算机没有针对暴力登录尝试进行强化，您可以为身份验证模块启用速率限制。
+默认情况下，这会将攻击者的登录尝试次数限制为每 30 秒不超过 3 次。
+是否要启用速率限制？（是/否）</p>
+</blockquote>
+<h2 id="modify-the-configuration-file"><a class="header" href="#modify-the-configuration-file">Modify the configuration file</a></h2>
+<ol>
+<li>Edit the configuration file of PAM, enable 2FA.</li>
+</ol>
+<pre><code class="language-bash">sudo vim /etc/pam.d/sshd
+</code></pre>
+<p>Add the following lines to the top of the file.</p>
+<pre><code class="language-bash">auth required pam_google_authenticator.so
+</code></pre>
+<ol start="2">
+<li>Edit the configuration file of SSH, enable 2FA.</li>
+</ol>
+<pre><code class="language-bash">sudo vim /etc/ssh/sshd_config
+</code></pre>
+<ul>
+<li>ChallengeResponseAuthentication</li>
+</ul>
+<pre><code class="language-bash">ChallengeResponseAuthentication yes
+</code></pre>
+<blockquote>
+<p>ChallengeResponseAuthentication 是 SSH 服务端（sshd_config）的一个配置选项，用于控制是否启用 质询-响应认证（Challenge-Response Authentication） 机制。
+它允许服务器向客户端发送一个或多个“质询”（例如文本提示、验证码请求等），客户端需正确响应才能完成认证。</p>
+</blockquote>
+<ul>
+<li>UsePAM</li>
+</ul>
+<pre><code class="language-bash">UsePAM yes
+</code></pre>
+<blockquote>
+<p>若 ChallengeResponseAuthentication yes，必须同时启用 UsePAM yes，否则质询无法通过 PAM 模块传递。</p>
+</blockquote>
+<ul>
+<li>KbdInteractiveAuthentication</li>
+</ul>
+<pre><code class="language-bash">KbdInteractiveAuthentication yes
+</code></pre>
+<blockquote>
+<p>KbdInteractiveAuthentication：控制是否启用键盘交互认证（UI 交互层）。</p>
+</blockquote>
+<ul>
+<li>AuthenticationMethods</li>
+</ul>
+<pre><code class="language-bash">AuthenticationMethods password keyboard-interactive
+</code></pre>
+<blockquote>
+<p>使用密码和验证码的方式进行登陆</p>
+</blockquote>
+<ol start="3">
+<li>Config overview</li>
+</ol>
+<pre><code class="language-bash">UsePAM yes
+KbdInteractiveAuthentication yes
+ChallengeResponseAuthentication yes
+PubkeyAuthentication yes
+PasswordAuthentication yes
+AuthenticationMethods password keyboard-interactive
+#PermitEmptyPasswords no
+</code></pre>
+<h2 id="restart-ssh"><a class="header" href="#restart-ssh">Restart SSH</a></h2>
+<pre><code class="language-bash">sudo sshd -t 
+sudo systemctl restart sshd
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="kns_usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="vscode_remote_usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="linux_2FA.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="arch_linux_init.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -192,11 +316,11 @@ Host ali
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="kns_usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="vscode_remote_usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="linux_2FA.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="arch_linux_init.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
