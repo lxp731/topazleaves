@@ -118,10 +118,10 @@ KbdInteractiveAuthentication yes
 * AuthenticationMethods
 
 ```bash
-AuthenticationMethods password keyboard-interactive
+AuthenticationMethods publickey password keyboard-interactive
 ```
 
-> 使用密码和验证码的方式进行登陆
+> 使用公钥、密码和验证码的方式进行登陆
 
 3. Config overview
 
@@ -131,7 +131,7 @@ KbdInteractiveAuthentication yes
 ChallengeResponseAuthentication yes
 PubkeyAuthentication yes
 PasswordAuthentication yes
-AuthenticationMethods password keyboard-interactive
+AuthenticationMethods publickey password keyboard-interactive
 #PermitEmptyPasswords no
 ```
 

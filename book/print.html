@@ -346,10 +346,10 @@ Do you want to enable rate-limiting? (y/n) <strong>y</strong></li>
 <ul>
 <li>AuthenticationMethods</li>
 </ul>
-<pre><code class="language-bash">AuthenticationMethods password keyboard-interactive
+<pre><code class="language-bash">AuthenticationMethods publickey password keyboard-interactive
 </code></pre>
 <blockquote>
-<p>使用密码和验证码的方式进行登陆</p>
+<p>使用公钥、密码和验证码的方式进行登陆</p>
 </blockquote>
 <ol start="3">
 <li>Config overview</li>
@@ -359,7 +359,7 @@ KbdInteractiveAuthentication yes
 ChallengeResponseAuthentication yes
 PubkeyAuthentication yes
 PasswordAuthentication yes
-AuthenticationMethods password keyboard-interactive
+AuthenticationMethods publickey password keyboard-interactive
 #PermitEmptyPasswords no
 </code></pre>
 <h2 id="restart-ssh"><a class="header" href="#restart-ssh">Restart SSH</a></h2>
