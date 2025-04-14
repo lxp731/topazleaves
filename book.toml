@@ -10,14 +10,10 @@ default-theme = "rust"
 preferred-dark-theme = "rust"
 git-repository-url = "https://github.com/lxp731/topazleaves.git"
 git-repository-icon = "fa-github"
+mathjax-support = true
 
 [output.html.fold]
 enable = true
 
 [preprocessor.plantuml]
 plantuml-cmd="/usr/bin/plantuml"
-
-[output.latex]
-latex    = true  # default = true
-pdf      = true  # default = false
-markdown = true  # default = false

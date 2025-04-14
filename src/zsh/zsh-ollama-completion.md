@@ -1,4 +1,4 @@
-# zsh-ollama-completion
+# Zsh-ollama-completion
 
 [https://github.com/Katrovsky/zsh-ollama-completion](https://github.com/Katrovsky/zsh-ollama-completion)
 

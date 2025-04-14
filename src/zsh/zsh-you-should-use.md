@@ -1,4 +1,4 @@
-# zsh-you-should-use
+# Zsh-you-should-use
 
 ### Installation
 

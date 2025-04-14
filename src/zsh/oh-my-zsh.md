@@ -1,4 +1,4 @@
-# zsh & oh-my-zsh
+# Zsh & Oh-my-zsh
 
 ### Git repo
 

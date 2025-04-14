@@ -1,4 +1,4 @@
-# NERDTree
+# NERD-Tree
 
 > Ref: [https://vimawesome.com/plugin/nerdtree-red](https://vimawesome.com/plugin/nerdtree-red)
 

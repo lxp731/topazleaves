@@ -1,4 +1,4 @@
-# zsh-autosuggestions
+# Zsh-autosuggestions
 
 [https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md)
 

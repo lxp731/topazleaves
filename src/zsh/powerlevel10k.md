@@ -1,4 +1,4 @@
-# powerlevel10K
+# Powerlevel10K
 
 [https://github.com/romkatv/powerlevel10k.git](https://github.com/romkatv/powerlevel10k.git)
 

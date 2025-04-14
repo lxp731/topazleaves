@@ -1,4 +1,4 @@
-# Custom Plugins
+# FZF Hotkey
 
 ### Auto-activate Virtual Environments in Python Projects
 

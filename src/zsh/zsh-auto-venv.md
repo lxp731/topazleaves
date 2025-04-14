@@ -1,4 +1,4 @@
-# Custom Plugins
+# Auto-Venv
 
 ### Auto-activate Virtual Environments in Python Projects
 
