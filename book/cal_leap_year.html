@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Math test - TOPAZ LEAF</title>
+        <title>Leap Years - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -157,16 +157,67 @@
 
                 <div id="content" class="content">
                     <main>
-                        <p>$$
-a = \frac{10463}{43200} = \frac{1}{4 + \frac{1}{7 + \frac{1}{1 + \frac{1}{3 + \frac{1}{5 + \frac{1}{64}}}}}} \approx 0.242199074
+                        <h1 id="leap-year"><a class="header" href="#leap-year">Leap Year</a></h1>
+<h2 id="为什么要设置闰年"><a class="header" href="#为什么要设置闰年">为什么要设置闰年</a></h2>
+<pre><code class="language-yaml">四年一闰
+百年不闰
+四百年又闰
+</code></pre>
+<p>$$
+回归年 = 365 天 5 小时 48 分 46 秒 \approx 365.2422(天)
+$$</p>
+<p>如果不加以调整，那么经过800年，差距为194天，夏天可以过新年：</p>
+<p>$$
+0.2422 \times 800 \ \approx 194(天)
+$$</p>
+<h2 id="如何吸收误差"><a class="header" href="#如何吸收误差">如何吸收误差</a></h2>
+<p>把这些差距转化为以天为单位：</p>
+<p>$$
+5 小时 48 分 46 秒 = a = \frac{10463}{43200} = \frac{1}{4 + \frac{1}{7 + \frac{1}{1 + \frac{1}{3 + \frac{1}{5 + \frac{1}{64}}}}}} \approx 0.242199074(天)
+$$</p>
+<p>由<code>a1</code>可知每4年加一天比较好一些, 故<code>四年一闰</code>。</p>
+<p>$$
+a_1 = \frac{1}{4} = 0.25(天)
+$$</p>
+<p>由<code>a2</code>可知每49年加7天比较好一些。</p>
+<p>$$
+a_2 = \frac{1}{4 + \frac{1}{7}}= \frac{7}{49} \approx 0.2413793(天)
+$$</p>
+<p>由<code>a3</code>可知每33年加8天比较好一些，那么99年就是24天，故百年不闰。</p>
+<p>$$
+a_3 = \frac{1}{4 + \frac{1}{7 + \frac{1}{1}}} = \frac{8}{33} \approx 0.2424242(天)
+$$</p>
+<p>由<code>a</code>的真实值可知，每43200年应该加10463天，但是按照100年加24天的逻辑来算，43200年才加了10368天。</p>
+<p>$$
+\frac{24}{100} \times 43200 = 10368(天)
+$$</p>
+<p>与真实值间差距为95天。</p>
+<p>$$
+10463 - 10368 = 95(天)
+$$</p>
+<p>因为大约40000年少加100天，所以，大约每400年又加1天，故四百年又闰。</p>
+<p>按照现在及的计算逻辑，在这43200年中，一共加的天数是：</p>
+<p>$$
+10368 + \frac{1}{400} \times 43200 = 10476(天)
+$$</p>
+<p>比实际多加了</p>
+<p>$$
+10476 - 10463 = 13(天)
+$$</p>
+<p>解决办法是每3323年减去一个闰年。</p>
+<p>$$
+\frac{43200}{13} \approx 3323.0769(年)
 $$</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="kns_usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
 
-                            <a rel="next prefetch" href="kns_usage.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="vscode_remote_usage.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -176,8 +227,11 @@ $$</p>
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="kns_usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
 
-                    <a rel="next prefetch" href="kns_usage.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="vscode_remote_usage.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

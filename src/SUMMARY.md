@@ -2,9 +2,9 @@
 
 # TOPAZ LEAF
 
-- [Math test](./cal_leap_year.md)
-
 - [kns Usage](./kns_usage.md)
+
+- [Leap Years](./cal_leap_year.md)
 
 - [SSH config](./vscode_remote_usage.md)
 
