@@ -25,19 +25,20 @@
         <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" href="highlight.css">
-        <link rel="stylesheet" href="tomorrow-night.css">
-        <link rel="stylesheet" href="ayu-highlight.css">
+        <link rel="stylesheet" id="highlight-css" href="highlight.css">
+        <link rel="stylesheet" id="tomorrow-night-css" href="tomorrow-night.css">
+        <link rel="stylesheet" id="ayu-highlight-css" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
 
         <!-- MathJax -->
         <script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-        <!-- Provide site root to javascript -->
+        <!-- Provide site root and default themes to javascript -->
         <script>
-            var path_to_root = "";
-            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "rust" : "rust";
+            const path_to_root = "";
+            const default_light_theme = "rust";
+            const default_dark_theme = "rust";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc.js"></script>
@@ -47,8 +48,8 @@
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                var theme = localStorage.getItem('mdbook-theme');
-                var sidebar = localStorage.getItem('mdbook-sidebar');
+                let theme = localStorage.getItem('mdbook-theme');
+                let sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -62,7 +63,8 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            var theme;
+            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
+            let theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
             const html = document.documentElement;
@@ -75,8 +77,8 @@
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            var sidebar = null;
-            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            let sidebar = null;
+            const sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
@@ -112,6 +114,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="default_theme">Auto</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
@@ -226,7 +229,7 @@ $$</p>
 <p>$$
 5 小时 48 分 46 秒 = a = \frac{10463}{43200} = \frac{1}{4 + \frac{1}{7 + \frac{1}{1 + \frac{1}{3 + \frac{1}{5 + \frac{1}{64}}}}}} \approx 0.242199074(天)
 $$</p>
-<p>由<code>a1</code>可知每4年加一天比较好一些, 故<code>四年一闰</code>。</p>
+<p>由<code>a1</code>可知每4年加一天比较好一些, 故四年一闰。</p>
 <p>$$
 a_1 = \frac{1}{4} = 0.25(天)
 $$</p>
@@ -522,6 +525,11 @@ sudo vim 64-language-selector-prefer.conf
 <blockquote>
 <p>Ref: <a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96">Arch 简体中文本地化</a></p>
 </blockquote>
+<ol start="8">
+<li>libreoffice-still</li>
+</ol>
+<pre><code class="language-bash">yay -S libreoffice-still
+</code></pre>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="keyboard-layout"><a class="header" href="#keyboard-layout">Keyboard Layout</a></h1>
 <p>Switch to colemak layout.</p>
 <pre><code class="language-bash">setxkbmap us -variant colemak
