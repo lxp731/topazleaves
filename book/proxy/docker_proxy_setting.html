@@ -180,6 +180,8 @@ sudo systemctl restart docker
 </code></pre>
 <h1 id="configure-docker-proxy"><a class="header" href="#configure-docker-proxy">Configure Docker Proxy</a></h1>
 <h4 id="edit-conf-file-1"><a class="header" href="#edit-conf-file-1">Edit Conf File</a></h4>
+<pre><code class="language-bash">sudo mkdir -p /etc/systemd/system/docker.service.d
+</code></pre>
 <pre><code class="language-bash">sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
 </code></pre>
 <h4 id="add-lines-1"><a class="header" href="#add-lines-1">Add Lines</a></h4>

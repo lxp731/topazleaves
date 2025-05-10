@@ -32,6 +32,10 @@ sudo systemctl restart docker
 #### Edit Conf File
 
 ```bash
+sudo mkdir -p /etc/systemd/system/docker.service.d
+```
+
+```bash
 sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
 ```
 
