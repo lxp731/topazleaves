@@ -13,7 +13,7 @@ git-repository-icon = "fa-github"
 mathjax-support = true
 
 [output.html.fold]
-enable = true
+enable = false
 
 [preprocessor.plantuml]
 plantuml-cmd="/usr/bin/plantuml"
