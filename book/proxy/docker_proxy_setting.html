@@ -177,7 +177,8 @@ sudo systemctl restart docker
 </code></pre>
 <h1 id="configure-docker-proxy"><a class="header" href="#configure-docker-proxy">Configure Docker Proxy</a></h1>
 <h4 id="edit-conf-file-1"><a class="header" href="#edit-conf-file-1">Edit Conf File</a></h4>
-<pre><code class="language-bash">sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
+<pre><code class="language-bash">sudo mkdir -p /etc/systemd/system/docker.service.d &amp;&amp; \
+sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
 </code></pre>
 <h4 id="add-lines-1"><a class="header" href="#add-lines-1">Add Lines</a></h4>
 <pre><code class="language-ini">[Service]
@@ -193,16 +194,16 @@ sudo systemctl restart docker
 <pre><code class="language-bash">vim ~/.docker/config.json
 </code></pre>
 <h4 id="add-lines-2"><a class="header" href="#add-lines-2">Add Lines</a></h4>
-<pre><code class="language-bash">{ 
+<pre><code class="language-bash">{
   "proxies":
-    { 
-      "default": 
-        { 
-          "httpProxy": "http://172.17.0.1:7890", 
-          "httpsProxy": "https://172.17.0.1:7890", 
-          "noProxy": "*.&lt;domain&gt;,127.0.0.0/8" 
-        } 
-    } 
+    {
+      "default":
+        {
+          "httpProxy": "http://172.17.0.1:7890",
+          "httpsProxy": "http://172.17.0.1:7890",
+          "noProxy": "*.&lt;domain&gt;,127.0.0.0/8"
+        }
+    }
 }
 </code></pre>
 <h4 id="reload-daemon--restart-docker-2"><a class="header" href="#reload-daemon--restart-docker-2">Reload Daemon &amp; Restart Docker</a></h4>

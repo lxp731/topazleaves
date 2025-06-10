@@ -32,6 +32,7 @@ sudo systemctl restart docker
 #### Edit Conf File
 
 ```bash
+sudo mkdir -p /etc/systemd/system/docker.service.d && \
 sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
 ```
 
@@ -61,16 +62,16 @@ vim ~/.docker/config.json
 #### Add Lines
 
 ```bash
-{ 
+{
   "proxies":
-    { 
-      "default": 
-        { 
-          "httpProxy": "http://172.17.0.1:7890", 
-          "httpsProxy": "https://172.17.0.1:7890", 
-          "noProxy": "*.<domain>,127.0.0.0/8" 
-        } 
-    } 
+    {
+      "default":
+        {
+          "httpProxy": "http://172.17.0.1:7890",
+          "httpsProxy": "http://172.17.0.1:7890",
+          "noProxy": "*.<domain>,127.0.0.0/8"
+        }
+    }
 }
 ```
 
