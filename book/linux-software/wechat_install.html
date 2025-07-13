@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Install Google-PinYin - TOPAZ LEAF</title>
+        <title>Install Wechat - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -157,29 +157,45 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="install-google-pinyin"><a class="header" href="#install-google-pinyin">Install Google-PinYin</a></h1>
-<h3 id="on-ubuntu-google-pinyin-based-on-fcitx-so-install-fcitx-firstly"><a class="header" href="#on-ubuntu-google-pinyin-based-on-fcitx-so-install-fcitx-firstly">On Ubuntu, Google-PinYin based on Fcitx. So install Fcitx firstly.</a></h3>
-<pre><code class="language-bash">sudo apt install fcitx
+                        <h1 id="wechat-install"><a class="header" href="#wechat-install">Wechat Install</a></h1>
+<h4 id="install-deepin-repository"><a class="header" href="#install-deepin-repository">Install Deepin Repository</a></h4>
+<pre><code class="language-bash">wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
 </code></pre>
-<h3 id="configure-fcitx"><a class="header" href="#configure-fcitx">Configure Fcitx</a></h3>
-<pre><code class="language-bash">im-config
+<h4 id="install-wechat"><a class="header" href="#install-wechat">Install Wechat</a></h4>
+<pre><code class="language-bash">sudo apt install com.qq.weixin.deepin
 </code></pre>
-<h3 id="install-google-pinyin-1"><a class="header" href="#install-google-pinyin-1">Install Google-PinYin</a></h3>
-<pre><code class="language-bash">sudo apt install fcitx-googlepinyin
+<h4 id="解决统信应用解压失败的问题"><a class="header" href="#解决统信应用解压失败的问题">解决统信应用解压失败的问题</a></h4>
+<pre><code class="language-bash">sudo vim /opt/deepinwine/tools/run_v4.sh
+
+# find this line
+7z x "$APPDIR/$APPTAR" -o"$1"
+# update it following line
+7z x "$APPDIR/$APPTAR" -o"$1" || true
 </code></pre>
-<h3 id="running-fcitx"><a class="header" href="#running-fcitx">Running Fcitx</a></h3>
-<pre><code class="language-bash">fcitx-config-gtk3
+<h4 id="remove-wechat"><a class="header" href="#remove-wechat">Remove Wechat</a></h4>
+<pre><code class="language-bash">sudo apt remove com.qq.weixin.deepin
+</code></pre>
+<h4 id="delete-deepin-repository"><a class="header" href="#delete-deepin-repository">Delete Deepin Repository</a></h4>
+<pre><code class="language-bash">sudo rm /etc/apt/sources.d.list/deepin-wine.i-m.dev.list
+</code></pre>
+<hr />
+<h3 id="tencent-official-wechat"><a class="header" href="#tencent-official-wechat">Tencent Official Wechat</a></h3>
+<p><a href="https://linux.weixin.qq.com/">https://linux.weixin.qq.com/</a></p>
+<ol>
+<li>Download</li>
+</ol>
+<pre><code class="language-bash">wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb
 </code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../ubuntu-software/ubuntu_software.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../linux-software/google_input_install.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../ubuntu-software/wechat_install.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../linux-software/clash_verge_install.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -189,11 +205,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../ubuntu-software/ubuntu_software.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../linux-software/google_input_install.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../ubuntu-software/wechat_install.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../linux-software/clash_verge_install.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

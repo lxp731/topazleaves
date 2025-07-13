@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Proxy Configuration - TOPAZ LEAF</title>
+        <title>Asciiquarium - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -157,18 +157,47 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="all-kinds-of-proxy-setting"><a class="header" href="#all-kinds-of-proxy-setting">All Kinds of Proxy Setting</a></h1>
-<p>In china, you can't access to the real Internet directly. So you have to use some proxy in some software.</p>
+                        <h1 id="asciiquarium-command-install"><a class="header" href="#asciiquarium-command-install">Asciiquarium Command Install</a></h1>
+<h4 id="ubuntu"><a class="header" href="#ubuntu">Ubuntu</a></h4>
+<pre><code class="language-bash">sudo apt-get install -y perl libcurses-perl wget
+wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
+wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
+tar -xf Term-Animation-2.4.tar.gz
+tar -xf asciiquarium.tar.gz
+cd Term-Animation-2.4/ &amp;&amp; perl Makefile.PL &amp;&amp; make &amp;&amp; sudo make install
+cd ../asciiquarium_1.1/
+cp asciiquarium /usr/local/bin
+sudo chmod +x /usr/local/bin/asciiquarium
+asciiquarium
+</code></pre>
+<h4 id="centos"><a class="header" href="#centos">Centos</a></h4>
+<pre><code class="language-bash">cd /opt
+yum install -y wget
+wget http://search.cpan.org/CPAN/authors/id/K/KB/KBAUCOM/Term-Animation-2.4.tar.gz
+tar xf Term-Animation-2.4.tar.gz
+yum install perl-Curses.x86_64  -y
+yum install perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker  -y
+cd /opt/Term-Animation-2.4/  &amp;&amp; perl Makefile.PL
+make
+make install
+cd /opt
+wget http://www.robobunny.com/projects/asciiquarium/asciiquarium.tar.gz
+tar -zxvf asciiquarium.tar.gz
+cd asciiquarium_1.1/
+cp asciiquarium /usr/local/bin
+chmod +x /usr/local/bin/asciiquarium
+asciiquarium
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../linux-software/entertainment.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../linux-software/windterm_desktop.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../proxy/system_proxy_setting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../linux-software/frp_usage.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -178,11 +207,11 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../linux-software/entertainment.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../linux-software/windterm_desktop.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../proxy/system_proxy_setting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../linux-software/frp_usage.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>

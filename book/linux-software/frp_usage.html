@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Entertainment - TOPAZ LEAF</title>
+        <title>FRP Usage - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -157,29 +157,121 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="entertainment"><a class="header" href="#entertainment">Entertainment</a></h1>
-<h3 id="install-kodi"><a class="header" href="#install-kodi">Install KODI</a></h3>
-<p><a href="https://kodi.tv/download/">https://kodi.tv/download/</a></p>
-<pre><code class="language-bash">sudo apt install software-properties-common
-sudo add-apt-repository -y ppa:team-xbmc/ppa
-sudo apt install kodi
+                        <h1 id="使用-frp"><a class="header" href="#使用-frp">使用 frp</a></h1>
+<h4 id="project-official-website"><a class="header" href="#project-official-website">Project Official Website</a></h4>
+<p><a href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></p>
+<p><a href="https://gofrp.org/zh-cn/">中文文档</a></p>
+<h3 id="ssh-service"><a class="header" href="#ssh-service">SSH Service</a></h3>
+<h4 id="the-server-configuration"><a class="header" href="#the-server-configuration">The server configuration</a></h4>
+<pre><code class="language-bash">vim frps.toml
 </code></pre>
-<h3 id="install-tmm"><a class="header" href="#install-tmm">Install TMM</a></h3>
-<p><a href="https://www.tinymediamanager.org/download/">https://www.tinymediamanager.org/download/</a></p>
-<h3 id="qbittorrent-enhanced"><a class="header" href="#qbittorrent-enhanced">qBittorrent Enhanced</a></h3>
-<p><a href="https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases">https://github.com/c0re100/qBittorrent-Enhanced-Edition/releases </a></p>
-<h3 id="lx-music"><a class="header" href="#lx-music">LX Music</a></h3>
-<p><a href="https://github.com/lyswhut/lx-music-desktop/releases">https://github.com/lyswhut/lx-music-desktop/releases</a></p>
+<pre><code class="language-bash">bindPort = 5432  # frp 建立通讯的端口
+auth.token = "123456"
+</code></pre>
+<h4 id="the-client-configuration"><a class="header" href="#the-client-configuration">The Client configuration</a></h4>
+<pre><code class="language-bash">vim frpc.toml
+</code></pre>
+<pre><code class="language-bash">serverAddr = "123.00.00.01"
+serverPort = 5432   # frp 建立通讯的端口
+auth.token = "123456"
+
+[[proxies]]
+name = "ssh"
+type = "tcp"
+localIP = "127.0.0.1"
+localPort = 22
+remotePort = 10086   # frp 映射的端口，VPS需要打开的端口
+</code></pre>
+<h3 id="ftp-service"><a class="header" href="#ftp-service">FTP Service</a></h3>
+<h4 id="the-server-configuration-1"><a class="header" href="#the-server-configuration-1">The Server configuration</a></h4>
+<pre><code class="language-bash">vim frps.toml
+</code></pre>
+<pre><code class="language-bash">bindPort = 5432
+auth.token = "123456"
+</code></pre>
+<h4 id="the-client-configuration-1"><a class="header" href="#the-client-configuration-1">The Client configuration</a></h4>
+<pre><code class="language-bash">vim frpc.toml
+</code></pre>
+<pre><code class="language-bash">serverAddr = "123.00.00.01"
+serverPort = 5432
+auth.token = "123456"
+
+[[proxies]]
+name = "test_static_file"
+type = "tcp"
+localPort = 21
+remotePort = 10086
+
+[proxies.plugin]
+type = "static_file"
+
+# 本地文件目录，对外提供访问
+localPath = "/your/local/path"
+
+# URL 中的前缀，将被去除，保留的内容即为要访问的文件路径
+stripPrefix = "static"
+httpUser = "user"
+httpPassword = "password"
+</code></pre>
+<h4 id="systemctl-configuration"><a class="header" href="#systemctl-configuration">systemctl Configuration</a></h4>
+<ul>
+<li>frps | Server configuration</li>
+</ul>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/frps.service
+</code></pre>
+<pre><code class="language-ini">[Unit]
+# 服务名称，可自定义
+Description = frp server
+After = network.target syslog.target
+Wants = network.target
+[Service]
+Type = simple
+# 启动frps的命令，需修改为您的frps的安装路径
+ExecStart = /root/frp/frps -c /root/frp/config.toml
+[Install]
+WantedBy = multi-user.target
+</code></pre>
+<p>reload daemon and start service</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl enable --now frps
+</code></pre>
+<ul>
+<li>frpc | Client configuration</li>
+</ul>
+<pre><code class="language-bash">sudo vim /etc/systemd/system/frpc.service
+</code></pre>
+<pre><code class="language-ini">[Unit]
+Description=FRPC Client Service
+After=network.target
+
+[Service]
+User=knight
+Group=knight
+Type=simple
+ExecStart=/home/knight/frp/frpc -c /home/knight/frp/config.toml
+Restart=on-failure
+RestartSec=5s
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=frpc
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>reload daemon and start service</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl enable --now frpc
+</code></pre>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="../ubuntu-software/frp_usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="../linux-software/asciiquarium_usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <i class="fa fa-angle-left"></i>
                             </a>
 
-                            <a rel="next prefetch" href="../proxy/kinds_proxy_setting.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="../linux-software/yt-dlp_usage.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <i class="fa fa-angle-right"></i>
                             </a>
 
@@ -189,11 +281,11 @@ sudo apt install kodi
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="../ubuntu-software/frp_usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="../linux-software/asciiquarium_usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <i class="fa fa-angle-left"></i>
                     </a>
 
-                    <a rel="next prefetch" href="../proxy/kinds_proxy_setting.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="../linux-software/yt-dlp_usage.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <i class="fa fa-angle-right"></i>
                     </a>
             </nav>
