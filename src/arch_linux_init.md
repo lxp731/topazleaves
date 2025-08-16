@@ -78,21 +78,20 @@ sudo pacman -S fcitx5-chinese-addons
 sudo pacman -S fcitx5-qt fctitx5-gtk fcitx5-lua
 ```
 
-## Modify environment
+## Modify input environment
 
 ```bash
-sudo vim /etc/environment
+mkdir -p /home/knight/.config/environment.d && \
+vim fcitx.conf
 ```
 
 ```bash
 GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
-SDL_IM_MODULE=fcitx
-GLFM_IM_MODULE=ibus
 ```
 
-## Fix japan-font problem
+## Fix Japan-font problem
 
 > Ref：[Arch 简体中文本地化](https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96)
 
