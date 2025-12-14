@@ -1,15 +1,23 @@
 [book]
-authors = ["Burgess Leo"]
-language = "zh-cn"
-multilingual = false
-src = "src"
 title = "TOPAZ LEAF"
+authors = ["Burgess Leo"]
+description = "The program book about Linux."
+language = "zh-cn"
+src = "src"
+
+[build]
+build-dir = "build"
+create-missing = false
+
+[preprocessor.links]
+
+[preprocessor.index]
+
 
 [output.html]
 default-theme = "rust"
 preferred-dark-theme = "rust"
 git-repository-url = "https://github.com/lxp731/topazleaves.git"
-git-repository-icon = "fa-github"
 mathjax-support = true
 
 [output.html.fold]
