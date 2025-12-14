@@ -2,7 +2,7 @@
 
 [https://github.com/romkatv/powerlevel10k.git](https://github.com/romkatv/powerlevel10k.git)
 
-### Installation
+## Installation
 
 1. Clone repo into oh-my-zsh custom themes path:
 

@@ -1,17 +1,17 @@
 # Disable Hibernate When Close Laptop
 
-#### Edit Conf File
+## Edit Conf File
 ```bash
 sudo gedit /etc/systemd/logind.conf
 ```
 
-#### Modify Line
+## Modify Line
 
 ```bash
 HandleLidSwitch=ignore
 ```
 
-#### Restart Service
+## Restart Service
 
 ```bash
 sudo systemctl restart systemd-logind

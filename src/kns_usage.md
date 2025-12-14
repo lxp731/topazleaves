@@ -1,6 +1,6 @@
 # kns Install (Locking Namespace)
 
-#### Install fzf
+## Install fzf
 
 1. Source Code Install(Recommend)
 
@@ -18,7 +18,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 sudo apt install fzf
 ```
 
-#### Edit kns Script
+## Edit kns Script
 
 ```bash
 vim kns
@@ -53,7 +53,7 @@ if [ -n "$selected" ]; then
 fi
 ```
 
-#### Add Exec Permission
+## Add Exec Permission
 
 ```bash
 chmod +x kns

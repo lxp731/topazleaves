@@ -1,6 +1,6 @@
 # Tmux
 
-### Installation
+## Installation
 
 [https://github.com/tmux/tmux](https://github.com/tmux/tmux)
 
@@ -8,7 +8,7 @@
 sudo apt install -y tmux
 ```
 
-### Install Tmux Plugins Manager
+## Install Tmux Plugins Manager
 
 [https://github.com/tmux-plugins/tpm](https://github.com/tmux-plugins/tpm)
 
@@ -16,7 +16,7 @@ sudo apt install -y tmux
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
-### Create .tmux.conf File
+## Create .tmux.conf File
 
 This is my personal tmux config file.
 
@@ -24,7 +24,7 @@ This is my personal tmux config file.
 {{#include ../mdbook-files/tmux.conf}}
 ```
 
-### Install Nerd Font
+## Install Nerd Font
 
 [Nerd Github Repo](https://github.com/ryanoasis/nerd-fonts)
 

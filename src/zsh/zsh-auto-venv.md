@@ -1,6 +1,6 @@
 # Auto-Venv
 
-### Auto-activate Virtual Environments in Python Projects
+## Auto-activate Virtual Environments in Python Projects
 
 1. Clone this repository into `$ZSH_CUSTOM/plugins` (by default `~/.oh-my-zsh/custom/plugins`)
 

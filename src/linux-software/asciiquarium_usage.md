@@ -1,6 +1,6 @@
 # Asciiquarium Command Install
 
-#### Ubuntu
+## Ubuntu
 
 ```bash
 sudo apt-get install -y perl libcurses-perl wget
@@ -15,7 +15,7 @@ sudo chmod +x /usr/local/bin/asciiquarium
 asciiquarium
 ```
 
-#### Centos
+## Centos
 
 ```bash
 cd /opt

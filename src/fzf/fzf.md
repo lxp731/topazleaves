@@ -1,12 +1,12 @@
 # FZF
 
-### Official Website
+## Official Website
 
 - [Github repo](https://github.com/junegunn/fzf)
 
 - [HandBook](https://junegunn.github.io/fzf/search-syntax/)
 
-### Install 
+## Install 
 
 ```bash
 # Clone the fzf repository
@@ -16,7 +16,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
-### Setting .bashrc
+## Setting .bashrc
 
 A basic example, to show how to link progress with fzf.
 

@@ -1,6 +1,6 @@
 # Zsh-you-should-use
 
-### Installation
+## Installation
 
 1. Clone the repo into your oh-my-zsh plugins directory.
 

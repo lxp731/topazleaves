@@ -1,6 +1,6 @@
 # Install Docker
 
-#### Install Official Docker GPG Key
+## Install Official Docker GPG Key
 
 ```bash
 sudo apt-get update
@@ -10,7 +10,7 @@ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyring
 sudo chmod a+r /etc/apt/keyrings/docker.asc
 ```
 
-#### Add Official Docker Repo
+## Add Official Docker Repo
 
 ```bash
 echo \
@@ -19,13 +19,13 @@ echo \
   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
-#### Update Package Lists
+## Update Package Lists
 
 ```bash
 sudo apt-get update
 ```
 
-#### Install Docker
+## Install Docker
 
 ```bash
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin

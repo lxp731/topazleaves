@@ -2,7 +2,7 @@
 
 [https://github.com/Katrovsky/zsh-ollama-completion](https://github.com/Katrovsky/zsh-ollama-completion)
 
-### Installation
+## Installation
 
 1.  Clone this repository into `$ZSH_CUSTOM/plugins` (by default `~/.oh-my-zsh/custom/plugins`)
 

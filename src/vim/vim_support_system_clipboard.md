@@ -1,6 +1,6 @@
 # Vim Support System Clipboard
 
-### Check Vim version
+## Check Vim version
 
 ```bash
 vim --version | grep clipboard
@@ -16,7 +16,7 @@ knight@Lenovo:~$ vim --version | grep "clipboard"
 
 `-clipboard` `-xterm_clipboard` means that vim not support system clipboard.
 
-### Remove vim
+## Remove vim
 
 Uninstall vim if you have installed.
 
@@ -24,13 +24,13 @@ Uninstall vim if you have installed.
 sudo apt remove vim && sudo apt autoremove
 ```
 
-### Install vim-gtk3
+## Install vim-gtk3
 
 ```bash
 sudo apt install vim-gtk3
 ```
 
-### Check Vim version again
+## Check Vim version again
 
 ```bash
 vim --version | grep clipboard
@@ -46,7 +46,7 @@ knight@Lenovo:~$ vim --version | grep clipboard
 
 Confirem the key value is `+clipboard` or `+xterm_clipboard`.
 
-### Edit .vimrc
+## Edit .vimrc
 
 ```bash
 set clipboard=unnamedplus
@@ -56,13 +56,13 @@ The last you can use `"*y` to copy the text to system clipboard.
 
 ---
 
-### Use Xclip
+## Use Xclip
 
 ```bash
 sudo apt install xclip
 ```
 
-### Modify .vimrc
+## Modify .vimrc
 
 ```bash
 vnoremap Y :w !xclip -i -sel c<CR>

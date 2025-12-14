@@ -1,6 +1,6 @@
 # Configure System Proxy
 
-#### Edit a Script
+## Edit a Script
 
 ```bash
 sudo vim  /etc/profile.d/proxy.sh
@@ -50,18 +50,18 @@ case $1 in
 esac
 ```
 
-#### Add Exec Permission
+## Add Exec Permission
 
 ```bash
 sudo chmod +x  /etc/profile.d/proxy.sh
 ```
 
-#### Apply Setting
+## Apply Setting
 
 ```bash
 source /etc/profile.d/proxy.sh
 ```
-#### Confirm ENV
+## Confirm ENV
 
 ```bash
 env | grep -i proxy

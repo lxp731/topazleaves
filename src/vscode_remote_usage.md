@@ -1,6 +1,6 @@
 # VS-Code Control Remote Hosts
 
-#### Configure 
+## Configure 
 
 ```bash
 ssh-keygen -t rsa
@@ -8,7 +8,7 @@ ssh-keygen -t rsa
 ssh-copy-id -i ~/.ssh/id_rsa.pub root@192.168.1.1
 ```
 
-#### Add ssh config
+## Add ssh config
 
 ```bash
 vim ~/.ssh/config
@@ -21,6 +21,6 @@ Host ali
   Port 22
 ```
 
-#### Install VS-Code Plugin
+## Install VS-Code Plugin
 
 点击VSCode左下角图标，形似“><”，点击会自动安装。

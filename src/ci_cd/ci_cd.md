@@ -1,12 +1,12 @@
 # CI & CD
 
-### Overview
+## Overview
 
 CI/CD, which stands for continuous integration and continuous delivery/deployment, aims to streamline and accelerate the software development lifecycle.
 
 Continuous integration (CI) refers to the practice of automatically and frequently integrating code changes into a shared source code repository. Continuous delivery and/or deployment (CD) is a 2 part process that refers to the integration, testing, and delivery of code changes. Continuous delivery stops short of automatic production deployment, while continuous deployment automatically releases the updates into the production environment.
 
-### Why is CI/CD important?
+## Why is CI/CD important?
 
 CI/CD helps organizations avoid bugs and code failures while maintaining a continuous cycle of software development and updates. 
 

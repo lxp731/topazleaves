@@ -5,14 +5,6 @@ description = "The program book about Linux."
 language = "zh-cn"
 src = "src"
 
-[build]
-build-dir = "build"
-create-missing = false
-
-[preprocessor.links]
-
-[preprocessor.index]
-
 
 [output.html]
 default-theme = "rust"
@@ -22,6 +14,7 @@ mathjax-support = true
 
 [output.html.fold]
 enable = false
+level = 0
 
 [preprocessor.plantuml]
 plantuml-cmd="/usr/bin/plantuml"

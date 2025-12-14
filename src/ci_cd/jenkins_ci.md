@@ -1,6 +1,6 @@
 # Jenkins CI
 
-### Jenkins Variables
+## Jenkins Variables
 
 Jenkins 提供了许多内置变量，可以用来生成唯一的镜像标签。常用的变量包括：
 
@@ -14,7 +14,7 @@ Jenkins 提供了许多内置变量，可以用来生成唯一的镜像标签。
 
 * BRANCH_NAME：当前 Git 分支的名称。
 
-### Classic Jenkinsfile Example
+## Classic Jenkinsfile Example
 
 ```groovy
 {{#include ../mdbook-files/Jenkinsfile}}

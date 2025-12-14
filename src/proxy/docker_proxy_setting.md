@@ -1,12 +1,12 @@
 # Setting Docker Mirror Acceleration
 
-#### Edit Conf File
+## Edit Conf File
 
 ```bash
 sudo vim /etc/docker/daemon.json
 ```
 
-#### Add Lines
+## Add Lines
 
 ```bash
 {
@@ -19,8 +19,7 @@ sudo vim /etc/docker/daemon.json
 }
 ```
 
-#### Reload Daemon & Restart Docker
-
+##
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl restart docker
@@ -29,14 +28,14 @@ sudo systemctl restart docker
 
 # Configure Docker Proxy
 
-#### Edit Conf File
+## Edit Conf File
 
 ```bash
 sudo mkdir -p /etc/systemd/system/docker.service.d && \
 sudo vim /etc/systemd/system/docker.service.d/http-proxy.conf
 ```
 
-#### Add Lines
+## Add Lines
 
 ```ini
 [Service]
@@ -44,7 +43,7 @@ Environment="HTTP_PROXY=http://127.0.0.1:7890"
 Environment="HTTPS_PROXY=http://127.0.0.1:7890"
 ```
 
-#### Reload Daemon & Restart Docker
+## Reload Daemon & Restart Docker
 
 ```bash
 sudo systemctl daemon-reload
@@ -53,13 +52,13 @@ sudo systemctl restart docker
 
 # Configure Container Proxy
 
-#### Edit Conf File
+## Edit Conf File
 
 ```bash
 vim ~/.docker/config.json
 ```
 
-#### Add Lines
+## Add Lines
 
 ```bash
 {
@@ -75,7 +74,7 @@ vim ~/.docker/config.json
 }
 ```
 
-#### Reload Daemon & Restart Docker
+## Reload Daemon & Restart Docker
 
 ```bash
 sudo systemctl daemon-reload

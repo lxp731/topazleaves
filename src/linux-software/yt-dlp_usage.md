@@ -1,12 +1,12 @@
 # yt-dlp Usage
 
-### Install yt-dlp
+## Install yt-dlp
 
 ```bash
 uv tool install yt-dlp
 ```
 
-### Usage
+## Usage
 
 1. Download the video, auto select best quality **(Recommended)**
 

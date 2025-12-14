@@ -1,20 +1,20 @@
 # Clash For Linux
 
-### Github Repo
+## Github Repo
 
 [https://github.com/wnlen/clash-for-linux.git](https://github.com/wnlen/clash-for-linux.git)
 
-### Installation
+## Installation
 
 ```bash
 git clone https://github.com/wnlen/clash-for-linux.git
 ```
 
-### Modify `.env`
+## Modify `.env`
 
 The `CLASH_URL` is your subscription address, and the `CLASH_SECRET` is your password, when you login with web, you will use it.
 
-### Start Clash
+## Start Clash
 
 ```bash
 sudo bash start.sh
@@ -22,7 +22,7 @@ sudo bash start.sh
 
 As show tips, exec cmds.
 
-### Else CMD
+## Else CMD
 
 - Close clash
 

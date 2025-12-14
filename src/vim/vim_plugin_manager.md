@@ -1,17 +1,17 @@
 # Vim Plugin Manager
 
-### Official Website
+## Official Website
 
 [https://github.com/junegunn/vim-plug?tab=readme-ov-file](https://github.com/junegunn/vim-plug?tab=readme-ov-file)
 
-### Install vim-plug
+## Install vim-plug
 
 ```bash
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ```
 
-### Modify .vimrc
+## Modify .vimrc
 
 Add the following content:
 

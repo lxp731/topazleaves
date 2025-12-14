@@ -2,7 +2,7 @@
 
 > Tips：When install images, you need open the proxy, but you must close it before push.
 
-### Extract Images Name to File
+## Extract Images Name to File
 
 From the Helm's values.yaml, extract the images name and tag to images.tmp.
 
@@ -41,7 +41,7 @@ while read -r line; do
 done < "$input_file"
 ```
 
-### Pull Docker Images
+## Pull Docker Images
 
 Install all dcoker images in images.tmp file, one by one. If you have else docker images_list file, you can use it instead, just confirm every lines only has one docker image name.
 
@@ -75,7 +75,7 @@ while read -r image; do
 done < "$input_file"
 ```
 
-### Rename Docker Images
+## Rename Docker Images
 
 The modified image names will be saved in the `new_images.tmp` file. And you can modify the `private_registry` to change the registry you want to push to.
 
@@ -128,7 +128,7 @@ echo "所有镜像已成功标记并保存到 $output_file"
 
 > After Tag docker images, you must check the `new_images_name.tmp`, ensure the image names are correct. And you must confirm about projects created in your private harbor.
 
-### Push Images
+## Push Images
 
 Push images to a remote registry. This script reads a list of image names from a file named "new_images.tmp", and pushes them to a remote registry.
 
@@ -172,7 +172,7 @@ done < "$images_file"
 echo "所有指定的镜像已被推送。"
 ```
 
-### Delete Images from Local
+## Delete Images from Local
 
 Delete images from local.
 
@@ -216,7 +216,7 @@ done < "$images_file"
 echo "All listed images have been processed."
 ```
 
-### ALL IN ONE
+## ALL IN ONE
 
 Merge all the above scripts into one.
 

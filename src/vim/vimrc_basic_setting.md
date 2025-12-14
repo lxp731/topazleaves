@@ -1,6 +1,6 @@
 # Confgure .vimrc
 
-### My .vimrc
+## My .vimrc
 
 ```bash
 {{#include ../mdbook-files/vimrc}}

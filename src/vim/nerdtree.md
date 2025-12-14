@@ -2,7 +2,7 @@
 
 > Ref: [https://vimawesome.com/plugin/nerdtree-red](https://vimawesome.com/plugin/nerdtree-red)
 
-### Install NERDTree
+## Install NERDTree
 
 Add `Plug 'preservim/nerdtree'` to your `.vimrc`, For example:
 
@@ -12,7 +12,7 @@ Plug 'preservim/nerdtree'
 
 Reopen a Vim window and type `:PlugInstall` to install NERDTree.
 
-### Setting Shortcut Keys
+## Setting Shortcut Keys
 
 Edit `.vimrc` and add the following code:
 
@@ -28,7 +28,7 @@ nnoremap <C-f> :NERDTreeFind<CR>
 - `<C-t>`: Open or Close NERDTree.
 - `<C-f>`: Open `/` in NERDTree.
 
-### Auto-Open NERDTree when Vim starts with a directory argument
+## Auto-Open NERDTree when Vim starts with a directory argument
 
 Add the following code to your `.vimrc`:
 
@@ -44,6 +44,6 @@ autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTa
 
 More details at [VimAwesome](https://vimawesome.com/plugin/nerdtree-red) or [NERDTree](https://github.com/preservim/nerdtree).
 
-### Rendering
+## Rendering
 
 ![Rendering](https://github.com/preservim/nerdtree/raw/master/screenshot.png)

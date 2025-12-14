@@ -1,10 +1,10 @@
 # FZF Integrate Git
 
-### Github Repo
+## Github Repo
 
 [https://github.com/junegunn/fzf-git.sh](https://github.com/junegunn/fzf-git.sh)
 
-### Install 
+## Install 
 
 ```bash
 mkdir -p ~/.fzf/shell && \
@@ -12,7 +12,7 @@ cd ~/.fzf/shell && \
 wget https://raw.githubusercontent.com/junegunn/fzf-git.sh/refs/heads/main/fzf-git.sh
 ```
 
-### Modify .bashrc
+## Modify .bashrc
 
 ```bash
 cat >> ~/.bashrc << EOF

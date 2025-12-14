@@ -1,18 +1,18 @@
 # Wechat Install
 
-#### Install Deepin Repository
+## Install Deepin Repository
 
 ```bash
 wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
 ```
 
-#### Install Wechat
+## Install Wechat
 
 ```bash
 sudo apt install com.qq.weixin.deepin
 ```
 
-#### 解决统信应用解压失败的问题
+## 解决统信应用解压失败的问题
 
 ```bash
 sudo vim /opt/deepinwine/tools/run_v4.sh
@@ -23,13 +23,13 @@ sudo vim /opt/deepinwine/tools/run_v4.sh
 7z x "$APPDIR/$APPTAR" -o"$1" || true
 ```
 
-#### Remove Wechat
+## Remove Wechat
 
 ```bash
 sudo apt remove com.qq.weixin.deepin
 ```
 
-#### Delete Deepin Repository
+## Delete Deepin Repository
 
 ```bash
 sudo rm /etc/apt/sources.d.list/deepin-wine.i-m.dev.list
@@ -37,7 +37,7 @@ sudo rm /etc/apt/sources.d.list/deepin-wine.i-m.dev.list
 
 ---
 
-### Tencent Official Wechat
+# Tencent Official Wechat
 
 [https://linux.weixin.qq.com/](https://linux.weixin.qq.com/)
 

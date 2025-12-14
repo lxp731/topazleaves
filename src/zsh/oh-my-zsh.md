@@ -1,10 +1,10 @@
 # Zsh & Oh-my-zsh
 
-### Git repo
+## Git repo
 
 [https://github.com/ohmyzsh/ohmyzsh](https://github.com/ohmyzsh/ohmyzsh)
 
-### Installation 
+## Installation 
 
 ```bash
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -12,7 +12,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 The default location is `~/.oh-my-zsh` (hidden in your home directory, you can access it with `cd ~/.oh-my-zsh`)
 
-### Manual Installation
+## Manual Installation
 
 If you want to change the location, you can do so by setting the `ZSH` environment variable before installing:
 

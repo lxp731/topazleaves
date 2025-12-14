@@ -1,14 +1,14 @@
 # 使用 frp
 
-#### Project Official Website
+## Project Official Website
 
 [https://github.com/fatedier/frp](https://github.com/fatedier/frp)
 
 [中文文档](https://gofrp.org/zh-cn/)
 
-### SSH Service
+# SSH Service
 
-#### The server configuration
+## The server configuration
 
 ```bash
 vim frps.toml
@@ -19,7 +19,7 @@ bindPort = 5432  # frp 建立通讯的端口
 auth.token = "123456"
 ```
 
-#### The Client configuration
+## The Client configuration
 
 ```bash
 vim frpc.toml
@@ -38,9 +38,9 @@ localPort = 22
 remotePort = 10086   # frp 映射的端口，VPS需要打开的端口
 ```
 
-### FTP Service
+## FTP Service
 
-#### The Server configuration
+## The Server configuration
 
 ```bash
 vim frps.toml
@@ -51,7 +51,7 @@ bindPort = 5432
 auth.token = "123456"
 ```
 
-#### The Client configuration
+## The Client configuration
 
 ```bash
 vim frpc.toml
@@ -80,7 +80,7 @@ httpUser = "user"
 httpPassword = "password"
 ```
 
-#### systemctl Configuration
+## systemctl Configuration
 
 * frps | Server configuration
 

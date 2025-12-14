@@ -2,7 +2,7 @@
 
 zsh is a shell that can be used as a replacement for bash.
 
-### Installation
+## Installation
 
 [https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH](https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH)
 
@@ -10,7 +10,7 @@ zsh is a shell that can be used as a replacement for bash.
 sudo apt install zsh
 ```
 
-### Configuration
+## Configuration
 
 ```bash
 chsh -s $(which zsh) $USER
