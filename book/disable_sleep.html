@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-0a679275.js"></script>
+        <script src="toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,16 +179,151 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="disable-hibernate-when-close-laptop"><a class="header" href="#disable-hibernate-when-close-laptop">Disable Hibernate When Close Laptop</a></h1>
-<h2 id="edit-conf-file"><a class="header" href="#edit-conf-file">Edit Conf File</a></h2>
-<pre><code class="language-bash">sudo gedit /etc/systemd/logind.conf
+                        <h1 id="禁用笔记本合盖休眠功能"><a class="header" href="#禁用笔记本合盖休眠功能">禁用笔记本合盖休眠功能</a></h1>
+<p>本文介绍如何在 Linux 系统中禁用笔记本合盖时的自动休眠功能，适用于需要合盖继续运行的情况。</p>
+<h2 id="问题背景"><a class="header" href="#问题背景">问题背景</a></h2>
+<p>默认情况下，大多数 Linux 发行版在合上笔记本盖子时会触发休眠或挂起操作。这在某些场景下可能不方便，例如：</p>
+<ul>
+<li>外接显示器使用时</li>
+<li>运行长时间任务时</li>
+<li>作为服务器使用时</li>
+</ul>
+<h2 id="配置方法"><a class="header" href="#配置方法">配置方法</a></h2>
+<h3 id="1-编辑配置文件"><a class="header" href="#1-编辑配置文件">1. 编辑配置文件</a></h3>
+<pre><code class="language-bash">sudo vim /etc/systemd/logind.conf
 </code></pre>
-<h2 id="modify-line"><a class="header" href="#modify-line">Modify Line</a></h2>
+<h3 id="2-修改配置项"><a class="header" href="#2-修改配置项">2. 修改配置项</a></h3>
+<p>找到或添加以下配置：</p>
 <pre><code class="language-bash">HandleLidSwitch=ignore
 </code></pre>
-<h2 id="restart-service"><a class="header" href="#restart-service">Restart Service</a></h2>
+<h3 id="3-重启服务"><a class="header" href="#3-重启服务">3. 重启服务</a></h3>
 <pre><code class="language-bash">sudo systemctl restart systemd-logind
 </code></pre>
+<h2 id="其他相关配置"><a class="header" href="#其他相关配置">其他相关配置</a></h2>
+<h3 id="电源按钮行为"><a class="header" href="#电源按钮行为">电源按钮行为</a></h3>
+<pre><code class="language-bash">HandlePowerKey=poweroff    # 按下电源键：关机
+HandleSuspendKey=suspend   # 按下休眠键：挂起
+HandleHibernateKey=hibernate # 按下休眠键：休眠
+</code></pre>
+<h3 id="合盖时的其他选项"><a class="header" href="#合盖时的其他选项">合盖时的其他选项</a></h3>
+<pre><code class="language-bash">HandleLidSwitch=ignore        # 忽略合盖动作
+HandleLidSwitch=suspend       # 合盖时挂起（默认）
+HandleLidSwitch=hibernate     # 合盖时休眠
+HandleLidSwitch=lock          # 合盖时锁定屏幕
+HandleLidSwitch=poweroff      # 合盖时关机
+</code></pre>
+<h2 id="临时解决方案"><a class="header" href="#临时解决方案">临时解决方案</a></h2>
+<p>如果只需要临时禁用合盖休眠，可以使用以下命令：</p>
+<h3 id="禁用合盖检测"><a class="header" href="#禁用合盖检测">禁用合盖检测</a></h3>
+<pre><code class="language-bash">systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+</code></pre>
+<h3 id="重新启用合盖检测"><a class="header" href="#重新启用合盖检测">重新启用合盖检测</a></h3>
+<pre><code class="language-bash">systemctl unmask sleep.target suspend.target hibernate.target hybrid-sleep.target
+</code></pre>
+<h2 id="图形界面设置"><a class="header" href="#图形界面设置">图形界面设置</a></h2>
+<h3 id="gnome-桌面环境"><a class="header" href="#gnome-桌面环境">GNOME 桌面环境</a></h3>
+<ol>
+<li>打开“设置“ → “电源”</li>
+<li>找到“合上盖子时“选项</li>
+<li>选择“不执行任何操作“</li>
+</ol>
+<h3 id="kde-plasma-桌面"><a class="header" href="#kde-plasma-桌面">KDE Plasma 桌面</a></h3>
+<ol>
+<li>打开“系统设置“ → “电源管理”</li>
+<li>选择“节能“标签页</li>
+<li>配置“合上盖子时“的行为</li>
+</ol>
+<h3 id="xfce-桌面"><a class="header" href="#xfce-桌面">XFCE 桌面</a></h3>
+<ol>
+<li>打开“设置管理器“ → “电源管理器”</li>
+<li>在“系统“标签页中配置合盖行为</li>
+</ol>
+<h2 id="验证配置"><a class="header" href="#验证配置">验证配置</a></h2>
+<h3 id="检查当前设置"><a class="header" href="#检查当前设置">检查当前设置</a></h3>
+<pre><code class="language-bash"># 查看 logind 配置
+cat /etc/systemd/logind.conf | grep HandleLidSwitch
+
+# 查看服务状态
+systemctl status systemd-logind
+</code></pre>
+<h3 id="测试效果"><a class="header" href="#测试效果">测试效果</a></h3>
+<ol>
+<li>合上笔记本盖子</li>
+<li>等待几秒钟</li>
+<li>打开盖子，检查系统是否仍在运行</li>
+</ol>
+<h2 id="注意事项"><a class="header" href="#注意事项">注意事项</a></h2>
+<h3 id="1-散热问题"><a class="header" href="#1-散热问题">1. 散热问题</a></h3>
+<p>禁用合盖休眠后，笔记本在合盖状态下可能散热不良，建议：</p>
+<ul>
+<li>确保通风良好</li>
+<li>监控温度：<code>sensors</code></li>
+<li>考虑使用散热垫</li>
+</ul>
+<h3 id="2-外接显示器"><a class="header" href="#2-外接显示器">2. 外接显示器</a></h3>
+<p>如果使用外接显示器，合盖后可能需要调整显示设置：</p>
+<pre><code class="language-bash"># 禁用内置显示器
+xrandr --output eDP-1 --off
+
+# 启用外接显示器
+xrandr --output HDMI-1 --auto
+</code></pre>
+<h3 id="3-电池寿命"><a class="header" href="#3-电池寿命">3. 电池寿命</a></h3>
+<p>合盖继续运行会消耗更多电量，建议：</p>
+<ul>
+<li>连接电源适配器</li>
+<li>调整电源管理设置</li>
+<li>监控电池状态：<code>upower -i /org/freedesktop/UPower/devices/battery_BAT0</code></li>
+</ul>
+<h2 id="恢复默认设置"><a class="header" href="#恢复默认设置">恢复默认设置</a></h2>
+<p>如果需要恢复默认的合盖休眠行为：</p>
+<h3 id="1-恢复配置文件"><a class="header" href="#1-恢复配置文件">1. 恢复配置文件</a></h3>
+<pre><code class="language-bash">sudo vim /etc/systemd/logind.conf
+</code></pre>
+<p>将 <code>HandleLidSwitch</code> 改为：</p>
+<pre><code class="language-bash">HandleLidSwitch=suspend
+</code></pre>
+<h3 id="2-重启服务"><a class="header" href="#2-重启服务">2. 重启服务</a></h3>
+<pre><code class="language-bash">sudo systemctl restart systemd-logind
+</code></pre>
+<h2 id="高级配置"><a class="header" href="#高级配置">高级配置</a></h2>
+<h3 id="用户特定配置"><a class="header" href="#用户特定配置">用户特定配置</a></h3>
+<p>可以为特定用户设置不同的行为：</p>
+<pre><code class="language-bash"># 创建用户配置目录
+mkdir -p ~/.config/systemd/user
+
+# 创建覆盖配置
+vim ~/.config/systemd/user/logind.conf.d/override.conf
+</code></pre>
+<p>添加内容：</p>
+<pre><code class="language-bash">[Login]
+HandleLidSwitch=ignore
+</code></pre>
+<h3 id="条件性配置"><a class="header" href="#条件性配置">条件性配置</a></h3>
+<p>可以根据电源状态设置不同行为：</p>
+<pre><code class="language-bash"># 使用电源时忽略合盖
+HandleLidSwitchExternalPower=ignore
+
+# 使用电池时挂起
+HandleLidSwitch= suspend
+</code></pre>
+<h2 id="故障排除"><a class="header" href="#故障排除">故障排除</a></h2>
+<h3 id="问题修改后不生效"><a class="header" href="#问题修改后不生效">问题：修改后不生效</a></h3>
+<pre><code class="language-bash"># 检查配置文件语法
+systemd-analyze verify /etc/systemd/logind.conf
+
+# 重新加载所有配置
+sudo systemctl daemon-reload
+sudo systemctl restart systemd-logind
+</code></pre>
+<h3 id="问题合盖后无法唤醒"><a class="header" href="#问题合盖后无法唤醒">问题：合盖后无法唤醒</a></h3>
+<p>如果遇到合盖后无法唤醒的问题，可以尝试：</p>
+<ol>
+<li>检查内核参数：<code>cat /proc/cmdline</code></li>
+<li>更新显卡驱动</li>
+<li>检查 ACPI 事件：<code>acpi_listen</code></li>
+</ol>
+<p>通过合理配置合盖行为，可以让笔记本更好地适应不同的使用场景，提高工作效率。</p>
 
                     </main>
 

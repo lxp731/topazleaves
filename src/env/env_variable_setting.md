@@ -1,3 +1,3 @@
-# ENV Variable Setting
+# Linux 环境变量配置指南
 
-In Linux, environment variables are used to store information that can be used by programs when they are executed. They play a important role in Linux system.
+在 Linux 系统中，环境变量用于存储程序执行时所需的信息。它们在系统运行和软件开发中扮演着至关重要的角色。

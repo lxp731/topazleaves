@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "../searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "../searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-0a679275.js"></script>
+        <script src="../toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,22 +179,348 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="zsh-autosuggestions"><a class="header" href="#zsh-autosuggestions">Zsh-autosuggestions</a></h1>
+                        <h1 id="zsh-autosuggestionszsh-自动建议插件"><a class="header" href="#zsh-autosuggestionszsh-自动建议插件">Zsh-autosuggestions：Zsh 自动建议插件</a></h1>
+<h2 id="官方文档"><a class="header" href="#官方文档">官方文档</a></h2>
 <p><a href="https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md">https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md</a></p>
-<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<h2 id="安装方法"><a class="header" href="#安装方法">安装方法</a></h2>
+<h3 id="方法一使用-oh-my-zsh-安装"><a class="header" href="#方法一使用-oh-my-zsh-安装">方法一：使用 Oh My Zsh 安装</a></h3>
 <ol>
-<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
+<li>克隆仓库到 Oh My Zsh 自定义插件目录：</li>
 </ol>
 <pre><code class="language-bash">git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 </code></pre>
 <ol start="2">
-<li>Add the plugin to the list of plugins for Oh My Zsh to load (inside <code>~/.zshrc</code>):</li>
+<li>在 <code>~/.zshrc</code> 的插件列表中添加：</li>
 </ol>
-<pre><code class="language-bash">plugins=( 
-    # other plugins...
+<pre><code class="language-bash">plugins=(
+    # 其他插件...
     zsh-autosuggestions
 )
 </code></pre>
+<ol start="3">
+<li>重新加载配置：</li>
+</ol>
+<pre><code class="language-bash">source ~/.zshrc
+</code></pre>
+<h3 id="方法二手动安装不使用-oh-my-zsh"><a class="header" href="#方法二手动安装不使用-oh-my-zsh">方法二：手动安装（不使用 Oh My Zsh）</a></h3>
+<ol>
+<li>克隆仓库：</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/zsh-users/zsh-autosuggestions ~/.zsh/zsh-autosuggestions
+</code></pre>
+<ol start="2">
+<li>在 <code>~/.zshrc</code> 中添加：</li>
+</ol>
+<pre><code class="language-bash">source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+</code></pre>
+<h3 id="方法三使用包管理器"><a class="header" href="#方法三使用包管理器">方法三：使用包管理器</a></h3>
+<h4 id="macos-homebrew"><a class="header" href="#macos-homebrew">macOS (Homebrew)</a></h4>
+<pre><code class="language-bash">brew install zsh-autosuggestions
+echo 'source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh' &gt;&gt; ~/.zshrc
+</code></pre>
+<h4 id="arch-linux-aur"><a class="header" href="#arch-linux-aur">Arch Linux (AUR)</a></h4>
+<pre><code class="language-bash">yay -S zsh-autosuggestions-git
+</code></pre>
+<h4 id="ubuntudebian"><a class="header" href="#ubuntudebian">Ubuntu/Debian</a></h4>
+<pre><code class="language-bash">sudo apt install zsh-autosuggestions
+</code></pre>
+<h2 id="基本使用"><a class="header" href="#基本使用">基本使用</a></h2>
+<h3 id="1-接受建议"><a class="header" href="#1-接受建议">1. 接受建议</a></h3>
+<ul>
+<li><strong>右箭头键</strong> (<code>→</code>) 或 <code>End</code>：接受当前建议</li>
+<li><strong>Ctrl-F</strong>：接受当前建议</li>
+<li><strong>Ctrl-E</strong>：接受当前建议并执行</li>
+</ul>
+<h3 id="2-部分接受"><a class="header" href="#2-部分接受">2. 部分接受</a></h3>
+<ul>
+<li><strong>Ctrl-→</strong>：接受建议到下一个单词</li>
+<li><strong>Alt-F</strong>：接受建议到下一个单词</li>
+</ul>
+<h3 id="3-忽略建议"><a class="header" href="#3-忽略建议">3. 忽略建议</a></h3>
+<ul>
+<li>继续输入：建议会自动更新</li>
+<li><strong>Esc</strong>：清除当前建议</li>
+</ul>
+<h2 id="配置选项"><a class="header" href="#配置选项">配置选项</a></h2>
+<h3 id="1-建议策略"><a class="header" href="#1-建议策略">1. 建议策略</a></h3>
+<pre><code class="language-bash"># 设置建议策略（默认：history）
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# 可用策略：
+# - history: 基于历史命令
+# - completion: 基于补全系统
+# - match_prev_cmd: 匹配上一个命令
+</code></pre>
+<h3 id="2-建议触发"><a class="header" href="#2-建议触发">2. 建议触发</a></h3>
+<pre><code class="language-bash"># 触发建议的最小字符数（默认：1）
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+
+# 异步获取建议（默认：启用）
+ZSH_AUTOSUGGEST_USE_ASYNC=true
+
+# 建议获取延迟（毫秒，默认：200）
+ZSH_AUTOSUGGEST_COMPLETION_IGNORE=200
+</code></pre>
+<h3 id="3-外观设置"><a class="header" href="#3-外观设置">3. 外观设置</a></h3>
+<pre><code class="language-bash"># 建议文本颜色（默认：8，灰色）
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+
+# 可用颜色：
+# - fg=black, red, green, yellow, blue, magenta, cyan, white
+# - fg=0-255 (256色)
+# - bg=颜色 (背景色)
+# - underline (下划线)
+# - bold (粗体)
+
+# 示例：使用亮青色
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan,bold'
+</code></pre>
+<h3 id="4-行为控制"><a class="header" href="#4-行为控制">4. 行为控制</a></h3>
+<pre><code class="language-bash"># 禁用某些命令的建议
+ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *|ls *|rm *"
+
+# 忽略大小写（默认：敏感）
+ZSH_AUTOSUGGEST_CASE_SENSITIVE=false
+
+# 接受建议时是否添加空格（默认：true）
+ZSH_AUTOSUGGEST_ACCEPT_SPACE=true
+</code></pre>
+<h2 id="高级配置"><a class="header" href="#高级配置">高级配置</a></h2>
+<h3 id="1-自定义快捷键"><a class="header" href="#1-自定义快捷键">1. 自定义快捷键</a></h3>
+<pre><code class="language-bash"># 自定义接受建议的快捷键
+bindkey '^ ' autosuggest-accept
+bindkey '^n' autosuggest-accept
+bindkey '^p' autosuggest-execute
+
+# 自定义部分接受的快捷键
+bindkey '^f' forward-word
+bindkey '^b' backward-word
+
+# 自定义清除建议的快捷键
+bindkey '^c' autosuggest-clear
+</code></pre>
+<h3 id="2-事件钩子"><a class="header" href="#2-事件钩子">2. 事件钩子</a></h3>
+<pre><code class="language-bash"># 建议接受前执行的函数
+ZSH_AUTOSUGGEST_ACCEPT_WIDGETS=(
+    forward-char
+    end-of-line
+    vi-forward-char
+    vi-end-of-line
+    vi-add-eol
+)
+
+# 建议部分接受前执行的函数
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS=(
+    forward-word
+    emacs-forward-word
+    vi-forward-word
+    vi-forward-word-end
+    vi-forward-blank-word
+    vi-forward-blank-word-end
+    vi-find-next-char
+    vi-find-next-char-skip
+)
+
+# 建议清除时执行的函数
+ZSH_AUTOSUGGEST_CLEAR_WIDGETS=(
+    history-search-forward
+    history-search-backward
+    history-beginning-search-forward
+    history-beginning-search-backward
+    history-substring-search-up
+    history-substring-search-down
+    up-line-or-beginning-search
+    down-line-or-beginning-search
+    up-line-or-history
+    down-line-or-history
+    accept-line
+    copy-earlier-word
+)
+</code></pre>
+<h3 id="3-性能优化"><a class="header" href="#3-性能优化">3. 性能优化</a></h3>
+<pre><code class="language-bash"># 限制历史记录大小
+HISTSIZE=10000
+SAVEHIST=10000
+
+# 启用共享历史
+setopt share_history
+
+# 忽略重复命令
+setopt hist_ignore_all_dups
+setopt hist_save_no_dups
+setopt hist_ignore_space
+</code></pre>
+<h2 id="与其他插件集成"><a class="header" href="#与其他插件集成">与其他插件集成</a></h2>
+<h3 id="1-与-zsh-syntax-highlighting-集成"><a class="header" href="#1-与-zsh-syntax-highlighting-集成">1. 与 zsh-syntax-highlighting 集成</a></h3>
+<pre><code class="language-bash"># 确保加载顺序正确
+# zsh-syntax-highlighting 必须在最后加载
+plugins=(
+    # 其他插件...
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+</code></pre>
+<h3 id="2-与-zsh-history-substring-search-集成"><a class="header" href="#2-与-zsh-history-substring-search-集成">2. 与 zsh-history-substring-search 集成</a></h3>
+<pre><code class="language-bash"># 配置快捷键避免冲突
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+</code></pre>
+<h3 id="3-与-fzf-集成"><a class="header" href="#3-与-fzf-集成">3. 与 fzf 集成</a></h3>
+<pre><code class="language-bash"># 使用 fzf 选择历史建议
+bindkey '^r' fzf-history-widget
+</code></pre>
+<h2 id="自定义建议源"><a class="header" href="#自定义建议源">自定义建议源</a></h2>
+<h3 id="1-自定义建议函数"><a class="header" href="#1-自定义建议函数">1. 自定义建议函数</a></h3>
+<pre><code class="language-bash"># 创建自定义建议函数
+function _my_custom_suggestions() {
+    local suggestions=()
+    
+    # 添加自定义建议
+    suggestions+=("echo 'Hello World'")
+    suggestions+=("cd ~/projects")
+    suggestions+=("git status")
+    
+    # 返回建议
+    echo "${suggestions[@]}"
+}
+
+# 注册自定义建议源
+ZSH_AUTOSUGGEST_CUSTOM_STRATEGIES=(my_custom_suggestions)
+ZSH_AUTOSUGGEST_STRATEGY=(my_custom_suggestions history)
+</code></pre>
+<h3 id="2-基于上下文的建议"><a class="header" href="#2-基于上下文的建议">2. 基于上下文的建议</a></h3>
+<pre><code class="language-bash"># 根据当前目录提供建议
+function _context_based_suggestions() {
+    local current_dir=$(basename "$PWD")
+    local suggestions=()
+    
+    case $current_dir in
+        git*)
+            suggestions+=("git status")
+            suggestions+=("git pull")
+            suggestions+=("git push")
+            ;;
+        docker*)
+            suggestions+=("docker ps")
+            suggestions+=("docker-compose up")
+            suggestions+=("docker logs")
+            ;;
+        python*)
+            suggestions+=("python manage.py runserver")
+            suggestions+=("pip install -r requirements.txt")
+            suggestions+=("python -m pytest")
+            ;;
+    esac
+    
+    echo "${suggestions[@]}"
+}
+</code></pre>
+<h2 id="故障排除"><a class="header" href="#故障排除">故障排除</a></h2>
+<h3 id="问题-1建议不显示"><a class="header" href="#问题-1建议不显示">问题 1：建议不显示</a></h3>
+<pre><code class="language-bash"># 检查插件是否加载
+echo $plugins | grep autosuggestions
+
+# 检查配置文件
+cat ~/.zshrc | grep -A5 -B5 "plugins="
+
+# 手动加载测试
+source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+</code></pre>
+<h3 id="问题-2快捷键冲突"><a class="header" href="#问题-2快捷键冲突">问题 2：快捷键冲突</a></h3>
+<pre><code class="language-bash"># 查看当前快捷键绑定
+bindkey | grep autosuggest
+
+# 查看冲突的快捷键
+bindkey | grep -E "\^\[\[A|\^\[\[B|\^R|\^S"
+</code></pre>
+<h3 id="问题-3性能问题"><a class="header" href="#问题-3性能问题">问题 3：性能问题</a></h3>
+<pre><code class="language-bash"># 检查 Zsh 启动时间
+time zsh -i -c exit
+
+# 禁用异步获取（如果性能差）
+ZSH_AUTOSUGGEST_USE_ASYNC=false
+
+# 减少历史记录大小
+HISTSIZE=1000
+SAVEHIST=1000
+</code></pre>
+<h3 id="问题-4颜色不显示"><a class="header" href="#问题-4颜色不显示">问题 4：颜色不显示</a></h3>
+<pre><code class="language-bash"># 检查终端颜色支持
+echo $TERM
+
+# 检查颜色配置
+echo $ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE
+
+# 测试颜色
+for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
+</code></pre>
+<h2 id="最佳实践"><a class="header" href="#最佳实践">最佳实践</a></h2>
+<h3 id="1-配置文件管理"><a class="header" href="#1-配置文件管理">1. 配置文件管理</a></h3>
+<pre><code class="language-bash"># 创建插件配置目录
+mkdir -p ~/.zsh/plugins
+
+# 备份配置
+cp ~/.zshrc ~/.zshrc.backup
+cp -r ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions ~/.zsh/plugins/backup/
+</code></pre>
+<h3 id="2-版本控制"><a class="header" href="#2-版本控制">2. 版本控制</a></h3>
+<pre><code class="language-bash"># 使用 Git 管理配置
+cd ~
+git init
+git add .zshrc
+git add .oh-my-zsh/custom/plugins/zsh-autosuggestions
+git commit -m "Add zsh-autosuggestions configuration"
+</code></pre>
+<h3 id="3-定期更新"><a class="header" href="#3-定期更新">3. 定期更新</a></h3>
+<pre><code class="language-bash"># 创建更新脚本
+cat &gt; ~/update-zsh-autosuggestions.sh &lt;&lt; 'EOF'
+#!/bin/bash
+cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git pull
+source ~/.zshrc
+echo "zsh-autosuggestions updated successfully"
+EOF
+
+chmod +x ~/update-zsh-autosuggestions.sh
+</code></pre>
+<h2 id="替代方案"><a class="header" href="#替代方案">替代方案</a></h2>
+<h3 id="1-fish-style-自动建议"><a class="header" href="#1-fish-style-自动建议">1. fish-style 自动建议</a></h3>
+<pre><code class="language-bash"># 使用 fish 风格的自动建议
+# zsh-autosuggestions 就是模仿 fish 的自动建议
+</code></pre>
+<h3 id="2-历史搜索"><a class="header" href="#2-历史搜索">2. 历史搜索</a></h3>
+<pre><code class="language-bash"># 使用历史搜索替代
+plugins=(history-substring-search)
+</code></pre>
+<h3 id="3-智能补全"><a class="header" href="#3-智能补全">3. 智能补全</a></h3>
+<pre><code class="language-bash"># 使用更智能的补全系统
+plugins=(zsh-completions)
+</code></pre>
+<h2 id="性能测试"><a class="header" href="#性能测试">性能测试</a></h2>
+<h3 id="1-基准测试"><a class="header" href="#1-基准测试">1. 基准测试</a></h3>
+<pre><code class="language-bash"># 测试建议响应时间
+time for i in {1..100}; do echo "test $i"; done | grep -q ""
+
+# 测试历史加载时间
+time fc -l 1
+</code></pre>
+<h3 id="2-内存使用"><a class="header" href="#2-内存使用">2. 内存使用</a></h3>
+<pre><code class="language-bash"># 检查内存使用
+ps aux | grep zsh | grep -v grep
+
+# 检查插件内存
+pmap $(pgrep zsh) | tail -20
+</code></pre>
+<h3 id="3-启动时间优化"><a class="header" href="#3-启动时间优化">3. 启动时间优化</a></h3>
+<pre><code class="language-bash"># 延迟加载插件
+function load_zsh_autosuggestions() {
+    source ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+}
+
+# 在需要时加载
+autoload -Uz load_zsh_autosuggestions
+</code></pre>
+<p>zsh-autosuggestions 是一个非常实用的插件，可以大大提高命令行输入效率。通过合理配置，可以获得类似 fish shell 的流畅体验。</p>
 
                     </main>
 

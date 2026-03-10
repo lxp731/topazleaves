@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "../searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "../searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-0a679275.js"></script>
+        <script src="../toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,8 +179,8 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="confgure-vimrc"><a class="header" href="#confgure-vimrc">Confgure .vimrc</a></h1>
-<h2 id="my-vimrc"><a class="header" href="#my-vimrc">My .vimrc</a></h2>
+                        <h1 id="vim-基础配置文件指南"><a class="header" href="#vim-基础配置文件指南">Vim 基础配置文件指南</a></h1>
+<h2 id="我的-vimrc-配置"><a class="header" href="#我的-vimrc-配置">我的 .vimrc 配置</a></h2>
 <pre><code class="language-bash">"===
 "===编写脚本自动插入
 "===
@@ -661,6 +661,315 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
 </code></pre>
+<h2 id="配置文件详解"><a class="header" href="#配置文件详解">配置文件详解</a></h2>
+<h3 id="1-基础设置"><a class="header" href="#1-基础设置">1. 基础设置</a></h3>
+<pre><code class="language-vim">" 设置不兼容 vi
+set nocompatible
+
+" 启用文件类型检测
+filetype on
+filetype plugin on
+filetype indent on
+
+" 设置编码
+set encoding=utf-8
+set fileencodings=utf-8,gbk,big5,latin1
+</code></pre>
+<h3 id="2-界面设置"><a class="header" href="#2-界面设置">2. 界面设置</a></h3>
+<pre><code class="language-vim">" 语法高亮
+syntax on
+
+" 显示行号
+set number
+
+" 显示相对行号
+set relativenumber
+
+" 高亮当前行
+set cursorline
+
+" 显示状态栏
+set laststatus=2
+
+" 显示命令
+set showcmd
+
+" 显示匹配的括号
+set showmatch
+</code></pre>
+<h3 id="3-编辑设置"><a class="header" href="#3-编辑设置">3. 编辑设置</a></h3>
+<pre><code class="language-vim">" 启用鼠标
+set mouse=a
+
+" 设置缩进
+set autoindent
+set smartindent
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" 启用回退删除
+set backspace=indent,eol,start
+
+" 启用持久性撤销
+set undofile
+set undodir=~/.vim/undodir
+</code></pre>
+<h3 id="4-搜索设置"><a class="header" href="#4-搜索设置">4. 搜索设置</a></h3>
+<pre><code class="language-vim">" 搜索时忽略大小写
+set ignorecase
+set smartcase
+
+" 高亮搜索结果
+set hlsearch
+
+" 输入时实时搜索
+set incsearch
+
+" 搜索时循环
+set wrapscan
+</code></pre>
+<h3 id="5-性能优化"><a class="header" href="#5-性能优化">5. 性能优化</a></h3>
+<pre><code class="language-vim">" 禁用交换文件
+set noswapfile
+
+" 禁用备份文件
+set nobackup
+set nowritebackup
+
+" 减少更新延迟
+set updatetime=300
+
+" 禁用错误铃声
+set noerrorbells
+set novisualbell
+</code></pre>
+<h2 id="常用配置选项"><a class="header" href="#常用配置选项">常用配置选项</a></h2>
+<h3 id="1-主题和颜色"><a class="header" href="#1-主题和颜色">1. 主题和颜色</a></h3>
+<pre><code class="language-vim">" 设置配色方案
+colorscheme desert
+
+" 真彩色支持
+set termguicolors
+
+" 设置背景
+set background=dark
+</code></pre>
+<h3 id="2-快捷键映射"><a class="header" href="#2-快捷键映射">2. 快捷键映射</a></h3>
+<pre><code class="language-vim">" 设置 Leader 键
+let mapleader = ","
+
+" 快速保存
+nnoremap &lt;leader&gt;w :w&lt;CR&gt;
+
+" 快速退出
+nnoremap &lt;leader&gt;q :q&lt;CR&gt;
+
+" 切换行号显示
+nnoremap &lt;leader&gt;n :set number!&lt;CR&gt;
+
+" 清除搜索高亮
+nnoremap &lt;leader&gt;h :nohlsearch&lt;CR&gt;
+</code></pre>
+<h3 id="3-插件相关"><a class="header" href="#3-插件相关">3. 插件相关</a></h3>
+<pre><code class="language-vim">" 插件管理器初始化
+call plug#begin('~/.vim/plugged')
+
+" 插件列表
+Plug 'tpope/vim-sensible'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+
+call plug#end()
+</code></pre>
+<h3 id="4-文件类型特定设置"><a class="header" href="#4-文件类型特定设置">4. 文件类型特定设置</a></h3>
+<pre><code class="language-vim">" Python 文件设置
+autocmd FileType python setlocal
+    \ tabstop=4
+    \ softtabstop=4
+    \ shiftwidth=4
+    \ textwidth=79
+    \ expandtab
+    \ autoindent
+    \ fileformat=unix
+
+" Markdown 文件设置
+autocmd FileType markdown setlocal
+    \ wrap
+    \ linebreak
+    \ spell
+    \ spelllang=en_us
+</code></pre>
+<h2 id="配置技巧"><a class="header" href="#配置技巧">配置技巧</a></h2>
+<h3 id="1-条件配置"><a class="header" href="#1-条件配置">1. 条件配置</a></h3>
+<pre><code class="language-vim">" 根据操作系统配置
+if has('win32')
+    set shell=cmd.exe
+else
+    set shell=/bin/bash
+endif
+
+" 根据终端类型配置
+if &amp;term =~ '^screen'
+    " tmux 特定配置
+endif
+</code></pre>
+<h3 id="2-函数定义"><a class="header" href="#2-函数定义">2. 函数定义</a></h3>
+<pre><code class="language-vim">" 自定义函数：删除尾部空格
+function! StripTrailingWhitespace()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfunction
+
+" 映射到快捷键
+nnoremap &lt;leader&gt;sw :call StripTrailingWhitespace()&lt;CR&gt;
+</code></pre>
+<h3 id="3-自动命令"><a class="header" href="#3-自动命令">3. 自动命令</a></h3>
+<pre><code class="language-vim">" 保存时自动格式化
+autocmd BufWritePre *.py,*.js,*.json,*.md,*.txt :call StripTrailingWhitespace()
+
+" 打开文件时自动定位到上次位置
+autocmd BufReadPost *
+    \ if line("'\"") &gt;= 1 &amp;&amp; line("'\"") &lt;= line("$") &amp;&amp; &amp;ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
+</code></pre>
+<h2 id="配置文件管理"><a class="header" href="#配置文件管理">配置文件管理</a></h2>
+<h3 id="1-模块化配置"><a class="header" href="#1-模块化配置">1. 模块化配置</a></h3>
+<pre><code class="language-bash"># 创建配置目录结构
+~/.vim/
+├── vimrc                  # 主配置文件
+├── config/
+│   ├── basic.vim         # 基础设置
+│   ├── keymaps.vim       # 快捷键映射
+│   ├── plugins.vim       # 插件配置
+│   └── filetypes.vim     # 文件类型设置
+└── after/                # 后加载配置
+</code></pre>
+<h3 id="2-在-vimrc-中引入模块"><a class="header" href="#2-在-vimrc-中引入模块">2. 在 vimrc 中引入模块</a></h3>
+<pre><code class="language-vim">" 加载模块化配置
+source ~/.vim/config/basic.vim
+source ~/.vim/config/keymaps.vim
+source ~/.vim/config/plugins.vim
+source ~/.vim/config/filetypes.vim
+</code></pre>
+<h3 id="3-版本控制"><a class="header" href="#3-版本控制">3. 版本控制</a></h3>
+<pre><code class="language-bash"># 初始化 Git 仓库
+cd ~
+git init
+git add .vimrc .vim/
+git commit -m "Initial vim configuration"
+</code></pre>
+<h2 id="调试和测试"><a class="header" href="#调试和测试">调试和测试</a></h2>
+<h3 id="1-检查配置"><a class="header" href="#1-检查配置">1. 检查配置</a></h3>
+<pre><code class="language-vim">" 查看当前设置
+:set all
+
+" 查看特定选项
+:set tabstop?
+
+" 检查语法
+:syntax
+</code></pre>
+<h3 id="2-性能分析"><a class="header" href="#2-性能分析">2. 性能分析</a></h3>
+<pre><code class="language-vim">" 启动性能分析
+:profile start profile.log
+:profile func *
+:profile file *
+
+" 执行操作
+" ...
+
+" 停止分析
+:profile pause
+:q
+</code></pre>
+<h3 id="3-错误排查"><a class="header" href="#3-错误排查">3. 错误排查</a></h3>
+<pre><code class="language-vim">" 查看错误信息
+:messages
+
+" 查看加载的脚本
+:scriptnames
+
+" 检查运行时路径
+:set runtimepath?
+</code></pre>
+<h2 id="推荐配置"><a class="header" href="#推荐配置">推荐配置</a></h2>
+<h3 id="1-开发环境配置"><a class="header" href="#1-开发环境配置">1. 开发环境配置</a></h3>
+<pre><code class="language-vim">" 代码开发专用配置
+set number
+set relativenumber
+set cursorline
+set colorcolumn=80
+set signcolumn=yes
+set scrolloff=5
+</code></pre>
+<h3 id="2-写作环境配置"><a class="header" href="#2-写作环境配置">2. 写作环境配置</a></h3>
+<pre><code class="language-vim">" 写作专用配置
+set wrap
+set linebreak
+set spell
+set spelllang=en_us,zh_cn
+set conceallevel=2
+set concealcursor=nc
+</code></pre>
+<h3 id="3-演示环境配置"><a class="header" href="#3-演示环境配置">3. 演示环境配置</a></h3>
+<pre><code class="language-vim">" 演示专用配置
+set nonumber
+set norelativenumber
+set nocursorline
+set laststatus=0
+set showmode
+set showcmd
+</code></pre>
+<h2 id="常见问题"><a class="header" href="#常见问题">常见问题</a></h2>
+<h3 id="问题-1配置不生效"><a class="header" href="#问题-1配置不生效">问题 1：配置不生效</a></h3>
+<pre><code class="language-bash"># 检查配置文件位置
+ls -la ~/.vimrc
+
+# 检查文件权限
+chmod 644 ~/.vimrc
+
+# 重新加载配置
+vim -u ~/.vimrc
+</code></pre>
+<h3 id="问题-2插件冲突"><a class="header" href="#问题-2插件冲突">问题 2：插件冲突</a></h3>
+<pre><code class="language-vim">" 暂时禁用插件测试
+" 在配置文件中注释掉插件行
+" Plug 'some/plugin'
+
+" 重新加载配置
+:source ~/.vimrc
+</code></pre>
+<h3 id="问题-3性能问题"><a class="header" href="#问题-3性能问题">问题 3：性能问题</a></h3>
+<pre><code class="language-vim">" 检查启动时间
+vim --startuptime startup.log
+
+" 查看日志分析
+cat startup.log | sort -k2 -nr | head -20
+</code></pre>
+<h2 id="最佳实践"><a class="header" href="#最佳实践">最佳实践</a></h2>
+<h3 id="1-渐进式配置"><a class="header" href="#1-渐进式配置">1. 渐进式配置</a></h3>
+<ul>
+<li>从基础配置开始</li>
+<li>逐步添加需要的功能</li>
+<li>定期清理不需要的配置</li>
+</ul>
+<h3 id="2-文档化"><a class="header" href="#2-文档化">2. 文档化</a></h3>
+<ul>
+<li>为重要配置添加注释</li>
+<li>记录配置变更原因</li>
+<li>分享配置经验</li>
+</ul>
+<h3 id="3-备份和同步"><a class="header" href="#3-备份和同步">3. 备份和同步</a></h3>
+<ul>
+<li>定期备份配置文件</li>
+<li>使用版本控制系统</li>
+<li>在多台机器间同步配置</li>
+</ul>
+<p>一个好的 Vim 配置可以显著提高编辑效率。建议从基础配置开始，根据实际需求逐步添加功能，形成适合自己的个性化配置。</p>
 
                     </main>
 

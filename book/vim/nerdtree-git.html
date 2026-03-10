@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "../searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "../searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-0a679275.js"></script>
+        <script src="../toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,30 +179,252 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="nerdtree-git"><a class="header" href="#nerdtree-git">NerdTree-Git</a></h1>
-<h2 id="github-repo"><a class="header" href="#github-repo">Github Repo</a></h2>
+                        <h1 id="nerdtree-git-插件"><a class="header" href="#nerdtree-git-插件">NERDTree Git 插件</a></h1>
+<h2 id="github-仓库"><a class="header" href="#github-仓库">GitHub 仓库</a></h2>
 <p><a href="https://github.com/Xuyuanp/nerdtree-git-plugin">https://github.com/Xuyuanp/nerdtree-git-plugin</a></p>
-<h2 id="install"><a class="header" href="#install">Install</a></h2>
-<pre><code class="language-bash">Plug 'Xuyuanp/nerdtree-git-plugin'
+<h2 id="安装"><a class="header" href="#安装">安装</a></h2>
+<h3 id="使用-vim-plug-安装"><a class="header" href="#使用-vim-plug-安装">使用 vim-plug 安装</a></h3>
+<p>在 <code>.vimrc</code> 文件中添加：</p>
+<pre><code class="language-vim">Plug 'Xuyuanp/nerdtree-git-plugin'
 </code></pre>
-<pre><code class="language-bash">let g:NERDTreeGitStatusShowCounts = 1
+<h3 id="配置-git-状态指示器"><a class="header" href="#配置-git-状态指示器">配置 Git 状态指示器</a></h3>
+<pre><code class="language-vim">" 显示文件数量统计
+let g:NERDTreeGitStatusShowCounts = 1
+
+" 自定义状态图标
 let g:NERDTreeGitStatusIndicatorMapCustom = {
-                \ 'Modified'  :'✹',
-                \ 'Staged'    :'✚',
-                \ 'Untracked' :'✭',
-                \ 'Renamed'   :'➜',
-                \ 'Unmerged'  :'═',
-                \ 'Deleted'   :'✖',
-                \ 'Dirty'     :'✗',
-                \ 'Ignored'   :'☒',
-                \ 'Clean'     :'✔︎',
-                \ 'Unknown'   :'?',
-                \ }
+    \ 'Modified'  : '✹',
+    \ 'Staged'    : '✚',
+    \ 'Untracked' : '✭',
+    \ 'Renamed'   : '➜',
+    \ 'Unmerged'  : '═',
+    \ 'Deleted'   : '✖',
+    \ 'Dirty'     : '✗',
+    \ 'Ignored'   : '☒',
+    \ 'Clean'     : '✔︎',
+    \ 'Unknown'   : '?',
+    \ }
 </code></pre>
-<h2 id="install-nerd-fonts"><a class="header" href="#install-nerd-fonts">Install Nerd Fonts</a></h2>
-<p><a href="https://raw.githubusercontent.com/mcarvalho1/Simple-NerdFonts-Downloader/c7854dae2153aa199277926bed4b992488b65a3d/nf_downloader.sh">https://raw.githubusercontent.com/mcarvalho1/Simple-NerdFonts-Downloader/c7854dae2153aa199277926bed4b992488b65a3d/nf_downloader.sh</a></p>
-<h2 id="rendering"><a class="header" href="#rendering">Rendering</a></h2>
-<p><img src="https://camo.githubusercontent.com/5ee5b6171cda9ea0eb6ea834185b2ef869e7cb0f81ded740e9c396b8cc47a23e/687474703a2f2f692e696d6775722e636f6d2f6a534377476a552e6769663f31" alt="Rendering"></p>
+<h2 id="安装-nerd-fonts"><a class="header" href="#安装-nerd-fonts">安装 Nerd Fonts</a></h2>
+<p>为了正确显示图标，需要安装 Nerd Fonts：</p>
+<h3 id="使用安装脚本"><a class="header" href="#使用安装脚本">使用安装脚本</a></h3>
+<pre><code class="language-bash">wget https://raw.githubusercontent.com/mcarvalho1/Simple-NerdFonts-Downloader/c7854dae2153aa199277926bed4b992488b65a3d/nf_downloader.sh
+chmod +x nf_downloader.sh
+./nf_downloader.sh
+</code></pre>
+<h3 id="手动安装字体"><a class="header" href="#手动安装字体">手动安装字体</a></h3>
+<pre><code class="language-bash"># 下载字体文件
+mkdir -p ~/.local/share/fonts
+cd ~/.local/share/fonts
+
+# 下载常用 Nerd Fonts
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip
+unzip Meslo.zip -d Meslo
+rm Meslo.zip
+
+# 更新字体缓存
+fc-cache -fv
+</code></pre>
+<h2 id="功能特性"><a class="header" href="#功能特性">功能特性</a></h2>
+<h3 id="1-git-状态显示"><a class="header" href="#1-git-状态显示">1. Git 状态显示</a></h3>
+<ul>
+<li>在 NERDTree 中显示文件的 Git 状态</li>
+<li>使用图标表示不同的 Git 状态</li>
+<li>支持显示修改文件数量统计</li>
+</ul>
+<h3 id="2-状态图标说明"><a class="header" href="#2-状态图标说明">2. 状态图标说明</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>图标</th><th>状态</th><th>说明</th></tr>
+</thead>
+<tbody>
+<tr><td>✹</td><td>Modified</td><td>文件已修改</td></tr>
+<tr><td>✚</td><td>Staged</td><td>文件已暂存</td></tr>
+<tr><td>✭</td><td>Untracked</td><td>未跟踪文件</td></tr>
+<tr><td>➜</td><td>Renamed</td><td>文件已重命名</td></tr>
+<tr><td>═</td><td>Unmerged</td><td>合并冲突</td></tr>
+<tr><td>✖</td><td>Deleted</td><td>文件已删除</td></tr>
+<tr><td>✗</td><td>Dirty</td><td>工作目录不干净</td></tr>
+<tr><td>☒</td><td>Ignored</td><td>被忽略的文件</td></tr>
+<tr><td>✔︎</td><td>Clean</td><td>文件干净</td></tr>
+<tr><td>?</td><td>Unknown</td><td>未知状态</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="3-配置选项"><a class="header" href="#3-配置选项">3. 配置选项</a></h3>
+<h4 id="基本配置"><a class="header" href="#基本配置">基本配置</a></h4>
+<pre><code class="language-vim">" 启用 Git 状态显示
+let g:NERDTreeGitStatusEnable = 1
+
+" 显示修改文件数量
+let g:NERDTreeGitStatusShowCounts = 1
+
+" 显示 Git 状态文本
+let g:NERDTreeGitStatusShowText = 1
+</code></pre>
+<h4 id="颜色配置"><a class="header" href="#颜色配置">颜色配置</a></h4>
+<pre><code class="language-vim">" 自定义颜色
+let g:NERDTreeGitStatusColors = {
+    \ 'Modified'  : '#FFA500',
+    \ 'Staged'    : '#00FF00',
+    \ 'Untracked' : '#FFFF00',
+    \ 'Renamed'   : '#00FFFF',
+    \ 'Unmerged'  : '#FF00FF',
+    \ 'Deleted'   : '#FF0000',
+    \ 'Dirty'     : '#FF4500',
+    \ 'Ignored'   : '#808080',
+    \ 'Clean'     : '#00FF00',
+    \ 'Unknown'   : '#FFFFFF'
+    \ }
+</code></pre>
+<h4 id="性能优化"><a class="header" href="#性能优化">性能优化</a></h4>
+<pre><code class="language-vim">" 延迟更新 Git 状态
+let g:NERDTreeGitStatusUpdateOnWrite = 1
+let g:NERDTreeGitStatusUpdateOnCursorHold = 1
+
+" 限制 Git 命令执行频率
+let g:NERDTreeGitStatusCommand = 'git'
+let g:NERDTreeGitStatusAsync = 1
+</code></pre>
+<h2 id="使用示例"><a class="header" href="#使用示例">使用示例</a></h2>
+<h3 id="1-完整配置示例"><a class="header" href="#1-完整配置示例">1. 完整配置示例</a></h3>
+<pre><code class="language-vim">" NERDTree Git 插件配置
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+
+" NERDTree 配置
+let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.pyc$', '\~$', '\.swp$']
+
+" Git 状态配置
+let g:NERDTreeGitStatusShowCounts = 1
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+    \ 'Modified'  : '✹',
+    \ 'Staged'    : '✚',
+    \ 'Untracked' : '✭',
+    \ 'Renamed'   : '➜',
+    \ 'Unmerged'  : '═',
+    \ 'Deleted'   : '✖',
+    \ 'Dirty'     : '✗',
+    \ 'Ignored'   : '☒',
+    \ 'Clean'     : '✔︎',
+    \ 'Unknown'   : '?',
+    \ }
+
+" 快捷键
+nnoremap &lt;C-n&gt; :NERDTreeToggle&lt;CR&gt;
+nnoremap &lt;leader&gt;nf :NERDTreeFind&lt;CR&gt;
+</code></pre>
+<h3 id="2-与其他插件集成"><a class="header" href="#2-与其他插件集成">2. 与其他插件集成</a></h3>
+<pre><code class="language-vim">" 与 vim-devicons 集成
+Plug 'ryanoasis/vim-devicons'
+let g:webdevicons_enable_nerdtree = 1
+let g:NERDTreeGitStatusUseNerdFonts = 1
+
+" 与 airline 集成
+let g:airline#extensions#nerdtree#enabled = 1
+</code></pre>
+<h2 id="故障排除"><a class="header" href="#故障排除">故障排除</a></h2>
+<h3 id="问题-1图标不显示"><a class="header" href="#问题-1图标不显示">问题 1：图标不显示</a></h3>
+<pre><code class="language-bash"># 检查字体是否安装
+fc-list | grep -i "nerd"
+
+# 检查终端是否支持图标
+echo -e "\ue0b0 \u00b1 \ue0a0 \u27a6 \u2718 \u26a1 \u2699"
+
+# 设置终端字体
+# 在终端设置中使用 Nerd Fonts
+</code></pre>
+<h3 id="问题-2git-状态不更新"><a class="header" href="#问题-2git-状态不更新">问题 2：Git 状态不更新</a></h3>
+<pre><code class="language-vim">" 手动刷新 Git 状态
+:NERDTreeRefresh
+
+" 检查 Git 命令是否可用
+:!git --version
+
+" 启用异步更新
+let g:NERDTreeGitStatusAsync = 1
+</code></pre>
+<h3 id="问题-3性能问题"><a class="header" href="#问题-3性能问题">问题 3：性能问题</a></h3>
+<pre><code class="language-vim">" 禁用文件数量统计
+let g:NERDTreeGitStatusShowCounts = 0
+
+" 减少更新频率
+let g:NERDTreeGitStatusUpdateOnCursorHold = 0
+
+" 使用更快的 Git 命令
+let g:NERDTreeGitStatusCommand = 'git --no-optional-locks'
+</code></pre>
+<h2 id="高级功能"><a class="header" href="#高级功能">高级功能</a></h2>
+<h3 id="1-自定义状态检测"><a class="header" href="#1-自定义状态检测">1. 自定义状态检测</a></h3>
+<pre><code class="language-vim">" 自定义 Git 状态检测函数
+function! MyGitStatusIndicator(path)
+    " 自定义逻辑
+    return '?'
+endfunction
+
+let g:NERDTreeGitStatusCustomIndicator = function('MyGitStatusIndicator')
+</code></pre>
+<h3 id="2-状态过滤"><a class="header" href="#2-状态过滤">2. 状态过滤</a></h3>
+<pre><code class="language-vim">" 忽略特定文件的状态
+let g:NERDTreeGitStatusIgnore = ['package-lock.json', 'yarn.lock']
+
+" 只显示特定状态
+let g:NERDTreeGitStatusShowOnly = ['Modified', 'Untracked']
+</code></pre>
+<h3 id="3-状态提示"><a class="header" href="#3-状态提示">3. 状态提示</a></h3>
+<pre><code class="language-vim">" 启用状态提示
+let g:NERDTreeGitStatusShowTooltip = 1
+
+" 自定义提示格式
+let g:NERDTreeGitStatusTooltipFormat = '%s: %d'
+</code></pre>
+<h2 id="替代方案"><a class="header" href="#替代方案">替代方案</a></h2>
+<h3 id="1-nerdtree-git-status"><a class="header" href="#1-nerdtree-git-status">1. nerdtree-git-status</a></h3>
+<pre><code class="language-vim">" 另一个 Git 状态插件
+Plug 'albfan/nerdtree-git-status'
+</code></pre>
+<h3 id="2-vim-gitgutter"><a class="header" href="#2-vim-gitgutter">2. vim-gitgutter</a></h3>
+<pre><code class="language-vim">" 在侧边栏显示 Git 差异
+Plug 'airblade/vim-gitgutter'
+</code></pre>
+<h3 id="3-signify"><a class="header" href="#3-signify">3. signify</a></h3>
+<pre><code class="language-vim">" 轻量级 Git 状态显示
+Plug 'mhinz/vim-signify'
+</code></pre>
+<h2 id="最佳实践"><a class="header" href="#最佳实践">最佳实践</a></h2>
+<h3 id="1-字体管理"><a class="header" href="#1-字体管理">1. 字体管理</a></h3>
+<pre><code class="language-bash"># 使用字体管理器
+# 如: font-manager, gnome-font-viewer
+
+# 定期更新字体
+cd ~/.local/share/fonts
+git pull origin master
+fc-cache -fv
+</code></pre>
+<h3 id="2-配置备份"><a class="header" href="#2-配置备份">2. 配置备份</a></h3>
+<pre><code class="language-bash"># 备份配置
+cp ~/.vimrc ~/.vimrc.backup
+cp -r ~/.vim ~/.vim.backup
+
+# 使用版本控制
+cd ~/.vim
+git init
+git add .
+git commit -m "Initial vim configuration"
+</code></pre>
+<h3 id="3-性能监控"><a class="header" href="#3-性能监控">3. 性能监控</a></h3>
+<pre><code class="language-vim">" 监控插件性能
+:profile start profile.log
+:profile func *
+:profile file *
+:NERDTreeToggle
+:profile pause
+</code></pre>
+<h2 id="截图"><a class="header" href="#截图">截图</a></h2>
+<p><img src="https://camo.githubusercontent.com/5ee5b6171cda9ea0eb6ea834185b2ef869e7cb0f81ded740e9c396b8cc47a23e/687474703a2f2f692e696d6775722e636f6d2f6a534377476a552e6769663f31" alt="NERDTree Git 插件效果"></p>
+<p>NERDTree Git 插件为 NERDTree 添加了 Git 状态显示功能，让开发者可以直观地看到文件的版本控制状态。通过合理配置，可以大大提高开发效率。</p>
 
                     </main>
 

@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-0a679275.js"></script>
+        <script src="toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,11 +179,13 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="arch-linux-init"><a class="header" href="#arch-linux-init">Arch linux Init</a></h1>
-<h2 id="modify-pacman-mirror"><a class="header" href="#modify-pacman-mirror">Modify pacman mirror</a></h2>
+                        <h1 id="arch-linux-初始化配置指南"><a class="header" href="#arch-linux-初始化配置指南">Arch Linux 初始化配置指南</a></h1>
+<h2 id="修改-pacman-镜像源"><a class="header" href="#修改-pacman-镜像源">修改 Pacman 镜像源</a></h2>
+<h3 id="1-编辑镜像列表"><a class="header" href="#1-编辑镜像列表">1. 编辑镜像列表</a></h3>
 <pre><code class="language-bash">sudo vim /etc/pacman.d/mirrorlist
 </code></pre>
-<pre><code class="language-bash">## China
+<p>添加以下中国镜像源：</p>
+<pre><code class="language-bash">## 中国镜像源
 Server = https://mirrors.aliyun.com/archlinux/$repo/os/$arch
 Server = http://mirrors.aliyun.com/archlinux/$repo/os/$arch
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinux/$repo/os/$arch
@@ -196,57 +198,66 @@ Server = http://mirrors.163.com/archlinux/$repo/os/$arch
 Server = http://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
 Server = https://mirrors.bfsu.edu.cn/archlinux/$repo/os/$arch
 </code></pre>
+<h3 id="2-添加-arch-linux-cn-仓库"><a class="header" href="#2-添加-arch-linux-cn-仓库">2. 添加 Arch Linux CN 仓库</a></h3>
 <pre><code class="language-bash">sudo vim /etc/pacman.conf
 </code></pre>
+<p>在文件末尾添加：</p>
 <pre><code class="language-bash">[archlinuxcn]
 SigLevel = Optional TrustedOnly
 Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch
 Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
 Server = https://mirrors.aliyun.com/archlinuxcn/$arch
 </code></pre>
+<h3 id="3-更新软件包数据库"><a class="header" href="#3-更新软件包数据库">3. 更新软件包数据库</a></h3>
 <pre><code class="language-bash">sudo pacman -Syy
 </code></pre>
+<h3 id="4-安装基础工具"><a class="header" href="#4-安装基础工具">4. 安装基础工具</a></h3>
 <pre><code class="language-bash">sudo pacman -S yay base-devel tree neofetch git
 </code></pre>
-<h2 id="install-firefox"><a class="header" href="#install-firefox">Install firefox</a></h2>
+<h2 id="安装常用软件"><a class="header" href="#安装常用软件">安装常用软件</a></h2>
+<h3 id="安装-firefox-浏览器"><a class="header" href="#安装-firefox-浏览器">安装 Firefox 浏览器</a></h3>
 <pre><code class="language-bash">sudo pacman -S firefox
 </code></pre>
-<h2 id="install-font"><a class="header" href="#install-font">Install font</a></h2>
+<h3 id="安装字体"><a class="header" href="#安装字体">安装字体</a></h3>
 <pre><code class="language-bash">sudo pacman -S noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra ttf-dejavu ttf-liberation
 </code></pre>
-<h2 id="modify-locale"><a class="header" href="#modify-locale">Modify locale</a></h2>
+<h2 id="配置本地化设置"><a class="header" href="#配置本地化设置">配置本地化设置</a></h2>
+<h3 id="1-生成中文-locale"><a class="header" href="#1-生成中文-locale">1. 生成中文 locale</a></h3>
 <pre><code class="language-bash">sudo vim /etc/locale.gen
 </code></pre>
+<p>取消注释以下行：</p>
 <pre><code class="language-bash">zh_CN.UTF-8 UTF-8
 </code></pre>
-<pre><code class="language-bash">su
-locale-gen &amp;&amp; echo LANG=zh_CN.UTF-8 &gt; /etc/locale.conf
-exit
+<h3 id="2-生成-locale-并设置语言"><a class="header" href="#2-生成-locale-并设置语言">2. 生成 locale 并设置语言</a></h3>
+<pre><code class="language-bash">sudo locale-gen
+sudo echo "LANG=zh_CN.UTF-8" &gt; /etc/locale.conf
 </code></pre>
-<h2 id="install-google-pinyin-input-method"><a class="header" href="#install-google-pinyin-input-method">Install google-pinyin input method</a></h2>
+<h2 id="安装中文输入法"><a class="header" href="#安装中文输入法">安装中文输入法</a></h2>
+<h3 id="1-安装必要组件"><a class="header" href="#1-安装必要组件">1. 安装必要组件</a></h3>
 <pre><code class="language-bash">sudo pacman -S archlinuxcn-keyring
 sudo pacman -S fcitx5-im 
 sudo pacman -S fcitx5-chinese-addons
-sudo pacman -S fcitx5-qt fctitx5-gtk fcitx5-lua
+sudo pacman -S fcitx5-qt fcitx5-gtk fcitx5-lua
 </code></pre>
-<h2 id="modify-input-environment"><a class="header" href="#modify-input-environment">Modify input environment</a></h2>
-<pre><code class="language-bash">mkdir -p /home/knight/.config/environment.d &amp;&amp; \
-vim fcitx.conf
+<h3 id="2-配置输入法环境变量"><a class="header" href="#2-配置输入法环境变量">2. 配置输入法环境变量</a></h3>
+<pre><code class="language-bash">mkdir -p ~/.config/environment.d
+vim ~/.config/environment.d/fcitx.conf
 </code></pre>
+<p>添加以下内容：</p>
 <pre><code class="language-bash">GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
 </code></pre>
-<h2 id="fix-japan-font-problem"><a class="header" href="#fix-japan-font-problem">Fix Japan-font problem</a></h2>
+<h2 id="修复日文字体显示问题"><a class="header" href="#修复日文字体显示问题">修复日文字体显示问题</a></h2>
 <blockquote>
-<p>Ref：<a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96">Arch 简体中文本地化</a></p>
+<p>参考：<a href="https://wiki.archlinuxcn.org/wiki/%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87%E6%9C%AC%E5%9C%B0%E5%8C%96">Arch 简体中文本地化</a></p>
 </blockquote>
-<p>Create a new file named 64-language-selector-prefer.conf.</p>
-<pre><code class="language-bash">cd /etc/fonts/conf.d/ &amp;&amp; \
+<p>创建字体配置文件：</p>
+<pre><code class="language-bash">cd /etc/fonts/conf.d/
 sudo vim 64-language-selector-prefer.conf
 </code></pre>
-<p>Add the following code:</p>
-<pre><code class="language-bash">&lt;?xml version="1.0"?&gt;
+<p>添加以下配置：</p>
+<pre><code class="language-xml">&lt;?xml version="1.0"?&gt;
 &lt;!DOCTYPE fontconfig SYSTEM "fonts.dtd"&gt;
 &lt;fontconfig&gt;
   &lt;alias&gt;
@@ -267,36 +278,40 @@ sudo vim 64-language-selector-prefer.conf
   &lt;/alias&gt;
 &lt;/fontconfig&gt;
 </code></pre>
-<h2 id="auth-fprint-login"><a class="header" href="#auth-fprint-login">Auth fprint login</a></h2>
+<h2 id="配置指纹登录"><a class="header" href="#配置指纹登录">配置指纹登录</a></h2>
 <blockquote>
-<p>Ref：<a href="https://wiki.archlinuxcn.org/wiki/Fprint">Arch 添加指纹登陆</a></p>
+<p>参考：<a href="https://wiki.archlinuxcn.org/wiki/Fprint">Arch 添加指纹登录</a></p>
 </blockquote>
+<h3 id="1-安装指纹识别服务"><a class="header" href="#1-安装指纹识别服务">1. 安装指纹识别服务</a></h3>
 <pre><code class="language-bash">sudo pacman -S fprintd
 </code></pre>
-<p>Edit <code>system-local-login</code> file in <code>/etc/pam.d/</code>.</p>
+<h3 id="2-配置-pam-认证"><a class="header" href="#2-配置-pam-认证">2. 配置 PAM 认证</a></h3>
+<p>编辑系统登录配置文件：</p>
 <pre><code class="language-bash">sudo vim /etc/pam.d/system-local-login
 </code></pre>
-<p>Add following lines at the top of the file:</p>
-<pre><code class="language-bash">auth		  sufficient  	pam_unix.so try_first_pass likeauth nullok
-auth      sufficient    pam_fprintd.so
+<p>在文件开头添加：</p>
+<pre><code class="language-bash">auth    sufficient    pam_unix.so try_first_pass likeauth nullok
+auth    sufficient    pam_fprintd.so
 </code></pre>
-<p>Edit <code>kde</code> file in <code>/etc/pam.d/</code>.</p>
+<p>编辑 KDE 配置文件：</p>
 <pre><code class="language-bash">sudo vim /etc/pam.d/kde
 </code></pre>
-<p>Add following lines at the top of the file:</p>
-<pre><code class="language-bash">auth		  sufficient  	pam_unix.so try_first_pass likeauth nullok
-auth      sufficient    pam_fprintd.so
+<p>在文件开头添加：</p>
+<pre><code class="language-bash">auth    sufficient    pam_unix.so try_first_pass likeauth nullok
+auth    sufficient    pam_fprintd.so
 </code></pre>
+<h2 id="完成配置"><a class="header" href="#完成配置">完成配置</a></h2>
+<p>完成以上步骤后，重启系统使所有配置生效。现在你的 Arch Linux 系统已经配置了中文环境、快速的软件源和方便的输入法，可以开始愉快地使用了。</p>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="linux_2FA.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="vscode_remote_usage.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="keyboard_layout.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="cargo_release.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -306,11 +321,11 @@ auth      sufficient    pam_fprintd.so
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="linux_2FA.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="vscode_remote_usage.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="keyboard_layout.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="cargo_release.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

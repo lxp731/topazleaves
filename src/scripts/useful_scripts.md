@@ -1,3 +1,3 @@
-# Useful Scripts
+# 实用脚本合集
 
-In Linux, you can use some scripts to do some repetitive tasks.
+在 Linux 系统中，使用脚本可以自动化处理重复性任务，提高工作效率。本文收集了一些实用的脚本示例。

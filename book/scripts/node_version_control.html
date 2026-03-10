@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "../searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "../searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-0a679275.js"></script>
+        <script src="../toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,33 +179,39 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="switch-node-version"><a class="header" href="#switch-node-version">Switch Node Version</a></h1>
+                        <h1 id="nodejs-版本切换脚本"><a class="header" href="#nodejs-版本切换脚本">Node.js 版本切换脚本</a></h1>
+<p>本文介绍如何使用脚本在多个 Node.js 版本之间切换，特别适用于需要不同 Node 版本的项目（如 Hexo 博客需要 Node v12，而其他项目需要 Node v20）。</p>
+<h2 id="创建版本切换脚本"><a class="header" href="#创建版本切换脚本">创建版本切换脚本</a></h2>
+<h3 id="1-创建脚本文件"><a class="header" href="#1-创建脚本文件">1. 创建脚本文件</a></h3>
 <pre><code class="language-bash">sudo vim hexo_start_stop.sh
-sudo chmod +x hexo_start_stop.sh
 </code></pre>
+<h3 id="2-设置执行权限"><a class="header" href="#2-设置执行权限">2. 设置执行权限</a></h3>
+<pre><code class="language-bash">sudo chmod +x hexo_start_stop.sh
+</code></pre>
+<h2 id="脚本内容详解"><a class="header" href="#脚本内容详解">脚本内容详解</a></h2>
 <pre><code class="language-sh">#!/bin/bash
 
 # 检查参数
 if [ "$#" -ne 1 ]; then
-    echo "Usage: $0 start|stop"
+    echo "使用方法: $0 start|stop"
     exit 1
 fi
 
 # 定义变量
-NODE_V12_DIR="/home/knight/node/node-v12/bin"
-NODE_V20_DIR="/home/knight/node/node-v20/bin"
-NODE_BIN="/usr/bin/node"
-NODE_LOCAL_BIN="/usr/local/bin/node"
-NPM_BIN="/usr/bin/npm"
-NPM_LOCAL_BIN="/usr/local/bin/npm"
-NPX_BIN="/usr/bin/npx"
-NPX_LOCAL_BIN="/usr/local/bin/npx"
-# HEXO_LOCAL_BIN="/usr/local/bin/hexo"
+NODE_V12_DIR="/home/knight/node/node-v12/bin"   # Node v12 安装目录
+NODE_V20_DIR="/home/knight/node/node-v20/bin"   # Node v20 安装目录
+NODE_BIN="/usr/bin/node"                        # 系统 node 命令位置
+NODE_LOCAL_BIN="/usr/local/bin/node"            # 本地 node 命令位置
+NPM_BIN="/usr/bin/npm"                          # 系统 npm 命令位置
+NPM_LOCAL_BIN="/usr/local/bin/npm"              # 本地 npm 命令位置
+NPX_BIN="/usr/bin/npx"                          # 系统 npx 命令位置
+NPX_LOCAL_BIN="/usr/local/bin/npx"              # 本地 npx 命令位置
+# HEXO_LOCAL_BIN="/usr/local/bin/hexo"          # Hexo 命令位置（可选）
 
 # 根据参数执行相应的操作
 case "$1" in
     start)
-        # 更新符号链接到 Node v12
+        # 切换到 Node v12（用于 Hexo）
         sudo ln -sf "$NODE_V12_DIR/node" "$NODE_BIN"
         sudo ln -sf "$NODE_V12_DIR/node" "$NODE_LOCAL_BIN"
         sudo ln -sf "$NODE_V12_DIR/npm" "$NPM_BIN"
@@ -213,10 +219,10 @@ case "$1" in
         sudo ln -sf "$NODE_V12_DIR/npx" "$NPX_BIN"
         sudo ln -sf "$NODE_V12_DIR/npx" "$NPX_LOCAL_BIN"
         # sudo ln -sf "$NODE_V12_DIR/hexo" "$HEXO_LOCAL_BIN"
-        echo "Node, NPM, and NPX links updated to Node v12."
+        echo "Node、NPM 和 NPX 链接已更新到 Node v12。"
         ;;
     stop)
-        # 更新符号链接到 Node v20
+        # 切换回 Node v20（默认版本）
         sudo ln -sf "$NODE_V20_DIR/node" "$NODE_BIN"
         sudo ln -sf "$NODE_V20_DIR/node" "$NODE_LOCAL_BIN"
         sudo ln -sf "$NODE_V20_DIR/npm" "$NPM_BIN"
@@ -224,16 +230,235 @@ case "$1" in
         sudo ln -sf "$NODE_V20_DIR/npx" "$NPX_BIN"
         sudo ln -sf "$NODE_V20_DIR/npx" "$NPX_LOCAL_BIN"
         # sudo rm -rf "$HEXO_LOCAL_BIN"
-        echo "Node, NPM, and NPX links updated to Node v20."
+        echo "Node、NPM 和 NPX 链接已更新到 Node v20。"
         ;;
     *)
-        echo "Invalid argument. Usage: $0 start|stop"
+        echo "参数错误。使用方法: $0 start|stop"
         exit 1
         ;;
 esac
 
 exit 0
 </code></pre>
+<h2 id="使用说明"><a class="header" href="#使用说明">使用说明</a></h2>
+<h3 id="1-切换到-node-v12用于-hexo"><a class="header" href="#1-切换到-node-v12用于-hexo">1. 切换到 Node v12（用于 Hexo）</a></h3>
+<pre><code class="language-bash">sudo ./hexo_start_stop.sh start
+</code></pre>
+<h3 id="2-切换回-node-v20默认版本"><a class="header" href="#2-切换回-node-v20默认版本">2. 切换回 Node v20（默认版本）</a></h3>
+<pre><code class="language-bash">sudo ./hexo_start_stop.sh stop
+</code></pre>
+<h3 id="3-验证版本切换"><a class="header" href="#3-验证版本切换">3. 验证版本切换</a></h3>
+<pre><code class="language-bash"># 检查 Node 版本
+node --version
+
+# 检查 npm 版本
+npm --version
+
+# 检查 npx 版本
+npx --version
+</code></pre>
+<h2 id="安装多个-node-版本"><a class="header" href="#安装多个-node-版本">安装多个 Node 版本</a></h2>
+<h3 id="1-下载-nodejs-二进制包"><a class="header" href="#1-下载-nodejs-二进制包">1. 下载 Node.js 二进制包</a></h3>
+<pre><code class="language-bash"># 创建 Node 安装目录
+mkdir -p ~/node
+cd ~/node
+
+# 下载 Node v12
+wget https://nodejs.org/dist/v12.22.12/node-v12.22.12-linux-x64.tar.xz
+tar -xf node-v12.22.12-linux-x64.tar.xz
+mv node-v12.22.12-linux-x64 node-v12
+
+# 下载 Node v20
+wget https://nodejs.org/dist/v20.11.0/node-v20.11.0-linux-x64.tar.xz
+tar -xf node-v20.11.0-linux-x64.tar.xz
+mv node-v20.11.0-linux-x64 node-v20
+</code></pre>
+<h3 id="2-验证安装"><a class="header" href="#2-验证安装">2. 验证安装</a></h3>
+<pre><code class="language-bash"># 测试 Node v12
+~/node/node-v12/bin/node --version
+
+# 测试 Node v20
+~/node/node-v20/bin/node --version
+</code></pre>
+<h2 id="更好的解决方案使用-nvm"><a class="header" href="#更好的解决方案使用-nvm">更好的解决方案：使用 nvm</a></h2>
+<h3 id="1-安装-nvmnode-version-manager"><a class="header" href="#1-安装-nvmnode-version-manager">1. 安装 nvm（Node Version Manager）</a></h3>
+<pre><code class="language-bash"># 下载安装脚本
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# 或使用 wget
+wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+
+# 重新加载 shell 配置
+source ~/.bashrc  # 或 source ~/.zshrc
+</code></pre>
+<h3 id="2-使用-nvm-管理-node-版本"><a class="header" href="#2-使用-nvm-管理-node-版本">2. 使用 nvm 管理 Node 版本</a></h3>
+<pre><code class="language-bash"># 安装 Node v12
+nvm install 12
+
+# 安装 Node v20
+nvm install 20
+
+# 列出已安装的版本
+nvm ls
+
+# 使用特定版本
+nvm use 12
+
+# 设置默认版本
+nvm alias default 20
+</code></pre>
+<h3 id="3-nvm-常用命令"><a class="header" href="#3-nvm-常用命令">3. nvm 常用命令</a></h3>
+<pre><code class="language-bash"># 安装指定版本
+nvm install 18.19.0
+
+# 使用最新 LTS 版本
+nvm install --lts
+nvm use --lts
+
+# 卸载版本
+nvm uninstall 12
+
+# 查看可用版本
+nvm ls-remote
+
+# 在当前目录使用特定版本（创建 .nvmrc 文件）
+echo "12" &gt; .nvmrc
+nvm use
+</code></pre>
+<h2 id="项目特定配置"><a class="header" href="#项目特定配置">项目特定配置</a></h2>
+<h3 id="1-使用-nvmrc-文件"><a class="header" href="#1-使用-nvmrc-文件">1. 使用 .nvmrc 文件</a></h3>
+<pre><code class="language-bash"># 在项目根目录创建 .nvmrc 文件
+echo "12" &gt; .nvmrc
+
+# 自动切换到指定版本
+nvm use
+</code></pre>
+<h3 id="2-使用-packagejson-engines-字段"><a class="header" href="#2-使用-packagejson-engines-字段">2. 使用 package.json engines 字段</a></h3>
+<pre><code class="language-json">{
+  "engines": {
+    "node": "&gt;=12.0.0 &lt;13.0.0",
+    "npm": "&gt;=6.0.0"
+  }
+}
+</code></pre>
+<h3 id="3-自动化脚本"><a class="header" href="#3-自动化脚本">3. 自动化脚本</a></h3>
+<pre><code class="language-bash">#!/bin/bash
+# auto_node_version.sh
+
+# 检查当前目录是否有 .nvmrc
+if [ -f .nvmrc ]; then
+    nvm use
+fi
+
+# 或者根据项目类型判断
+if [ -f package.json ]; then
+    NODE_VERSION=$(node -p "require('./package.json').engines.node" 2&gt;/dev/null)
+    if [ ! -z "$NODE_VERSION" ]; then
+        nvm use "$NODE_VERSION"
+    fi
+fi
+</code></pre>
+<h2 id="系统级配置"><a class="header" href="#系统级配置">系统级配置</a></h2>
+<h3 id="1-创建符号链接的替代方案"><a class="header" href="#1-创建符号链接的替代方案">1. 创建符号链接的替代方案</a></h3>
+<pre><code class="language-bash"># 使用 update-alternatives（Debian/Ubuntu）
+sudo update-alternatives --install /usr/bin/node node /home/knight/node/node-v12/bin/node 100
+sudo update-alternatives --install /usr/bin/node node /home/knight/node/node-v20/bin/node 200
+
+# 切换版本
+sudo update-alternatives --config node
+</code></pre>
+<h3 id="2-使用环境变量"><a class="header" href="#2-使用环境变量">2. 使用环境变量</a></h3>
+<pre><code class="language-bash"># 在 ~/.bashrc 或 ~/.zshrc 中添加
+export PATH="/home/knight/node/node-v20/bin:$PATH"
+
+# 创建切换函数
+node-switch() {
+    if [ "$1" = "12" ]; then
+        export PATH="/home/knight/node/node-v12/bin:$PATH"
+        echo "切换到 Node v12"
+    elif [ "$1" = "20" ]; then
+        export PATH="/home/knight/node/node-v20/bin:$PATH"
+        echo "切换到 Node v20"
+    else
+        echo "使用方法: node-switch 12|20"
+    fi
+}
+</code></pre>
+<h2 id="故障排除"><a class="header" href="#故障排除">故障排除</a></h2>
+<h3 id="问题-1权限不足"><a class="header" href="#问题-1权限不足">问题 1：权限不足</a></h3>
+<pre><code class="language-bash"># 检查文件权限
+ls -la /usr/bin/node
+ls -la /usr/local/bin/node
+
+# 修复权限
+sudo chown root:root /usr/bin/node
+sudo chmod 755 /usr/bin/node
+</code></pre>
+<h3 id="问题-2符号链接错误"><a class="header" href="#问题-2符号链接错误">问题 2：符号链接错误</a></h3>
+<pre><code class="language-bash"># 检查符号链接
+ls -l /usr/bin/node
+ls -l /usr/local/bin/node
+
+# 重新创建符号链接
+sudo rm -f /usr/bin/node
+sudo ln -s /home/knight/node/node-v20/bin/node /usr/bin/node
+</code></pre>
+<h3 id="问题-3版本冲突"><a class="header" href="#问题-3版本冲突">问题 3：版本冲突</a></h3>
+<pre><code class="language-bash"># 检查所有 node 可执行文件位置
+which -a node
+
+# 检查 PATH 环境变量
+echo $PATH | tr ':' '\n'
+
+# 清理重复的路径
+export PATH=$(echo $PATH | tr ':' '\n' | grep -v "/home/knight/node/node-v12/bin" | tr '\n' ':')
+</code></pre>
+<h2 id="最佳实践"><a class="header" href="#最佳实践">最佳实践</a></h2>
+<h3 id="1-使用-nvm推荐"><a class="header" href="#1-使用-nvm推荐">1. 使用 nvm（推荐）</a></h3>
+<ul>
+<li>更安全：不需要 sudo 权限</li>
+<li>更灵活：支持多个版本并行</li>
+<li>更易用：简单的命令接口</li>
+</ul>
+<h3 id="2-项目隔离"><a class="header" href="#2-项目隔离">2. 项目隔离</a></h3>
+<ul>
+<li>每个项目使用独立的 Node 版本</li>
+<li>使用 .nvmrc 文件指定版本</li>
+<li>在 CI/CD 中明确指定版本</li>
+</ul>
+<h3 id="3-定期更新"><a class="header" href="#3-定期更新">3. 定期更新</a></h3>
+<pre><code class="language-bash"># 更新 nvm
+nvm upgrade
+
+# 更新 Node 到最新 LTS
+nvm install --lts
+nvm alias default lts/*
+</code></pre>
+<h3 id="4-备份配置"><a class="header" href="#4-备份配置">4. 备份配置</a></h3>
+<pre><code class="language-bash"># 备份 nvm 安装的版本
+nvm ls &gt; ~/node-versions-backup.txt
+
+# 备份全局包
+npm list -g --depth=0 &gt; ~/npm-global-packages.txt
+</code></pre>
+<h2 id="性能考虑"><a class="header" href="#性能考虑">性能考虑</a></h2>
+<h3 id="1-磁盘空间"><a class="header" href="#1-磁盘空间">1. 磁盘空间</a></h3>
+<pre><code class="language-bash"># 查看 Node 版本占用的空间
+du -sh ~/.nvm/versions/node/
+
+# 清理旧版本
+nvm uninstall 10
+nvm uninstall 14
+</code></pre>
+<h3 id="2-启动时间"><a class="header" href="#2-启动时间">2. 启动时间</a></h3>
+<pre><code class="language-bash"># nvm 会增加 shell 启动时间
+# 可以考虑延迟加载
+# 在 ~/.bashrc 或 ~/.zshrc 中添加
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] &amp;&amp; \. "$NVM_DIR/nvm.sh"  # 延迟加载
+[ -s "$NVM_DIR/bash_completion" ] &amp;&amp; \. "$NVM_DIR/bash_completion"
+</code></pre>
+<p>通过合理管理 Node.js 版本，可以确保不同项目使用兼容的运行时环境，避免版本冲突问题。建议优先使用 nvm 进行版本管理。</p>
 
                     </main>
 

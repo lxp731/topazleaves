@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "../searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "../searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-0a679275.js"></script>
+        <script src="../toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,35 +179,234 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="wechat-install"><a class="header" href="#wechat-install">Wechat Install</a></h1>
-<h2 id="install-deepin-repository"><a class="header" href="#install-deepin-repository">Install Deepin Repository</a></h2>
+                        <h1 id="linux-微信安装指南"><a class="header" href="#linux-微信安装指南">Linux 微信安装指南</a></h1>
+<p>本文介绍在 Linux 系统上安装微信的几种方法，包括 Deepin Wine 版本和官方原生版本。</p>
+<h2 id="方法一使用-deepin-wine-版本"><a class="header" href="#方法一使用-deepin-wine-版本">方法一：使用 Deepin Wine 版本</a></h2>
+<h3 id="1-安装-deepin-仓库"><a class="header" href="#1-安装-deepin-仓库">1. 安装 Deepin 仓库</a></h3>
 <pre><code class="language-bash">wget -O- https://deepin-wine.i-m.dev/setup.sh | sh
 </code></pre>
-<h2 id="install-wechat"><a class="header" href="#install-wechat">Install Wechat</a></h2>
-<pre><code class="language-bash">sudo apt install com.qq.weixin.deepin
+<h3 id="2-安装微信"><a class="header" href="#2-安装微信">2. 安装微信</a></h3>
+<pre><code class="language-bash">sudo apt update
+sudo apt install com.qq.weixin.deepin
 </code></pre>
-<h2 id="解决统信应用解压失败的问题"><a class="header" href="#解决统信应用解压失败的问题">解决统信应用解压失败的问题</a></h2>
+<h3 id="3-解决统信应用解压失败的问题"><a class="header" href="#3-解决统信应用解压失败的问题">3. 解决统信应用解压失败的问题</a></h3>
+<p>某些系统可能会遇到解压失败的问题，需要修改脚本：</p>
 <pre><code class="language-bash">sudo vim /opt/deepinwine/tools/run_v4.sh
-
-# find this line
-7z x "$APPDIR/$APPTAR" -o"$1"
-# update it following line
-7z x "$APPDIR/$APPTAR" -o"$1" || true
 </code></pre>
-<h2 id="remove-wechat"><a class="header" href="#remove-wechat">Remove Wechat</a></h2>
-<pre><code class="language-bash">sudo apt remove com.qq.weixin.deepin
+<p>找到这一行：</p>
+<pre><code class="language-bash">7z x "$APPDIR/$APPTAR" -o"$1"
 </code></pre>
-<h2 id="delete-deepin-repository"><a class="header" href="#delete-deepin-repository">Delete Deepin Repository</a></h2>
-<pre><code class="language-bash">sudo rm /etc/apt/sources.d.list/deepin-wine.i-m.dev.list
+<p>修改为：</p>
+<pre><code class="language-bash">7z x "$APPDIR/$APPTAR" -o"$1" || true
 </code></pre>
-<hr>
-<h1 id="tencent-official-wechat"><a class="header" href="#tencent-official-wechat">Tencent Official Wechat</a></h1>
+<h2 id="方法二腾讯官方原生版本"><a class="header" href="#方法二腾讯官方原生版本">方法二：腾讯官方原生版本</a></h2>
+<h3 id="官方网站"><a class="header" href="#官方网站">官方网站</a></h3>
 <p><a href="https://linux.weixin.qq.com/">https://linux.weixin.qq.com/</a></p>
-<ol>
-<li>Download</li>
-</ol>
+<h3 id="1-下载安装包"><a class="header" href="#1-下载安装包">1. 下载安装包</a></h3>
 <pre><code class="language-bash">wget https://dldir1v6.qq.com/weixin/Universal/Linux/WeChatLinux_x86_64.deb
 </code></pre>
+<h3 id="2-安装依赖"><a class="header" href="#2-安装依赖">2. 安装依赖</a></h3>
+<pre><code class="language-bash"># Ubuntu/Debian
+sudo apt install -f
+sudo dpkg -i WeChatLinux_x86_64.deb
+
+# 如果依赖问题，运行
+sudo apt --fix-broken install
+</code></pre>
+<h3 id="3-启动微信"><a class="header" href="#3-启动微信">3. 启动微信</a></h3>
+<pre><code class="language-bash">wechat
+# 或通过应用程序菜单启动
+</code></pre>
+<h2 id="方法三使用-flatpak"><a class="header" href="#方法三使用-flatpak">方法三：使用 Flatpak</a></h2>
+<h3 id="1-安装-flatpak如果尚未安装"><a class="header" href="#1-安装-flatpak如果尚未安装">1. 安装 Flatpak（如果尚未安装）</a></h3>
+<pre><code class="language-bash"># Ubuntu
+sudo apt install flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# Fedora
+sudo dnf install flatpak
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+</code></pre>
+<h3 id="2-安装微信-1"><a class="header" href="#2-安装微信-1">2. 安装微信</a></h3>
+<pre><code class="language-bash">flatpak install com.qq.weixin
+</code></pre>
+<h3 id="3-运行微信"><a class="header" href="#3-运行微信">3. 运行微信</a></h3>
+<pre><code class="language-bash">flatpak run com.qq.weixin
+</code></pre>
+<h2 id="方法四使用-snap"><a class="header" href="#方法四使用-snap">方法四：使用 Snap</a></h2>
+<h3 id="1-安装-snap如果尚未安装"><a class="header" href="#1-安装-snap如果尚未安装">1. 安装 Snap（如果尚未安装）</a></h3>
+<pre><code class="language-bash"># Ubuntu（默认已安装）
+sudo apt install snapd
+
+# 其他发行版
+sudo systemctl enable --now snapd.socket
+</code></pre>
+<h3 id="2-安装微信-2"><a class="header" href="#2-安装微信-2">2. 安装微信</a></h3>
+<pre><code class="language-bash">sudo snap install wechat
+</code></pre>
+<h3 id="3-运行微信-1"><a class="header" href="#3-运行微信-1">3. 运行微信</a></h3>
+<pre><code class="language-bash">wechat
+</code></pre>
+<h2 id="卸载微信"><a class="header" href="#卸载微信">卸载微信</a></h2>
+<h3 id="1-卸载-deepin-wine-版本"><a class="header" href="#1-卸载-deepin-wine-版本">1. 卸载 Deepin Wine 版本</a></h3>
+<pre><code class="language-bash">sudo apt remove com.qq.weixin.deepin
+</code></pre>
+<h3 id="2-删除-deepin-仓库"><a class="header" href="#2-删除-deepin-仓库">2. 删除 Deepin 仓库</a></h3>
+<pre><code class="language-bash">sudo rm /etc/apt/sources.list.d/deepin-wine.i-m.dev.list
+sudo apt update
+</code></pre>
+<h3 id="3-卸载官方版本"><a class="header" href="#3-卸载官方版本">3. 卸载官方版本</a></h3>
+<pre><code class="language-bash"># Debian/Ubuntu
+sudo dpkg -r wechat
+
+# 或使用 apt
+sudo apt remove wechat
+</code></pre>
+<h3 id="4-卸载-flatpak-版本"><a class="header" href="#4-卸载-flatpak-版本">4. 卸载 Flatpak 版本</a></h3>
+<pre><code class="language-bash">flatpak uninstall com.qq.weixin
+</code></pre>
+<h3 id="5-卸载-snap-版本"><a class="header" href="#5-卸载-snap-版本">5. 卸载 Snap 版本</a></h3>
+<pre><code class="language-bash">sudo snap remove wechat
+</code></pre>
+<h2 id="常见问题解决"><a class="header" href="#常见问题解决">常见问题解决</a></h2>
+<h3 id="问题-1无法输入中文"><a class="header" href="#问题-1无法输入中文">问题 1：无法输入中文</a></h3>
+<pre><code class="language-bash"># 检查输入法配置
+echo $GTK_IM_MODULE
+echo $QT_IM_MODULE
+
+# 设置环境变量
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+
+# 在启动脚本中添加
+vim ~/.bashrc
+# 添加上述环境变量
+</code></pre>
+<h3 id="问题-2字体显示异常"><a class="header" href="#问题-2字体显示异常">问题 2：字体显示异常</a></h3>
+<pre><code class="language-bash"># 安装中文字体
+sudo apt install fonts-wqy-microhei fonts-wqy-zenhei
+
+# 复制 Windows 字体（如果有）
+sudo cp /path/to/windows/fonts/*.ttf /usr/share/fonts/truetype/
+sudo fc-cache -fv
+</code></pre>
+<h3 id="问题-3无法发送图片文件"><a class="header" href="#问题-3无法发送图片文件">问题 3：无法发送图片/文件</a></h3>
+<pre><code class="language-bash"># 检查文件权限
+ls -la ~/图片/
+ls -la ~/文档/
+
+# 修复权限
+chmod 755 ~/图片
+chmod 755 ~/文档
+</code></pre>
+<h3 id="问题-4闪退或崩溃"><a class="header" href="#问题-4闪退或崩溃">问题 4：闪退或崩溃</a></h3>
+<pre><code class="language-bash"># 查看错误日志
+journalctl -xe | grep wechat
+
+# 尝试使用命令行启动查看错误
+wechat --verbose
+
+# 清理缓存
+rm -rf ~/.deepinwine/Deepin-WeChat
+rm -rf ~/.config/tencent-wechat
+</code></pre>
+<h2 id="性能优化"><a class="header" href="#性能优化">性能优化</a></h2>
+<h3 id="1-减少内存占用"><a class="header" href="#1-减少内存占用">1. 减少内存占用</a></h3>
+<pre><code class="language-bash"># 创建启动脚本
+vim ~/bin/wechat-optimized
+</code></pre>
+<p>添加内容：</p>
+<pre><code class="language-bash">#!/bin/bash
+# 限制内存使用
+ulimit -v 2000000
+# 启动微信
+wechat "$@"
+</code></pre>
+<h3 id="2-禁用不必要的功能"><a class="header" href="#2-禁用不必要的功能">2. 禁用不必要的功能</a></h3>
+<p>在微信设置中：</p>
+<ul>
+<li>关闭自动下载图片</li>
+<li>关闭消息预览</li>
+<li>减少聊天记录保存时间</li>
+</ul>
+<h3 id="3-定期清理缓存"><a class="header" href="#3-定期清理缓存">3. 定期清理缓存</a></h3>
+<pre><code class="language-bash"># 清理微信缓存
+rm -rf ~/.cache/wechat
+rm -rf ~/.local/share/wechat
+
+# 清理 Wine 缓存
+rm -rf ~/.deepinwine/Deepin-WeChat/drive_c/users/$USER/Application\ Data/Tencent
+</code></pre>
+<h2 id="安全注意事项"><a class="header" href="#安全注意事项">安全注意事项</a></h2>
+<h3 id="1-权限管理"><a class="header" href="#1-权限管理">1. 权限管理</a></h3>
+<pre><code class="language-bash"># 检查微信权限
+flatpak info com.qq.weixin
+# 或
+snap info wechat
+
+# 限制文件访问
+# 使用沙盒版本（Flatpak/Snap）
+</code></pre>
+<h3 id="2-网络访问"><a class="header" href="#2-网络访问">2. 网络访问</a></h3>
+<pre><code class="language-bash"># 使用防火墙限制
+sudo ufw deny out from any to wechat-server
+# 或使用网络监控
+sudo nethogs
+</code></pre>
+<h3 id="3-数据备份"><a class="header" href="#3-数据备份">3. 数据备份</a></h3>
+<pre><code class="language-bash"># 备份聊天记录
+cp -r ~/.deepinwine/Deepin-WeChat/drive_c/users/$USER/My\ Documents/WeChat\ Files ~/backup/
+
+# 备份配置
+cp -r ~/.config/tencent-wechat ~/backup/
+</code></pre>
+<h2 id="替代方案"><a class="header" href="#替代方案">替代方案</a></h2>
+<h3 id="1-使用网页版微信"><a class="header" href="#1-使用网页版微信">1. 使用网页版微信</a></h3>
+<ul>
+<li>访问：https://wx.qq.com/</li>
+<li>优点：无需安装，跨平台</li>
+<li>缺点：功能有限，需要手机扫码</li>
+</ul>
+<h3 id="2-使用第三方客户端"><a class="header" href="#2-使用第三方客户端">2. 使用第三方客户端</a></h3>
+<pre><code class="language-bash"># Electronic WeChat（已停止维护）
+# 但仍有社区版本可用
+
+# 其他开源替代品
+# 如：Franz、Rambox 等聚合客户端
+</code></pre>
+<h3 id="3-使用虚拟机"><a class="header" href="#3-使用虚拟机">3. 使用虚拟机</a></h3>
+<pre><code class="language-bash"># 安装 VirtualBox
+sudo apt install virtualbox
+
+# 创建 Windows 虚拟机
+# 在虚拟机中安装微信
+</code></pre>
+<h2 id="最佳实践"><a class="header" href="#最佳实践">最佳实践</a></h2>
+<h3 id="1-选择合适的方法"><a class="header" href="#1-选择合适的方法">1. 选择合适的方法</a></h3>
+<ul>
+<li><strong>日常使用</strong>：推荐官方原生版本</li>
+<li><strong>兼容性需求</strong>：使用 Deepin Wine 版本</li>
+<li><strong>安全性优先</strong>：使用 Flatpak/Snap 沙盒版本</li>
+</ul>
+<h3 id="2-定期更新"><a class="header" href="#2-定期更新">2. 定期更新</a></h3>
+<pre><code class="language-bash"># 检查更新
+sudo apt update
+sudo apt upgrade
+
+# Flatpak 更新
+flatpak update
+
+# Snap 更新
+sudo snap refresh
+</code></pre>
+<h3 id="3-问题反馈"><a class="header" href="#3-问题反馈">3. 问题反馈</a></h3>
+<ul>
+<li>官方反馈渠道：微信设置 → 帮助与反馈</li>
+<li>社区支持：Linux 用户论坛、GitHub Issues</li>
+<li>日志收集：遇到问题时保存日志文件</li>
+</ul>
+<p>通过选择合适的安装方法并合理配置，可以在 Linux 系统上获得良好的微信使用体验。建议优先尝试官方原生版本，如遇到兼容性问题再考虑其他方案。</p>
 
                     </main>
 

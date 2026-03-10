@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "../searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "../searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-0a679275.js"></script>
+        <script src="../toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,22 +179,351 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="zsh-autocomplete"><a class="header" href="#zsh-autocomplete">Zsh-autocomplete</a></h1>
+                        <h1 id="zsh-autocomplete实时自动补全插件"><a class="header" href="#zsh-autocomplete实时自动补全插件">Zsh-autocomplete：实时自动补全插件</a></h1>
+<h2 id="github-仓库"><a class="header" href="#github-仓库">GitHub 仓库</a></h2>
 <p><a href="https://github.com/marlonrichert/zsh-autocomplete">https://github.com/marlonrichert/zsh-autocomplete</a></p>
-<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
+<h2 id="安装方法"><a class="header" href="#安装方法">安装方法</a></h2>
+<h3 id="方法一使用-oh-my-zsh-安装"><a class="header" href="#方法一使用-oh-my-zsh-安装">方法一：使用 Oh My Zsh 安装</a></h3>
 <ol>
-<li>Clone this repository into <code>$ZSH_CUSTOM/plugins</code> (by default <code>~/.oh-my-zsh/custom/plugins</code>)</li>
+<li>克隆仓库到 Oh My Zsh 自定义插件目录：</li>
 </ol>
 <pre><code class="language-bash">git clone --depth 1 -- https://github.com/marlonrichert/zsh-autocomplete.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
 </code></pre>
 <ol start="2">
-<li>Add the plugin to the list of plugins for Oh My Zsh to load (inside <code>~/.zshrc</code>):</li>
+<li>在 <code>~/.zshrc</code> 的插件列表中添加：</li>
 </ol>
-<pre><code class="language-bash">plugins=( 
-    # other plugins...
+<pre><code class="language-bash">plugins=(
+    # 其他插件...
     zsh-autocomplete
 )
 </code></pre>
+<ol start="3">
+<li>重新加载配置：</li>
+</ol>
+<pre><code class="language-bash">source ~/.zshrc
+</code></pre>
+<h3 id="方法二手动安装不使用-oh-my-zsh"><a class="header" href="#方法二手动安装不使用-oh-my-zsh">方法二：手动安装（不使用 Oh My Zsh）</a></h3>
+<ol>
+<li>克隆仓库：</li>
+</ol>
+<pre><code class="language-bash">git clone --depth 1 https://github.com/marlonrichert/zsh-autocomplete.git ~/.zsh/zsh-autocomplete
+</code></pre>
+<ol start="2">
+<li>在 <code>~/.zshrc</code> 中添加：</li>
+</ol>
+<pre><code class="language-bash">source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+</code></pre>
+<h3 id="方法三使用-zinit推荐"><a class="header" href="#方法三使用-zinit推荐">方法三：使用 Zinit（推荐）</a></h3>
+<pre><code class="language-bash"># 使用 Zinit 安装
+zinit light marlonrichert/zsh-autocomplete
+
+# 或使用延迟加载
+zinit ice wait lucid
+zinit light marlonrichert/zsh-autocomplete
+</code></pre>
+<h2 id="功能特性"><a class="header" href="#功能特性">功能特性</a></h2>
+<h3 id="1-实时补全"><a class="header" href="#1-实时补全">1. 实时补全</a></h3>
+<ul>
+<li>输入时实时显示补全建议</li>
+<li>支持命令、参数、文件路径补全</li>
+<li>智能过滤和排序</li>
+</ul>
+<h3 id="2-多级补全"><a class="header" href="#2-多级补全">2. 多级补全</a></h3>
+<ul>
+<li>支持嵌套补全（如 <code>git commit -m "message"</code>）</li>
+<li>上下文感知补全</li>
+<li>动态补全列表</li>
+</ul>
+<h3 id="3-可视化界面"><a class="header" href="#3-可视化界面">3. 可视化界面</a></h3>
+<ul>
+<li>彩色高亮显示</li>
+<li>分组显示不同类型补全</li>
+<li>可配置的布局和样式</li>
+</ul>
+<h2 id="基本使用"><a class="header" href="#基本使用">基本使用</a></h2>
+<h3 id="1-导航补全列表"><a class="header" href="#1-导航补全列表">1. 导航补全列表</a></h3>
+<ul>
+<li><strong>Tab</strong>：选择下一个补全项</li>
+<li><strong>Shift-Tab</strong>：选择上一个补全项</li>
+<li><strong>Ctrl-N</strong>：向下导航</li>
+<li><strong>Ctrl-P</strong>：向上导航</li>
+<li><strong>Ctrl-F</strong>：向右翻页</li>
+<li><strong>Ctrl-B</strong>：向左翻页</li>
+</ul>
+<h3 id="2-接受补全"><a class="header" href="#2-接受补全">2. 接受补全</a></h3>
+<ul>
+<li><strong>Enter</strong>：接受当前补全</li>
+<li><strong>→</strong> 或 <strong>End</strong>：接受补全并继续</li>
+<li><strong>Ctrl-Space</strong>：接受补全并保持列表打开</li>
+</ul>
+<h3 id="3-过滤补全"><a class="header" href="#3-过滤补全">3. 过滤补全</a></h3>
+<ul>
+<li>继续输入：自动过滤补全列表</li>
+<li><strong>Ctrl-U</strong>：清除当前行</li>
+<li><strong>Ctrl-W</strong>：删除前一个单词</li>
+</ul>
+<h2 id="配置选项"><a class="header" href="#配置选项">配置选项</a></h2>
+<h3 id="1-补全行为"><a class="header" href="#1-补全行为">1. 补全行为</a></h3>
+<pre><code class="language-bash"># 设置补全策略
+zstyle ':autocomplete:*' default-context ''
+zstyle ':autocomplete:*' min-input 1
+zstyle ':autocomplete:*' list-lines 16
+
+# 补全触发延迟（毫秒）
+zstyle ':autocomplete:*' delay 0.1
+
+# 启用模糊匹配
+zstyle ':autocomplete:*' fzf-completion yes
+</code></pre>
+<h3 id="2-外观设置"><a class="header" href="#2-外观设置">2. 外观设置</a></h3>
+<pre><code class="language-bash"># 补全列表颜色
+zstyle ':autocomplete:*' list-colors ''
+zstyle ':autocomplete:*' color yes
+
+# 补全列表布局
+zstyle ':autocomplete:*' group-name ''
+zstyle ':autocomplete:*' group-order \
+    'local-directories' \
+    'path-directories' \
+    'executables' \
+    'builtins' \
+    'commands' \
+    'aliases' \
+    'functions' \
+    'parameters' \
+    'reserved-words'
+</code></pre>
+<h3 id="3-性能优化"><a class="header" href="#3-性能优化">3. 性能优化</a></h3>
+<pre><code class="language-bash"># 缓存设置
+zstyle ':autocomplete:*' cache-path ~/.cache/zsh-autocomplete
+zstyle ':autocomplete:*' cache-policy ''
+
+# 限制补全数量
+zstyle ':autocomplete:*' max-matches 100
+zstyle ':autocomplete:*' max-candidates 1000
+</code></pre>
+<h2 id="高级配置"><a class="header" href="#高级配置">高级配置</a></h2>
+<h3 id="1-自定义补全源"><a class="header" href="#1-自定义补全源">1. 自定义补全源</a></h3>
+<pre><code class="language-bash"># 添加自定义补全源
+function _my_custom_completions() {
+    local -a completions
+    
+    # 添加自定义补全
+    completions+=('custom-command:自定义命令描述')
+    completions+=('another-command:另一个命令描述')
+    
+    _describe 'custom completions' completions
+}
+
+compdef _my_custom_completions my-command
+</code></pre>
+<h3 id="2-上下文感知补全"><a class="header" href="#2-上下文感知补全">2. 上下文感知补全</a></h3>
+<pre><code class="language-bash"># 根据当前目录提供补全
+function _context_aware_completions() {
+    case ${PWD##*/} in
+        git*)
+            _arguments \
+                '--help[显示帮助信息]' \
+                '--version[显示版本信息]' \
+                '*: :_files'
+            ;;
+        docker*)
+            _arguments \
+                '(- *)'--help'[显示帮助信息]' \
+                '(- *)'--version'[显示版本信息]' \
+                '*: :_docker_complete'
+            ;;
+    esac
+}
+</code></pre>
+<h3 id="3-集成其他补全系统"><a class="header" href="#3-集成其他补全系统">3. 集成其他补全系统</a></h3>
+<pre><code class="language-bash"># 集成 fzf 补全
+zstyle ':autocomplete:*' fzf-completion yes
+zstyle ':autocomplete:*' fzf-bindings \
+    'ctrl-space:accept' \
+    'ctrl-a:toggle-all' \
+    'ctrl-d:deselect-all' \
+    'ctrl-t:toggle' \
+    'ctrl-y:yank'
+</code></pre>
+<h2 id="与其他插件集成"><a class="header" href="#与其他插件集成">与其他插件集成</a></h2>
+<h3 id="1-与-zsh-syntax-highlighting-集成"><a class="header" href="#1-与-zsh-syntax-highlighting-集成">1. 与 zsh-syntax-highlighting 集成</a></h3>
+<pre><code class="language-bash"># 确保加载顺序正确
+# zsh-autocomplete 应该在 zsh-syntax-highlighting 之前加载
+plugins=(
+    # 其他插件...
+    zsh-autocomplete
+    zsh-syntax-highlighting
+)
+</code></pre>
+<h3 id="2-与-zsh-autosuggestions-集成"><a class="header" href="#2-与-zsh-autosuggestions-集成">2. 与 zsh-autosuggestions 集成</a></h3>
+<pre><code class="language-bash"># 配置避免冲突
+zstyle ':autocomplete:*' complete-word yes
+zstyle ':autocomplete:*' insert-unambiguous yes
+</code></pre>
+<h3 id="3-与-zsh-history-substring-search-集成"><a class="header" href="#3-与-zsh-history-substring-search-集成">3. 与 zsh-history-substring-search 集成</a></h3>
+<pre><code class="language-bash"># 配置快捷键
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+</code></pre>
+<h2 id="自定义补全规则"><a class="header" href="#自定义补全规则">自定义补全规则</a></h2>
+<h3 id="1-命令别名补全"><a class="header" href="#1-命令别名补全">1. 命令别名补全</a></h3>
+<pre><code class="language-bash"># 为别名添加补全
+compdef _git g=git
+compdef _docker d=docker
+compdef _kubectl k=kubectl
+
+# 自定义别名补全函数
+function _my_alias_completion() {
+    local -a completions
+    completions=('--help' '--version' '--verbose')
+    _describe 'my alias completions' completions
+}
+compdef _my_alias_completion my-alias
+</code></pre>
+<h3 id="2-文件类型补全"><a class="header" href="#2-文件类型补全">2. 文件类型补全</a></h3>
+<pre><code class="language-bash"># 根据文件类型提供补全
+zstyle ':completion:*:*:*:*.*' file-patterns \
+    '*.txt:text files' \
+    '*.md:markdown files' \
+    '*.py:python files' \
+    '*.js:javascript files' \
+    '*.json:json files'
+</code></pre>
+<h3 id="3-参数补全"><a class="header" href="#3-参数补全">3. 参数补全</a></h3>
+<pre><code class="language-bash"># 自定义参数补全
+function _my_command_completion() {
+    _arguments \
+        '(-v --verbose)'{-v,--verbose}'[详细输出]' \
+        '(-q --quiet)'{-q,--quiet}'[安静模式]' \
+        '(-f --file)'{-f,--file}'[输入文件]:filename:_files' \
+        '(-o --output)'{-o,--output}'[输出文件]:filename:_files' \
+        '*: :_my_custom_completions'
+}
+</code></pre>
+<h2 id="性能优化"><a class="header" href="#性能优化">性能优化</a></h2>
+<h3 id="1-延迟加载"><a class="header" href="#1-延迟加载">1. 延迟加载</a></h3>
+<pre><code class="language-bash"># 使用 Zinit 延迟加载
+zinit ice wait"1" lucid
+zinit light marlonrichert/zsh-autocomplete
+</code></pre>
+<h3 id="2-缓存策略"><a class="header" href="#2-缓存策略">2. 缓存策略</a></h3>
+<pre><code class="language-bash"># 启用缓存
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+
+# 设置缓存过期时间
+zstyle ':completion:*' rehash true
+</code></pre>
+<h3 id="3-限制补全范围"><a class="header" href="#3-限制补全范围">3. 限制补全范围</a></h3>
+<pre><code class="language-bash"># 只对特定命令启用高级补全
+zstyle ':autocomplete:*' complete-in-word false
+zstyle ':autocomplete:*' insert-unambiguous false
+</code></pre>
+<h2 id="故障排除"><a class="header" href="#故障排除">故障排除</a></h2>
+<h3 id="问题-1补全不显示"><a class="header" href="#问题-1补全不显示">问题 1：补全不显示</a></h3>
+<pre><code class="language-bash"># 检查插件是否加载
+echo $plugins | grep autocomplete
+
+# 检查补全系统
+autoload -Uz compinit &amp;&amp; compinit
+
+# 查看补全配置
+zstyle -L | grep autocomplete
+</code></pre>
+<h3 id="问题-2性能问题"><a class="header" href="#问题-2性能问题">问题 2：性能问题</a></h3>
+<pre><code class="language-bash"># 检查启动时间
+time zsh -i -c exit
+
+# 禁用实时补全
+zstyle ':autocomplete:*' min-input 3
+
+# 减少补全数量
+zstyle ':autocomplete:*' max-matches 50
+</code></pre>
+<h3 id="问题-3快捷键冲突"><a class="header" href="#问题-3快捷键冲突">问题 3：快捷键冲突</a></h3>
+<pre><code class="language-bash"># 查看当前快捷键绑定
+bindkey | grep -E "Tab|Shift|Ctrl"
+
+# 重新绑定快捷键
+bindkey '^I' complete-word
+bindkey '^[[Z' reverse-menu-complete
+</code></pre>
+<h3 id="问题-4与其他插件冲突"><a class="header" href="#问题-4与其他插件冲突">问题 4：与其他插件冲突</a></h3>
+<pre><code class="language-bash"># 调整插件加载顺序
+# zsh-autocomplete 应该在其他补全相关插件之后加载
+
+# 禁用冲突功能
+zstyle ':autocomplete:*' fzf-completion no
+</code></pre>
+<h2 id="最佳实践"><a class="header" href="#最佳实践">最佳实践</a></h2>
+<h3 id="1-渐进式配置"><a class="header" href="#1-渐进式配置">1. 渐进式配置</a></h3>
+<pre><code class="language-bash"># 从简单配置开始，逐步添加功能
+# 1. 先启用基本补全
+# 2. 添加颜色和分组
+# 3. 配置快捷键
+# 4. 添加高级功能
+</code></pre>
+<h3 id="2-配置文件组织"><a class="header" href="#2-配置文件组织">2. 配置文件组织</a></h3>
+<pre><code class="language-bash"># 创建单独的配置文件
+mkdir -p ~/.zsh/completion
+echo 'source ~/.zsh/completion/autocomplete.zsh' &gt;&gt; ~/.zshrc
+
+# 在 autocomplete.zsh 中配置
+cat &gt; ~/.zsh/completion/autocomplete.zsh &lt;&lt; 'EOF'
+# zsh-autocomplete 配置
+zstyle ':autocomplete:*' default-context ''
+zstyle ':autocomplete:*' min-input 1
+zstyle ':autocomplete:*' list-lines 16
+EOF
+</code></pre>
+<h3 id="3-定期维护"><a class="header" href="#3-定期维护">3. 定期维护</a></h3>
+<pre><code class="language-bash"># 更新插件
+cd ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autocomplete
+git pull
+
+# 清理缓存
+rm -rf ~/.zsh/cache
+rm -rf ~/.cache/zsh-autocomplete
+</code></pre>
+<h2 id="替代方案"><a class="header" href="#替代方案">替代方案</a></h2>
+<h3 id="1-zsh-completions"><a class="header" href="#1-zsh-completions">1. zsh-completions</a></h3>
+<pre><code class="language-bash"># 传统补全插件
+plugins=(zsh-completions)
+autoload -Uz compinit &amp;&amp; compinit
+</code></pre>
+<h3 id="2-fzf-tab"><a class="header" href="#2-fzf-tab">2. fzf-tab</a></h3>
+<pre><code class="language-bash"># 使用 fzf 的补全插件
+plugins=(fzf-tab)
+</code></pre>
+<h3 id="3-原生-zsh-补全"><a class="header" href="#3-原生-zsh-补全">3. 原生 Zsh 补全</a></h3>
+<pre><code class="language-bash"># 使用 Zsh 内置补全系统
+autoload -Uz compinit
+compinit
+
+# 配置补全
+zstyle ':completion:*' menu select
+zstyle ':completion:*' list-colors ''
+</code></pre>
+<h2 id="性能测试"><a class="header" href="#性能测试">性能测试</a></h2>
+<h3 id="1-补全响应测试"><a class="header" href="#1-补全响应测试">1. 补全响应测试</a></h3>
+<pre><code class="language-bash"># 测试补全响应时间
+time (echo "git " &amp;&amp; sleep 0.1 &amp;&amp; echo "com") &gt; /dev/null
+</code></pre>
+<h3 id="2-内存使用测试"><a class="header" href="#2-内存使用测试">2. 内存使用测试</a></h3>
+<pre><code class="language-bash"># 检查内存使用
+ps aux | grep zsh | grep -v grep | awk '{print $6/1024 " MB"}'
+
+# 检查插件内存
+pmap $(pgrep zsh) | grep -E "autocomplete|Total"
+</code></pre>
+<h3 id="3-启动时间优化"><a class="header" href="#3-启动时间优化">3. 启动时间优化</a></h3>
+<pre><code class="language-bash"># 测量启动时间
+for i in {1..5}; do
+    time zsh -i -c exit
+done | awk '/real/ {sum += $2} END {print "平均启动时间:", sum/NR "s"}'
+</code></pre>
+<p>zsh-autocomplete 是一个功能强大的实时补全插件，可以显著提高命令行输入效率。通过合理配置，可以获得流畅的补全体验。</p>
 
                     </main>
 

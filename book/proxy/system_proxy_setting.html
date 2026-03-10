@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "../searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "../searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-0a679275.js"></script>
+        <script src="../toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,40 +179,82 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="configure-system-proxy"><a class="header" href="#configure-system-proxy">Configure System Proxy</a></h1>
-<h2 id="edit-a-script"><a class="header" href="#edit-a-script">Edit a Script</a></h2>
-<pre><code class="language-bash">sudo vim  /etc/profile.d/proxy.sh
+                        <h1 id="系统代理配置指南"><a class="header" href="#系统代理配置指南">系统代理配置指南</a></h1>
+<p>本文介绍如何在 Linux 系统中配置全局代理设置，适用于所有用户和应用程序。</p>
+<h2 id="创建代理配置脚本"><a class="header" href="#创建代理配置脚本">创建代理配置脚本</a></h2>
+<h3 id="1-编辑代理脚本"><a class="header" href="#1-编辑代理脚本">1. 编辑代理脚本</a></h3>
+<pre><code class="language-bash">sudo vim /etc/profile.d/proxy.sh
 </code></pre>
+<h3 id="2-脚本内容"><a class="header" href="#2-脚本内容">2. 脚本内容</a></h3>
 <pre><code class="language-sh">#!/bin/bash
 
+# 设置代理函数
 set_proxy() {
-    # set proxy config via profile.d - should apply for all users
+    # 为所有用户设置代理配置（通过 profile.d）
+    
+    # 小写环境变量（适用于大多数工具）
     export http_proxy="http://127.0.0.1:7890/"
     export https_proxy="http://127.0.0.1:7890/"
     export ftp_proxy="http://127.0.0.1:7890/"
     export no_proxy="127.0.0.1,localhost"
-    # For curl
+    
+    # 大写环境变量（适用于 curl 等工具）
     export HTTP_PROXY="http://127.0.0.1:7890/"
     export HTTPS_PROXY="http://127.0.0.1:7890/"
     export FTP_PROXY="http://127.0.0.1:7890/"
     export NO_PROXY="127.0.0.1,localhost"
-    echo "Proxy has been set."
+    
+    # 设置 socks 代理（如果需要）
+    export socks_proxy="socks5://127.0.0.1:7891/"
+    export SOCKS_PROXY="socks5://127.0.0.1:7891/"
+    
+    # 设置 all_proxy（适用于某些工具）
+    export all_proxy="socks5://127.0.0.1:7891/"
+    export ALL_PROXY="socks5://127.0.0.1:7891/"
+    
+    echo "代理已设置。"
 }
 
+# 取消代理函数
 unset_proxy() {
-    # unset proxy config
+    # 取消所有代理配置
+    
+    # 取消小写环境变量
     unset http_proxy
     unset https_proxy
     unset ftp_proxy
     unset no_proxy
-    # For curl
+    
+    # 取消大写环境变量
     unset HTTP_PROXY
     unset HTTPS_PROXY
     unset FTP_PROXY
     unset NO_PROXY
-    echo "Proxy has been unset."
+    
+    # 取消 socks 代理
+    unset socks_proxy
+    unset SOCKS_PROXY
+    
+    # 取消 all_proxy
+    unset all_proxy
+    unset ALL_PROXY
+    
+    echo "代理已取消。"
 }
 
+# 显示当前代理设置
+show_proxy() {
+    echo "当前代理设置："
+    echo "http_proxy:   ${http_proxy:-未设置}"
+    echo "https_proxy:  ${https_proxy:-未设置}"
+    echo "HTTP_PROXY:   ${HTTP_PROXY:-未设置}"
+    echo "HTTPS_PROXY:  ${HTTPS_PROXY:-未设置}"
+    echo "socks_proxy:  ${socks_proxy:-未设置}"
+    echo "SOCKS_PROXY:  ${SOCKS_PROXY:-未设置}"
+    echo "no_proxy:     ${no_proxy:-未设置}"
+}
+
+# 主函数
 case $1 in
     set)
         set_proxy
@@ -220,20 +262,228 @@ case $1 in
     unset)
         unset_proxy
         ;;
+    show)
+        show_proxy
+        ;;
     *)
-        echo "Usage: source $0 {set|unset}"
+        echo "使用方法：source $0 {set|unset|show}"
+        echo "   set    - 设置代理"
+        echo "   unset  - 取消代理"
+        echo "   show   - 显示当前代理设置"
         ;;
 esac
 </code></pre>
-<h2 id="add-exec-permission"><a class="header" href="#add-exec-permission">Add Exec Permission</a></h2>
-<pre><code class="language-bash">sudo chmod +x  /etc/profile.d/proxy.sh
+<h2 id="设置脚本权限"><a class="header" href="#设置脚本权限">设置脚本权限</a></h2>
+<h3 id="添加执行权限"><a class="header" href="#添加执行权限">添加执行权限</a></h3>
+<pre><code class="language-bash">sudo chmod +x /etc/profile.d/proxy.sh
 </code></pre>
-<h2 id="apply-setting"><a class="header" href="#apply-setting">Apply Setting</a></h2>
-<pre><code class="language-bash">source /etc/profile.d/proxy.sh
+<h3 id="验证权限"><a class="header" href="#验证权限">验证权限</a></h3>
+<pre><code class="language-bash">ls -la /etc/profile.d/proxy.sh
+# 应该显示：-rwxr-xr-x
 </code></pre>
-<h2 id="confirm-env"><a class="header" href="#confirm-env">Confirm ENV</a></h2>
+<h2 id="使用代理脚本"><a class="header" href="#使用代理脚本">使用代理脚本</a></h2>
+<h3 id="1-设置代理"><a class="header" href="#1-设置代理">1. 设置代理</a></h3>
+<pre><code class="language-bash">source /etc/profile.d/proxy.sh set
+</code></pre>
+<h3 id="2-取消代理"><a class="header" href="#2-取消代理">2. 取消代理</a></h3>
+<pre><code class="language-bash">source /etc/profile.d/proxy.sh unset
+</code></pre>
+<h3 id="3-显示代理状态"><a class="header" href="#3-显示代理状态">3. 显示代理状态</a></h3>
+<pre><code class="language-bash">source /etc/profile.d/proxy.sh show
+</code></pre>
+<h3 id="4-创建别名方便使用"><a class="header" href="#4-创建别名方便使用">4. 创建别名方便使用</a></h3>
+<pre><code class="language-bash"># 在 ~/.bashrc 或 ~/.zshrc 中添加
+alias proxy-set='source /etc/profile.d/proxy.sh set'
+alias proxy-unset='source /etc/profile.d/proxy.sh unset'
+alias proxy-show='source /etc/profile.d/proxy.sh show'
+</code></pre>
+<h2 id="验证代理设置"><a class="header" href="#验证代理设置">验证代理设置</a></h2>
+<h3 id="1-检查环境变量"><a class="header" href="#1-检查环境变量">1. 检查环境变量</a></h3>
 <pre><code class="language-bash">env | grep -i proxy
 </code></pre>
+<h3 id="2-测试代理连接"><a class="header" href="#2-测试代理连接">2. 测试代理连接</a></h3>
+<pre><code class="language-bash"># 测试 HTTP 代理
+curl -I http://www.google.com
+
+# 测试 HTTPS 代理
+curl -I https://www.google.com
+
+# 使用代理测试
+curl --proxy http://127.0.0.1:7890 -I https://www.google.com
+</code></pre>
+<h3 id="3-检查-ip-地址"><a class="header" href="#3-检查-ip-地址">3. 检查 IP 地址</a></h3>
+<pre><code class="language-bash"># 查看当前 IP
+curl http://ipinfo.io/ip
+
+# 通过代理查看 IP
+curl --proxy http://127.0.0.1:7890 http://ipinfo.io/ip
+</code></pre>
+<h2 id="代理配置详解"><a class="header" href="#代理配置详解">代理配置详解</a></h2>
+<h3 id="1-代理地址说明"><a class="header" href="#1-代理地址说明">1. 代理地址说明</a></h3>
+<ul>
+<li><code>127.0.0.1:7890</code>: 本地 HTTP/HTTPS 代理端口</li>
+<li><code>127.0.0.1:7891</code>: 本地 SOCKS5 代理端口</li>
+<li>根据你的代理软件调整端口号</li>
+</ul>
+<h3 id="2-环境变量说明"><a class="header" href="#2-环境变量说明">2. 环境变量说明</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>变量名</th><th>用途</th><th>示例</th></tr>
+</thead>
+<tbody>
+<tr><td><code>http_proxy</code></td><td>HTTP 代理</td><td><code>http://127.0.0.1:7890/</code></td></tr>
+<tr><td><code>https_proxy</code></td><td>HTTPS 代理</td><td><code>http://127.0.0.1:7890/</code></td></tr>
+<tr><td><code>ftp_proxy</code></td><td>FTP 代理</td><td><code>http://127.0.0.1:7890/</code></td></tr>
+<tr><td><code>socks_proxy</code></td><td>SOCKS 代理</td><td><code>socks5://127.0.0.1:7891/</code></td></tr>
+<tr><td><code>all_proxy</code></td><td>通用代理</td><td><code>socks5://127.0.0.1:7891/</code></td></tr>
+<tr><td><code>no_proxy</code></td><td>排除列表</td><td><code>127.0.0.1,localhost</code></td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="3-no_proxy-配置"><a class="header" href="#3-no_proxy-配置">3. no_proxy 配置</a></h3>
+<pre><code class="language-bash"># 常见排除列表
+export no_proxy="127.0.0.1,localhost,192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,.internal,.local"
+</code></pre>
+<h2 id="应用程序特定配置"><a class="header" href="#应用程序特定配置">应用程序特定配置</a></h2>
+<h3 id="1-apt-ubuntudebian"><a class="header" href="#1-apt-ubuntudebian">1. APT (Ubuntu/Debian)</a></h3>
+<pre><code class="language-bash"># 创建 APT 代理配置
+sudo vim /etc/apt/apt.conf.d/proxy.conf
+</code></pre>
+<p>添加内容：</p>
+<pre><code class="language-bash">Acquire::http::Proxy "http://127.0.0.1:7890";
+Acquire::https::Proxy "http://127.0.0.1:7890";
+</code></pre>
+<h3 id="2-git"><a class="header" href="#2-git">2. Git</a></h3>
+<pre><code class="language-bash"># 设置 Git 代理
+git config --global http.proxy http://127.0.0.1:7890
+git config --global https.proxy http://127.0.0.1:7890
+
+# 取消 Git 代理
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+</code></pre>
+<h3 id="3-npm"><a class="header" href="#3-npm">3. npm</a></h3>
+<pre><code class="language-bash"># 设置 npm 代理
+npm config set proxy http://127.0.0.1:7890
+npm config set https-proxy http://127.0.0.1:7890
+
+# 取消 npm 代理
+npm config delete proxy
+npm config delete https-proxy
+</code></pre>
+<h3 id="4-docker"><a class="header" href="#4-docker">4. Docker</a></h3>
+<pre><code class="language-bash"># 创建 Docker 代理配置
+sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo vim /etc/systemd/system/docker.service.d/proxy.conf
+</code></pre>
+<p>添加内容：</p>
+<pre><code class="language-ini">[Service]
+Environment="HTTP_PROXY=http://127.0.0.1:7890"
+Environment="HTTPS_PROXY=http://127.0.0.1:7890"
+Environment="NO_PROXY=localhost,127.0.0.1"
+</code></pre>
+<p>重启 Docker：</p>
+<pre><code class="language-bash">sudo systemctl daemon-reload
+sudo systemctl restart docker
+</code></pre>
+<h2 id="高级配置"><a class="header" href="#高级配置">高级配置</a></h2>
+<h3 id="1-用户特定配置"><a class="header" href="#1-用户特定配置">1. 用户特定配置</a></h3>
+<pre><code class="language-bash"># 在 ~/.bashrc 或 ~/.zshrc 中添加个人配置
+if [ -f /etc/profile.d/proxy.sh ]; then
+    source /etc/profile.d/proxy.sh set
+fi
+</code></pre>
+<h3 id="2-条件代理"><a class="header" href="#2-条件代理">2. 条件代理</a></h3>
+<pre><code class="language-bash"># 根据网络环境自动设置代理
+auto_proxy() {
+    if ping -c 1 -W 2 8.8.8.8 &gt; /dev/null 2&gt;&amp;1; then
+        # 可以访问外网，不设置代理
+        source /etc/profile.d/proxy.sh unset
+    else
+        # 无法访问外网，设置代理
+        source /etc/profile.d/proxy.sh set
+    fi
+}
+
+# 登录时自动检测
+auto_proxy
+</code></pre>
+<h3 id="3-代理验证"><a class="header" href="#3-代理验证">3. 代理验证</a></h3>
+<pre><code class="language-bash"># 带认证的代理
+export http_proxy="http://username:password@proxy-server:port/"
+export https_proxy="http://username:password@proxy-server:port/"
+</code></pre>
+<h2 id="故障排除"><a class="header" href="#故障排除">故障排除</a></h2>
+<h3 id="问题-1代理不生效"><a class="header" href="#问题-1代理不生效">问题 1：代理不生效</a></h3>
+<pre><code class="language-bash"># 检查代理服务是否运行
+netstat -tlnp | grep 7890
+
+# 检查环境变量
+printenv | grep -i proxy
+
+# 测试代理连接
+curl -x http://127.0.0.1:7890 http://www.google.com
+</code></pre>
+<h3 id="问题-2某些应用不走代理"><a class="header" href="#问题-2某些应用不走代理">问题 2：某些应用不走代理</a></h3>
+<pre><code class="language-bash"># 检查应用的代理配置
+# 某些应用需要单独配置代理
+
+# 使用 strace 跟踪
+strace -e trace=network application
+</code></pre>
+<h3 id="问题-3代理速度慢"><a class="header" href="#问题-3代理速度慢">问题 3：代理速度慢</a></h3>
+<pre><code class="language-bash"># 测试代理延迟
+time curl --proxy http://127.0.0.1:7890 -I https://www.google.com
+
+# 检查代理服务器状态
+# 考虑更换代理服务器或调整配置
+</code></pre>
+<h3 id="问题-4证书错误"><a class="header" href="#问题-4证书错误">问题 4：证书错误</a></h3>
+<pre><code class="language-bash"># 导入代理证书
+# 某些 HTTPS 代理需要安装证书
+
+# 临时忽略证书验证（不推荐）
+export CURL_CA_BUNDLE=""
+</code></pre>
+<h2 id="安全注意事项"><a class="header" href="#安全注意事项">安全注意事项</a></h2>
+<h3 id="1-代理认证"><a class="header" href="#1-代理认证">1. 代理认证</a></h3>
+<pre><code class="language-bash"># 不要在脚本中硬编码密码
+# 使用环境变量或配置文件
+export PROXY_PASSWORD="your_password"
+export http_proxy="http://user:${PROXY_PASSWORD}@proxy:port/"
+</code></pre>
+<h3 id="2-访问控制"><a class="header" href="#2-访问控制">2. 访问控制</a></h3>
+<pre><code class="language-bash"># 限制代理使用范围
+# 只允许特定用户或应用使用代理
+</code></pre>
+<h3 id="3-日志记录"><a class="header" href="#3-日志记录">3. 日志记录</a></h3>
+<pre><code class="language-bash"># 记录代理使用情况
+# 监控代理流量和访问记录
+</code></pre>
+<h2 id="替代方案"><a class="header" href="#替代方案">替代方案</a></h2>
+<h3 id="1-使用-proxychains"><a class="header" href="#1-使用-proxychains">1. 使用 Proxychains</a></h3>
+<pre><code class="language-bash"># 安装
+sudo apt install proxychains
+
+# 配置
+sudo vim /etc/proxychains.conf
+
+# 使用
+proxychains curl http://www.google.com
+</code></pre>
+<h3 id="2-使用环境管理器"><a class="header" href="#2-使用环境管理器">2. 使用环境管理器</a></h3>
+<pre><code class="language-bash"># 使用 direnv 管理环境
+echo "export http_proxy='http://127.0.0.1:7890'" &gt; .envrc
+direnv allow
+</code></pre>
+<h3 id="3-使用系统设置"><a class="header" href="#3-使用系统设置">3. 使用系统设置</a></h3>
+<pre><code class="language-bash"># GNOME 桌面环境
+gsettings set org.gnome.system.proxy mode 'manual'
+gsettings set org.gnome.system.proxy.http host '127.0.0.1'
+gsettings set org.gnome.system.proxy.http port 7890
+</code></pre>
+<p>通过合理配置系统代理，可以方便地管理网络访问，提高工作效率。建议根据实际需求选择合适的代理配置方案。</p>
 
                     </main>
 

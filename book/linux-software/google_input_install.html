@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "../searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "../searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-0a679275.js"></script>
+        <script src="../toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,19 +179,187 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="install-google-pinyin"><a class="header" href="#install-google-pinyin">Install Google-PinYin</a></h1>
-<h2 id="on-ubuntu-google-pinyin-based-on-fcitx-so-install-fcitx-firstly"><a class="header" href="#on-ubuntu-google-pinyin-based-on-fcitx-so-install-fcitx-firstly">On Ubuntu, Google-PinYin based on Fcitx. So install Fcitx firstly.</a></h2>
-<pre><code class="language-bash">sudo apt install fcitx
+                        <h1 id="google-拼音输入法安装指南"><a class="header" href="#google-拼音输入法安装指南">Google 拼音输入法安装指南</a></h1>
+<h2 id="系统要求"><a class="header" href="#系统要求">系统要求</a></h2>
+<p>Google 拼音输入法基于 Fcitx 输入法框架，因此需要先安装 Fcitx。</p>
+<h2 id="安装-fcitx"><a class="header" href="#安装-fcitx">安装 Fcitx</a></h2>
+<h3 id="ubuntudebian"><a class="header" href="#ubuntudebian">Ubuntu/Debian</a></h3>
+<pre><code class="language-bash">sudo apt update
+sudo apt install fcitx fcitx-config-gtk fcitx-ui-classic
 </code></pre>
-<h2 id="configure-fcitx"><a class="header" href="#configure-fcitx">Configure Fcitx</a></h2>
+<h3 id="arch-linux"><a class="header" href="#arch-linux">Arch Linux</a></h3>
+<pre><code class="language-bash">sudo pacman -S fcitx fcitx-configtool fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5
+</code></pre>
+<h3 id="fedora"><a class="header" href="#fedora">Fedora</a></h3>
+<pre><code class="language-bash">sudo dnf install fcitx fcitx-configtool fcitx-gtk2 fcitx-gtk3 fcitx-qt4 fcitx-qt5
+</code></pre>
+<h2 id="配置-fcitx"><a class="header" href="#配置-fcitx">配置 Fcitx</a></h2>
+<h3 id="1-运行输入法配置工具"><a class="header" href="#1-运行输入法配置工具">1. 运行输入法配置工具</a></h3>
 <pre><code class="language-bash">im-config
 </code></pre>
-<h2 id="install-google-pinyin-1"><a class="header" href="#install-google-pinyin-1">Install Google-PinYin</a></h2>
+<h3 id="2-选择-fcitx"><a class="header" href="#2-选择-fcitx">2. 选择 Fcitx</a></h3>
+<p>在图形界面中选择 Fcitx 作为默认输入法框架。</p>
+<h3 id="3-配置环境变量"><a class="header" href="#3-配置环境变量">3. 配置环境变量</a></h3>
+<p>创建或编辑 <code>~/.xprofile</code> 文件：</p>
+<pre><code class="language-bash">vim ~/.xprofile
+</code></pre>
+<p>添加以下内容：</p>
+<pre><code class="language-bash">export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+</code></pre>
+<h2 id="安装-google-拼音输入法"><a class="header" href="#安装-google-拼音输入法">安装 Google 拼音输入法</a></h2>
+<h3 id="ubuntudebian-1"><a class="header" href="#ubuntudebian-1">Ubuntu/Debian</a></h3>
 <pre><code class="language-bash">sudo apt install fcitx-googlepinyin
 </code></pre>
-<h2 id="running-fcitx"><a class="header" href="#running-fcitx">Running Fcitx</a></h2>
+<h3 id="arch-linux-1"><a class="header" href="#arch-linux-1">Arch Linux</a></h3>
+<pre><code class="language-bash">sudo pacman -S fcitx-googlepinyin
+</code></pre>
+<h3 id="fedora-1"><a class="header" href="#fedora-1">Fedora</a></h3>
+<pre><code class="language-bash">sudo dnf install fcitx-googlepinyin
+</code></pre>
+<h2 id="配置-google-拼音"><a class="header" href="#配置-google-拼音">配置 Google 拼音</a></h2>
+<h3 id="1-启动-fcitx-配置工具"><a class="header" href="#1-启动-fcitx-配置工具">1. 启动 Fcitx 配置工具</a></h3>
 <pre><code class="language-bash">fcitx-config-gtk3
 </code></pre>
+<h3 id="2-添加输入法"><a class="header" href="#2-添加输入法">2. 添加输入法</a></h3>
+<ol>
+<li>点击左下角的 “+” 按钮</li>
+<li>取消勾选 “Only Show Current Language”</li>
+<li>在搜索框中输入 “google”</li>
+<li>选择 “Google Pinyin”</li>
+<li>点击 “OK”</li>
+</ol>
+<h3 id="3-调整输入法顺序"><a class="header" href="#3-调整输入法顺序">3. 调整输入法顺序</a></h3>
+<p>在配置界面中，使用上下箭头调整输入法顺序，建议将 Google 拼音放在首位。</p>
+<h2 id="启动-fcitx"><a class="header" href="#启动-fcitx">启动 Fcitx</a></h2>
+<h3 id="1-手动启动"><a class="header" href="#1-手动启动">1. 手动启动</a></h3>
+<pre><code class="language-bash">fcitx
+</code></pre>
+<h3 id="2-自动启动"><a class="header" href="#2-自动启动">2. 自动启动</a></h3>
+<p>将 Fcitx 添加到自动启动程序：</p>
+<pre><code class="language-bash"># 创建桌面启动项
+cp /usr/share/applications/fcitx.desktop ~/.config/autostart/
+</code></pre>
+<h3 id="3-重启生效"><a class="header" href="#3-重启生效">3. 重启生效</a></h3>
+<p>重启系统或重新登录使配置生效。</p>
+<h2 id="使用说明"><a class="header" href="#使用说明">使用说明</a></h2>
+<h3 id="1-切换输入法"><a class="header" href="#1-切换输入法">1. 切换输入法</a></h3>
+<ul>
+<li><strong>切换输入法</strong>：<code>Ctrl + Space</code></li>
+<li><strong>切换中英文</strong>：<code>Shift</code></li>
+<li><strong>切换全角/半角</strong>：<code>Shift + Space</code></li>
+<li><strong>切换中英文标点</strong>：<code>Ctrl + .</code></li>
+</ul>
+<h3 id="2-输入法面板"><a class="header" href="#2-输入法面板">2. 输入法面板</a></h3>
+<p>Fcitx 会在系统托盘中显示图标，右键点击可以：</p>
+<ul>
+<li>打开配置界面</li>
+<li>切换输入法</li>
+<li>重启 Fcitx</li>
+<li>退出 Fcitx</li>
+</ul>
+<h3 id="3-候选词选择"><a class="header" href="#3-候选词选择">3. 候选词选择</a></h3>
+<ul>
+<li><strong>翻页</strong>：<code>-</code> 和 <code>=</code> 键</li>
+<li><strong>选择候选词</strong>：数字键 1-9</li>
+</ul>
+<h2 id="高级配置"><a class="header" href="#高级配置">高级配置</a></h2>
+<h3 id="1-皮肤设置"><a class="header" href="#1-皮肤设置">1. 皮肤设置</a></h3>
+<pre><code class="language-bash"># 安装额外皮肤
+sudo apt install fcitx-skin-material
+
+# 在配置工具中选择皮肤
+fcitx-config-gtk3
+</code></pre>
+<h3 id="2-词库管理"><a class="header" href="#2-词库管理">2. 词库管理</a></h3>
+<p>Google 拼音支持用户词库：</p>
+<ul>
+<li><strong>添加词库</strong>：在输入时选择候选词</li>
+<li><strong>导出词库</strong>：<code>~/.config/fcitx/pinyin/user.py</code></li>
+<li><strong>导入词库</strong>：将词库文件复制到上述位置</li>
+</ul>
+<h3 id="3-云输入"><a class="header" href="#3-云输入">3. 云输入</a></h3>
+<p>启用云输入可以获取更准确的联想词：</p>
+<ol>
+<li>打开 Fcitx 配置</li>
+<li>选择 Google 拼音</li>
+<li>勾选 “启用云拼音”</li>
+</ol>
+<h2 id="故障排除"><a class="header" href="#故障排除">故障排除</a></h2>
+<h3 id="问题-1fcitx-无法启动"><a class="header" href="#问题-1fcitx-无法启动">问题 1：Fcitx 无法启动</a></h3>
+<pre><code class="language-bash"># 检查进程
+ps aux | grep fcitx
+
+# 查看日志
+fcitx-diagnose
+
+# 强制重启
+killall fcitx
+fcitx &amp;
+</code></pre>
+<h3 id="问题-2输入法不显示"><a class="header" href="#问题-2输入法不显示">问题 2：输入法不显示</a></h3>
+<pre><code class="language-bash"># 检查环境变量
+echo $GTK_IM_MODULE
+echo $QT_IM_MODULE
+echo $XMODIFIERS
+
+# 重新设置环境变量
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+</code></pre>
+<h3 id="问题-3特定应用无法输入中文"><a class="header" href="#问题-3特定应用无法输入中文">问题 3：特定应用无法输入中文</a></h3>
+<pre><code class="language-bash"># 检查应用是否支持 Fcitx
+# 对于某些应用可能需要特殊配置
+
+# 尝试使用 fcitx5（新版）
+sudo apt install fcitx5 fcitx5-chinese-addons
+</code></pre>
+<h3 id="问题-4候选词框位置异常"><a class="header" href="#问题-4候选词框位置异常">问题 4：候选词框位置异常</a></h3>
+<pre><code class="language-bash"># 调整候选词框位置
+# 在 Fcitx 配置中调整 "候选词框位置"
+</code></pre>
+<h2 id="替代方案"><a class="header" href="#替代方案">替代方案</a></h2>
+<h3 id="1-fcitx5--rime"><a class="header" href="#1-fcitx5--rime">1. Fcitx5 + Rime</a></h3>
+<pre><code class="language-bash"># 安装
+sudo apt install fcitx5 fcitx5-rime
+
+# 配置
+# Rime 提供更强大的输入法引擎
+</code></pre>
+<h3 id="2-ibus--pinyin"><a class="header" href="#2-ibus--pinyin">2. IBus + Pinyin</a></h3>
+<pre><code class="language-bash"># 安装
+sudo apt install ibus ibus-pinyin
+
+# 配置
+ibus-setup
+</code></pre>
+<h3 id="3-sogou-输入法"><a class="header" href="#3-sogou-输入法">3. Sogou 输入法</a></h3>
+<pre><code class="language-bash"># 下载安装包
+wget "https://cdn01.sogoucdn.com/dl/linux/sogoupinyin_版本号_amd64.deb"
+
+# 安装
+sudo dpkg -i sogoupinyin_*.deb
+sudo apt install -f
+</code></pre>
+<h2 id="最佳实践"><a class="header" href="#最佳实践">最佳实践</a></h2>
+<h3 id="1-定期备份词库"><a class="header" href="#1-定期备份词库">1. 定期备份词库</a></h3>
+<pre><code class="language-bash"># 备份用户词库
+cp ~/.config/fcitx/pinyin/user.py ~/backup/fcitx-user-dict-$(date +%Y%m%d).py
+</code></pre>
+<h3 id="2-清理缓存"><a class="header" href="#2-清理缓存">2. 清理缓存</a></h3>
+<pre><code class="language-bash"># 清理 Fcitx 缓存
+rm -rf ~/.config/fcitx/cache
+</code></pre>
+<h3 id="3-更新输入法"><a class="header" href="#3-更新输入法">3. 更新输入法</a></h3>
+<pre><code class="language-bash"># 定期更新系统包
+sudo apt update &amp;&amp; sudo apt upgrade
+
+# 检查 Fcitx 更新
+apt list --upgradable | grep fcitx
+</code></pre>
+<p>Google 拼音输入法在 Linux 上提供了良好的中文输入体验，结合 Fcitx 框架的灵活性，可以满足大多数用户的需求。如果遇到问题，可以尝试 Fcitx5 或其他输入法方案。</p>
 
                     </main>
 

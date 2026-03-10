@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Keyboard Layout - TOPAZ LEAF</title>
+        <title>Cargo Release - TOPAZ LEAF</title>
 
 
         <!-- Custom HTML head -->
@@ -179,114 +179,391 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="键盘布局切换指南colemak-vs-qwerty"><a class="header" href="#键盘布局切换指南colemak-vs-qwerty">键盘布局切换指南：Colemak vs QWERTY</a></h1>
-<p>本文介绍如何在 Linux 系统中快速切换键盘布局，特别是 Colemak 和 QWERTY 布局之间的切换。</p>
-<h2 id="colemak-键盘布局"><a class="header" href="#colemak-键盘布局">Colemak 键盘布局</a></h2>
-<h3 id="切换到-colemak-布局"><a class="header" href="#切换到-colemak-布局">切换到 Colemak 布局</a></h3>
-<pre><code class="language-bash">setxkbmap us -variant colemak
-</code></pre>
-<h3 id="colemak-布局特点"><a class="header" href="#colemak-布局特点">Colemak 布局特点</a></h3>
-<p>Colemak 是一种优化的键盘布局，相比传统的 QWERTY 布局，它：</p>
+                        <h1 id="rust-项目发布指南使用-cargo-dist-自动化发布到-github"><a class="header" href="#rust-项目发布指南使用-cargo-dist-自动化发布到-github">Rust 项目发布指南：使用 cargo-dist 自动化发布到 GitHub</a></h1>
+<p>本指南详细介绍了如何使用 cargo-dist 工具将 Rust 项目自动化发布到 GitHub，涵盖从环境配置到持续集成的完整流程。</p>
+<hr>
+<h2 id="-目录"><a class="header" href="#-目录">📋 目录</a></h2>
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+<!-- code_chunk_output -->
 <ul>
-<li>减少手指移动距离</li>
-<li>提高打字效率</li>
-<li>降低重复性劳损风险</li>
-</ul>
-<p><img src="https://colemak.com/wiki/images/e/ef/Colemak_fingers.png" alt="Colemak 指法图"></p>
-<h2 id="qwerty-键盘布局"><a class="header" href="#qwerty-键盘布局">QWERTY 键盘布局</a></h2>
-<h3 id="切换回-qwerty-布局"><a class="header" href="#切换回-qwerty-布局">切换回 QWERTY 布局</a></h3>
-<pre><code class="language-bash">setxkbmap us; xset -r 66
-</code></pre>
-<h3 id="命令说明"><a class="header" href="#命令说明">命令说明</a></h3>
+<li><a href="#rust-项目使用-cargo-dist-发布到-github-完整指南">Rust 项目使用 cargo-dist 发布到 GitHub 完整指南</a>
 <ul>
-<li><code>setxkbmap us</code>：设置为美式 QWERTY 布局</li>
-<li><code>xset -r 66</code>：重置 Caps Lock 键状态</li>
+<li><a href="#-目录">📋 目录</a></li>
+<li><a href="#1-环境准备">1. 环境准备</a>
+<ul>
+<li><a href="#11-安装-rustup推荐">1.1 安装 rustup（推荐）</a></li>
+<li><a href="#12-安装-cargo-dist">1.2 安装 cargo-dist</a></li>
+<li><a href="#13-卸载系统-rust可选但推荐">1.3 卸载系统 Rust（可选但推荐）</a></li>
 </ul>
-<h2 id="永久设置键盘布局"><a class="header" href="#永久设置键盘布局">永久设置键盘布局</a></h2>
-<h3 id="方法一修改-x11-配置"><a class="header" href="#方法一修改-x11-配置">方法一：修改 X11 配置</a></h3>
-<p>创建或编辑 <code>~/.xprofile</code> 文件：</p>
-<pre><code class="language-bash">vim ~/.xprofile
-</code></pre>
-<p>添加以下内容（根据你的偏好选择）：</p>
-<pre><code class="language-bash"># 使用 Colemak 布局
-setxkbmap us -variant colemak
+</li>
+<li><a href="#2-项目配置">2. 项目配置</a>
+<ul>
+<li><a href="#21-完善-cargotoml">2.1 完善 Cargo.toml</a></li>
+<li><a href="#22-准备必要文件">2.2 准备必要文件</a></li>
+<li><a href="#23-代码检查">2.3 代码检查</a></li>
+</ul>
+</li>
+<li><a href="#3-初始化-cargo-dist">3. 初始化 cargo-dist</a>
+<ul>
+<li><a href="#31-执行初始化">3.1 执行初始化</a></li>
+<li><a href="#32-生成的文件">3.2 生成的文件</a></li>
+<li><a href="#33-检查配置">3.3 检查配置</a></li>
+<li><a href="#34-预览发布计划可选">3.4 预览发布计划（可选）</a></li>
+</ul>
+</li>
+<li><a href="#4-git-配置与推送">4. Git 配置与推送</a>
+<ul>
+<li><a href="#41-初始化-git-仓库">4.1 初始化 Git 仓库</a></li>
+<li><a href="#42-关联远程仓库">4.2 关联远程仓库</a></li>
+<li><a href="#43-启用-github-actions">4.3 启用 GitHub Actions</a></li>
+</ul>
+</li>
+<li><a href="#5-创建-tag-触发发布">5. 创建 Tag 触发发布</a>
+<ul>
+<li><a href="#51-创建版本-tag">5.1 创建版本 Tag</a></li>
+<li><a href="#52-tag-命名规范">5.2 Tag 命名规范</a></li>
+</ul>
+</li>
+<li><a href="#6-验证发布结果">6. 验证发布结果</a>
+<ul>
+<li><a href="#61-监控-github-actions">6.1 监控 GitHub Actions</a></li>
+<li><a href="#62-检查-releases-页面">6.2 检查 Releases 页面</a></li>
+<li><a href="#63-生成的文件示例">6.3 生成的文件示例</a></li>
+<li><a href="#64-测试安装">6.4 测试安装</a></li>
+</ul>
+</li>
+<li><a href="#7-后续版本更新">7. 后续版本更新</a>
+<ul>
+<li><a href="#71-发布新版本流程">7.1 发布新版本流程</a></li>
+<li><a href="#72-使用-cargo-release-自动化可选">7.2 使用 cargo-release 自动化（可选）</a></li>
+</ul>
+</li>
+<li><a href="#8-常见问题排查">8. 常见问题排查</a></li>
+<li><a href="#9-附录aur-发布指南">9. 附录：AUR 发布指南</a>
+<ul>
+<li><a href="#91-创建-pkgbuild">9.1 创建 PKGBUILD</a></li>
+<li><a href="#92-生成-srcinfo">9.2 生成 .SRCINFO</a></li>
+<li><a href="#93-提交到-aur">9.3 提交到 AUR</a></li>
+<li><a href="#94-用户安装">9.4 用户安装</a></li>
+</ul>
+</li>
+<li><a href="#-快速检查清单">📌 快速检查清单</a></li>
+<li><a href="#-相关资源">🔗 相关资源</a></li>
+</ul>
+</li>
+</ul>
+<!-- /code_chunk_output -->
+<hr>
+<h2 id="1-环境准备"><a class="header" href="#1-环境准备">1. 环境准备</a></h2>
+<h3 id="11-安装-rustup推荐"><a class="header" href="#11-安装-rustup推荐">1.1 安装 rustup（推荐）</a></h3>
+<p>不要使用系统自带的 Rust，请使用官方推荐的 rustup：</p>
+<pre><code class="language-bash"># 安装 rustup
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# 或者使用 QWERTY 布局
-# setxkbmap us
-</code></pre>
-<h3 id="方法二使用桌面环境设置"><a class="header" href="#方法二使用桌面环境设置">方法二：使用桌面环境设置</a></h3>
-<p>大多数桌面环境（GNOME、KDE、XFCE）都提供图形化工具设置键盘布局：</p>
-<ol>
-<li>打开系统设置</li>
-<li>找到“区域与语言“或“键盘“设置</li>
-<li>添加或选择需要的键盘布局</li>
-</ol>
-<h2 id="常用快捷键"><a class="header" href="#常用快捷键">常用快捷键</a></h2>
-<h3 id="快速切换布局"><a class="header" href="#快速切换布局">快速切换布局</a></h3>
-<pre><code class="language-bash"># 创建别名方便切换
-alias colemak='setxkbmap us -variant colemak'
-alias qwerty='setxkbmap us; xset -r 66'
+# 生效环境变量
+source "$HOME/.cargo/env"
 
-# 添加到 ~/.bashrc 或 ~/.zshrc
-echo "alias colemak='setxkbmap us -variant colemak'" &gt;&gt; ~/.bashrc
-echo "alias qwerty='setxkbmap us; xset -r 66'" &gt;&gt; ~/.bashrc
+# 验证安装
+which cargo
+# 应输出：/home/你的用户名/.cargo/bin/cargo
+
+cargo --version
+# 输出应包含 "rustup" 字样
 </code></pre>
-<h3 id="查看当前布局"><a class="header" href="#查看当前布局">查看当前布局</a></h3>
-<pre><code class="language-bash">setxkbmap -query
+<h3 id="12-安装-cargo-dist"><a class="header" href="#12-安装-cargo-dist">1.2 安装 cargo-dist</a></h3>
+<pre><code class="language-bash"># 安装 cargo-dist
+cargo install cargo-dist
+
+# 如果提示找不到命令，创建软链接
+ln -s ~/.cargo/bin/dist ~/.cargo/bin/cargo-dist
+
+# 验证安装
+cargo dist --version
 </code></pre>
-<h2 id="布局对比"><a class="header" href="#布局对比">布局对比</a></h2>
+<h3 id="13-卸载系统-rust可选但推荐"><a class="header" href="#13-卸载系统-rust可选但推荐">1.3 卸载系统 Rust（可选但推荐）</a></h3>
+<pre><code class="language-bash"># Ubuntu/Debian
+sudo apt remove rustc cargo
+sudo apt autoremove
+
+# CentOS/Fedora
+sudo dnf remove rustc cargo
+</code></pre>
+<hr>
+<h2 id="2-项目配置"><a class="header" href="#2-项目配置">2. 项目配置</a></h2>
+<h3 id="21-完善-cargotoml"><a class="header" href="#21-完善-cargotoml">2.1 完善 Cargo.toml</a></h3>
+<p>确保 <code>Cargo.toml</code> 包含完整的元数据：</p>
+<pre><code class="language-toml">[package]
+name = "your-project-name"
+version = "0.1.0"
+edition = "2021"
+description = "项目简短描述"
+license = "MIT"
+repository = "https://github.com/你的用户名/项目名"
+homepage = "https://..."
+keywords = ["rust", "tool"]
+categories = ["command-line-utilities"]
+
+[profile.release]
+strip = true           # 去除调试符号，减小体积
+lto = true             # 链接时优化
+codegen-units = 1      # 增加编译时间但优化更好
+</code></pre>
+<h3 id="22-准备必要文件"><a class="header" href="#22-准备必要文件">2.2 准备必要文件</a></h3>
+<p>确保项目根目录包含：</p>
+<pre><code>your-project/
+├── Cargo.toml
+├── README.md          # 必须，包含安装和使用说明
+├── LICENSE            # 必须，与 Cargo.toml 中 license 一致
+├── CHANGELOG.md       # 推荐，记录版本变更
+└── src/
+    └── main.rs
+</code></pre>
+<h3 id="23-代码检查"><a class="header" href="#23-代码检查">2.3 代码检查</a></h3>
+<pre><code class="language-bash">cargo fmt --check
+cargo clippy
+cargo test
+</code></pre>
+<hr>
+<h2 id="3-初始化-cargo-dist"><a class="header" href="#3-初始化-cargo-dist">3. 初始化 cargo-dist</a></h2>
+<h3 id="31-执行初始化"><a class="header" href="#31-执行初始化">3.1 执行初始化</a></h3>
+<p>在项目根目录执行：</p>
+<pre><code class="language-bash">cargo dist init
+</code></pre>
+<h3 id="32-生成的文件"><a class="header" href="#32-生成的文件">3.2 生成的文件</a></h3>
+<p>初始化后会生成以下文件：</p>
 <div class="table-wrapper">
 <table>
 <thead>
-<tr><th>特性</th><th>QWERTY</th><th>Colemak</th></tr>
+<tr><th style="text-align: left">文件</th><th style="text-align: left">作用</th></tr>
 </thead>
 <tbody>
-<tr><td>设计年代</td><td>1873年</td><td>2006年</td></tr>
-<tr><td>设计目标</td><td>防止打字机卡键</td><td>提高打字效率</td></tr>
-<tr><td>常用键位置</td><td>分散</td><td>集中在主行</td></tr>
-<tr><td>学习曲线</td><td>低（已掌握）</td><td>中等</td></tr>
-<tr><td>效率提升</td><td>-</td><td>约 35%</td></tr>
+<tr><td style="text-align: left"><code>.github/workflows/release.yml</code></td><td style="text-align: left">GitHub Actions 自动发布流程</td></tr>
+<tr><td style="text-align: left"><code>dist-workspace.toml</code></td><td style="text-align: left">cargo-dist 配置文件</td></tr>
+<tr><td style="text-align: left"><code>Cargo.toml</code></td><td style="text-align: left">可能添加 <code>[package.metadata.dist]</code></td></tr>
 </tbody>
 </table>
 </div>
-<h2 id="学习建议"><a class="header" href="#学习建议">学习建议</a></h2>
-<p>如果你打算学习 Colemak 布局：</p>
-<ol>
-<li><strong>循序渐进</strong>：先学习主行键位，再扩展</li>
-<li><strong>使用练习工具</strong>：如 <a href="https://colemak.com/Academy">Colemak Academy</a></li>
-<li><strong>保持耐心</strong>：通常需要 2-4 周适应期</li>
-<li><strong>不要完全放弃 QWERTY</strong>：在某些场景下可能还需要使用</li>
-</ol>
-<h2 id="故障排除"><a class="header" href="#故障排除">故障排除</a></h2>
-<h3 id="问题切换后布局不生效"><a class="header" href="#问题切换后布局不生效">问题：切换后布局不生效</a></h3>
-<pre><code class="language-bash"># 重启 X11 服务（谨慎使用）
-sudo systemctl restart lightdm  # 或你使用的显示管理器
+<h3 id="33-检查配置"><a class="header" href="#33-检查配置">3.3 检查配置</a></h3>
+<p>查看 <code>dist-workspace.toml</code> 确认目标平台：</p>
+<pre><code class="language-toml">[dist]
+targets = [
+    "x86_64-unknown-linux-gnu",
+    "x86_64-apple-darwin",
+    "x86_64-pc-windows-msvc",
+    "aarch64-apple-darwin",
+]
+</code></pre>
+<h3 id="34-预览发布计划可选"><a class="header" href="#34-预览发布计划可选">3.4 预览发布计划（可选）</a></h3>
+<pre><code class="language-bash">cargo dist plan
+</code></pre>
+<hr>
+<h2 id="4-git-配置与推送"><a class="header" href="#4-git-配置与推送">4. Git 配置与推送</a></h2>
+<h3 id="41-初始化-git-仓库"><a class="header" href="#41-初始化-git-仓库">4.1 初始化 Git 仓库</a></h3>
+<pre><code class="language-bash"># 如果还没初始化
+git init
 
-# 或者重新登录
+# 添加所有文件
+git add .
+
+# 提交
+git commit -m "feat: init cargo-dist release workflow"
 </code></pre>
-<h3 id="问题caps-lock-键异常"><a class="header" href="#问题caps-lock-键异常">问题：Caps Lock 键异常</a></h3>
-<pre><code class="language-bash"># 完全重置键盘设置
-setxkbmap -option
+<h3 id="42-关联远程仓库"><a class="header" href="#42-关联远程仓库">4.2 关联远程仓库</a></h3>
+<pre><code class="language-bash"># 替换为你的仓库地址
+git remote add origin https://github.com/你的用户名/你的项目名.git
+
+# 推送代码
+git push -u origin main
+# 或 master，取决于你的默认分支
 </code></pre>
-<h3 id="问题某些应用不识别布局"><a class="header" href="#问题某些应用不识别布局">问题：某些应用不识别布局</a></h3>
-<p>有些应用（如游戏、终端模拟器）可能需要单独配置键盘布局。</p>
-<h2 id="参考资料"><a class="header" href="#参考资料">参考资料</a></h2>
+<h3 id="43-启用-github-actions"><a class="header" href="#43-启用-github-actions">4.3 启用 GitHub Actions</a></h3>
+<ol>
+<li>访问 GitHub 仓库</li>
+<li>点击 <strong>Settings</strong> → <strong>Actions</strong> → <strong>General</strong></li>
+<li>确保 <strong>Allow GitHub Actions</strong> 已启用</li>
+<li>确保 <strong>Allow GitHub Actions to create releases</strong> 已启用</li>
+</ol>
+<hr>
+<h2 id="5-创建-tag-触发发布"><a class="header" href="#5-创建-tag-触发发布">5. 创建 Tag 触发发布</a></h2>
+<h3 id="51-创建版本-tag"><a class="header" href="#51-创建版本-tag">5.1 创建版本 Tag</a></h3>
+<pre><code class="language-bash"># 创建带注释的 Tag（必须 v 开头）
+git tag -a v0.1.0 -m "Release version 0.1.0"
+
+# 推送 Tag 到远程（触发 GitHub Actions）
+git push origin v0.1.0
+</code></pre>
+<h3 id="52-tag-命名规范"><a class="header" href="#52-tag-命名规范">5.2 Tag 命名规范</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">格式</th><th style="text-align: left">说明</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><code>v0.1.0</code></td><td style="text-align: left">✅ 推荐，语义化版本</td></tr>
+<tr><td style="text-align: left"><code>v1.0.0</code></td><td style="text-align: left">✅ 正式版本</td></tr>
+<tr><td style="text-align: left"><code>v0.1.0-beta.1</code></td><td style="text-align: left">✅ 预发布版本</td></tr>
+<tr><td style="text-align: left"><code>0.1.0</code></td><td style="text-align: left">❌ 缺少 v 前缀，可能不触发</td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="6-验证发布结果"><a class="header" href="#6-验证发布结果">6. 验证发布结果</a></h2>
+<h3 id="61-监控-github-actions"><a class="header" href="#61-监控-github-actions">6.1 监控 GitHub Actions</a></h3>
+<ol>
+<li>打开 GitHub 仓库</li>
+<li>点击 <strong>Actions</strong> 标签</li>
+<li>找到 <strong>Release</strong> 工作流</li>
+<li>等待运行完成（通常 5-15 分钟）</li>
+</ol>
+<h3 id="62-检查-releases-页面"><a class="header" href="#62-检查-releases-页面">6.2 检查 Releases 页面</a></h3>
+<p>访问：<code>https://github.com/你的用户名/你的项目名/releases</code></p>
+<p>应看到：</p>
 <ul>
-<li><a href="https://colemak.com/Unix">Colemak 官方网站</a></li>
-<li><a href="https://wiki.archlinux.org/title/Xorg/Keyboard_configuration">Linux 键盘布局配置指南</a></li>
-<li><a href="https://en.wikipedia.org/wiki/Keyboard_layout">键盘布局比较研究</a></li>
+<li>✅ 版本标签 <code>v0.1.0</code></li>
+<li>✅ 各平台二进制包</li>
+<li>✅ 安装脚本</li>
 </ul>
-<p>选择适合自己的键盘布局可以显著提高打字效率和舒适度。无论你选择传统的 QWERTY 还是优化的 Colemak，重要的是找到最适合自己工作习惯的方案。</p>
+<h3 id="63-生成的文件示例"><a class="header" href="#63-生成的文件示例">6.3 生成的文件示例</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">文件</th><th style="text-align: left">说明</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><code>your-project-v0.1.0-x86_64-unknown-linux-gnu.tar.gz</code></td><td style="text-align: left">Linux 包</td></tr>
+<tr><td style="text-align: left"><code>your-project-v0.1.0-x86_64-apple-darwin.tar.gz</code></td><td style="text-align: left">macOS 包</td></tr>
+<tr><td style="text-align: left"><code>your-project-v0.1.0-x86_64-pc-windows-msvc.zip</code></td><td style="text-align: left">Windows 包</td></tr>
+<tr><td style="text-align: left"><code>installer.sh</code></td><td style="text-align: left">Linux/macOS 安装脚本</td></tr>
+<tr><td style="text-align: left"><code>installer.ps1</code></td><td style="text-align: left">Windows 安装脚本</td></tr>
+<tr><td style="text-align: left"><code>.sha256</code></td><td style="text-align: left">校验和文件</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="64-测试安装"><a class="header" href="#64-测试安装">6.4 测试安装</a></h3>
+<pre><code class="language-bash"># Linux/macOS
+curl --proto '=https' --tlsv1.2 -sSf https://github.com/你的用户名/你的项目名/releases/download/v0.1.0/installer.sh | sh
+
+# Windows PowerShell
+powershell -c "irm https://github.com/你的用户名/你的项目名/releases/download/v0.1.0/installer.ps1 | iex"
+</code></pre>
+<hr>
+<h2 id="7-后续版本更新"><a class="header" href="#7-后续版本更新">7. 后续版本更新</a></h2>
+<h3 id="71-发布新版本流程"><a class="header" href="#71-发布新版本流程">7.1 发布新版本流程</a></h3>
+<pre><code class="language-bash"># 1. 更新 Cargo.toml 中的版本号
+# 2. 提交更改
+git add Cargo.toml
+git commit -m "chore: bump version to 0.2.0"
+git push
+
+# 3. 创建新 Tag
+git tag -a v0.2.0 -m "Release version 0.2.0"
+git push origin v0.2.0
+</code></pre>
+<h3 id="72-使用-cargo-release-自动化可选"><a class="header" href="#72-使用-cargo-release-自动化可选">7.2 使用 cargo-release 自动化（可选）</a></h3>
+<pre><code class="language-bash"># 安装
+cargo install cargo-release
+
+# 自动更新版本、打 Tag、推送
+cargo release patch --execute    # 0.1.0 → 0.1.1
+cargo release minor --execute    # 0.1.0 → 0.2.0
+cargo release major --execute    # 0.1.0 → 1.0.0
+</code></pre>
+<hr>
+<h2 id="8-常见问题排查"><a class="header" href="#8-常见问题排查">8. 常见问题排查</a></h2>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th style="text-align: left">问题</th><th style="text-align: left">解决方案</th></tr>
+</thead>
+<tbody>
+<tr><td style="text-align: left"><code>cargo dist</code> 命令找不到</td><td style="text-align: left">创建软链接：<code>ln -s ~/.cargo/bin/dist ~/.cargo/bin/cargo-dist</code></td></tr>
+<tr><td style="text-align: left">Actions 未触发</td><td style="text-align: left">检查 Tag 格式是否为 <code>v*</code>，检查仓库 Actions 权限设置</td></tr>
+<tr><td style="text-align: left">编译失败</td><td style="text-align: left">查看 Actions 日志，检查代码是否有平台特定问题</td></tr>
+<tr><td style="text-align: left">权限错误</td><td style="text-align: left">Settings → Actions → General → 启用 “Allow GitHub Actions to create releases”</td></tr>
+<tr><td style="text-align: left">想手动触发</td><td style="text-align: left">Actions 页面 → 选择工作流 → “Run workflow”</td></tr>
+<tr><td style="text-align: left">想预览打包结果</td><td style="text-align: left">运行 <code>cargo dist plan</code></td></tr>
+</tbody>
+</table>
+</div>
+<hr>
+<h2 id="9-附录aur-发布指南"><a class="header" href="#9-附录aur-发布指南">9. 附录：AUR 发布指南</a></h2>
+<h3 id="91-创建-pkgbuild"><a class="header" href="#91-创建-pkgbuild">9.1 创建 PKGBUILD</a></h3>
+<pre><code class="language-bash"># Maintainer: Your Name &lt;your.email@example.com&gt;
+pkgname=你的项目名
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="项目描述"
+arch=('x86_64' 'aarch64')
+url="https://github.com/你的用户名/你的项目名"
+license=('MIT')
+depends=()
+makedepends=('cargo')
+source=("$pkgname-$pkgver.tar.gz::https://github.com/你的用户名/你的项目名/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+    cd "$srcdir/$pkgname-$pkgver"
+    cargo build --release
+}
+
+package() {
+    cd "$srcdir/$pkgname-$pkgver"
+    install -Dm755 "target/release/$pkgname" "$pkgdir/usr/bin/$pkgname"
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
+</code></pre>
+<h3 id="92-生成-srcinfo"><a class="header" href="#92-生成-srcinfo">9.2 生成 .SRCINFO</a></h3>
+<pre><code class="language-bash">sudo pacman -S pacman-contrib
+cd aur
+makepkg --printsrcinfo &gt; .SRCINFO
+</code></pre>
+<h3 id="93-提交到-aur"><a class="header" href="#93-提交到-aur">9.3 提交到 AUR</a></h3>
+<pre><code class="language-bash"># 克隆 AUR 仓库
+git clone ssh://aur@aur.archlinux.org/你的项目名.git
+
+# 复制文件并提交
+cp PKGBUILD .SRCINFO 你的项目名/
+cd 你的项目名
+git add PKGBUILD .SRCINFO
+git commit -m "Initial release v0.1.0"
+git push
+</code></pre>
+<h3 id="94-用户安装"><a class="header" href="#94-用户安装">9.4 用户安装</a></h3>
+<pre><code class="language-bash">yay -S 你的项目名
+# 或
+paru -S 你的项目名
+</code></pre>
+<hr>
+<h2 id="-快速检查清单"><a class="header" href="#-快速检查清单">📌 快速检查清单</a></h2>
+<pre><code>□ rustup 已安装且 PATH 正确
+□ cargo-dist 已安装且可运行
+□ Cargo.toml 元数据完整
+□ README.md 和 LICENSE 存在
+□ cargo dist init 成功执行
+□ Git 仓库已关联远程
+□ GitHub Actions 已启用
+□ Tag 格式为 v*.*.*
+□ Releases 页面可见下载文件
+□ 安装脚本测试通过
+</code></pre>
+<hr>
+<h2 id="-相关资源"><a class="header" href="#-相关资源">🔗 相关资源</a></h2>
+<ul>
+<li><a href="https://github.com/axodotdev/cargo-dist">cargo-dist 官方文档</a></li>
+<li><a href="https://docs.github.com/en/actions">GitHub Actions 文档</a></li>
+<li><a href="https://wiki.archlinux.org/title/AUR_submission_guidelines">AUR 提交指南</a></li>
+<li><a href="https://semver.org/">语义化版本规范</a></li>
+</ul>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-                            <a rel="prev" href="linux_2FA.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                            <a rel="prev" href="arch_linux_init.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                             </a>
 
-                            <a rel="next prefetch" href="disable_sleep.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                            <a rel="next prefetch" href="linux_2FA.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                                 <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                             </a>
 
@@ -296,11 +573,11 @@ setxkbmap -option
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-                    <a rel="prev" href="linux_2FA.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                    <a rel="prev" href="arch_linux_init.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/></svg></span>
                     </a>
 
-                    <a rel="next prefetch" href="disable_sleep.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                    <a rel="next prefetch" href="linux_2FA.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
                         <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z"/></svg></span>
                     </a>
             </nav>

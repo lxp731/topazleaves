@@ -37,10 +37,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-0a679275.js"></script>
+        <script src="toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,56 +179,109 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="kns-install-locking-namespace"><a class="header" href="#kns-install-locking-namespace">kns Install (Locking Namespace)</a></h1>
-<h2 id="install-fzf"><a class="header" href="#install-fzf">Install fzf</a></h2>
-<ol>
-<li>Source Code Install(Recommend)</li>
-</ol>
-<pre><code class="language-bash"># Clone the fzf repository
+                        <h1 id="kns-工具安装与使用指南"><a class="header" href="#kns-工具安装与使用指南">kns 工具安装与使用指南</a></h1>
+<p>kns（Kubernetes Namespace Switcher）是一个快速切换 Kubernetes 命名空间的工具，结合了 kubectl 和 fzf，让命名空间切换变得更加便捷。</p>
+<h2 id="安装-fzf必需依赖"><a class="header" href="#安装-fzf必需依赖">安装 fzf（必需依赖）</a></h2>
+<h3 id="方法一源码安装推荐"><a class="header" href="#方法一源码安装推荐">方法一：源码安装（推荐）</a></h3>
+<pre><code class="language-bash"># 克隆 fzf 仓库
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
-# Run the install script
+# 运行安装脚本
 ~/.fzf/install
 </code></pre>
-<ol start="2">
-<li>apt install</li>
-</ol>
-<pre><code class="language-bash">sudo apt install fzf
+<h3 id="方法二使用包管理器安装"><a class="header" href="#方法二使用包管理器安装">方法二：使用包管理器安装</a></h3>
+<pre><code class="language-bash"># Ubuntu/Debian
+sudo apt install fzf
+
+# Arch Linux
+sudo pacman -S fzf
+
+# macOS (Homebrew)
+brew install fzf
 </code></pre>
-<h2 id="edit-kns-script"><a class="header" href="#edit-kns-script">Edit kns Script</a></h2>
+<h2 id="创建-kns-脚本"><a class="header" href="#创建-kns-脚本">创建 kns 脚本</a></h2>
+<h3 id="1-创建脚本文件"><a class="header" href="#1-创建脚本文件">1. 创建脚本文件</a></h3>
 <pre><code class="language-bash">vim kns
 </code></pre>
+<h3 id="2-脚本内容"><a class="header" href="#2-脚本内容">2. 脚本内容</a></h3>
 <pre><code class="language-shell">#!/bin/sh
-# quick Kubernetes Namespace Switcher
+# 快速 Kubernetes 命名空间切换器
 # ISC Blendle, 2017
 
 set -eu
 
+# 检查 kubectl 是否安装
 if [ ! -x "$(which kubectl 2&gt;/dev/null)" ]; then
-  echo "please install: kubectl (https://kubernetes.io/docs/tasks/kubectl/install/)" &gt;&amp;2
-  exit 1
-fi
-if [ ! -x "$(which fzf 2&gt;/dev/null)" ]; then
-  echo "please install: fzf (https://github.com/junegunn/fzf)" &gt;&amp;2
+  echo "请先安装 kubectl：https://kubernetes.io/docs/tasks/kubectl/install/" &gt;&amp;2
   exit 1
 fi
 
+# 检查 fzf 是否安装
+if [ ! -x "$(which fzf 2&gt;/dev/null)" ]; then
+  echo "请先安装 fzf：https://github.com/junegunn/fzf" &gt;&amp;2
+  exit 1
+fi
+
+# 获取当前上下文和命名空间
 current="$(kubectl config current-context)"
 namespace="$(kubectl config view -o jsonpath="{.contexts[?(@.name == '${current}')].context.namespace}")"
 if [ -z "$namespace" ]; then
   namespace="default"
 fi
 
+# 使用 fzf 选择命名空间
 selected=$( (kubectl get namespaces -o=jsonpath="{.items[?(@.metadata.name!='$namespace')].metadata.name}" | xargs -n 1; echo $namespace ) | fzf -0 -1 --tac -q "${1:-""}" --prompt "$current&gt; ")
+
+# 设置选中的命名空间
 if [ -n "$selected" ]; then
   kubectl config set-context "$current" "--namespace=$selected" &gt;/dev/null
-  echo "Set context namespace to \"$selected\""
+  echo "已将上下文命名空间设置为 \"$selected\""
 fi
 </code></pre>
-<h2 id="add-exec-permission"><a class="header" href="#add-exec-permission">Add Exec Permission</a></h2>
+<h2 id="安装-kns-脚本"><a class="header" href="#安装-kns-脚本">安装 kns 脚本</a></h2>
+<h3 id="1-添加执行权限"><a class="header" href="#1-添加执行权限">1. 添加执行权限</a></h3>
 <pre><code class="language-bash">chmod +x kns
-sudo mv kns /usr/local/bin/kns
 </code></pre>
+<h3 id="2-移动到系统路径"><a class="header" href="#2-移动到系统路径">2. 移动到系统路径</a></h3>
+<pre><code class="language-bash">sudo mv kns /usr/local/bin/kns
+</code></pre>
+<h2 id="使用方法"><a class="header" href="#使用方法">使用方法</a></h2>
+<h3 id="基本使用"><a class="header" href="#基本使用">基本使用</a></h3>
+<pre><code class="language-bash"># 运行 kns 命令
+kns
+</code></pre>
+<p>运行命令后，会显示当前 Kubernetes 上下文和所有可用的命名空间列表。使用方向键或搜索功能选择目标命名空间，按回车确认。</p>
+<h3 id="搜索功能"><a class="header" href="#搜索功能">搜索功能</a></h3>
+<p>在 fzf 界面中直接输入命名空间名称的部分字符即可进行搜索。</p>
+<h3 id="命令行参数"><a class="header" href="#命令行参数">命令行参数</a></h3>
+<pre><code class="language-bash"># 带初始搜索词
+kns production  # 会直接筛选包含 "production" 的命名空间
+</code></pre>
+<h2 id="工作原理"><a class="header" href="#工作原理">工作原理</a></h2>
+<ol>
+<li><strong>获取当前状态</strong>：脚本首先获取当前的 Kubernetes 上下文和命名空间</li>
+<li><strong>列出命名空间</strong>：使用 kubectl 获取所有可用的命名空间</li>
+<li><strong>交互选择</strong>：通过 fzf 提供交互式选择界面</li>
+<li><strong>更新配置</strong>：将选中的命名空间设置为当前上下文的默认命名空间</li>
+</ol>
+<h2 id="注意事项"><a class="header" href="#注意事项">注意事项</a></h2>
+<ol>
+<li><strong>权限要求</strong>：需要具有读取和修改 kubeconfig 文件的权限</li>
+<li><strong>kubectl 配置</strong>：确保 kubectl 已正确配置并可以访问集群</li>
+<li><strong>命名空间权限</strong>：切换命名空间不会检查用户在该命名空间的权限，切换后操作可能因权限不足而失败</li>
+</ol>
+<h2 id="扩展功能"><a class="header" href="#扩展功能">扩展功能</a></h2>
+<p>你可以根据需要修改脚本，添加以下功能：</p>
+<ol>
+<li><strong>多集群支持</strong>：扩展脚本以支持多个 Kubernetes 集群</li>
+<li><strong>上下文切换</strong>：结合 kubectx 工具实现上下文和命名空间的同时切换</li>
+<li><strong>别名设置</strong>：为常用命名空间设置简短别名</li>
+</ol>
+<h2 id="卸载"><a class="header" href="#卸载">卸载</a></h2>
+<p>如果需要卸载 kns 工具：</p>
+<pre><code class="language-bash">sudo rm /usr/local/bin/kns
+</code></pre>
+<p>kns 工具大大简化了 Kubernetes 命名空间的管理工作，特别是在需要频繁切换不同环境时，能显著提高工作效率。</p>
 
                     </main>
 

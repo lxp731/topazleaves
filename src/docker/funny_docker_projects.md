@@ -1,11 +1,19 @@
-# Funny Docker Projects
+# 有趣的 Docker 项目集锦
 
-Collected some funny docker projects here. If you want to try, confirm you install docker and docker-compose first.
+这里收集了一些有趣且实用的 Docker 项目。如果你也想尝试部署这些项目，请确保已经安装了 Docker 和 Docker Compose。
 
-- [OpenWeb-UI](./openweb-ui.md)
+## 项目列表
 
-    You can chat with your local ollama models in browser. It's provide history management and session management.
+### [OpenWeb-UI](./openweb-ui.md)
 
-- [YesplayMusic](./yesplaymusic.md)
+一个基于浏览器的本地 AI 对话界面，可以与你的 Ollama 模型进行交互。它提供了完整的历史记录管理和会话管理功能，让你能够更方便地使用本地大语言模型。
 
-    A music player with a beautiful UI. You can deploy it on your own server.
+### [YesPlayMusic](./yesplaymusic.md)
+
+一款界面精美的音乐播放器，支持在自有服务器上部署。如果你想要一个私人的音乐流媒体服务，这个项目是个不错的选择。
+
+## 使用建议
+
+这些项目都经过了实际部署测试，配置相对简单。每个项目都有详细的部署指南，点击对应的链接即可查看具体的配置方法。
+
+如果你在部署过程中遇到问题，或者有更多有趣的 Docker 项目推荐，欢迎在评论区交流分享！

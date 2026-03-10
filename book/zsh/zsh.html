@@ -37,10 +37,10 @@
             const path_to_root = "../";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "../searchindex-8b6c9f5c.js";
+            window.path_to_searchindex_js = "../searchindex-a28c6da3.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="../toc-0a679275.js"></script>
+        <script src="../toc-c618f369.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -179,16 +179,190 @@
 
                 <div id="mdbook-content" class="content">
                     <main>
-                        <h1 id="zsh"><a class="header" href="#zsh">ZSH</a></h1>
-<p>zsh is a shell that can be used as a replacement for bash.</p>
-<h2 id="installation"><a class="header" href="#installation">Installation</a></h2>
-<p><a href="https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH">https://github.com/ohmyzsh/ohmyzsh/wiki/Installing-ZSH</a></p>
-<pre><code class="language-bash">sudo apt install zsh
+                        <h1 id="zsh强大的-shell-替代方案"><a class="header" href="#zsh强大的-shell-替代方案">ZSH：强大的 Shell 替代方案</a></h1>
+<p>ZSH（Z Shell）是一个功能强大的 Unix shell，可以作为 Bash 的替代品。它提供了丰富的功能和高度可定制性，是开发者和高级用户的理想选择。</p>
+<h2 id="安装-zsh"><a class="header" href="#安装-zsh">安装 ZSH</a></h2>
+<h3 id="ubuntudebian"><a class="header" href="#ubuntudebian">Ubuntu/Debian</a></h3>
+<pre><code class="language-bash">sudo apt update
+sudo apt install zsh
 </code></pre>
-<h2 id="configuration"><a class="header" href="#configuration">Configuration</a></h2>
-<pre><code class="language-bash">chsh -s $(which zsh) $USER
+<h3 id="centosrhel"><a class="header" href="#centosrhel">CentOS/RHEL</a></h3>
+<pre><code class="language-bash">sudo yum install zsh
 </code></pre>
-<p>Make it works, you can <code>logout</code> system and relogin again.</p>
+<h3 id="arch-linux"><a class="header" href="#arch-linux">Arch Linux</a></h3>
+<pre><code class="language-bash">sudo pacman -S zsh
+</code></pre>
+<h3 id="macos"><a class="header" href="#macos">macOS</a></h3>
+<pre><code class="language-bash">brew install zsh
+</code></pre>
+<h2 id="验证安装"><a class="header" href="#验证安装">验证安装</a></h2>
+<pre><code class="language-bash">zsh --version
+# 输出类似：zsh 5.8.1 (x86_64-ubuntu-linux-gnu)
+</code></pre>
+<h2 id="设置为默认-shell"><a class="header" href="#设置为默认-shell">设置为默认 Shell</a></h2>
+<h3 id="1-查看可用-shell"><a class="header" href="#1-查看可用-shell">1. 查看可用 Shell</a></h3>
+<pre><code class="language-bash">cat /etc/shells
+</code></pre>
+<h3 id="2-设置-zsh-为默认-shell"><a class="header" href="#2-设置-zsh-为默认-shell">2. 设置 ZSH 为默认 Shell</a></h3>
+<pre><code class="language-bash">chsh -s $(which zsh)
+</code></pre>
+<h3 id="3-验证设置"><a class="header" href="#3-验证设置">3. 验证设置</a></h3>
+<pre><code class="language-bash">echo $SHELL
+# 应该输出：/bin/zsh 或 /usr/bin/zsh
+</code></pre>
+<h2 id="首次运行配置"><a class="header" href="#首次运行配置">首次运行配置</a></h2>
+<p>第一次启动 ZSH 时，会进入配置向导：</p>
+<h3 id="配置选项说明"><a class="header" href="#配置选项说明">配置选项说明</a></h3>
+<pre><code>(1)  Continue to the main menu.
+(2)  Populate your ~/.zshrc with the configuration recommended
+     by the system administrator and exit (you will need to edit
+     the file yourself).
+(3)  Exit, creating the file ~/.zshrc containing just a comment.
+     That will prevent this function from being run again.
+(4)  Exit without creating ~/.zshrc.
+</code></pre>
+<p>建议选择 <code>(2)</code> 或 <code>(3)</code>，然后手动配置。</p>
+<h2 id="基本配置"><a class="header" href="#基本配置">基本配置</a></h2>
+<h3 id="创建配置文件"><a class="header" href="#创建配置文件">创建配置文件</a></h3>
+<pre><code class="language-bash"># 如果不存在则创建
+touch ~/.zshrc
+</code></pre>
+<h3 id="常用配置示例"><a class="header" href="#常用配置示例">常用配置示例</a></h3>
+<pre><code class="language-bash"># 启用自动补全
+autoload -Uz compinit
+compinit
+
+# 启用颜色支持
+autoload -Uz colors
+colors
+
+# 历史记录配置
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+setopt sharehistory
+setopt incappendhistory
+
+# 键绑定
+bindkey -e  # 使用 Emacs 键绑定
+# 或
+bindkey -v  # 使用 Vi 键绑定
+
+# 别名
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+</code></pre>
+<h2 id="zsh-特色功能"><a class="header" href="#zsh-特色功能">ZSH 特色功能</a></h2>
+<h3 id="1-智能补全"><a class="header" href="#1-智能补全">1. 智能补全</a></h3>
+<p>ZSH 的补全系统比 Bash 更强大，支持：</p>
+<ul>
+<li>命令补全</li>
+<li>参数补全</li>
+<li>文件类型感知补全</li>
+<li>拼写纠正</li>
+</ul>
+<h3 id="2-主题系统"><a class="header" href="#2-主题系统">2. 主题系统</a></h3>
+<p>ZSH 支持丰富的主题和提示符定制：</p>
+<pre><code class="language-bash"># 安装 oh-my-zsh 获取更多主题
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+</code></pre>
+<h3 id="3-插件系统"><a class="header" href="#3-插件系统">3. 插件系统</a></h3>
+<p>ZSH 有丰富的插件生态系统：</p>
+<ul>
+<li>语法高亮</li>
+<li>自动建议</li>
+<li>历史搜索</li>
+<li>Git 集成</li>
+</ul>
+<h3 id="4-通配符扩展"><a class="header" href="#4-通配符扩展">4. 通配符扩展</a></h3>
+<p>更强大的文件匹配功能：</p>
+<pre><code class="language-bash"># 递归查找所有 .txt 文件
+ls **/*.txt
+
+# 查找最近修改的文件
+ls *(m-7)  # 7天内修改的文件
+</code></pre>
+<h2 id="从-bash-迁移"><a class="header" href="#从-bash-迁移">从 Bash 迁移</a></h2>
+<h3 id="1-导入-bash-配置"><a class="header" href="#1-导入-bash-配置">1. 导入 Bash 配置</a></h3>
+<pre><code class="language-bash"># 将常用的 Bash 配置复制到 .zshrc
+cat ~/.bashrc &gt;&gt; ~/.zshrc
+</code></pre>
+<h3 id="2-环境变量"><a class="header" href="#2-环境变量">2. 环境变量</a></h3>
+<p>确保重要的环境变量在 ZSH 中可用：</p>
+<pre><code class="language-bash"># 在 .zshrc 中添加
+export PATH=$PATH:/usr/local/bin
+export EDITOR=vim
+</code></pre>
+<h3 id="3-函数和别名"><a class="header" href="#3-函数和别名">3. 函数和别名</a></h3>
+<p>迁移自定义函数和别名：</p>
+<pre><code class="language-bash"># 检查 Bash 中的别名
+alias
+
+# 检查 Bash 中的函数
+declare -f
+</code></pre>
+<h2 id="性能优化"><a class="header" href="#性能优化">性能优化</a></h2>
+<h3 id="1-延迟加载"><a class="header" href="#1-延迟加载">1. 延迟加载</a></h3>
+<p>对于大型插件，使用延迟加载提高启动速度：</p>
+<pre><code class="language-bash"># 在 .zshrc 中
+zplugin light zsh-users/zsh-autosuggestions
+</code></pre>
+<h3 id="2-缓存补全"><a class="header" href="#2-缓存补全">2. 缓存补全</a></h3>
+<pre><code class="language-bash"># 启用补全缓存
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
+</code></pre>
+<h3 id="3-定期清理"><a class="header" href="#3-定期清理">3. 定期清理</a></h3>
+<pre><code class="language-bash"># 清理旧的补全缓存
+rm -f ~/.zcompdump
+compinit
+</code></pre>
+<h2 id="常用工具和框架"><a class="header" href="#常用工具和框架">常用工具和框架</a></h2>
+<h3 id="1-oh-my-zsh"><a class="header" href="#1-oh-my-zsh">1. Oh My Zsh</a></h3>
+<p>最流行的 ZSH 配置框架：</p>
+<pre><code class="language-bash"># 安装
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+</code></pre>
+<h3 id="2-prezto"><a class="header" href="#2-prezto">2. Prezto</a></h3>
+<p>另一个流行的配置框架：</p>
+<pre><code class="language-bash">git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+</code></pre>
+<h3 id="3-zinit"><a class="header" href="#3-zinit">3. Zinit</a></h3>
+<p>强大的插件管理器：</p>
+<pre><code class="language-bash"># 安装
+sh -c "$(curl -fsSL https://git.io/zinit-install)"
+</code></pre>
+<h2 id="故障排除"><a class="header" href="#故障排除">故障排除</a></h2>
+<h3 id="问题zsh-启动缓慢"><a class="header" href="#问题zsh-启动缓慢">问题：ZSH 启动缓慢</a></h3>
+<pre><code class="language-bash"># 分析启动时间
+time zsh -i -c exit
+
+# 或使用专门工具
+zprof
+</code></pre>
+<h3 id="问题补全不工作"><a class="header" href="#问题补全不工作">问题：补全不工作</a></h3>
+<pre><code class="language-bash"># 重新生成补全缓存
+rm -f ~/.zcompdump
+autoload -Uz compinit
+compinit
+</code></pre>
+<h3 id="问题历史记录不保存"><a class="header" href="#问题历史记录不保存">问题：历史记录不保存</a></h3>
+<pre><code class="language-bash"># 检查权限
+ls -la ~/.zsh_history
+
+# 修复权限
+chmod 600 ~/.zsh_history
+</code></pre>
+<h2 id="学习资源"><a class="header" href="#学习资源">学习资源</a></h2>
+<ul>
+<li><a href="http://zsh.sourceforge.net/Doc/">ZSH 官方文档</a></li>
+<li><a href="https://github.com/ohmyzsh/ohmyzsh/wiki">Oh My Zsh Wiki</a></li>
+<li><a href="https://github.com/robbyrussell/oh-my-zsh/wiki/Cheatsheet">ZSH 入门指南</a></li>
+<li><a href="https://github.com/unixorn/awesome-zsh-plugins">Awesome ZSH 插件列表</a></li>
+</ul>
+<p>ZSH 的学习曲线可能比 Bash 稍陡，但一旦掌握，它能显著提高命令行工作效率。从简单的配置开始，逐步探索其强大功能，你会发现它值得投入时间学习。</p>
 
                     </main>
 

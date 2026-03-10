@@ -8,9 +8,11 @@
 
 - [SSH config](./vscode_remote_usage.md)
 
-- [Linux 2FA Auth](./linux_2FA.md)
-
 - [Arch linux Init](./arch_linux_init.md)
+
+- [Cargo Release](./cargo_release.md)
+
+- [Linux 2FA Auth](./linux_2FA.md)
 
 - [Keyboard Layout](./keyboard_layout.md)
 
