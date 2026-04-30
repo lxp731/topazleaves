@@ -166,6 +166,24 @@ auth    sufficient    pam_unix.so try_first_pass likeauth nullok
 auth    sufficient    pam_fprintd.so
 ```
 
+### 3. 针对 CachyOS 系统不能使用密码验证 sudo 的问题
+
+```bash
+sudo vim /etc/pam.d/sudo
+```
+
+将其改为：
+
+```bash
+#%PAM-1.0
+auth       sufficient   pam_fprintd.so
+auth       required     pam_unix.so try_first_pass nullok
+account    include      system-auth
+session    include      system-auth
+```
+在不方便使用指纹验证时，可以 CTRL+C 取消，使用密码验证 sudo。
+
+
 ## 完成配置
 
 完成以上步骤后，重启系统使所有配置生效。现在你的 Arch Linux 系统已经配置了中文环境、快速的软件源和方便的输入法，可以开始愉快地使用了。
