@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "searchindex-a28c6da3.js";
+            window.path_to_searchindex_js = "searchindex-7eda5832.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-c618f369.js"></script>
@@ -672,6 +672,17 @@ auth    sufficient    pam_fprintd.so
 <pre><code class="language-bash">auth    sufficient    pam_unix.so try_first_pass likeauth nullok
 auth    sufficient    pam_fprintd.so
 </code></pre>
+<h3 id="3-针对-cachyos-系统不能使用密码验证-sudo-的问题"><a class="header" href="#3-针对-cachyos-系统不能使用密码验证-sudo-的问题">3. 针对 CachyOS 系统不能使用密码验证 sudo 的问题</a></h3>
+<pre><code class="language-bash">sudo vim /etc/pam.d/sudo
+</code></pre>
+<p>将其改为：</p>
+<pre><code class="language-bash">#%PAM-1.0
+auth       sufficient   pam_fprintd.so
+auth       required     pam_unix.so try_first_pass nullok
+account    include      system-auth
+session    include      system-auth
+</code></pre>
+<p>在不方便使用指纹验证时，可以 CTRL+C 取消，使用密码验证 sudo。</p>
 <h2 id="完成配置"><a class="header" href="#完成配置">完成配置</a></h2>
 <p>完成以上步骤后，重启系统使所有配置生效。现在你的 Arch Linux 系统已经配置了中文环境、快速的软件源和方便的输入法，可以开始愉快地使用了。</p>
 <div style="break-before: page; page-break-before: always;"></div>
