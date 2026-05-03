@@ -27,9 +27,7 @@
   - [zsh-autocomplete](./zsh/zsh-autocomplete.md)
   - [zsh-syntax-highlighting](./zsh/zsh-syntax-highlighting.md)
   - [zsh-you-should-use](./zsh/zsh-you-should-use.md)
-  - [zsh-ollama-completion](./zsh/zsh-ollama-completion.md)
   - [zsh-auto-venv](./zsh/zsh-auto-venv.md)
-  - [zsh-fzf-hotkey](./zsh/zsh-fzf-hotkey.md)
 
 - [FZF](./fzf/fzf.md)
   - [FZF Replace Bash Completion](./fzf/fzf_completion.md)
