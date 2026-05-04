@@ -72,6 +72,7 @@
   - [System Proxy](./proxy/system_proxy_setting.md)
   - [Docker Proxy](./proxy/docker_proxy_setting.md)
   - [K3S Proxy](./proxy/k3s_proxy_setting.md)
+  - [Podman Proxy](./proxy/podman_proxy_setting.md)
 
 - [Funny Docker Projects](./docker/funny_docker_projects.md)
   - [Openweb-UI](./docker/openweb-ui.md)

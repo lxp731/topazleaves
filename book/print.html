@@ -38,10 +38,10 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "searchindex-02692253.js";
+            window.path_to_searchindex_js = "searchindex-12bf3935.js";
         </script>
         <!-- Start loading toc.js asap -->
-        <script src="toc-bd7c4fac.js"></script>
+        <script src="toc-adfde3a5.js"></script>
     </head>
     <body>
     <div id="mdbook-help-container">
@@ -8594,6 +8594,97 @@ sudo systemctl restart docker
 HTTPS_PROXY=http://your-proxy.example.com:8888
 NO_PROXY=127.0.0.0/8,10.0.0.0/8,172.16.0.0/12,192.168.0.0/16
 </code></pre>
+<div style="break-before: page; page-break-before: always;"></div>
+<h1 id="podman-容器代理配置指南"><a class="header" href="#podman-容器代理配置指南">Podman 容器代理配置指南</a></h1>
+<h2 id="问题描述"><a class="header" href="#问题描述">问题描述</a></h2>
+<p>宿主机配置了 <code>http_proxy=127.0.0.1:7890</code>，但容器内 <code>127.0.0.1</code> 指向容器自身，导致代理不可用。</p>
+<h2 id="根本原因"><a class="header" href="#根本原因">根本原因</a></h2>
+<p>Podman 默认行为：</p>
+<ul>
+<li>自动继承宿主机的 <code>*_proxy</code> 环境变量（优先级最高）</li>
+<li>即使 <code>containers.conf</code> 中配置了 <code>env = [...]</code>，若未禁用自动继承，宿主机变量仍会覆盖配置</li>
+</ul>
+<h2 id="解决方案"><a class="header" href="#解决方案">解决方案</a></h2>
+<h3 id="1-编辑配置文件-1"><a class="header" href="#1-编辑配置文件-1">1. 编辑配置文件</a></h3>
+<p><strong>路径选择</strong>：</p>
+<ul>
+<li>当前用户生效：<code>~/.config/containers/containers.conf</code></li>
+<li>全局生效：<code>/etc/containers/containers.conf</code></li>
+</ul>
+<p><strong>配置内容</strong>：</p>
+<pre><code class="language-ini">[containers]
+# 禁用自动继承宿主机代理变量（关键）
+http_proxy = false
+
+# 手动指定代理，使用 host.containers.internal 指向宿主机
+env = [
+  "http_proxy=http://host.containers.internal:7890",
+  "https_proxy=http://host.containers.internal:7890",
+  "no_proxy=127.0.0.1,localhost",
+  "HTTP_PROXY=http://host.containers.internal:7890",
+  "HTTPS_PROXY=http://host.containers.internal:7890",
+  "NO_PROXY=127.0.0.1,localhost"
+]
+</code></pre>
+<blockquote>
+<p><strong>注意</strong>：</p>
+<ul>
+<li><code>http_proxy = false</code> 必须生效（取消注释）</li>
+<li>同时配置大小写变量，确保所有应用兼容</li>
+<li>文件中只保留一组 <code>env = [...]</code>，避免被覆盖</li>
+<li><code>host.containers.internal</code> 需 Podman ≥ 4.0</li>
+</ul>
+</blockquote>
+<h3 id="2-验证配置"><a class="header" href="#2-验证配置">2. 验证配置</a></h3>
+<pre><code class="language-bash"># 确认配置文件路径
+podman info --format '{{.Host.ConfigFile}}'
+
+# 启动容器检查环境变量
+podman run --rm -it ubuntu /bin/bash
+
+# 容器内执行：
+env | grep -i proxy
+# 预期输出应包含 host.containers.internal，而非 127.0.0.1
+
+# 测试网络连通性
+curl -I https://example.com
+</code></pre>
+<h3 id="3-临时方案命令行覆盖"><a class="header" href="#3-临时方案命令行覆盖">3. 临时方案（命令行覆盖）</a></h3>
+<p>无需修改配置文件，单次运行生效：</p>
+<pre><code class="language-bash">podman run --rm -it --http-proxy=false \
+  -e http_proxy=http://host.containers.internal:7890 \
+  -e https_proxy=http://host.containers.internal:7890 \
+  -e no_proxy=127.0.0.1,localhost \
+  ubuntu /bin/bash
+</code></pre>
+<h3 id="4-故障排查"><a class="header" href="#4-故障排查">4. 故障排查</a></h3>
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th>现象</th><th>检查项</th><th>命令/操作</th></tr>
+</thead>
+<tbody>
+<tr><td>配置未生效</td><td>配置文件路径</td><td><code>podman info --format '{{.Host.ConfigFile}}'</code></td></tr>
+<tr><td>配置被忽略</td><td>语法错误</td><td><code>podman info</code> 能否正常执行</td></tr>
+<tr><td>配置冲突</td><td>多配置文件优先级</td><td>检查 <code>/usr/share/containers/containers.conf</code></td></tr>
+<tr><td>临时参数干扰</td><td>命令行 <code>--http-proxy</code></td><td>命令行参数优先级 &gt; 配置文件</td></tr>
+<tr><td>域名无法解析</td><td>Podman 版本</td><td><code>podman --version</code>（需 ≥ 4.0）</td></tr>
+</tbody>
+</table>
+</div>
+<h3 id="5-备选方案"><a class="header" href="#5-备选方案">5. 备选方案</a></h3>
+<p>若 <code>host.containers.internal</code> 不可用，可改用宿主机真实 IP：</p>
+<pre><code class="language-bash"># 获取宿主机在 podman 网络中的网关 IP
+HOST_IP=$(ip route | grep default | awk '{print $3}')
+
+podman run --rm -it --http-proxy=false \
+  -e http_proxy=http://$HOST_IP:7890 \
+  -e https_proxy=http://$HOST_IP:7890 \
+  ubuntu /bin/bash
+</code></pre>
+<blockquote>
+<p>⚠️ 此方法依赖宿主机网络环境，重启后 IP 可能变化，建议优先使用 <code>host.containers.internal</code>。</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="有趣的-docker-项目集锦"><a class="header" href="#有趣的-docker-项目集锦">有趣的 Docker 项目集锦</a></h1>
 <p>这里收集了一些有趣且实用的 Docker 项目。如果你也想尝试部署这些项目，请确保已经安装了 Docker 和 Docker Compose。</p>
