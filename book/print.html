@@ -38,7 +38,7 @@
             const path_to_root = "";
             const default_light_theme = "rust";
             const default_dark_theme = "rust";
-            window.path_to_searchindex_js = "searchindex-9feffa22.js";
+            window.path_to_searchindex_js = "searchindex-f19aa837.js";
         </script>
         <!-- Start loading toc.js asap -->
         <script src="toc-bbcb430a.js"></script>
@@ -8499,13 +8499,72 @@ podman run --rm -it --http-proxy=false \
 <li>打开浏览器访问 <code>http://localhost:8096</code></li>
 </ol>
 <div style="break-before: page; page-break-before: always;"></div>
-<h1 id="lx-music-1"><a class="header" href="#lx-music-1">Lx-music</a></h1>
+<h1 id="lx-music洛雪音乐的自托管同步服务与在线播放器"><a class="header" href="#lx-music洛雪音乐的自托管同步服务与在线播放器">Lx Music：洛雪音乐的自托管同步服务与在线播放器</a></h1>
+<h2 id="项目简介-1"><a class="header" href="#项目简介-1">项目简介</a></h2>
+<p><a href="https://github.com/lyswhut/lx-music-desktop">洛雪音乐助手（Lx Music）</a> 是一款广受欢迎的开源音乐播放器。本项目 <code>lxserver</code> 是它的增强版自托管同步服务端，内置了一个功能强大的 Web 播放器，让你可以随时随地在浏览器中听歌；同时它也能作为洛雪音乐客户端的数据同步服务器，实现多设备间歌单、收藏的云端同步。它支持多音源聚合搜索、自定义音源脚本，并全面适配 Subsonic 协议。</p>
+<p><strong>GitHub 仓库</strong>：<a href="https://github.com/XCQ0607/lxserver">https://github.com/XCQ0607/lxserver</a></p>
+<h2 id="核心功能-1"><a class="header" href="#核心功能-1">核心功能</a></h2>
+<ul>
+<li><strong>🎧 内置 Web 播放器</strong>：现代化 UI、深色模式，浏览器即开即听</li>
+<li><strong>🔍 多源聚合搜索</strong>：聚合各大音乐平台资源，想听什么搜什么</li>
+<li><strong>📋 歌单与队列管理</strong>：多平台歌单浏览、拖拽排序、批量管理</li>
+<li><strong>🎵 完整播放控制</strong>：音质选择、歌词显示、睡眠定时、播放倍速</li>
+<li><strong>💾 智能缓存</strong>：自动缓存歌词、链接与歌曲，弱网也能流畅播放</li>
+<li><strong>🎨 主题与歌词卡片</strong>：多套现代化主题，歌词卡片一键生成分享海报</li>
+<li><strong>🔌 自定义音源</strong>：支持导入自定义源脚本，扩展音乐来源</li>
+<li><strong>📡 Subsonic 协议</strong>：适配音流、Feishin 等客户端接入播放</li>
+<li><strong>☁️ 数据同步</strong>：作为洛雪音乐同步服务端，实现多设备歌单与收藏云端同步</li>
+<li><strong>👥 多用户与权限</strong>：支持多用户、访问密码及细粒度权限控制</li>
+</ul>
+<h2 id="docker-部署指南-1"><a class="header" href="#docker-部署指南-1">Docker 部署指南</a></h2>
+<h3 id="准备工作-3"><a class="header" href="#准备工作-3">准备工作</a></h3>
+<ol>
+<li>确保已安装 Docker 和 Docker Compose</li>
+</ol>
+<h3 id="docker-composeyml-配置-1"><a class="header" href="#docker-composeyml-配置-1">docker-compose.yml 配置</a></h3>
+<pre><code class="language-yaml">services:
+  lx-music-web:
+    image: docker.io/xcq0607/lxserver:latest
+    container_name: lx-music-web
+    restart: unless-stopped
+    ports:
+      - 9527:9527/tcp        # 直连兜底；正式入口 https://mc.home.arpa
+    volumes:
+      - /path/to/data:/server/data
+      - /path/to/logs:/server/logs
+      - /path/to/cache:/server/cache
+      - /path/to/music:/server/music
+    environment:
+      - NODE_ENV=production
+      # - ENABLE_WEBPLAYER_AUTH=true
+      # - WEBPLAYER_PASSWORD=123456
+      # - FRONTEND_PASSWORD=654321
+      - ADMIN_PATH=/admin
+      - PLAYER_PATH=/
+</code></pre>
+<h3 id="部署步骤-1"><a class="header" href="#部署步骤-1">部署步骤</a></h3>
+<ol>
+<li>创建 <code>docker-compose.yml</code> 文件，将上述配置复制进去（记得将 <code>/home/runner/containers/anylisten</code> 替换为你的实际数据目录）</li>
+<li>在终端中运行以下命令启动服务：
+<pre><code class="language-bash">docker-compose up -d
+</code></pre>
+</li>
+<li>打开浏览器访问 <code>http://localhost:9527</code> 即可使用</li>
+</ol>
+<h3 id="访问说明"><a class="header" href="#访问说明">访问说明</a></h3>
+<ul>
+<li><strong>Web 播放器</strong>：<code>http://localhost:9527</code>（默认路径 <code>/</code>，可通过 <code>PLAYER_PATH</code> 修改）</li>
+<li><strong>同步管理后台</strong>：<code>http://localhost:9527/admin</code>（默认路径 <code>/admin</code>，默认密码 <code>123456</code>，可通过 <code>FRONTEND_PASSWORD</code> 修改）</li>
+</ul>
+<blockquote>
+<p><strong>安全提示</strong>：管理后台默认密码为 <code>123456</code>，首次部署后请务必修改。若服务暴露在公网，建议取消注释 <code>ENABLE_WEBPLAYER_AUTH</code> 与 <code>WEBPLAYER_PASSWORD</code>，为播放器加上访问密码。</p>
+</blockquote>
 <div style="break-before: page; page-break-before: always;"></div>
 <h1 id="openweb-ui本地-ai-对话界面的完美解决方案"><a class="header" href="#openweb-ui本地-ai-对话界面的完美解决方案">OpenWeb-UI：本地 AI 对话界面的完美解决方案</a></h1>
-<h2 id="项目简介-1"><a class="header" href="#项目简介-1">项目简介</a></h2>
+<h2 id="项目简介-2"><a class="header" href="#项目简介-2">项目简介</a></h2>
 <p>OpenWeb-UI 是一个开源的 Web 界面，专门为本地部署的 Ollama 大语言模型设计。它提供了一个美观、易用的聊天界面，让你能够在浏览器中与本地 AI 模型进行自然对话。</p>
 <p><strong>官方网站</strong>：<a href="https://docs.openwebui.com/">https://docs.openwebui.com/</a></p>
-<h2 id="核心功能-1"><a class="header" href="#核心功能-1">核心功能</a></h2>
+<h2 id="核心功能-2"><a class="header" href="#核心功能-2">核心功能</a></h2>
 <ul>
 <li><strong>直观的聊天界面</strong>：类似 ChatGPT 的用户体验</li>
 <li><strong>会话管理</strong>：支持创建、保存和管理多个对话会话</li>
@@ -8513,13 +8572,13 @@ podman run --rm -it --http-proxy=false \
 <li><strong>多模型支持</strong>：可以连接多个不同的 Ollama 模型</li>
 <li><strong>本地部署</strong>：所有数据都保存在本地，确保隐私安全</li>
 </ul>
-<h2 id="docker-部署指南-1"><a class="header" href="#docker-部署指南-1">Docker 部署指南</a></h2>
-<h3 id="准备工作-3"><a class="header" href="#准备工作-3">准备工作</a></h3>
+<h2 id="docker-部署指南-2"><a class="header" href="#docker-部署指南-2">Docker 部署指南</a></h2>
+<h3 id="准备工作-4"><a class="header" href="#准备工作-4">准备工作</a></h3>
 <ol>
 <li>确保已安装 Docker 和 Docker Compose</li>
 <li>确保 Ollama 服务已正确配置（参考：<a href="#ollama-服务发现配置指南">Ollama 服务发现配置</a>）</li>
 </ol>
-<h3 id="docker-composeyml-配置-1"><a class="header" href="#docker-composeyml-配置-1">docker-compose.yml 配置</a></h3>
+<h3 id="docker-composeyml-配置-2"><a class="header" href="#docker-composeyml-配置-2">docker-compose.yml 配置</a></h3>
 <pre><code class="language-yaml">version: '3'
 
 services:
@@ -8537,7 +8596,7 @@ services:
 volumes:
   open-webui:  # 定义数据卷
 </code></pre>
-<h3 id="部署步骤-1"><a class="header" href="#部署步骤-1">部署步骤</a></h3>
+<h3 id="部署步骤-2"><a class="header" href="#部署步骤-2">部署步骤</a></h3>
 <ol>
 <li>创建 <code>docker-compose.yml</code> 文件，将上述配置复制进去</li>
 <li>在终端中运行以下命令启动服务：
@@ -8587,7 +8646,7 @@ services:
     ports:
       - "7900:80"                  # 主机端口:容器端口
 </code></pre>
-<h3 id="部署步骤-2"><a class="header" href="#部署步骤-2">部署步骤</a></h3>
+<h3 id="部署步骤-3"><a class="header" href="#部署步骤-3">部署步骤</a></h3>
 <ol>
 <li>创建 <code>docker-compose.yml</code> 文件，复制上述配置</li>
 <li>运行部署命令：
