@@ -51,7 +51,6 @@
   - [Vim Support System Clipboard](./vim/vim_support_system_clipboard.md)
 
 - [Useful Scripts](./scripts/useful_scripts.md)
-  - [Switch Node Version](./scripts/node_version_control.md)
   - [Docker Proxy ON & OFF](./scripts/docker_proxy_start_stop.md)
   - [Docker Push Private Registry](./scripts/docker_push_registry.md)
 
@@ -76,5 +75,7 @@
   - [Podman Proxy](./proxy/podman_proxy_setting.md)
 
 - [Funny Docker Projects](./docker/funny_docker_projects.md)
+  - [Jellyfin](./docker/jellyfin.md)
+  - [Lx-music](./docker/lx-music.md)
   - [Openweb-UI](./docker/openweb-ui.md)
   - [Yesplaymusic](./docker/yesplaymusic.md)
