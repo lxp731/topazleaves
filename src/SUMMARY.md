@@ -12,11 +12,7 @@
 
 - [Cargo Release](./cargo_release.md)
 
-- [Linux 2FA Auth](./linux_2FA.md)
-
 - [Keyboard Layout](./keyboard_layout.md)
-
-- [Disable Hibernation](./disable_sleep.md)
 
 - [Ollama Service Discovery](./ollama_services_found.md)
 
@@ -37,6 +33,11 @@
 - [CI & CD](./ci_cd/ci_cd.md)
   - [Gitlab CI](./ci_cd/gitlab_ci.md)
   - [Jenkins CI](./ci_cd/jenkins_ci.md)
+
+- [Linux Tips](./linux-tips/linux_tips.md)
+  - [Linux 2FA Auth](./linux-tips/linux_2FA.md)
+  - [Disable Hibernation](./linux-tips/disable_sleep.md)
+  - [Lib Close Screen Off](./linux-tips/lib_close_screen_off.md)
 
 - [ENV & Config](./env/env_variable_setting.md)
   - [Basic .bashrc](./env/bashrc_setting.md)
